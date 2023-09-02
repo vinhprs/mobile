@@ -9,9 +9,11 @@ import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import "../src/style/index.scss"
 import { tabsTheme } from './theme/tab';
+import { checkboxTheme } from './theme/checkbox';
 const theme = extendTheme({
   components: {
-    Tabs: tabsTheme
+    Tabs: tabsTheme,
+    Checkox:checkboxTheme
   },
 })
 const root = ReactDOM.createRoot(
