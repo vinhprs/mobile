@@ -6,10 +6,14 @@ import SearchResult from '../SearchResult/SearchResult'
 import { useForm } from 'react-hook-form'
 import { useDebounce } from '../../hooks/useDebounce'
 import { click } from '@testing-library/user-event/dist/click'
+import { Button, useDisclosure } from '@chakra-ui/react'
+import ModalMenu from '../ModalMenu/ModalMenu'
 const Navbar = () => {
+  const { isOpen:isOpenMenu, onOpen, onClose } = useDisclosure()
   const [value,setValue]=useState("")
   const [isOpen,setIsOpen] = useState(false)
   const focusRef:any = useRef(null)
+  const drawerRef:any=useRef()
   const debouncedValue = useDebounce<string>(value, 500)
   const {
     register,
@@ -53,6 +57,7 @@ const Navbar = () => {
     <div className='fixed top-0 left-0 w-full z-10 bg-white' ref={focusRef}>
         <div className='flex items-center justify-between h-[72px] px-[24px] shadow-xl'>
             <img src={logo} alt="logo-icon" className='w-[130px]'/>
+            <Button ref={drawerRef} onClick={onOpen} bg="none" _hover={{bg:"none"}} fontWeight="400">Danh mục</Button>
             <form action="" className='w-[50%] relative' onSubmit={handleSubmit(handleOnSubmit)}>
               <div className='flex items-center gap-4 bg-white py-3 px-4 rounded-full border-[1px] border-[#272829]'>
                 <button type={value === "" ? "button" : "submit"} className={`${value==="" ? "cursor-default" : "cursor-pointer"}`}>
@@ -69,6 +74,7 @@ const Navbar = () => {
               <Link to="/signup" className='bg-[#272829] text-white px-5 py-3 text-[14px] font-semibold'>Đăng ký</Link>
             </div>
         </div>
+        <ModalMenu isOpen={isOpenMenu} onClose={onClose} drawerRef={drawerRef}/>
     </div>
   )
 }

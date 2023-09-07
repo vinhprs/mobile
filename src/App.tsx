@@ -8,6 +8,8 @@ import Otp from './pages/ForgetPassword/Otp';
 import OtpSignup from './pages/Signup/Otp';
 import Signup from './pages/Signup/Signup';
 import Information from './pages/Signup/Information';
+import ListCourses from './pages/ListCourses/ListCourses';
+import CourseItem from './pages/CourseItem/CourseItem';
 function App() {
   return (
     <div>
@@ -21,6 +23,8 @@ function App() {
         <Route path='signup' element={<Signup/>}/>
         <Route path='signup/otp' element={<OtpSignup/>}/>
         <Route path='signup/user' element={<Information/>}/>
+        <Route path='courses' element={<ListCourses/>}/>
+        <Route path='courses/:idcourse' element={<CourseItem/>}/>
       </Routes>
       <Footer/>
     </div>
