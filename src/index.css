@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body{
+    color: #272829;
+}
 .swiper {
     /* max-width: 1000px; */
     width: 100%;

@@ -10,6 +10,7 @@ import Signup from './pages/Signup/Signup';
 import Information from './pages/Signup/Information';
 import ListCourses from './pages/ListCourses/ListCourses';
 import CourseItem from './pages/CourseItem/CourseItem';
+import VideoCourse from './pages/VideoCourse/VideoCourse';
 function App() {
   return (
     <div>
@@ -25,6 +26,7 @@ function App() {
         <Route path='signup/user' element={<Information/>}/>
         <Route path='courses' element={<ListCourses/>}/>
         <Route path='courses/:idcourse' element={<CourseItem/>}/>
+        <Route path='courses/:idcourse/video' element={<VideoCourse/>}/>
       </Routes>
       <Footer/>
     </div>

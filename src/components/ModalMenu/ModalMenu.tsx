@@ -21,7 +21,7 @@ const ModalMenu = ({isOpen, onClose, drawerRef}:any) => {
             </DrawerHeader>
             <DrawerBody>
                 {navbar.map((item,index)=>(
-                    <DropdownNavbar item={item} key={item.id}/>
+                    <DropdownNavbar item={item} key={item.id} onClose={onClose}/>
                 ))}
             </DrawerBody>
         </DrawerContent>
