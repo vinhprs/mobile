@@ -7,7 +7,9 @@ import { useForm } from "react-hook-form";
 import { useDebounce } from "../../hooks/useDebounce";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import ModalMenu from "../ModalMenu/ModalMenu";
+import NavbarLogin from "./NavbarLogin";
 const Navbar = () => {
+  const [isLogin, setIsLogin] = useState(true);
   const { isOpen: isOpenMenu, onOpen, onClose } = useDisclosure();
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -101,20 +103,24 @@ const Navbar = () => {
             <SearchResult value={value} debouncedValue={debouncedValue} />
           )}
         </form>
-        <div className="flex gap-x-3">
-          <Link
-            to="/login"
-            className="border-[#272829] border-[1px] px-5 py-3 text-[14px] font-semibold"
-          >
-            Đăng nhập
-          </Link>
-          <Link
-            to="/signup"
-            className="bg-[#272829] text-white px-5 py-3 text-[14px] font-semibold"
-          >
-            Đăng ký
-          </Link>
-        </div>
+        {!isLogin ? (
+          <div className="flex gap-x-3">
+            <Link
+              to="/login"
+              className="border-[#272829] border-[1px] px-5 py-3 text-[14px] font-semibold"
+            >
+              Đăng nhập
+            </Link>
+            <Link
+              to="/signup"
+              className="bg-[#272829] text-white px-5 py-3 text-[14px] font-semibold"
+            >
+              Đăng ký
+            </Link>
+          </div>
+        ) : (
+          <NavbarLogin />
+        )}
       </div>
       <ModalMenu isOpen={isOpenMenu} onClose={onClose} drawerRef={drawerRef} />
     </div>

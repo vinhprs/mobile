@@ -1,0 +1,18 @@
+
+.title_learn:hover .modal_title_learn{
+    display: block;
+
+}
+.modal_title_learn{
+    display: none;
+    transform-origin: top center;
+    animation: modalLearning 0.5s;
+}
+@keyframes modalLearning {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

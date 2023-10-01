@@ -19,3 +19,16 @@ moment.updateLocale("en", {
     yy: "%d years",
   },
 });
+
+export function formatNumberMoney(number: number) {
+  // Sử dụng hàm toLocaleString để định dạng số thành chuỗi có dấu phân cách hàng ngàn
+  const formattedNumber = number.toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  // Loại bỏ ký hiệu tiền tệ "₫"
+  return formattedNumber.replace("₫", "");
+}

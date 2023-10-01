@@ -22,6 +22,8 @@ import "@fontsource/noto-sans/600.css";
 import "@fontsource/noto-sans/700.css";
 import "@fontsource/noto-sans/800.css";
 import "@fontsource/noto-sans/900.css";
+import MyLearning from "./pages/MyLearning/MyLearning";
+import Cart from "./pages/Cart/Cart";
 function App() {
   const pathname = useLocation();
   return (
@@ -41,6 +43,8 @@ function App() {
         <Route path="courses/:idcourse" element={<CourseItem />} />
         <Route path="courses/:idcourse/video" element={<VideoCourse />} />
         <Route path="courses/:idcourse/assignment" element={<Assingments />} />
+        <Route path="mylearning" element={<MyLearning />} />
+        <Route path="cart" element={<Cart />} />
       </Routes>
       {!pathname.pathname.includes("assignment") && <Footer />}
     </div>
