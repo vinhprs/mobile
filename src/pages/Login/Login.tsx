@@ -29,7 +29,7 @@ const Login = () => {
         </div>
         <div className="flex gap-x-[1px] justify-center py-5 text-[14px]">
           <span>Bạn chưa có tài khoản?</span>
-          <Link to="" className="font-semibold underline text-[#8614BC]">
+          <Link to="/signup" className="font-semibold underline text-[#8614BC]">
             Đăng ký
           </Link>
         </div>

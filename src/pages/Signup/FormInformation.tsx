@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import {
@@ -11,97 +11,237 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
+import { useAppDispatch } from "../../hooks/appHooks";
+import {
+  getProvince,
+  getSubjects,
+  getSubjetsGroup,
+  userSetting,
+} from "../../store/actions/user.action";
+import moment from "moment";
+
+interface UserProps {
+  name: string;
+  phone: string;
+  dateofbirth: Date;
+  gender: string;
+  province: string;
+  district: string;
+  address: string;
+  subjects: Array<number>;
+  interestSubject: string;
+}
+
 const FormInformation = () => {
+  const dispatch = useAppDispatch();
+  const [province, setProvince] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [subjectGroup, setSubjectGroup] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [value, setValue] = React.useState("Nam");
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<UserProps>({
     defaultValues: {
       name: "",
       phone: "",
       dateofbirth: startDate,
-      gender: "Nam",
+      gender: "",
+      province: "",
+      district: "",
       address: "",
       subjects: [],
       interestSubject: "",
     },
   });
+  const getProvinces = async () => {
+    const response: any = await dispatch(getProvince({}));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      setProvince(response.payload?.data);
+    } else {
+      console.log(response.payload);
+    }
+  };
+  const getDistricts = async () => {
+    const response: any = await dispatch(getProvince(watch("province")));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      setDistrict(response.payload?.data?.districts);
+    } else {
+      console.log(response.payload);
+    }
+  };
+  const getAllSubject = async () => {
+    const response: any = await dispatch(getSubjects({}));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      setSubjects(response.payload?.data);
+    } else {
+      console.log(response.payload);
+    }
+  };
+  const getAllSubjectGroup = async () => {
+    const response: any = await dispatch(getSubjetsGroup({}));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      setSubjectGroup(response.payload?.data);
+    } else {
+      console.log(response.payload);
+    }
+  };
+  useEffect(() => {
+    getProvinces();
+    getAllSubject();
+    getAllSubjectGroup();
+  }, []);
+  useEffect(() => {
+    getDistricts();
+  }, [watch("province")]);
+  const onSubmit = async (data: UserProps) => {
+    const converSunb = data.subjects.map((item, index) => +item);
+    const payload = {
+      fullname: data.name,
+      phone: data.phone,
+      gender: data.gender === "Nam" ? true : false,
+      birthDate: moment(data.dateofbirth).format("YYYY-MM-DD"),
+      address: {
+        province: +data.province,
+        district: +data.district,
+        detail: data.address,
+      },
+      subjects: converSunb,
+      subjectGroup: +data.interestSubject,
+    };
+    const res = await dispatch(userSetting(payload));
+    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+      console.log(res);
+    } else {
+      console.log("err");
+    }
+  };
+
   return (
     <div>
-      <form action="">
+      <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-y-3 mb-3">
           <input
             {...register("name")}
             type="text"
             placeholder="Tên"
-            className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#272829] placeholder:text-[#272829] placeholder:font-semibold "
+            className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#E9EAF0] placeholder:text-[#8C94A3] placeholder:font-normal placeholder:text-[14px] "
           />
           <input
             {...register("phone")}
             type="text"
-            placeholder="Username"
-            className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#272829] placeholder:text-[#272829] placeholder:font-semibold "
+            placeholder="Số điện thoại"
+            className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#E9EAF0] placeholder:text-[#8C94A3] placeholder:font-normal placeholder:text-[14px] "
           />
           <DatePicker
             {...register("dateofbirth")}
             onChange={(date: any) => setStartDate(date)}
             selected={startDate}
-            className="w-full px-3 py-3 outline-none border-[1px] border-[#272829] placeholder:text-[#272829] placeholder:font-semibold"
+            className="w-full px-3 py-3 outline-none border-[1px] border-[#E9EAF0] placeholder:text-[#8C94A3] placeholder:font-normal placeholder:text-[14px]"
             placeholderText="Ngày sinh"
           />
           <RadioGroup onChange={setValue} value={value}>
             <Flex direction="row" gap="3">
-              <Radio {...register("gender")} value="Nam" colorScheme="purple">
+              <Radio
+                {...register("gender")}
+                value="Nam"
+                colorScheme="orange"
+                borderColor="#E9EAF0"
+              >
                 Nam
               </Radio>
-              <Radio {...register("gender")} value="Nữ" colorScheme="purple">
+              <Radio {...register("gender")} value="Nữ" colorScheme="orange">
                 Nữ
               </Radio>
             </Flex>
           </RadioGroup>
+          <Select
+            _focus={{ borderColor: "#FF6636", outline: "none" }}
+            borderRadius="none"
+            height="45px"
+            placeholder="Tỉnh"
+            outline="none"
+            bg="white"
+            {...register("province")}
+            // onChange={handleChangeProvince}
+          >
+            {province.map((item: any, index: any) => (
+              <option value={item.code} key={item.code}>
+                {item.name}
+              </option>
+            ))}
+          </Select>
+          <Select
+            _focus={{ borderColor: "#FF6636", outline: "none" }}
+            borderRadius="none"
+            height="45px"
+            placeholder="Quận"
+            outline="none"
+            bg="white"
+            {...register("district")}
+          >
+            {district?.map((item: any, index: any) => (
+              <option value={item.code} key={item.code}>
+                {item.name}
+              </option>
+            ))}
+          </Select>
           <input
             {...register("address")}
             type="text"
             placeholder="Địa chỉ"
-            className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#272829] placeholder:text-[#272829] placeholder:font-semibold "
+            className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#E9EAF0] placeholder:text-[#8C94A3] placeholder:font-normal placeholder:text-[14px] "
           />
           <div>
-            <h1 className="font-semibold  mb-2">Môn học mà bạn quan tâm</h1>
+            <h1 className="font-normal placeholder:text-[14px] text-[#FF6636]  mb-2">
+              Môn học mà bạn quan tâm
+            </h1>
             <div className="grid grid-cols-3 gap-3">
-              <Checkbox colorScheme="purple">Toán học</Checkbox>
-              <Checkbox colorScheme="purple">Ngữ văn</Checkbox>
-              <Checkbox colorScheme="purple">Tiếng anh</Checkbox>
-              <Checkbox colorScheme="purple">Vật lý</Checkbox>
-              <Checkbox colorScheme="purple">Hóa học</Checkbox>
-              <Checkbox colorScheme="purple">Sinh học</Checkbox>
-              <Checkbox colorScheme="purple">Lịch sử</Checkbox>
-              <Checkbox colorScheme="purple">Địa lý</Checkbox>
-              <Checkbox colorScheme="purple">GDCD</Checkbox>
-              <Checkbox colorScheme="purple">Tin học</Checkbox>
+              {subjects.map((item: any, index: any) => (
+                <Checkbox
+                  key={item._id}
+                  value={item._id}
+                  colorScheme="orange"
+                  borderColor="#8C94A3"
+                  {...register("subjects")}
+                >
+                  {item.subjectName}
+                </Checkbox>
+              ))}
             </div>
           </div>
           <Select
-            _focus={{ borderColor: "#8614BC" }}
-            borderColor="#272829"
+            _focus={{ borderColor: "#FF6636", outline: "none" }}
             borderRadius="none"
             height="45px"
             placeholder="Khối thi"
+            outline="none"
+            bg="white"
             {...register("interestSubject")}
           >
-            <option value="A00">A00</option>
-            <option value="A01">A01</option>
-            <option value="B00">B00</option>
+            {subjectGroup.map((item: any, index: any) => (
+              <option value={item._id} key={item._id}>
+                {item.subjectGroupName}
+              </option>
+            ))}
           </Select>
         </div>
         <Button
-          _hover={{ bg: "#5B0E7F" }}
+          _hover={{ bg: "#fa5928" }}
           w="100%"
-          bg="#8614BC"
+          bg="#FF6636"
           color="white"
           borderRadius="none"
+          type="submit"
+          isLoading={isSubmitting}
         >
           Xác nhận
         </Button>

@@ -1,12 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/appHooks";
 import { updateTabCourse } from "../../store/reducers/courseTabSlice";
+import { LocalStorage } from "../../utils/LocalStorage";
+import {
+  selectAuthUserId,
+  updateIsLogged,
+  updateUserId,
+} from "../../store/reducers/authSlice";
+import { useSelector } from "react-redux";
 
 const Username = () => {
   const dispatch = useAppDispatch();
+  const userId = useSelector(selectAuthUserId);
+  const navigate = useNavigate();
   const handleClickToCourseTab = (index: number) => {
     dispatch(updateTabCourse(index));
+  };
+  const handleLogout = () => {
+    LocalStorage.clearToken();
+    dispatch(updateIsLogged(false));
+    dispatch(updateUserId(""));
+    setTimeout(() => {
+      navigate("/");
+    });
   };
   return (
     <div className="title_learn text-[14px] cursor-pointer relative text-[#272829]">
@@ -69,17 +86,17 @@ const Username = () => {
           </div>
           <div className="flex flex-col py-3 gap-y-2">
             <Link
-              to=""
+              to={`/profile/${userId}`}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
             >
               Cài đặt tài khoản
             </Link>
-            <Link
-              to=""
+            <div
+              onClick={handleLogout}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
             >
               Đăng xuất
-            </Link>
+            </div>
           </div>
         </div>
       </div>

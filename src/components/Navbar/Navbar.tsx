@@ -8,8 +8,13 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import ModalMenu from "../ModalMenu/ModalMenu";
 import NavbarLogin from "./NavbarLogin";
+import { useSelector } from "react-redux";
+import {
+  selectAuthUserId,
+  selectIsLogged,
+} from "../../store/reducers/authSlice";
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const isLogged = useSelector(selectIsLogged);
   const { isOpen: isOpenMenu, onOpen, onClose } = useDisclosure();
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +60,8 @@ const Navbar = () => {
     document.addEventListener("click", handler);
     return () => document.addEventListener("click", handler);
   }, []);
+  console.log(isLogged);
+
   return (
     <div className="fixed top-0 left-0 w-full z-10 bg-white" ref={focusRef}>
       <div className="flex items-center justify-between h-[72px] px-[24px] shadow-xl">
@@ -103,17 +110,17 @@ const Navbar = () => {
             <SearchResult value={value} debouncedValue={debouncedValue} />
           )}
         </form>
-        {!isLogin ? (
+        {!isLogged ? (
           <div className="flex gap-x-3">
             <Link
               to="/login"
-              className="border-[#272829] border-[1px] px-5 py-3 text-[14px] font-semibold"
+              className="bg-[#FFEEE8] px-5 py-3 text-[14px] font-semibold text-[#FF6636]"
             >
               Đăng nhập
             </Link>
             <Link
               to="/signup"
-              className="bg-[#272829] text-white px-5 py-3 text-[14px] font-semibold"
+              className="bg-[#FF6636] text-white px-5 py-3 text-[14px] font-semibold"
             >
               Đăng ký
             </Link>

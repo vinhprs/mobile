@@ -1,29 +1,73 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
-
+import { useAppDispatch } from "../../hooks/appHooks";
+import { resetPassword } from "../../store/actions/auth.action";
+import { useSelector } from "react-redux";
+import { selectAuthUserId } from "../../store/reducers/authSlice";
+interface OTPProps {
+  newPassword: string;
+  confirmNewPassword: string;
+  otp: string;
+}
 const Otp = () => {
+  const dispatch = useAppDispatch();
+  const selectId = useSelector(selectAuthUserId);
+  const toast = useToast();
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
+    formState: { errors, isSubmitting },
+  } = useForm<OTPProps>({
     defaultValues: {
       newPassword: "",
       confirmNewPassword: "",
       otp: "",
     },
   });
+  const onSubmit = async (data: OTPProps) => {
+    const payload = {
+      code: data.otp,
+      password: data.newPassword,
+      userId: selectId,
+    };
+    const response: any = await dispatch(resetPassword(payload));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      if (response?.payload?.error) {
+        toast({
+          title: "Lỗi",
+          description: response?.payload?.message,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+          position: "top-right",
+        });
+      } else {
+        toast({
+          title: "Đổi mật khẩu thành công",
+          description: response?.payload?.message,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          position: "top-right",
+        });
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+      }
+    }
+  };
   return (
     <div className="pt-[140px] pb-[60px] flex justify-center items-center h-full">
       <div>
         <div className="w-[300px] border-b-[1px] border-[#272829] pb-6">
           <h1 className="font-bold text-[24px] mb-5">Đặt lại mật khẩu mới</h1>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 flex flex-col gap-y-3">
               <div className="flex items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] border-[#272829]">
                 <input
@@ -77,6 +121,8 @@ const Otp = () => {
               color="white"
               borderRadius="none"
               mb={3}
+              type="submit"
+              isLoading={isSubmitting}
             >
               Đổi mật khẩu
             </Button>
