@@ -24,7 +24,7 @@ const processQueue = (error: any, token = null) => {
 
 // @ts-ignore
 // const baseURL: string = process.env.REACT_API_ENDPOINT || "";
-const baseURL: string = "http://192.168.0.132:4000";
+const baseURL: string = "https://staging.primeedu.io.vn/api/v1";
 
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs

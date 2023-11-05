@@ -10,9 +10,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 const Account = () => {
+  const [value, setValue] = React.useState("Nam");
   const input = useRef<any>(null);
   const [image, setImage] = useState("");
-  const [value, setValue] = React.useState("Nam");
   const handleImageClick = () => {
     input?.current.click();
   };

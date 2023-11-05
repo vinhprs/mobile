@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { BiSolidLayer } from "react-icons/bi";
 import { MdContentPaste, MdOutlineOndemandVideo } from "react-icons/md";
+import { RiVideoUploadFill } from "react-icons/ri";
 import BasicInformation from "./BasicInformation";
 import { useSelector } from "react-redux";
 import {
@@ -12,6 +13,7 @@ import {
 import { useAppDispatch } from "../../../hooks/appHooks";
 import AdvanceInformation from "./AdvanceInformation";
 import VideoCreateCourses from "./VideoCreateCourses";
+import PublishCourse from "./PublishCourse";
 const TabCreateCourse = () => {
   const dispatch = useAppDispatch();
   const selectTabCourse = useSelector(selectCreateCourse);
@@ -52,6 +54,15 @@ const TabCreateCourse = () => {
               <span className="text-[16px] font-normal">Video khóa học</span>
             </div>
           </Tab>
+          <Tab
+            isDisabled={selectTabCourse?.includes(3) ? false : true}
+            onClick={() => onClickIndex(3)}
+          >
+            <div className="text-[#1D2026] flex items-center gap-x-2">
+              <RiVideoUploadFill className="text-[20px]" />
+              <span className="text-[16px] font-normal">Đăng tải khóa học</span>
+            </div>
+          </Tab>
         </TabList>
 
         <TabPanels p="0">
@@ -63,6 +74,9 @@ const TabCreateCourse = () => {
           </TabPanel>
           <TabPanel p="0">
             <VideoCreateCourses />
+          </TabPanel>
+          <TabPanel p="0">
+            <PublishCourse />
           </TabPanel>
         </TabPanels>
       </Tabs>

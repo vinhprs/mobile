@@ -36,3 +36,17 @@ export const resetPasswordSchema = yup.object().shape({
     .required("Yêu cầu nhập mật khẩu"),
   otp: yup.string().required("Yêu cầu nhập mã OTP để đổi mật khẩu"),
 });
+export const changePassSchema = yup.object().shape({
+  current: yup
+    .string()
+    .min(6, "Mật khẩu phải hơn 6 ký tự")
+    .required("Yêu cầu nhập mật khẩu hiện tại"),
+  new: yup
+    .string()
+    .min(6, "Mật khẩu phải hơn 6 ký tự")
+    .required("Yêu cầu nhập mật khẩu mới"),
+  newConfirm: yup
+    .string()
+    .oneOf([yup.ref("new")], "Mật khẩu chưa chính xác")
+    .required("Yêu cầu nhập mật khẩu mới"),
+});

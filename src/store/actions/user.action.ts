@@ -48,6 +48,18 @@ export const getSubjects = createAsyncThunk(
     }
   }
 );
+export const getCategory = createAsyncThunk(
+  "user/getCategory",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await userService.getCategory();
+      return res;
+    } catch (err) {
+      rejectWithValue(err);
+      return err;
+    }
+  }
+);
 export const getSubjetsGroup = createAsyncThunk(
   "user/getSubjetsGroup",
   async (params: any, { dispatch, getState, rejectWithValue }) => {

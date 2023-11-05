@@ -57,30 +57,33 @@ const ForgetPassword = () => {
     }
   };
   return (
-    <div className="pt-[140px] pb-[60px] flex justify-center items-center h-full">
+    <div className="pt-[140px] pb-[60px] flex justify-center items-center h-full text-[#1D2026]">
       <div>
         <div className="w-[300px] border-b-[1px] border-[#272829] pb-6">
-          <h1 className="font-bold text-[24px] mb-5">Quên mật khẩu</h1>
+          <h1 className="font-bold text-[24px] mb-5 text-center">
+            Quên mật khẩu
+          </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
+              <div className="text-[14px] mb-[5px]">Nhập email</div>
               <input
                 {...register("emailForgetPassword")}
                 type="text"
                 placeholder="Email"
-                className={`focus:outline-none w-[300px] px-3 py-3 outline-none border-[1px] ${
+                className={`focus:outline-none text-[14px] w-[300px] px-3 py-3 outline-none border-[1px] ${
                   errors.emailForgetPassword
                     ? "border-red-500"
-                    : "border-[#272829]"
-                } placeholder:text-[#272829] placeholder:font-semibold `}
+                    : "border-[#E9EAF0]"
+                } placeholder:text-[#8C94A3] placeholder:font-normal `}
               />
               <span className="text-[12px] text-red-500">
                 {errors.emailForgetPassword?.message}
               </span>
             </div>
             <Button
-              _hover={{ bg: "#5B0E7F" }}
+              _hover={{ bg: "#fc5927" }}
               w="300px"
-              bg="#8614BC"
+              bg="#FF6636"
               color="white"
               borderRadius="none"
               isLoading={isSubmitting}
@@ -92,7 +95,7 @@ const ForgetPassword = () => {
         </div>
         <div className="flex gap-x-[1px] justify-center py-5 text-[14px]">
           <span>Bạn đã có tài khoản?</span>
-          <Link to="/login" className="font-semibold underline text-[#8614BC]">
+          <Link to="/login" className="font-semibold underline text-[#FF6636]">
             Đăng nhập
           </Link>
         </div>

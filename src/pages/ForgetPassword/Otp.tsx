@@ -7,6 +7,8 @@ import { useAppDispatch } from "../../hooks/appHooks";
 import { resetPassword } from "../../store/actions/auth.action";
 import { useSelector } from "react-redux";
 import { selectAuthUserId } from "../../store/reducers/authSlice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { resetPasswordSchema } from "../../schema/schema";
 interface OTPProps {
   newPassword: string;
   confirmNewPassword: string;
@@ -29,6 +31,7 @@ const Otp = () => {
       confirmNewPassword: "",
       otp: "",
     },
+    resolver: yupResolver(resetPasswordSchema),
   });
   const onSubmit = async (data: OTPProps) => {
     const payload = {
@@ -63,61 +66,93 @@ const Otp = () => {
     }
   };
   return (
-    <div className="pt-[140px] pb-[60px] flex justify-center items-center h-full">
+    <div className="pt-[140px] pb-[60px] flex justify-center items-center h-full text-[#1D2026]">
       <div>
         <div className="w-[300px] border-b-[1px] border-[#272829] pb-6">
-          <h1 className="font-bold text-[24px] mb-5">Đặt lại mật khẩu mới</h1>
+          <h1 className="font-bold text-[24px] mb-5 text-center">
+            Đặt lại mật khẩu mới
+          </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 flex flex-col gap-y-3">
-              <div className="flex items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] border-[#272829]">
-                <input
-                  {...register("newPassword")}
-                  type={showPass ? "text" : "password"}
-                  placeholder="Mật khẩu mới"
-                  className="w-full focus:outline-none placeholder:text-[#272829] placeholder:font-semibold"
-                />
-                {showPass ? (
-                  <AiFillEyeInvisible
-                    className="cursor-pointer text-[20px]"
-                    onClick={() => setShowPass(false)}
+              <div>
+                <div className="text-[14px] mb-[5px]">Mật khẩu mới</div>
+                <div
+                  className={`flex items-center text-[14px] gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] ${
+                    errors.newPassword ? "border-red-500" : "border-[#E9EAF0]"
+                  } `}
+                >
+                  <input
+                    {...register("newPassword")}
+                    type={showPass ? "text" : "password"}
+                    placeholder="Mật khẩu mới"
+                    className="w-full focus:outline-none placeholder:text-[#8C94A3] placeholder:font-normal"
                   />
-                ) : (
-                  <AiFillEye
-                    className="cursor-pointer text-[20px]"
-                    onClick={() => setShowPass(true)}
-                  />
-                )}
+                  {showPass ? (
+                    <AiFillEyeInvisible
+                      className="cursor-pointer text-[20px]"
+                      onClick={() => setShowPass(false)}
+                    />
+                  ) : (
+                    <AiFillEye
+                      className="cursor-pointer text-[20px]"
+                      onClick={() => setShowPass(true)}
+                    />
+                  )}
+                </div>
+                <span className="text-[12px] text-red-500">
+                  {errors.newPassword?.message}
+                </span>
               </div>
-              <div className="flex items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] border-[#272829]">
-                <input
-                  {...register("confirmNewPassword")}
-                  type={showConfirmPass ? "text" : "password"}
-                  placeholder="Xác nhận lại mật khẩu"
-                  className="w-full focus:outline-none placeholder:text-[#272829] placeholder:font-semibold"
-                />
-                {showConfirmPass ? (
-                  <AiFillEyeInvisible
-                    className="cursor-pointer text-[20px]"
-                    onClick={() => setShowConfirmPass(false)}
+              <div>
+                <div className="text-[14px] mb-[5px]">Đặt lại mật khẩu</div>
+                <div
+                  className={`flex text-[14px] items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px]  ${
+                    errors.confirmNewPassword
+                      ? "border-red-500"
+                      : "border-[#E9EAF0]"
+                  }`}
+                >
+                  <input
+                    {...register("confirmNewPassword")}
+                    type={showConfirmPass ? "text" : "password"}
+                    placeholder="Xác nhận lại mật khẩu"
+                    className="w-full focus:outline-none placeholder:text-[#8C94A3] placeholder:font-normal"
                   />
-                ) : (
-                  <AiFillEye
-                    className="cursor-pointer text-[20px]"
-                    onClick={() => setShowConfirmPass(true)}
-                  />
-                )}
+                  {showConfirmPass ? (
+                    <AiFillEyeInvisible
+                      className="cursor-pointer text-[20px]"
+                      onClick={() => setShowConfirmPass(false)}
+                    />
+                  ) : (
+                    <AiFillEye
+                      className="cursor-pointer text-[20px]"
+                      onClick={() => setShowConfirmPass(true)}
+                    />
+                  )}
+                </div>
+                <span className="text-[12px] text-red-500">
+                  {errors.confirmNewPassword?.message}
+                </span>
               </div>
-              <input
-                {...register("otp")}
-                type="text"
-                placeholder="OTP code"
-                className="focus:outline-none w-[300px] px-3 py-3 outline-none border-[1px] border-[#272829] placeholder:text-[#272829] placeholder:font-semibold "
-              />
+              <div>
+                <div className="text-[14px] mb-[5px]">Nhập mã OTP</div>
+                <input
+                  {...register("otp")}
+                  type="text"
+                  placeholder="OTP code"
+                  className={`focus:outline-none text-[14px] text-[#8C94A3] w-[300px] px-3 py-3 outline-none border-[1px] ${
+                    errors.otp ? "border-red-500" : "border-[#E9EAF0]"
+                  } placeholder:text-[#8C94A3] placeholder:font-normal `}
+                />
+                <span className="text-[12px] text-red-500">
+                  {errors.otp?.message}
+                </span>
+              </div>
             </div>
             <Button
-              _hover={{ bg: "#5B0E7F" }}
+              _hover={{ bg: "#fa5624" }}
               w="300px"
-              bg="#8614BC"
+              bg="#FF6636"
               color="white"
               borderRadius="none"
               mb={3}
@@ -127,9 +162,9 @@ const Otp = () => {
               Đổi mật khẩu
             </Button>
             <Button
-              _hover={{ bg: "#5B0E7F" }}
+              _hover={{ bg: "#fa5624" }}
               w="300px"
-              bg="#8614BC"
+              bg="#FF6636"
               color="white"
               borderRadius="none"
             >
@@ -139,7 +174,7 @@ const Otp = () => {
         </div>
         <div className="flex gap-x-[1px] justify-center py-5 text-[14px]">
           <span>Bạn đã có tài khoản?</span>
-          <Link to="/login" className="font-semibold underline text-[#8614BC]">
+          <Link to="/login" className="font-semibold underline text-[#FF6636]">
             Đăng nhập
           </Link>
         </div>

@@ -32,6 +32,10 @@ import Profile from "./pages/Profile/Profile";
 import Dashboard from "./pages/Teacher/Dashboard/Dashboard";
 import Sidebar from "./components/Sidebar/Sidebar";
 import CreateCourse from "./pages/Teacher/CreateCourse/CreateCourse";
+import Settings from "./pages/Profile/Settings";
+import Setting from "./pages/Teacher/Settings/Setting";
+import MainCourse from "./pages/Teacher/TeacherCourse/MainCourse";
+import MainExam from "./pages/Teacher/Exam/MainExam";
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -86,6 +90,15 @@ function App() {
                           path="/teacher/create-course"
                           element={<CreateCourse />}
                         />
+                        <Route
+                          path="/teacher/setting/:id"
+                          element={<Setting />}
+                        />
+                        <Route
+                          path="/teacher/courses"
+                          element={<MainCourse />}
+                        />
+                        <Route path="/teacher/exam" element={<MainExam />} />
                       </Routes>
                     </>
                   ) : (
@@ -131,7 +144,6 @@ function App() {
                   path="courses/:idcourse/assignment"
                   element={<Assingments />}
                 />
-                <Route path="mylearning" element={<MyLearning />} />
                 <Route path="cart" element={<Cart />} />
                 <Route path="/profile/:id" element={<Profile />} />
               </Routes>

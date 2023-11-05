@@ -20,8 +20,7 @@ const TabCourseItem = () => {
       >
         Khám phá ngay
       </Link>
-      <div className="grid grid-cols-6 gap-x-4">
-        <CourseList />
+      <div className="grid grid-cols-5 gap-x-4">
         <CourseList />
         <CourseList />
         <CourseList />

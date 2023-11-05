@@ -32,3 +32,10 @@ export function formatNumberMoney(number: number) {
   // Loại bỏ ký hiệu tiền tệ "₫"
   return formattedNumber.replace("₫", "");
 }
+export function formatMoney(number: number) {
+  let formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return formattedNumber;
+}
+export function isEmptyObject(obj: Object) {
+  return JSON.stringify(obj) === "{}";
+}

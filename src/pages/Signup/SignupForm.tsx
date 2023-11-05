@@ -85,40 +85,45 @@ const SignupForm = () => {
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-y-3 mb-3">
           <div>
+            <div className="text-[14px] font-light mb-[2px]">Email</div>
             <input
               {...register("email")}
               type="text"
               placeholder="Email"
-              className={`focus:outline-none w-[300px] px-3 py-3 outline-none border-[1px] ${
-                errors.email ? "border-red-500" : "border-[#272829]"
-              } placeholder:text-[#272829] placeholder:font-semibold `}
+              className={`focus:outline-none text-[14px] w-full px-3 py-3 outline-none border-[1px] ${
+                errors.email ? "border-red-500" : "border-[#E9EAF0]"
+              } placeholder:text-[#8C94A3] placeholder:font-normal `}
             />
             <span className="text-[12px] text-red-500">
               {errors.email?.message}
             </span>
           </div>
           <div>
+            <div className="text-[14px] font-light mb-[2px]">Username</div>
             <input
               {...register("username")}
               type="text"
               placeholder="Username"
-              className={`focus:outline-none w-[300px] px-3 py-3 outline-none border-[1px] ${
-                errors.username ? "border-red-500" : "border-[#272829]"
-              } placeholder:text-[#272829] placeholder:font-semibold `}
+              className={`focus:outline-none text-[14px] w-full px-3 py-3 outline-none border-[1px] ${
+                errors.username ? "border-red-500" : "border-[#E9EAF0]"
+              } placeholder:text-[#8C94A3] placeholder:font-normal `}
             />
             <span className="text-[12px] text-red-500">
               {errors.username?.message}
             </span>
           </div>
           <div>
-            <div className="flex items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] border-[#272829]">
+            <div className="text-[14px] font-light mb-[2px]">Mật khẩu</div>
+            <div
+              className={`flex items-center gap-x-2 justify-between w-full px-3 py-3 outline-none border-[1px] ${
+                errors.password ? "border-red-500" : "border-[#E9EAF0]"
+              }`}
+            >
               <input
                 {...register("password")}
                 type={showPass ? "text" : "password"}
                 placeholder="Mật khẩu"
-                className={`w-full focus:outline-none border-[1px] ${
-                  errors.password ? "border-red-500" : "border-[#272829]"
-                } placeholder:text-[#272829] placeholder:font-semibold`}
+                className={`w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal`}
               />
               {showPass ? (
                 <AiFillEyeInvisible
@@ -137,14 +142,21 @@ const SignupForm = () => {
             </span>
           </div>
           <div>
-            <div className="flex items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] border-[#272829]">
+            <div className="text-[14px] font-light mb-[2px]">
+              Xác nhận mật khẩu
+            </div>
+            <div
+              className={`flex items-center gap-x-2 justify-between w-full px-3 py-3 outline-none ${
+                errors.confirmPassword
+                  ? "border-[1px] border-red-500"
+                  : "border-[1px] border-[#E9EAF0]"
+              }`}
+            >
               <input
                 {...register("confirmPassword")}
                 type={showConfirmPass ? "text" : "password"}
                 placeholder="Xác nhận mật khẩu"
-                className={`w-full focus:outline-none border-[1px] ${
-                  errors.confirmPassword ? "border-red-500" : "border-[#272829]"
-                } placeholder:text-[#272829] placeholder:font-semibold`}
+                className={`w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal`}
               />
               {showConfirmPass ? (
                 <AiFillEyeInvisible
@@ -163,27 +175,29 @@ const SignupForm = () => {
             </span>
           </div>
         </div>
-        <Checkbox
-          isChecked={isChecked}
-          outline="none"
-          colorScheme="purple"
-          className="mb-3"
-          onChange={handleChecked}
-        >
-          Tôi chấp nhận mọi điều khoản
-        </Checkbox>
-        <Button
-          isDisabled={!isChecked}
-          _hover={{ bg: "#5B0E7F" }}
-          w="300px"
-          bg="#8614BC"
-          color="white"
-          borderRadius="none"
-          type="submit"
-          isLoading={isSubmitting}
-        >
-          Đăng ký
-        </Button>
+        <div className="flex flex-col gap-y-[5px]">
+          <Checkbox
+            isChecked={isChecked}
+            outline="none"
+            colorScheme="orange"
+            className="mb-3"
+            onChange={handleChecked}
+          >
+            Tôi chấp nhận mọi điều khoản
+          </Checkbox>
+          <Button
+            isDisabled={!isChecked}
+            _hover={{ bg: "#f6511f" }}
+            w="100%"
+            bg="#FF6636"
+            color="white"
+            borderRadius="none"
+            type="submit"
+            isLoading={isSubmitting}
+          >
+            Đăng ký
+          </Button>
+        </div>
       </form>
     </div>
   );

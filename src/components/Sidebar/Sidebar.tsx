@@ -3,14 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsBarChartFill } from "react-icons/bs";
 import { AiOutlinePlusCircle, AiOutlineMessage } from "react-icons/ai";
 import { FaLayerGroup } from "react-icons/fa";
-import { FiSettings } from "react-icons/fi";
+import { FiBook, FiSettings } from "react-icons/fi";
 import logo from "../../image/Navbar/sidebar.svg";
 
 const Sidebar = () => {
   const path = useLocation();
   const navigate = useNavigate();
-  const handleNavigate = (id: string) => {
-    navigate(`/teacher/${id}`);
+  const handleNavigate = (id: string, idUser?: string) => {
+    if (idUser) {
+      navigate(`/teacher/${id}/${idUser}`);
+    } else {
+      navigate(`/teacher/${id}`);
+    }
   };
   return (
     <div className="text-[#8C94A3]">
@@ -52,15 +56,15 @@ const Sidebar = () => {
           <span>Tạo Combo khóa học</span>
         </div>
         <div
-          onClick={() => handleNavigate("create-way")}
+          onClick={() => handleNavigate("exam")}
           className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
-            path.pathname.includes("create-way") === true
+            path.pathname.includes("exam") === true
               ? "bg-[#FF6636] text-white"
               : ""
           }`}
         >
-          <AiOutlinePlusCircle className="text-[18px]" />
-          <span>Tạo lộ trình</span>
+          <FiBook className="text-[18px]" />
+          <span>Ngân hàng đề thi</span>
         </div>
         <div
           onClick={() => handleNavigate("courses")}
@@ -71,7 +75,7 @@ const Sidebar = () => {
           }`}
         >
           <FaLayerGroup className="text-[18px]" />
-          <span>Khóa học của tôi</span>
+          <span>Khóa học</span>
         </div>
         <div
           onClick={() => handleNavigate("message")}
@@ -85,7 +89,7 @@ const Sidebar = () => {
           <span>Tin nhắn</span>
         </div>
         <div
-          onClick={() => handleNavigate("setting")}
+          onClick={() => handleNavigate("setting", "ạdhaskjda")}
           className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
             path.pathname.includes("setting") === true
               ? "bg-[#FF6636] text-white"

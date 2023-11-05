@@ -71,29 +71,31 @@ const LoginForm = () => {
       <form action="" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-y-3 mb-3">
           <div>
+            <div className="mb-[5px] text-[14px]">Email</div>
             <input
               {...register("email")}
               type="text"
               placeholder="Email"
-              className={`focus:outline-none w-[300px] px-3 py-3 outline-none border-[1px]  ${
-                errors.email ? "border-red-500" : "border-[#272829]"
-              } placeholder:text-[#272829] placeholder:font-semibold `}
+              className={`focus:outline-none text-[14px] w-full px-3 py-3 outline-none border-[1px]  ${
+                errors.email ? "border-red-500" : "border-[#E9EAF0]"
+              } placeholder:text-[#8C94A3] placeholder:font-normal `}
             />
             <span className="text-[12px] text-red-500">
               {errors.email?.message}
             </span>
           </div>
           <div>
+            <div className="mb-[5px] text-[14px]">Mật khẩu</div>
             <div
-              className={`flex items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] ${
-                errors.password ? "border-red-500" : "border-[#272829]"
+              className={`flex items-center gap-x-2 justify-between w-full px-3 py-3 outline-none border-[1px] ${
+                errors.password ? "border-red-500" : "border-[#E9EAF0]"
               }`}
             >
               <input
                 {...register("password")}
                 type={showPass ? "text" : "password"}
                 placeholder="Mật khẩu"
-                className="w-full focus:outline-none placeholder:text-[#272829] placeholder:font-semibold"
+                className="w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal"
               />
               {showPass ? (
                 <AiFillEyeInvisible
@@ -117,9 +119,9 @@ const LoginForm = () => {
           </div>
         </div>
         <Button
-          _hover={{ bg: "#5B0E7F" }}
-          w="300px"
-          bg="#8614BC"
+          _hover={{ bg: "#ff511c" }}
+          w="100%"
+          bg="#FF6636"
           color="white"
           borderRadius="none"
           type="submit"

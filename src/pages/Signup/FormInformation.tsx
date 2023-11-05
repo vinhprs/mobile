@@ -13,6 +13,7 @@ import { Button } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { useAppDispatch } from "../../hooks/appHooks";
 import {
+  getCategory,
   getProvince,
   getSubjects,
   getSubjetsGroup,
@@ -28,7 +29,8 @@ interface UserProps {
   province: string;
   district: string;
   address: string;
-  subjects: Array<number>;
+  grade: number;
+  subjects: Array<string>;
   interestSubject: string;
 }
 
@@ -40,6 +42,7 @@ const FormInformation = () => {
   const [subjectGroup, setSubjectGroup] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [value, setValue] = React.useState("Nam");
+  const [grade, setGrade] = useState([]);
   const {
     register,
     handleSubmit,
@@ -54,6 +57,7 @@ const FormInformation = () => {
       province: "",
       district: "",
       address: "",
+      grade: 0,
       subjects: [],
       interestSubject: "",
     },
@@ -94,16 +98,26 @@ const FormInformation = () => {
       console.log(response.payload);
     }
   };
+  const getCategories = async () => {
+    const response: any = await dispatch(getCategory({}));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      setGrade(response.payload?.data);
+    } else {
+      console.log(response.payload);
+    }
+  };
   useEffect(() => {
     getProvinces();
     getAllSubject();
     getAllSubjectGroup();
+    getCategories();
   }, []);
   useEffect(() => {
     getDistricts();
   }, [watch("province")]);
   const onSubmit = async (data: UserProps) => {
-    const converSunb = data.subjects.map((item, index) => +item);
+    // const converSunb = data.subjects.map((item, index) => +item);
     const payload = {
       fullname: data.name,
       phone: data.phone,
@@ -114,7 +128,8 @@ const FormInformation = () => {
         district: +data.district,
         detail: data.address,
       },
-      subjects: converSunb,
+      subjectNames: data.subjects,
+      grade: +data.grade,
       subjectGroup: +data.interestSubject,
     };
     const res = await dispatch(userSetting(payload));
@@ -200,6 +215,21 @@ const FormInformation = () => {
             placeholder="Địa chỉ"
             className="focus:outline-none w-full px-3 py-3 outline-none border-[1px] border-[#E9EAF0] placeholder:text-[#8C94A3] placeholder:font-normal placeholder:text-[14px] "
           />
+          <Select
+            _focus={{ borderColor: "#FF6636", outline: "none" }}
+            borderRadius="none"
+            height="45px"
+            placeholder="Lớp"
+            outline="none"
+            bg="white"
+            {...register("grade")}
+          >
+            {grade.map((item: any, index: any) => (
+              <option value={item._id} key={item._id}>
+                {item.categoryName}
+              </option>
+            ))}
+          </Select>
           <div>
             <h1 className="font-normal placeholder:text-[14px] text-[#FF6636]  mb-2">
               Môn học mà bạn quan tâm
@@ -208,16 +238,18 @@ const FormInformation = () => {
               {subjects.map((item: any, index: any) => (
                 <Checkbox
                   key={item._id}
-                  value={item._id}
+                  value={item.subjectName}
                   colorScheme="orange"
                   borderColor="#8C94A3"
                   {...register("subjects")}
+                  fontSize="14px"
                 >
                   {item.subjectName}
                 </Checkbox>
               ))}
             </div>
           </div>
+
           <Select
             _focus={{ borderColor: "#FF6636", outline: "none" }}
             borderRadius="none"

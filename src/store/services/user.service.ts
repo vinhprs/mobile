@@ -12,6 +12,9 @@ export const userService = {
   getSubjects: () => {
     return axiosClient.get(`subjects`);
   },
+  getCategory: () => {
+    return axiosClient.get(`category`);
+  },
   getSubjetsGroup: () => {
     return axiosClient.get(`subjects/group`);
   },

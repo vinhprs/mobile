@@ -5,7 +5,7 @@ import { formatNumberMoney } from "../../utils/lib";
 const ListCart = () => {
   return (
     <div className="flex flex-col gap-y-3">
-      <h2 className="text-[16px] font-semibold">
+      <h2 className="text-[20px] font-semibold">
         Có 2 khóa học trong giỏ hàng
       </h2>
       <div className="w-full h-[1px] bg-[#ACADAE]"></div>
@@ -35,14 +35,14 @@ const ListCart = () => {
             </div>
           </div>
           <div className="flex gap-x-1">
-            <span className="text-[#8614BC] font-semibold text-[20px]">
+            <span className="text-[#FF6636] font-semibold text-[20px]">
               {formatNumberMoney(2499000)}Đ
             </span>
-            <span className="text-[#8614BC] mt-1">
+            <span className="text-[#FF6636] mt-1">
               <BiSolidPurchaseTag />
             </span>
           </div>
-          <div className="cursor-pointer w-[35px] h-[35px] rounded-full border-[1px] border-[#272829] bg-white flex justify-center items-center text-right mx-auto hover:bg-[#8614BC] hover:border-none hover:text-white transition-all ease-in-out duration-200">
+          <div className="cursor-pointer w-[35px] h-[35px] rounded-full border-[1px] border-[#272829] bg-white flex justify-center items-center text-right mx-auto hover:bg-[#FF6636] hover:border-none hover:text-white transition-all ease-in-out duration-200">
             <BsTrashFill className="" />
           </div>
         </div>
@@ -71,14 +71,14 @@ const ListCart = () => {
             </div>
           </div>
           <div className="flex gap-x-1">
-            <span className="text-[#8614BC] font-semibold text-[20px]">
+            <span className="text-[#FF6636] font-semibold text-[20px]">
               {formatNumberMoney(2499000)}Đ
             </span>
-            <span className="text-[#8614BC] mt-1">
+            <span className="text-[#FF6636] mt-1">
               <BiSolidPurchaseTag />
             </span>
           </div>
-          <div className="cursor-pointer w-[35px] h-[35px] rounded-full border-[1px] border-[#272829] bg-white flex justify-center items-center text-right mx-auto hover:bg-[#8614BC] hover:border-none hover:text-white transition-all ease-in-out duration-200">
+          <div className="cursor-pointer w-[35px] h-[35px] rounded-full border-[1px] border-[#272829] bg-white flex justify-center items-center text-right mx-auto hover:bg-[#FF6636] hover:border-none hover:text-white transition-all ease-in-out duration-200">
             <BsTrashFill className="" />
           </div>
         </div>

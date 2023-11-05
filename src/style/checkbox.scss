@@ -1,0 +1,37 @@
+.check{
+    input[type="checkbox"]{
+        position: relative;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border-radius: 4px;
+        border: 2px solid #BFBFBF;
+        appearance: none;
+        cursor: pointer;
+    }
+    input[type="checkbox"]:checked{
+        background-color: #FF533A;
+        border: none;
+    }
+    input[type="checkbox"]::before{
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 7px;
+        width: 7px;
+        height: 12px;
+        border: 2px solid transparent;
+        border-left: none;
+        border-top: none;
+        transform: rotate(45deg) scale(1);
+    }
+    input[type="checkbox"]:checked::before{
+        border-color: white;
+        animation: checkAim .2s ease;
+    }
+    @keyframes checkAim {
+        from{
+            transform: rotate(45deg) scale(0);
+        }
+    }
+}

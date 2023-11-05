@@ -1,38 +1,94 @@
 import React, { useRef, useState } from "react";
 import { BsCloudUpload } from "react-icons/bs";
 import ReactQuill from "react-quill";
+import { useForm } from "react-hook-form";
 import { useAppDispatch } from "../../../hooks/appHooks";
 import {
   updateArray,
+  updateDesc,
   updateIndex,
+  updateThumbnail,
 } from "../../../store/reducers/createCourseSlice";
 import { toolbarOptions } from "../../../utils/type";
 import imgFade from "../../../image/CreateCourse/Icon.jpg";
 import "react-quill/dist/quill.snow.css";
+import { Button } from "@chakra-ui/react";
+import { uploadFile } from "../../../store/actions/course.action";
 
 const FormAdvance = () => {
   const dispatch = useAppDispatch();
   const refImage = useRef<any>(null);
   const [image, setImage] = useState<any>("");
   const [valueDesc, setValueDesc] = useState("");
+  const [loading, setLoading] = useState(false);
   console.log(valueDesc);
+  const convertBase64 = (file: any) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
 
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
   const handleImageClick = () => {
     refImage?.current.click();
   };
-  const handleImageChange = (event: any) => {
+  const handleImageChange = async (event: any) => {
     const file = event.target.files[0];
     console.log(file);
-
+    const base64 = await convertBase64(file);
     setImage(file);
+    const formData = new FormData();
+    formData.append("file", file);
+    const res: any = await dispatch(uploadFile(formData));
+    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+      console.log(res.payload?.data?.url);
+      dispatch(updateThumbnail(res.payload?.data?.url));
+    }
   };
-  const onSubmit = (e: any) => {
-    e.preventDefault();
-    dispatch(updateIndex(2));
-    dispatch(updateArray(2));
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<any>({
+    defaultValues: {
+      desc: "",
+    },
+  });
+  const onEditorStateChange = (editorState: any) => {
+    setValue("desc", editorState);
+  };
+  const editorContent = watch("emailContent");
+  const onSubmit = async (data: any) => {
+    setTimeout(() => {
+      dispatch(updateIndex(2));
+      dispatch(updateArray(2));
+      dispatch(updateDesc(data.desc));
+      // dispatch(updateThumbnail(image));
+      setLoading(false);
+    }, 2000);
+    setLoading(true);
+    console.log(data);
+  };
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append("file", image);
+    const res: any = await dispatch(uploadFile(formData));
+    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+      console.log(res.payload?.data?.url);
+      dispatch(updateThumbnail(res.payload?.data?.url));
+    }
   };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-y-4">
         <div className="flex flex-col gap-y-3">
           <span className="font-medium text-[18px] text-[#1D2026]">
@@ -64,22 +120,32 @@ const FormAdvance = () => {
                   .jpg, .jpeg hoặc .png
                 </span>
               </p>
-              <div
-                onClick={handleImageClick}
-                className="bg-[#FFEEE8] cursor-pointer w-fit flex items-center gap-x-[12px] h-[48px] px-[24px]"
-              >
-                <button className="font-semibold text-[16px] text-[#FF6636]">
-                  Tải ảnh lên
+              <div className="flex gap-x-8">
+                <div
+                  onClick={handleImageClick}
+                  className="bg-[#FFEEE8] cursor-pointer w-fit flex items-center gap-x-[12px] h-[48px] px-[24px]"
+                >
+                  <button
+                    type="button"
+                    className="font-semibold text-[16px] text-[#FF6636]"
+                  >
+                    Tải ảnh lên
+                  </button>
+                  <BsCloudUpload className="text-[20px] text-[#FF6636]" />
+                  <input
+                    type="file"
+                    ref={refImage}
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="bg-[#FFEEE8] font-semibold text-[16px] text-[#FF6636] h-[48px] px-[24px]"
+                  onClick={uploadImage}
+                >
+                  Đăng tải ảnh lên
                 </button>
-                <BsCloudUpload className="text-[20px] text-[#FF6636]" />
-                <input
-                  type="file"
-                  ref={refImage}
-                  name=""
-                  id=""
-                  onChange={handleImageChange}
-                  className="hidden"
-                />
               </div>
             </div>
           </div>
@@ -90,22 +156,34 @@ const FormAdvance = () => {
           </span>
           <div>
             <ReactQuill
+              // {...register("desc")}
+              // onChange={setValueDesc}
               theme="snow"
               value={valueDesc}
-              onChange={setValueDesc}
               modules={{
                 toolbar: toolbarOptions,
               }}
+              // value={editorContent}
+              onChange={onEditorStateChange}
             />
           </div>
         </div>
         <div className="flex justify-end">
-          <button
+          <Button
             type="submit"
-            className="text-[14px] h-[48px] px-[24px] font-semibold text-white bg-[#FF6636] hover:bg-[#fe5a27]"
+            isLoading={loading}
+            fontSize="14px"
+            height="48px"
+            px="24px"
+            fontWeight={600}
+            color="white"
+            bg="#FF6636"
+            _hover={{ bg: "#fe5a27" }}
+            borderRadius="none"
+            // className="text-[14px] h-[48px] px-[24px] font-semibold text-white bg-[#FF6636] hover:bg-[#fe5a27]"
           >
             Lưu và tiếp tục
-          </button>
+          </Button>
         </div>
       </div>
     </form>
