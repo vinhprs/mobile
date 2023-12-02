@@ -12,4 +12,10 @@ export const courseService = {
   getCourseStudent: (params: any) => {
     return axiosClient.get(`/course?${params.toString()}`);
   },
+  getCourseDetail: (params: any) => {
+    return axiosClient.get(`/course/${params}`);
+  },
+  getCourseUserBuy: () => {
+    return axiosClient.get(`/course/student/my-course`);
+  },
 };

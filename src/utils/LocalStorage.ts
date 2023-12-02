@@ -5,6 +5,14 @@ export const storageConstants = {
 };
 
 export const LocalStorage = (function () {
+  function _setUserId(userId: any) {
+    if (userId) {
+      localStorage.setItem("userId", userId);
+    }
+  }
+  function _getUserId() {
+    return localStorage.getItem("userId");
+  }
   function _setToken(accessToken: any) {
     if (accessToken) {
       localStorage.setItem("accessToken", accessToken);
@@ -26,6 +34,7 @@ export const LocalStorage = (function () {
   function _clearToken() {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userId");
   }
   function _setDataGoogle(data: any) {
     if (data) {
@@ -43,5 +52,7 @@ export const LocalStorage = (function () {
     clearToken: _clearToken,
     setDataGoogle: _setDataGoogle,
     setRefreshToken: _setRefreshToken,
+    setUserId: _setUserId,
+    getUserId: _getUserId,
   };
 })();

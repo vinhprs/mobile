@@ -5,6 +5,9 @@ import authSlice from "./authSlice";
 import createCourseSlice from "./createCourseSlice";
 import courseSlice from "./courseSlice";
 import examSlice from "./examSlice";
+import cartSlice from "./cartSlice";
+import wishListSlice from "./wishListSlice";
+import commentSlice from "./commentSlice";
 
 const rootReducer = combineReducers({
   question: questionSlice,
@@ -13,6 +16,9 @@ const rootReducer = combineReducers({
   createCourse: createCourseSlice,
   course: courseSlice,
   exam: examSlice,
+  cart: cartSlice,
+  wishlist: wishListSlice,
+  comment: commentSlice,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

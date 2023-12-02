@@ -21,7 +21,7 @@ const baseStyle = definePartsStyle({
 });
 const colorfulVariant = definePartsStyle({
   root: {
-    border: "1px solid #272829",
+    border: "1px solid #FF6636",
   },
   tab: {},
   tablist: {

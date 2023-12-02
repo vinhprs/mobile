@@ -36,6 +36,8 @@ import Settings from "./pages/Profile/Settings";
 import Setting from "./pages/Teacher/Settings/Setting";
 import MainCourse from "./pages/Teacher/TeacherCourse/MainCourse";
 import MainExam from "./pages/Teacher/Exam/MainExam";
+import ResultExam from "./pages/ResultExam/ResultExam";
+import Payment from "./pages/Payment/Payment";
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -123,42 +125,31 @@ function App() {
           {!pathname.pathname.includes("assignment") &&
             !pathname.pathname.includes("teacher") &&
             !pathname.pathname.includes("signup/user") && <Navbar />}
-          {!loading ? (
-            <div className="h-full">
-              <Routes>
-                {/* <Navbar/> */}
-                <Route path="/" element={<Homepage />} />
-                <Route path="login" element={<Login />} />
-                <Route path="forgetpassword" element={<ForgetPassword />} />
-                <Route path="forgetpassword/otp" element={<Otp />} />
-                <Route path="signup" element={<Signup />} />
-                <Route path="signup/otp" element={<OtpSignup />} />
-                <Route path="signup/user" element={<Information />} />
-                <Route path="courses" element={<ListCourses />} />
-                <Route path="courses/:idcourse" element={<CourseItem />} />
-                <Route
-                  path="courses/:idcourse/video"
-                  element={<VideoCourse />}
-                />
-                <Route
-                  path="courses/:idcourse/assignment"
-                  element={<Assingments />}
-                />
-                <Route path="cart" element={<Cart />} />
-                <Route path="/profile/:id" element={<Profile />} />
-              </Routes>
-            </div>
-          ) : (
-            <div className="pt-[100px] pb-[60px] px-[24px] flex justify-center h-full items-center">
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="blue.500"
-                size="xl"
+
+          <div className="h-full">
+            <Routes>
+              {/* <Navbar/> */}
+              <Route path="/" element={<Homepage />} />
+              <Route path="login" element={<Login />} />
+              <Route path="forgetpassword" element={<ForgetPassword />} />
+              <Route path="forgetpassword/otp" element={<Otp />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="signup/otp" element={<OtpSignup />} />
+              <Route path="signup/user" element={<Information />} />
+              <Route path="courses" element={<ListCourses />} />
+              <Route path="courses/:idcourse" element={<CourseItem />} />
+              <Route path="courses/:idcourse/video" element={<VideoCourse />} />
+              <Route
+                path="courses/:idcourse/assignment"
+                element={<Assingments />}
               />
-            </div>
-          )}
+              <Route path="/result-exam" element={<ResultExam />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="/profile/:id" element={<Profile />} />
+              <Route path="/cart/payment" element={<Payment />} />
+            </Routes>
+          </div>
+
           {!pathname.pathname.includes("assignment") &&
             !pathname.pathname.includes("teacher") &&
             !pathname.pathname.includes("login") &&

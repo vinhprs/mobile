@@ -1,12 +1,8 @@
-import React from 'react'
-import Filter from './Filter'
+import React from "react";
+import Filter from "./Filter";
 
 const Sidebar = () => {
-  return (
-    <div>
-      <Filter/>
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Sidebar
+export default Sidebar;

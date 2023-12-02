@@ -5,7 +5,7 @@ import CoursesList from "./CoursesList";
 import Message from "./Message";
 import Teachers from "./Teachers";
 import Favorite from "./Favorite";
-import Transaction from "./Transaction";
+import Cart from "./Cart";
 import Settings from "./Settings";
 const TabProfile = () => {
   return (
@@ -17,7 +17,7 @@ const TabProfile = () => {
           <Tab>Tin nhắn</Tab>
           <Tab>Giáo viên</Tab>
           <Tab>Yêu thích</Tab>
-          <Tab>Giao dịch</Tab>
+          {/* <Tab>Giỏ hàng</Tab> */}
           <Tab>Tài khoản</Tab>
         </TabList>
 
@@ -37,9 +37,9 @@ const TabProfile = () => {
           <TabPanel>
             <Favorite />
           </TabPanel>
-          <TabPanel>
-            <Transaction />
-          </TabPanel>
+          {/* <TabPanel>
+            <Cart />
+          </TabPanel> */}
           <TabPanel>
             <Settings />
           </TabPanel>

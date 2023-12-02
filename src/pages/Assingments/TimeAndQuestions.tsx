@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectQuestion } from "../../store/reducers/questionSlice";
 
-const TimeAndQuestions = () => {
+const TimeAndQuestions = ({ questions }: any) => {
   const questionNumber = useSelector(selectQuestion);
   const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(60);
+  const [minutes, setMinutes] = useState(0);
   const [isStopped, setIsStopped] = useState(false);
   useEffect(() => {
     let timer: any;
@@ -29,21 +29,24 @@ const TimeAndQuestions = () => {
   const handleStopClick = () => {
     setIsStopped(!isStopped);
   };
+  useEffect(() => {
+    setMinutes(questions?.time);
+  }, [questions]);
   return (
     <div>
-      <div className="bg-[#5B0E7F] px-[20px] py-[10px] h-[100px] flex flex-col justify-center gap-y-4 rounded-xl">
+      <div className="bg-[#FF6636] px-[20px] py-[10px] h-[100px] flex flex-col justify-center gap-y-4 rounded-xl">
         <div className="grid grid-cols-[1fr_2px_70px] gap-x-3 items-center">
           <h1 className="text-lg  text-white">Thời gian còn lại</h1>
           <div className="h-full w-[2px] bg-white"></div>
           <div className="text-lg font-medium text-white text-right">
-            {minutes}:{seconds}
+            {minutes}:{+seconds < 10 ? `0${seconds}` : seconds}
           </div>
         </div>
         <div className="grid grid-cols-[1fr_2px_70px] gap-x-3 items-center">
           <h1 className="text-lg  text-white">Số câu đã làm</h1>
           <div className="h-full w-[2px] bg-white"></div>
           <div className="text-lg font-medium text-white text-right">
-            {questionNumber.length}/7
+            {questionNumber.length}/{questions?.questions?.length}
           </div>
         </div>
       </div>

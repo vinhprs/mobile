@@ -11,11 +11,12 @@ import {
 } from "../../store/reducers/authSlice";
 import { useAppDispatch } from "../../hooks/appHooks";
 import { verifyEmail } from "../../store/actions/auth.action";
+import { LocalStorage } from "../../utils/LocalStorage";
 interface OTPProps {
   otp: string;
 }
 const Otp = () => {
-  const selectUserId = useSelector(selectAuthUserId);
+  const selectUserId: any = useSelector(selectAuthUserId);
   const dispatch = useAppDispatch();
   const toast = useToast();
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Otp = () => {
 
   const onSubmit = async (data: OTPProps) => {
     const payload = {
-      id: selectUserId,
+      id: selectUserId._id,
       code: data.otp,
     };
     const response: any = await dispatch(verifyEmail(payload));
@@ -49,6 +50,7 @@ const Otp = () => {
         });
       } else {
         // console.log(response);
+        LocalStorage.setUserId(selectUserId._id);
         toast({
           title: "Kích hoạt thành công",
           description: response?.payload?.message,

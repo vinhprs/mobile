@@ -15,13 +15,19 @@ import { LectureProp, SectionsProp } from "./FormCreateVideo";
 import ModalEditLecture from "./Modal/ModalEditLecture";
 import ModalUploadVideo from "./Modal/ModalUploadVideo";
 import ModalUploadFile from "./Modal/ModalUploadFile";
+import { useAppDispatch } from "../../../hooks/appHooks";
+import {
+  deleteLectureItem,
+  swapLecture,
+  updateLecture,
+} from "../../../store/reducers/createCourseSlice";
 interface LectureProps {
   indexLecture: number;
   index: number;
   itemLecture: LectureProp;
   lectures: SectionsProp;
   sections: Array<SectionsProp>;
-  setSections: any;
+  // setSections: any;
 }
 const Lecture = ({
   index,
@@ -29,8 +35,8 @@ const Lecture = ({
   lectures,
   indexLecture,
   sections,
-  setSections,
 }: LectureProps) => {
+  const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenUpload,
@@ -43,37 +49,56 @@ const Lecture = ({
     onClose: onCloseUploadFile,
   } = useDisclosure();
   const swapItem = (index1: number, index2: number) => {
-    console.log("🚀 ~ file: Lecture.tsx:25 ~ swapItem ~ index2:", index2);
-    console.log("🚀 ~ file: Lecture.tsx:25 ~ swapItem ~ index1:", index1);
+    // console.log("🚀 ~ file: Lecture.tsx:25 ~ swapItem ~ index2:", index2);
+    // console.log("🚀 ~ file: Lecture.tsx:25 ~ swapItem ~ index1:", index1);
 
-    if (
-      index1 < 0 ||
-      index2 < 0 ||
-      index1 >= sections[index].lectures.length ||
-      index2 >= sections[index].lectures.length
-    ) {
-      return;
-    }
-    const newArray = [...sections]; // Create a copy of the original array
-    // [newArray[index], newArray[index2]] = [newArray[index2], newArray[index1]]; // Swap the items
-    [sections[index].lectures[index1], sections[index].lectures[index2]] = [
-      sections[index].lectures[index2],
-      sections[index].lectures[index1],
-    ];
-    setSections(newArray);
+    // if (
+    //   index1 < 0 ||
+    //   index2 < 0 ||
+    //   index1 >= sections[index].lectures.length ||
+    //   index2 >= sections[index].lectures.length
+    // ) {
+    //   return;
+    // }
+    // const newArray = [...sections]; // Create a copy of the original array
+    // // [newArray[index], newArray[index2]] = [newArray[index2], newArray[index1]]; // Swap the items
+    // [sections[index].lectures[index1], sections[index].lectures[index2]] = [
+    //   sections[index].lectures[index2],
+    //   sections[index].lectures[index1],
+    // ];
+
+    // setSections(newArray);
+    dispatch(
+      swapLecture({
+        indexOne: index1,
+        indexTwo: index2,
+        sectionIndex: index,
+      })
+    );
   };
   const deleteLecture = () => {
     if (sections[index].lectures.length === 1) {
-      sections[index].lectures = [];
-      console.log(sections);
+      dispatch(
+        updateLecture({
+          sectionIndex: index,
+          value: [],
+        })
+      );
+      // sections[index].lectures = [];
+      // console.log(sections);
 
-      setSections([...sections]);
+      // setSections([...sections]);
     } else {
       console.log("hello");
-
-      const newArray = [...sections];
-      newArray[index].lectures.splice(indexLecture, 1);
-      setSections(newArray);
+      dispatch(
+        deleteLectureItem({
+          sectionIndex: index,
+          lectureIndex: indexLecture,
+        })
+      );
+      // const newArray = [...sections];
+      // newArray[index].lectures.splice(indexLecture, 1);
+      // setSections(newArray);
     }
   };
   return (
@@ -144,7 +169,7 @@ const Lecture = ({
         isOpen={isOpen}
         onClose={onClose}
         lectures={lectures}
-        setSections={setSections}
+        // setSections={setSections}
         itemLecture={itemLecture}
         sections={sections}
         index={index}
@@ -154,7 +179,7 @@ const Lecture = ({
         isOpen={isOpenUpload}
         onClose={onCloseUpload}
         lectures={lectures}
-        setSections={setSections}
+        // setSections={setSections}
         itemLecture={itemLecture}
         sections={sections}
         index={index}
@@ -164,7 +189,7 @@ const Lecture = ({
         isOpen={isOpenUploadFile}
         onClose={onCloseUploadFile}
         lectures={lectures}
-        setSections={setSections}
+        // setSections={setSections}
         itemLecture={itemLecture}
         sections={sections}
       />

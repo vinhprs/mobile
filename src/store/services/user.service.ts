@@ -18,4 +18,10 @@ export const userService = {
   getSubjetsGroup: () => {
     return axiosClient.get(`subjects/group`);
   },
+  getCategoryById: (params: any) => {
+    return axiosClient.get(`category/categoryId?${params.toString()}`);
+  },
+  getUserInfo: () => {
+    return axiosClient.get(`user/current-user`);
+  },
 };

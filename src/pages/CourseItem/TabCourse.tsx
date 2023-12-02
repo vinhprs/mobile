@@ -1,9 +1,9 @@
-import React from 'react'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import Topic from './Topic'
-import Comment from './Comment'
-import AnotherCourse from './AnotherCourse'
-const TabCourse = () => {
+import React from "react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import Topic from "./Topic";
+import Comment from "./Comment";
+import AnotherCourse from "./AnotherCourse";
+const TabCourse = ({ courseDetail }: any) => {
   return (
     <div>
       <Tabs>
@@ -15,18 +15,18 @@ const TabCourse = () => {
 
         <TabPanels p={0}>
           <TabPanel>
-            <Topic/>
+            <Topic courseDetail={courseDetail} />
           </TabPanel>
           <TabPanel>
-            <Comment/>
+            <Comment />
           </TabPanel>
           <TabPanel>
-            <AnotherCourse/>
+            <AnotherCourse courseDetail={courseDetail} />
           </TabPanel>
         </TabPanels>
       </Tabs>
     </div>
-  )
-}
+  );
+};
 
-export default TabCourse
+export default TabCourse;

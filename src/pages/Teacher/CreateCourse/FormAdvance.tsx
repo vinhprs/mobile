@@ -9,33 +9,46 @@ import {
   updateIndex,
   updateThumbnail,
 } from "../../../store/reducers/createCourseSlice";
-import { toolbarOptions } from "../../../utils/type";
+import { buttonList, toolbarOptions } from "../../../utils/type";
 import imgFade from "../../../image/CreateCourse/Icon.jpg";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@chakra-ui/react";
 import { uploadFile } from "../../../store/actions/course.action";
-
+import SunEditor from "suneditor-react";
+import suneditor from "suneditor";
+import "suneditor/dist/css/suneditor.min.css";
+import katex from "katex";
+import "katex/dist/katex.min.css";
+import { convertBase64 } from "../../../utils/lib";
 const FormAdvance = () => {
+  /**
+   * @type {React.MutableRefObject<SunEditor>} get type definitions for editor
+   */
+  const editor: any = useRef();
+  // The sunEditor parameter will be set to the core suneditor instance when this function is called
+  const getSunEditorInstance = (sunEditor: any) => {
+    editor.current = sunEditor;
+  };
   const dispatch = useAppDispatch();
   const refImage = useRef<any>(null);
   const [image, setImage] = useState<any>("");
   const [valueDesc, setValueDesc] = useState("");
   const [loading, setLoading] = useState(false);
   console.log(valueDesc);
-  const convertBase64 = (file: any) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+  // const convertBase64 = (file: any) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
 
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
   const handleImageClick = () => {
     refImage?.current.click();
   };
@@ -78,15 +91,15 @@ const FormAdvance = () => {
     setLoading(true);
     console.log(data);
   };
-  const uploadImage = async () => {
-    const formData = new FormData();
-    formData.append("file", image);
-    const res: any = await dispatch(uploadFile(formData));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-      console.log(res.payload?.data?.url);
-      dispatch(updateThumbnail(res.payload?.data?.url));
-    }
-  };
+  // const uploadImage = async () => {
+  //   const formData = new FormData();
+  //   formData.append("file", image);
+  //   const res: any = await dispatch(uploadFile(formData));
+  //   if (res.meta.requestStatus === "fulfilled" && res.payload) {
+  //     console.log(res.payload?.data?.url);
+  //     dispatch(updateThumbnail(res.payload?.data?.url));
+  //   }
+  // };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-y-4">
@@ -139,13 +152,13 @@ const FormAdvance = () => {
                     className="hidden"
                   />
                 </div>
-                <button
+                {/* <button
                   type="button"
                   className="bg-[#FFEEE8] font-semibold text-[16px] text-[#FF6636] h-[48px] px-[24px]"
                   onClick={uploadImage}
                 >
                   Đăng tải ảnh lên
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -155,16 +168,14 @@ const FormAdvance = () => {
             Mô tả chi tiết khóa học
           </span>
           <div>
-            <ReactQuill
-              // {...register("desc")}
-              // onChange={setValueDesc}
-              theme="snow"
-              value={valueDesc}
-              modules={{
-                toolbar: toolbarOptions,
+            <SunEditor
+              setOptions={{
+                katex: katex,
+                buttonList: buttonList,
               }}
-              // value={editorContent}
               onChange={onEditorStateChange}
+              getSunEditorInstance={getSunEditorInstance}
+              height="100px"
             />
           </div>
         </div>

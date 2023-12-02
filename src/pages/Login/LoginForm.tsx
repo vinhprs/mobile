@@ -8,7 +8,11 @@ import { useAppDispatch } from "../../hooks/appHooks";
 import { login } from "../../store/actions/auth.action";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { updateIsLogged, updateUserId } from "../../store/reducers/authSlice";
+import {
+  updateIsLogged,
+  updateUserId,
+  updateUserRole,
+} from "../../store/reducers/authSlice";
 import { LocalStorage } from "../../utils/LocalStorage";
 interface LoginProps {
   email: string;
@@ -47,8 +51,9 @@ const LoginForm = () => {
           position: "top-right",
         });
       } else {
+        dispatch(updateUserId(response?.payload.data.infoUser));
+        LocalStorage.setUserId(response?.payload.data.infoUser._id);
         dispatch(updateIsLogged(true));
-        dispatch(updateUserId(response?.payload?.data?.infoUser?._id));
 
         console.log(LocalStorage.getAccessToken());
 
@@ -61,7 +66,7 @@ const LoginForm = () => {
           position: "top-right",
         });
         setTimeout(() => {
-          navigate("/");
+          navigate(-1);
         }, 1500);
       }
     }

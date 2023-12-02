@@ -49,7 +49,7 @@ const ForgetPassword = () => {
           isClosable: true,
           position: "top-right",
         });
-        dispatch(updateUserId(response?.payload?.data?._id));
+        dispatch(updateUserId(response?.payload?.data));
         setTimeout(() => {
           navigate("/forgetpassword/otp");
         }, 1500);

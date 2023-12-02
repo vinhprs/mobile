@@ -12,7 +12,9 @@ import { useSelector } from "react-redux";
 
 const Username = () => {
   const dispatch = useAppDispatch();
-  const userId = useSelector(selectAuthUserId);
+  const userId: any = useSelector(selectAuthUserId);
+  console.log(userId);
+
   const navigate = useNavigate();
   const handleClickToCourseTab = (index: number) => {
     dispatch(updateTabCourse(index));
@@ -20,10 +22,10 @@ const Username = () => {
   const handleLogout = () => {
     LocalStorage.clearToken();
     dispatch(updateIsLogged(false));
-    dispatch(updateUserId(""));
+    dispatch(updateUserId({}));
     setTimeout(() => {
       navigate("/");
-    });
+    }, 500);
   };
   return (
     <div className="title_learn text-[14px] cursor-pointer relative text-[#272829]">
@@ -42,29 +44,29 @@ const Username = () => {
               className="w-[80px] h-[80px] rounded-full border-[1px]"
             />
             <div>
-              <h1 className="text-base font-medium">TheKiet</h1>
+              <h1 className="text-base font-medium">{userId?.username}</h1>
               <span className="text-[12px] text-[#ACADAE]">
-                baovan301@gmail.com
+                {userId?.email}
               </span>
             </div>
           </div>
           <div className="flex flex-col py-3 gap-y-2">
             <Link
-              to="mylearning"
+              to={`/profile/${userId?._id}`}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
               onClick={() => handleClickToCourseTab(0)}
             >
               Khóa học của tôi
             </Link>
             <Link
-              to="mylearning"
+              to={`/profile/${userId?._id}`}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
               onClick={() => handleClickToCourseTab(1)}
             >
               Khóa học yêu thích
             </Link>
             <Link
-              to="cart"
+              to={`/cart`}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
             >
               Giỏ hàng của tôi
@@ -86,7 +88,7 @@ const Username = () => {
           </div>
           <div className="flex flex-col py-3 gap-y-2">
             <Link
-              to={`/profile/${userId}`}
+              to={`/profile/${userId?._id}`}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
             >
               Cài đặt tài khoản

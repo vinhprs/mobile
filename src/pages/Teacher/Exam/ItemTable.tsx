@@ -14,6 +14,7 @@ import {
 import ModalDeleteExam from "./Modal/ModalDeleteExam";
 import moment from "moment";
 import ModalExamDetail from "./Modal/ModalExamDetail";
+import ModalUpdateExam from "./Modal/ModalUpdateExam";
 const ItemTable = ({ item, getExams }: any) => {
   const {
     isOpen: isOpenDelete,
@@ -25,9 +26,15 @@ const ItemTable = ({ item, getExams }: any) => {
     onOpen: onOpenDetail,
     onClose: onCloseDetail,
   } = useDisclosure();
+  const {
+    isOpen: isOpenUpdate,
+    onOpen: onOpenUpdate,
+    onClose: onCloseUpdate,
+  } = useDisclosure();
   return (
     <>
       <Tr>
+        <Td>{item._id}</Td>
         <Td>{item.title}</Td>
         <Td>
           <button onClick={onOpenDetail}>Xem đề thi</button>
@@ -37,21 +44,31 @@ const ItemTable = ({ item, getExams }: any) => {
         <Td>
           <div className="flex gap-x-3">
             <button onClick={onOpenDelete}>Xóa</button>
-            <button>Sửa</button>
+            <button onClick={onOpenUpdate}>Sửa</button>
           </div>
         </Td>
       </Tr>
       <ModalDeleteExam
         isOpenDelete={isOpenDelete}
         onCloseDelete={onCloseDelete}
-        title={item?.title}
-        id={item._id}
+        item={item}
+        // title={item?.title}
+        // id={item._id}
         getExams={getExams}
       />
       <ModalExamDetail
         isOpenDetail={isOpenDetail}
         onCloseDetail={onCloseDetail}
-        id={item._id}
+        item={item}
+
+        // id={item._id}
+        // title={item?.title}
+      />
+      <ModalUpdateExam
+        isOpenUpdate={isOpenUpdate}
+        onCloseUpdate={onCloseUpdate}
+        item={item}
+        getExams={getExams}
       />
     </>
   );

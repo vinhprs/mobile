@@ -1,0 +1,31 @@
+.radio-check{
+    input[type="radio"]{
+        display: none;
+    }
+    label{
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    label::before{
+        // position: absolute;
+        display: inline-block;
+        content: "";
+        width: 15px !important;
+        height: 15px !important;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 1px solid #FF6636;
+    }
+    input[type="radio"]:checked {
+        background-color: #FF6636;
+        color: white;
+    }
+    input[type="radio"]:checked + label::before{
+        // width: 16px;
+        // height: 16px;
+        border: 5px solid #FF6636;
+        background-color: white;
+        
+    }
+}

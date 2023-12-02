@@ -19,40 +19,45 @@ import { LectureProp, SectionsProp } from "./FormCreateVideo";
 import ModalEditSection from "./Modal/ModalEditSection";
 import Lecture from "./Lecture";
 import { v4 as uuid4 } from "uuid";
+import { useAppDispatch } from "../../../hooks/appHooks";
+import {
+  addLectureItem,
+  deleteSectionItem,
+  updateSections,
+} from "../../../store/reducers/createCourseSlice";
 interface PropsChild {
   sections: Array<SectionsProp>;
-  setSections: any;
   item: SectionsProp;
   index: number;
 }
-const Sections = ({ item, setSections, index, sections }: PropsChild) => {
+const Sections = ({ item, index, sections }: PropsChild) => {
   console.log(item.lectures);
-
+  const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const deleteSection = () => {
     if (sections.length === 1) {
-      setSections([]);
+      dispatch(updateSections([]));
     } else {
-      console.log("hello");
-
-      const newArray = [...sections];
-      newArray.splice(index, 1);
-      setSections(newArray);
+      dispatch(
+        deleteSectionItem({
+          sectionIndex: index,
+        })
+      );
     }
   };
   const addLecture = () => {
     const itemLec = {
-      // id: uuid4(),
       lectureName: "",
       lectureType: "",
       amount: "",
       url: "",
     };
-    // console.log([...item.lectures, itemLec]);
-    sections[index].lectures.push(itemLec);
-    console.log(sections);
-
-    setSections([...sections]);
+    dispatch(
+      addLectureItem({
+        sectionIndex: index,
+        item: itemLec,
+      })
+    );
   };
   console.log(sections);
 
@@ -90,18 +95,12 @@ const Sections = ({ item, setSections, index, sections }: PropsChild) => {
             lectures={item}
             sections={sections}
             index={index}
-            setSections={setSections}
           />
         ))}
       </div>
-      <ModalEditSection
-        isOpen={isOpen}
-        onClose={onClose}
-        itemSection={item}
-        setSections={setSections}
-        sections={sections}
-        index={index}
-      />
+      {isOpen && (
+        <ModalEditSection isOpen={isOpen} onClose={onClose} index={index} />
+      )}
     </div>
   );
 };

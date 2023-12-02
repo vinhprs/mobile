@@ -20,6 +20,7 @@ const TableExam = ({ exams, getExams }: any) => {
         <Table variant="striped" background="white" colorScheme="orange">
           <Thead>
             <Tr>
+              <Th>ID</Th>
               <Th>Đề thi</Th>
               <Th>Xem đề thi</Th>
               <Th>Ngày tạo</Th>

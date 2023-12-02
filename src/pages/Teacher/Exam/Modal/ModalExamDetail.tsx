@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -8,28 +8,72 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
+  Spinner,
 } from "@chakra-ui/react";
 import { useAppDispatch } from "../../../../hooks/appHooks";
+import { getExamDetail } from "../../../../store/actions/exam.action";
+import { useSelector } from "react-redux";
+import {
+  selectExamDetail,
+  setExamDetail,
+} from "../../../../store/reducers/examSlice";
+import ExamDetail from "../ExamDetail";
 interface DetailProp {
   isOpenDetail: boolean;
   onCloseDetail: () => void;
-  id: number;
+  item: any;
 }
-const ModalExamDetail = ({ isOpenDetail, onCloseDetail, id }: DetailProp) => {
+const ModalExamDetail = ({ isOpenDetail, onCloseDetail, item }: DetailProp) => {
   const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const examDetail = useSelector(selectExamDetail);
+
+  const getDetailExam = async () => {
+    const response: any = await dispatch(getExamDetail(item._id));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      setIsLoading(false);
+      dispatch(setExamDetail(response.payload?.data));
+    }
+  };
+  useEffect(() => {
+    if (isOpenDetail) {
+      setIsLoading(true);
+      getDetailExam();
+    }
+  }, [isOpenDetail]);
   return (
-    <Modal isOpen={isOpenDetail} onClose={onCloseDetail}>
+    <Modal
+      isOpen={isOpenDetail}
+      size="4xl"
+      onClose={onCloseDetail}
+      isCentered
+      id={item?.title}
+    >
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+      <ModalContent h="600px">
+        <ModalHeader>Xem đề thi {item?.title}</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>{id}</ModalBody>
+        <ModalBody maxH="600px" overflowY="scroll">
+          {isLoading ? (
+            <div>
+              <Spinner color="red.500" />
+            </div>
+          ) : (
+            <ExamDetail examDetail={examDetail} />
+          )}
+        </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onCloseDetail}>
-            Close
+          <Button
+            bg="#FF6636"
+            color="#FFFFFF"
+            _hover={{ bg: "#fb5b2a" }}
+            borderRadius="none"
+            onClick={onCloseDetail}
+          >
+            Đóng
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

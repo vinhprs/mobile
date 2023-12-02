@@ -72,3 +72,25 @@ export const getSubjetsGroup = createAsyncThunk(
     }
   }
 );
+export const getCategoryById = createAsyncThunk(
+  "user/getCategoryById",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await userService.getCategoryById(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+export const getUserInfo = createAsyncThunk(
+  "user/getUserInfo",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await userService.getUserInfo();
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

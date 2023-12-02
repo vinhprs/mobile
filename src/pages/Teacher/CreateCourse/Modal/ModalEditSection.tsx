@@ -9,28 +9,26 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useAppDispatch } from "../../../../hooks/appHooks";
+import {
+  selectCoursesCreated,
+  updateSectionName,
+} from "../../../../store/reducers/createCourseSlice";
+import { useSelector } from "react-redux";
 
-const ModalEditSection = ({
-  isOpen,
-  onClose,
-  itemSection,
-  setSections,
-  sections,
-  index,
-}: any) => {
+const ModalEditSection = ({ isOpen, onClose, index }: any) => {
   const [value, setValue] = useState("");
+  const dispatch = useAppDispatch();
+  const course = useSelector(selectCoursesCreated);
   const handleSubmit = () => {
-    console.log(value);
-    // setSections();
-    setSections(
-      sections.map((item: any, indexSection: any) => {
-        if (index === indexSection) {
-          return { ...item, sectionName: value };
-        } else {
-          return item;
-        }
+    dispatch(
+      updateSectionName({
+        sectionIndex: index,
+        value: value,
       })
     );
+    console.log(value);
+
     onClose();
   };
   return (
@@ -47,6 +45,7 @@ const ModalEditSection = ({
               <span className="text-[14px]">Tiêu đề</span>
               <input
                 type="text"
+                defaultValue={course.sections[index].sectionName}
                 onChange={(e: any) => setValue(e.target.value)}
                 className="w-full px-[18px] py-[13px] border-[1px] text-[#1D2026] border-[#E9EAF0] outline-none placeholder:text-[#8C94A3]"
                 placeholder="Nhập tiêu đề..."

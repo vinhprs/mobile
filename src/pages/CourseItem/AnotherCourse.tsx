@@ -1,48 +1,105 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFillPeopleFill } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
-const AnotherCourse = () => {
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useAppDispatch } from "../../hooks/appHooks";
+import { getStudentCourse } from "../../store/actions/course.action";
+import { useSelector } from "react-redux";
+import { selectAnotherCourse } from "../../store/reducers/courseSlice";
+import { formatMoney } from "../../utils/lib";
+import { useNavigate } from "react-router-dom";
+import { getWistList, postWishList } from "../../store/actions/wishlist.action";
+import { useToast } from "@chakra-ui/react";
+const AnotherCourse = ({ courseDetail }: any) => {
+  const toast = useToast();
+  const dispatch = useAppDispatch();
+  const navigation = useNavigate();
+  const anotherCourseList: any = useSelector(selectAnotherCourse);
+  const getAnotherCourse = async (id: any) => {
+    const variable = new URLSearchParams({
+      categoryId: courseDetail?.categoryId,
+      limit: "6",
+      page: "1",
+    });
+    const response = await dispatch(getStudentCourse(variable));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+    }
+  };
+  const getWishListItem = async () => {
+    const res = await dispatch(getWistList({}));
+    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    }
+  };
+  const postWishListItem = async (id: any, idCategory: any) => {
+    console.log(id);
+    const variable = {
+      courseId: id,
+    };
+    const res: any = await dispatch(postWishList(variable));
+    if (res.payload && res.meta.requestStatus === "fulfilled") {
+      toast({
+        title: res?.payload.message,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
+      setTimeout(() => {
+        getAnotherCourse(idCategory);
+        getWishListItem();
+      }, 500);
+    }
+  };
+  useEffect(() => {
+    if (courseDetail?.categoryId) getAnotherCourse(courseDetail?.categoryId);
+  }, [courseDetail?.categoryId]);
   return (
-    <div>
-      <div className="flex gap-x-3 text-[14px] text-[#1D2026]">
-        <img
-          className="w-[80px] h-[80px] object-cover"
-          src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-bi-n-thien-nhien-chim-b-nong.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-        />
-        <div className="flex w-full justify-between">
-          <div className="flex flex-col gap-y-2">
-            <h1 className="font-semibold w-[400px]">
-              [S0] - MẤT GỐC TOÁN HÌNH 12 NĂM 2024 - THẦY NGUYỄN CÔNG NGUYÊN
-            </h1>
-            <div className="flex gap-x-2 items-center">
-              <span className="px-2 py-1 bg-[#ECEB98] text-[14px] text-[#1D2026] font-medium">
-                Bestseller
-              </span>
-
-              <span className="font-medium text-[#4E5566]">
-                Thời lượng: 1.5h
-              </span>
-            </div>
-          </div>
-          <div className="flex h-fit gap-x-3">
-            <div className="flex gap-x-5">
-              <div className="flex gap-x-1">
-                <BsFillPeopleFill className="text-[20px]" />
-                <span>90,344</span>
+    <div className="flex flex-col gap-y-2">
+      {anotherCourseList?.listData?.map((item: any, index: any) => (
+        <div className="flex gap-x-3 text-[14px] text-[#1D2026]">
+          <img
+            className="w-[80px] h-[80px] object-cover"
+            src={item?.thumbnail_url}
+            alt=""
+          />
+          <div className="flex w-full justify-between">
+            <div
+              className="flex flex-col gap-y-2 cursor-pointer"
+              onClick={() => navigation(`/courses/${item._id}`)}
+            >
+              <h1 className="font-semibold w-[400px]">{item?.courseName}</h1>
+              <div className="flex gap-x-2 items-center">
+                <span className="font-medium text-[#4E5566]">
+                  Thời lượng: {item?.totalDuration.split(".")[0]} phút
+                </span>
               </div>
-              <h1 className="font-medium">
-                <span>đ</span>1,899,000
-              </h1>
             </div>
-            <div>
-              <div className="cursor-pointer w-10 h-10 text-[20px] border-[1px] border-[#1D2026] flex justify-center items-center rounded-full">
-                <AiOutlineHeart className="" />
+            <div className="flex h-fit gap-x-3 items-center">
+              <div className="flex gap-x-5">
+                {/* <div className="flex gap-x-1">
+                  <BsFillPeopleFill className="text-[20px]" />
+                  <span>90,344</span>
+                </div> */}
+                <h1 className="font-medium">
+                  <span>{formatMoney(item?.price)} VND</span>
+                </h1>
+              </div>
+              <div>
+                <div
+                  onClick={() => postWishListItem(item?._id, item?.categoryId)}
+                  className="cursor-pointer w-10 h-10 text-[20px] border-[1px] border-[#FF6636] flex justify-center items-center rounded-full"
+                >
+                  {item?.isBookmark ? (
+                    <AiFillHeart className="text-[#FF6636]" />
+                  ) : (
+                    <AiOutlineHeart className="text-[#FF6636]" />
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

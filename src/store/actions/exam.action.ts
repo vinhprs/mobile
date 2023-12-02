@@ -26,7 +26,7 @@ export const updateExam = createAsyncThunk(
   "exam/updateExam",
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
-      const res = await examService.updateExam(params.params, params.id);
+      const res = await examService.updateExam(params);
       return res;
     } catch (err) {
       return rejectWithValue(err);
@@ -49,6 +49,17 @@ export const getExamDetail = createAsyncThunk(
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.getExamDetail(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+export const postExamResult = createAsyncThunk(
+  "exam/postExam",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await examService.postExam(params);
       return res;
     } catch (err) {
       return rejectWithValue(err);

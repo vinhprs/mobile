@@ -20,6 +20,7 @@ import {
   userSetting,
 } from "../../store/actions/user.action";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 interface UserProps {
   name: string;
@@ -43,6 +44,7 @@ const FormInformation = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [value, setValue] = React.useState("Nam");
   const [grade, setGrade] = useState([]);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -135,6 +137,7 @@ const FormInformation = () => {
     const res = await dispatch(userSetting(payload));
     if (res.meta.requestStatus === "fulfilled" && res.payload) {
       console.log(res);
+      navigate("/");
     } else {
       console.log("err");
     }

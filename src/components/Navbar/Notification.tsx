@@ -7,7 +7,7 @@ const Notification = () => {
     <div className="title_learn text-[14px] cursor-pointer relative text-[#272829]">
       <div className="cursor-pointer relative">
         <BiBell className="text-[22px]" />
-        <div className="w-[10px] h-[10px] absolute top-[-3px] right-0 rounded-full bg-[#8614BC]"></div>
+        <div className="w-[10px] h-[10px] absolute top-[-3px] right-0 rounded-full bg-[#FF6636]"></div>
       </div>
       <div className="modal_title_learn absolute top-[100%] right-[50%] w-[350px] h-fit bg-white border-[1px] border-[#272829]">
         <div className="px-3 py-3 flex flex-col text-[#272829] gap-y-3">

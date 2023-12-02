@@ -8,7 +8,11 @@ import { useAppDispatch } from "../../hooks/appHooks";
 import { signup } from "../../store/actions/auth.action";
 import { useNavigate } from "react-router-dom";
 import { LocalStorage } from "../../utils/LocalStorage";
-import { updateUserId } from "../../store/reducers/authSlice";
+import {
+  updateIsLogged,
+  updateUserId,
+  updateUserRole,
+} from "../../store/reducers/authSlice";
 interface SignupProps {
   email: string;
   username: string;
@@ -64,7 +68,8 @@ const SignupForm = () => {
         LocalStorage.setRefreshToken(response?.payload.data.refreshToken);
         console.log(response.payload.data.infoUser._id);
 
-        dispatch(updateUserId(response.payload.data.infoUser._id));
+        dispatch(updateUserId(response?.payload.data.infoUser));
+        dispatch(updateIsLogged(true));
         // console.log(response);
         toast({
           title: "Đăng ký thành công",

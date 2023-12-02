@@ -66,3 +66,14 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+export const resendOTP = createAsyncThunk(
+  "auth/resendOTP",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await authService.resendOTP(params);
+      return res;
+    } catch (err) {
+      return err;
+    }
+  }
+);

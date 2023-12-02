@@ -4,11 +4,15 @@ import Sections from "./Sections";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 import { useAppDispatch } from "../../../hooks/appHooks";
 import {
+  addSectionItem,
+  selectCoursesCreated,
+  swapSection,
   updateArray,
   updateIndex,
   updateSections,
 } from "../../../store/reducers/createCourseSlice";
 import { Button } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 export interface LectureProp {
   id?: string;
   lectureName: string;
@@ -24,33 +28,14 @@ export interface SectionsProp {
 const FormCreateVideo = () => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const [sections, setSections] = useState<Array<SectionsProp>>([
-    {
-      // id: uuid4(),
-      sectionName: "",
-      lectures: [
-        {
-          // id: uuid4(),
-          lectureName: "",
-          lectureType: "",
-          amount: "",
-          url: "",
-        },
-      ],
-    },
-  ]);
+  const sections = useSelector(selectCoursesCreated);
   const swapItem = (index1: number, index2: number) => {
-    if (
-      index1 < 0 ||
-      index2 < 0 ||
-      index1 >= sections.length ||
-      index2 >= sections.length
-    ) {
-      return;
-    }
-    const newArray = [...sections]; // Create a copy of the original array
-    [newArray[index1], newArray[index2]] = [newArray[index2], newArray[index1]]; // Swap the items
-    setSections(newArray);
+    dispatch(
+      swapSection({
+        indexOne: index1,
+        indexTwo: index2,
+      })
+    );
   };
   const addSection = () => {
     const item = {
@@ -66,7 +51,7 @@ const FormCreateVideo = () => {
         },
       ],
     };
-    setSections([...sections, item]);
+    dispatch(addSectionItem(item));
   };
   const onSubmit = () => {
     setTimeout(() => {
@@ -83,7 +68,7 @@ const FormCreateVideo = () => {
     <div>
       <div className="bg-[#F5F7FA] p-[24px] flex flex-col gap-y-[30px]">
         <div className="flex flex-col divide-y">
-          {sections.map((item, index) => (
+          {sections.sections.map((item, index) => (
             <div className="flex gap-x-3 py-[20px]" key={index}>
               <div className="flex flex-col gap-y-2 text-[#1D2026]">
                 <div
@@ -99,7 +84,7 @@ const FormCreateVideo = () => {
                 <div
                   onClick={() => swapItem(index, index + 1)}
                   className={` w-[40px] h-[40px] flex justify-center items-center bg-white ${
-                    index === sections.length - 1
+                    index === sections.sections.length - 1
                       ? "cursor-not-allowed text-[#6E7485]"
                       : "cursor-pointer hover:bg-[#FF6636] hover:text-white transition-all ease-in-out duration-150"
                   } `}
@@ -108,9 +93,8 @@ const FormCreateVideo = () => {
                 </div>
               </div>
               <Sections
-                sections={sections}
+                sections={sections.sections}
                 item={item}
-                setSections={setSections}
                 index={index}
               />
             </div>

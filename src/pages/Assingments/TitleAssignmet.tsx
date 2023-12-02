@@ -1,15 +1,15 @@
+import { useEffect } from "react";
 import Question from "./Question";
+import { useAppDispatch } from "../../hooks/appHooks";
+import { useSelector } from "react-redux";
+import { postExam, selectExamPost } from "../../store/reducers/examSlice";
 
-const TitleAssignmet = () => {
+const TitleAssignmet = ({ questions }: any) => {
   return (
     <div className="flex flex-col gap-y-10 divide-y-2 divide-dashed">
-      <Question index={1} />
-      <Question index={2} />
-      <Question index={3} />
-      <Question index={4} />
-      <Question index={5} />
-      <Question index={6} />
-      <Question index={7} />
+      {questions?.questions?.map((question: any, index: any) => (
+        <Question index={index + 1} question={question} key={question?._id} />
+      ))}
     </div>
   );
 };

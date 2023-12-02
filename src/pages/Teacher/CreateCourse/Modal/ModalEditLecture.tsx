@@ -9,6 +9,8 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useAppDispatch } from "../../../../hooks/appHooks";
+import { updateLectureName } from "../../../../store/reducers/createCourseSlice";
 
 const ModalEditLecture = ({
   isOpen,
@@ -21,22 +23,30 @@ const ModalEditLecture = ({
   indexLecture,
 }: any) => {
   const [value, setValue] = useState("");
+  const dispatch = useAppDispatch();
   const handleSubmit = () => {
     console.log(value);
-    const update = sections.map((section: any, indexSection: any) => {
-      if (index === indexSection) {
-        section.lectures = section.lectures.map(
-          (lecture: any, indexLec: any) => {
-            if (indexLecture === indexLec) {
-              lecture.lectureName = value;
-            }
-            return lecture;
-          }
-        );
-      }
-      return section;
-    });
-    setSections(update);
+    // const update = sections.map((section: any, indexSection: any) => {
+    //   if (index === indexSection) {
+    //     section.lectures = section.lectures.map(
+    //       (lecture: any, indexLec: any) => {
+    //         if (indexLecture === indexLec) {
+    //           lecture.lectureName = value;
+    //         }
+    //         return lecture;
+    //       }
+    //     );
+    //   }
+    //   return section;
+    // });
+    // setSections(update);
+    dispatch(
+      updateLectureName({
+        sectionIndex: index,
+        lectureIndex: indexLecture,
+        value: value,
+      })
+    );
     onClose();
   };
   return (

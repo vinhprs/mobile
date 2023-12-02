@@ -11,7 +11,21 @@ const initialState = {
     thumbnail_url: "",
     categoryId: "",
     subCategoryId: "",
-    sections: [],
+    sections: [
+      {
+        // id: uuid4(),
+        sectionName: "",
+        lectures: [
+          {
+            // id: uuid4(),
+            lectureName: "",
+            lectureType: "",
+            amount: "",
+            url: "",
+          },
+        ],
+      },
+    ],
   },
 };
 const createCourseSlice = createSlice({
@@ -50,8 +64,98 @@ const createCourseSlice = createSlice({
     updateSections(state: any, actions) {
       state.course.sections = actions.payload;
     },
+    updateLecture(state, actions) {
+      const { sectionIndex, value } = actions.payload;
+      state.course.sections[sectionIndex].lectures = value;
+    },
+    addSectionItem(state, actions) {
+      state.course.sections = [...state.course.sections, actions.payload];
+    },
+    addLectureItem(state, actions) {
+      const { sectionIndex, item } = actions.payload;
+      state.course.sections[sectionIndex].lectures = [
+        ...state.course.sections[sectionIndex].lectures,
+        item,
+      ];
+    },
+    updateSectionName(state, actions) {
+      const { sectionIndex, value } = actions.payload;
+      state.course.sections[sectionIndex].sectionName = value;
+    },
+    updateLectureName(state, actions) {
+      const { sectionIndex, lectureIndex, value } = actions.payload;
+      state.course.sections[sectionIndex].lectures[lectureIndex].lectureName =
+        value;
+    },
+    updateLectureAmount(state, actions) {
+      const { sectionIndex, lectureIndex, value } = actions.payload;
+      state.course.sections[sectionIndex].lectures[lectureIndex].amount = value;
+    },
+    updateLectureType(state, actions) {
+      const { sectionIndex, lectureIndex, value, urlValue } = actions.payload;
+      if (value === "VIDEO") {
+        state.course.sections[sectionIndex].lectures[lectureIndex].lectureType =
+          value;
+        state.course.sections[sectionIndex].lectures[lectureIndex].url =
+          urlValue;
+      } else {
+        state.course.sections[sectionIndex].lectures[lectureIndex].lectureType =
+          value;
+        state.course.sections[sectionIndex].lectures[lectureIndex].url =
+          urlValue;
+      }
+    },
     updateThumbnail(state, actions) {
       state.course.thumbnail_url = actions.payload;
+    },
+    deleteSectionItem(state, actions) {
+      const { sectionIndex } = actions.payload;
+      state.course.sections.splice(sectionIndex, 1);
+    },
+    deleteLectureItem(state, actions) {
+      const { sectionIndex, lectureIndex } = actions.payload;
+      state.course.sections[sectionIndex].lectures.splice(lectureIndex, 1);
+    },
+    swapSection(state, action) {
+      const { indexOne, indexTwo } = action.payload;
+      if (
+        indexOne < 0 ||
+        indexTwo < 0 ||
+        indexOne >= state.course.sections.length ||
+        indexTwo >= state.course.sections.length
+      ) {
+        return;
+      } else {
+        const newArray = [...state.course.sections]; // Create a copy of the original array
+        [newArray[indexOne], newArray[indexTwo]] = [
+          newArray[indexTwo],
+          newArray[indexOne],
+        ]; // Swap the items
+        // setSections(newArray);
+        state.course.sections = newArray;
+      }
+    },
+    swapLecture(state, action) {
+      const { indexOne, indexTwo, sectionIndex } = action.payload;
+      if (
+        indexOne < 0 ||
+        indexTwo < 0 ||
+        indexOne >= state.course.sections[sectionIndex].lectures.length ||
+        indexTwo >= state.course.sections[sectionIndex].lectures.length
+      ) {
+        return;
+      } else {
+        const newArray: any = [...state.course.sections]; // Create a copy of the original array
+        [
+          newArray[sectionIndex].lectures[indexOne],
+          newArray[sectionIndex].lectures[indexTwo],
+        ] = [
+          newArray[sectionIndex].lectures[indexTwo],
+          newArray[sectionIndex].lectures[indexOne],
+        ]; // Swap the items
+        // setSections(newArray);
+        state.course.sections = newArray;
+      }
     },
   },
   extraReducers: (builder) => {},
@@ -67,6 +171,17 @@ export const {
   updateSubCategoryId,
   updateExpiredDate,
   updateThumbnail,
+  addSectionItem,
+  deleteLectureItem,
+  deleteSectionItem,
+  swapSection,
+  updateLectureAmount,
+  updateLectureName,
+  updateLectureType,
+  updateSectionName,
+  addLectureItem,
+  swapLecture,
+  updateLecture,
 } = createCourseSlice.actions;
 export default createCourseSlice.reducer;
 export const selectCreateCourse = (state: RootState) =>

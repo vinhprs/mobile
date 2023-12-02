@@ -9,34 +9,45 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useAppDispatch } from "../../../../hooks/appHooks";
+import { updateLectureType } from "../../../../store/reducers/createCourseSlice";
 
 const ModalUploadVideo = ({
   isOpen,
   onClose,
   lectures,
-  setSections,
+  // setSections,
   itemLecture,
   sections,
   index,
   indexLecture,
 }: any) => {
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState("");
   const handleSubmit = () => {
-    const update = sections.map((section: any, indexSection: any) => {
-      if (index === indexSection) {
-        section.lectures = section.lectures.map(
-          (lecture: any, indexLec: any) => {
-            if (indexLecture === indexLec) {
-              lecture.lectureType = "VIDEO";
-              lecture.url = value;
-            }
-            return lecture;
-          }
-        );
-      }
-      return section;
-    });
-    setSections(update);
+    // const update = sections.map((section: any, indexSection: any) => {
+    //   if (index === indexSection) {
+    //     section.lectures = section.lectures.map(
+    //       (lecture: any, indexLec: any) => {
+    //         if (indexLecture === indexLec) {
+    //           lecture.lectureType = "VIDEO";
+    //           lecture.url = value;
+    //         }
+    //         return lecture;
+    //       }
+    //     );
+    //   }
+    //   return section;
+    // });
+    // setSections(update);
+    dispatch(
+      updateLectureType({
+        sectionIndex: index,
+        lectureIndex: indexLecture,
+        value: "VIDEO",
+        urlValue: value,
+      })
+    );
     onClose();
   };
   return (

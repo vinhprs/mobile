@@ -12,16 +12,38 @@ import {
   setUpdateCourse,
 } from "../../store/reducers/courseSlice";
 import { useSelector } from "react-redux";
+import useQueryParams from "../../hooks/useSearchParams";
+import Filter from "./Filter";
+import { useLocation } from "react-router-dom";
+import useSetQueryParams from "../../hooks/useSetQuery";
+import { selectAuthUserId } from "../../store/reducers/authSlice";
+import { LocalStorage } from "../../utils/LocalStorage";
 const ListCourses = () => {
+  const param = useLocation();
   const dispatch = useAppDispatch();
   const course = useSelector(selectCourse);
   const [page, setPage] = useState(1);
   const loading = useSelector(selectLoading);
   const [openSidebar, setOpenSidebar] = useState(false);
+  const userId = LocalStorage.getUserId();
+  const queryParam = useQueryParams(
+    {
+      search: "",
+      categoryId: "",
+      subCategoryId: "",
+      startPrice: "",
+      endPrice: "",
+      page: 1,
+      userId: "",
+      startDuration: "",
+      endDuration: "",
+    },
+    window.location.href
+  );
+  const setQuery = useSetQueryParams();
   const getListCourse = async (rest?: any) => {
     const payload = new URLSearchParams({
       limit: 10,
-      page: page,
       ...rest,
     });
     const res: any = await dispatch(getStudentCourse(payload));
@@ -35,8 +57,17 @@ const ListCourses = () => {
   };
   useEffect(() => {
     dispatch(setLoading(true));
-    getListCourse({ page: page });
-  }, [page]);
+    getListCourse({
+      ...queryParam.queryParams,
+      page: page,
+      userId: userId ? userId : "",
+    });
+    setQuery(queryParam.queryParams, {
+      page: page,
+      userId: userId ? userId : "",
+    });
+  }, [param.search, page]);
+
   return (
     <div className="pt-[100px] pb-[60px] px-[24px] text-[#1D2026]">
       <h1 className="text-[32px] font-semibold">
@@ -51,7 +82,7 @@ const ListCourses = () => {
             <BsFilter className="text-[20px]" />
             <p className="font-semibold">Lọc</p>
           </div>
-          <div className="px-2 py-1 border-[1px] border-[#272829] text-[14px]">
+          {/* <div className="px-2 py-1 border-[1px] border-[#272829] text-[14px]">
             <div className="font-semibold">Sắp xếp theo</div>
             <Select
               placeholder="Select option"
@@ -62,7 +93,7 @@ const ListCourses = () => {
               <option value="option2">Liên quan nhất</option>
               <option value="option3">Nhiều reivew nhất</option>
             </Select>
-          </div>
+          </div> */}
         </div>
         <span className="font-semibold text-[14px] text-[#1D2026]">
           {course.listData.length}{" "}
@@ -75,10 +106,14 @@ const ListCourses = () => {
         } gap-x-7`}
       >
         <div className={` ${openSidebar ? "hidden" : ""}`}>
-          <Sidebar />
+          <Filter setPage={setPage} />
         </div>
         <div className="">
-          <Courses page={page} setPage={setPage} />
+          <Courses
+            page={page}
+            setPage={setPage}
+            getListCourse={getListCourse}
+          />
         </div>
       </div>
     </div>

@@ -17,20 +17,22 @@ import { deleteExam } from "../../../../store/actions/exam.action";
 interface DeleteProps {
   isOpenDelete: boolean;
   onCloseDelete: () => void;
-  title: string;
-  id: number;
+  item: any;
+  // title: string;
+  // id: number;
   getExams: any;
 }
 const ModalDeleteExam = ({
   isOpenDelete,
   onCloseDelete,
-  title,
-  id,
+  // title,
+  // id,
   getExams,
+  item,
 }: DeleteProps) => {
   const dispatch = useAppDispatch();
   const deleteExamItem = async () => {
-    const res = await dispatch(deleteExam(id));
+    const res = await dispatch(deleteExam(item?._id));
     if (res.payload && res.meta.requestStatus === "fulfilled") {
       onCloseDelete();
       getExams();
@@ -42,7 +44,7 @@ const ModalDeleteExam = ({
   };
   return (
     <Modal
-      id={title}
+      id={item?.title}
       isOpen={isOpenDelete}
       onClose={onCloseDelete}
       isCentered
@@ -60,7 +62,7 @@ const ModalDeleteExam = ({
             <PiWarningCircleThin className="text-[24px] text-[#E34444]" />
             <span className="font-medium">
               Bạn thực sự muốn xóa đề thi{" "}
-              <span className="text-[#FF6636]">{title}</span>
+              <span className="text-[#FF6636]">{item?.title}</span>
             </span>
           </div>
         </ModalBody>

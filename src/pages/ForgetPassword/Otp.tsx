@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { useAppDispatch } from "../../hooks/appHooks";
-import { resetPassword } from "../../store/actions/auth.action";
+import { resendOTP, resetPassword } from "../../store/actions/auth.action";
 import { useSelector } from "react-redux";
 import { selectAuthUserId } from "../../store/reducers/authSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,7 +16,7 @@ interface OTPProps {
 }
 const Otp = () => {
   const dispatch = useAppDispatch();
-  const selectId = useSelector(selectAuthUserId);
+  const selectId: any = useSelector(selectAuthUserId);
   const toast = useToast();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
@@ -37,7 +37,7 @@ const Otp = () => {
     const payload = {
       code: data.otp,
       password: data.newPassword,
-      userId: selectId,
+      userId: selectId?._id,
     };
     const response: any = await dispatch(resetPassword(payload));
     if (response.meta.requestStatus === "fulfilled" && response.payload) {
@@ -60,9 +60,17 @@ const Otp = () => {
           position: "top-right",
         });
         setTimeout(() => {
-          navigate("/login");
+          navigate("/");
         }, 1500);
       }
+    }
+  };
+  const resendOTPButton = async () => {
+    const payload = {
+      email: selectId?.email,
+    };
+    const res = await dispatch(resendOTP(payload));
+    if (res.meta.requestStatus === "fulfilled" && res.payload) {
     }
   };
   return (
@@ -167,6 +175,7 @@ const Otp = () => {
               bg="#FF6636"
               color="white"
               borderRadius="none"
+              onClick={resendOTPButton}
             >
               Gởi lại mã OTP
             </Button>

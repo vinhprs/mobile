@@ -76,7 +76,11 @@ const Select = ({
     onToggle();
   };
   return (
-    <div className={`w-full flex flex-col gap-y-2 ${classes}`}>
+    <div
+      className={`w-full flex flex-col ${
+        typeApi === "select" ? "" : "gap-y-2"
+      } ${classes}`}
+    >
       <span className="text-[14px]">{selectTitle}</span>
       <div
         className={`relative cursor-pointer px-[8px] h-[38px] text-[14px] bg-white border-[1px]  border-[#E9EAF0] text-[#4E5566] ${classesMini}`}
@@ -98,6 +102,7 @@ const Select = ({
               <div className="w-full py-[10px] border-[0.5px] border-[#E9EAF0] bg-white">
                 {arraySelect.map((item: any, index: number) => (
                   <p
+                    key={item.id}
                     className="py-[5px] px-[10px] hover:text-white hover:bg-[#FF6636]"
                     onClick={() => selectString(item?.name, item?.id)}
                   >

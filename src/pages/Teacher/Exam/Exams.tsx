@@ -21,9 +21,9 @@ const Exams = ({ exams, getExams }: any) => {
   //     getExams();
   //   }, []);
   return (
-    <div>
+    <div className="flex flex-col gap-y-2">
       <div>
-        <FilterExam />
+        <FilterExam getExams={getExams} />
       </div>
       <div>
         <TableExam exams={exams} getExams={getExams} />

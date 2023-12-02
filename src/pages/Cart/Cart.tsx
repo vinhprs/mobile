@@ -14,7 +14,7 @@ const Cart = () => {
           <div className="">
             <ListCart />
           </div>
-          <div className="bg-slate-600">
+          <div className="h-fit p-[10px]">
             <Total />
           </div>
         </div>

@@ -19,6 +19,7 @@ import { useAppDispatch } from "../../../../hooks/appHooks";
 import { getCategory } from "../../../../store/actions/user.action";
 import { isEmptyObject } from "../../../../utils/lib";
 import {
+  resetCreateExam,
   selectExam,
   updateTime,
   updateTitle,
@@ -60,7 +61,6 @@ const ModalCreateExam = ({
         ]);
       }
       setGradeTemp(response.payload?.data);
-    } else {
     }
   };
   const postExam = async () => {
@@ -75,6 +75,24 @@ const ModalCreateExam = ({
   const clickPostExam = () => {
     setLoading(true);
     postExam();
+    dispatch(
+      resetCreateExam({
+        questions: [
+          {
+            title: "",
+            answers: ["", "", "", ""],
+            correctAnswers: [],
+            explain: "",
+            questionLevel: "Nhận biết",
+            answerType: "",
+          },
+        ],
+        title: "",
+        categoryId: 0,
+        subCategoryId: 0,
+        time: 0,
+      })
+    );
   };
   useEffect(() => {
     if (isOpen) {

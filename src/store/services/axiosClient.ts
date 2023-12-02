@@ -1,5 +1,59 @@
+import { jwtDecode } from "jwt-decode";
 import { LocalStorage } from "../../utils/LocalStorage";
 import axios, { AxiosResponse } from "axios";
+
+const getTokenExpiration = (token: any) => {
+  const decodedToken = jwtDecode(token) || {};
+  return (decodedToken.exp ?? 0) * 1000; // Convert seconds to milliseconds
+};
+const refreshTokenAndRetry = (originalRequest: any) => {
+  const refreshToken = LocalStorage.getRefreshToken();
+
+  return axios
+    .post(
+      "https://staging.primeedu.io.vn/api/v1/auth/refresh-token",
+      { refreshToken },
+      {
+        headers: {
+          ...defaultHeader,
+          Authorization: `Bearer ${LocalStorage.getAccessToken()}`,
+        },
+      }
+    )
+    .then((res) => {
+      const { data } = res.data;
+
+      // Update token in LocalStorage
+      LocalStorage.setToken(data);
+
+      // Update Authorization headers
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${data.accessToken}`;
+      originalRequest.headers["Authorization"] = `Bearer ${data.accessToken}`;
+
+      processQueue(null, data.accessToken);
+
+      // Retry the original request with the new token
+      return axios.request(originalRequest);
+    })
+    .catch((err) => {
+      const { status, data } = err.response;
+
+      if (
+        status === 404 ||
+        (data && data.error && data.error.errorCode === "REFRESH_TOKEN_INVALID")
+      ) {
+        clearAuthToken();
+      }
+
+      processQueue(err, null);
+      throw err; // Rethrow the error for further handling
+    })
+    .finally(() => {
+      isRefreshing = false;
+    });
+};
 
 const defaultHeader = {
   "Access-Control-Allow-Origin": "*",
@@ -78,10 +132,13 @@ axiosClient.interceptors.response.use(
       return new Promise(function (resolve, reject) {
         axios
           .post(
-            `http://localhost:4000/auth/refresh-token`,
+            `https://staging.primeedu.io.vn/api/v1/auth/refresh-token`,
             { refreshToken },
             {
-              headers: defaultHeader,
+              headers: {
+                ...defaultHeader,
+                Authorization: "Bearer " + LocalStorage.getAccessToken(),
+              },
             }
           )
           .then((res) => {
@@ -119,6 +176,18 @@ axiosClient.interceptors.response.use(
             isRefreshing = false;
           });
       });
+    }
+    const tokenExpiration = getTokenExpiration(LocalStorage.getAccessToken());
+    const currentTime = new Date().getTime();
+    console.log("🚀 ~ file: axiosClient.ts:182 ~ currentTime:", currentTime);
+
+    if (tokenExpiration && tokenExpiration < currentTime) {
+      // Token is expired, refresh it
+      refreshTokenAndRetry(originalRequest);
+    } else {
+      // Token is still valid, refresh after 5 minutes
+      const refreshTimeout = tokenExpiration - currentTime - 5 * 60 * 1000;
+      setTimeout(refreshTokenAndRetry, refreshTimeout);
     }
 
     return Promise.reject(handleError(error));

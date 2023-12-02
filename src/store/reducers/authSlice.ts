@@ -1,14 +1,19 @@
+import { getUserInfo, userSetting } from "../actions/user.action";
 import { RootState } from "./rootReducers";
 import { createSlice } from "@reduxjs/toolkit";
 interface Auth {
-  userId: string;
+  userId: Object;
   isLogged: boolean;
   accessToken?: string;
+  userRole: string;
+  userInfo: Object;
 }
 const initialState: Auth = {
-  userId: "",
+  userId: {},
+  userRole: "",
   isLogged: false,
   accessToken: "",
+  userInfo: {},
 };
 const authSlice = createSlice({
   name: "auth",
@@ -23,13 +28,30 @@ const authSlice = createSlice({
     updateAccessToken(state, actions) {
       state.accessToken = actions.payload;
     },
+    updateUserRole(state, actions) {
+      state.userRole = actions.payload;
+    },
+    updateUserInfo(state, actions) {
+      state.userInfo = actions.payload;
+    },
   },
 
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(getUserInfo.fulfilled, (state, actions) => {
+      state.userInfo = actions.payload.data;
+    });
+  },
 });
-export const { updateUserId, updateAccessToken, updateIsLogged } =
-  authSlice.actions;
+export const {
+  updateUserId,
+  updateAccessToken,
+  updateIsLogged,
+  updateUserRole,
+  updateUserInfo,
+} = authSlice.actions;
 export default authSlice.reducer;
 export const selectAuthUserId = (state: RootState) => state.auth.userId;
 export const selectAuthToke = (state: RootState) => state.auth.accessToken;
 export const selectIsLogged = (state: RootState) => state.auth.isLogged;
+export const selectUserRole = (state: RootState) => state.auth.userRole;
+export const selectUserInfo = (state: RootState) => state.auth.userInfo;

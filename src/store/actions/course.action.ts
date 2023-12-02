@@ -44,3 +44,25 @@ export const getStudentCourse = createAsyncThunk(
     }
   }
 );
+export const getCourseDetail = createAsyncThunk(
+  "course/getCourseDetail",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await courseService.getCourseDetail(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+export const getCourseUserBuy = createAsyncThunk(
+  "course/getCourseUserBuy",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await courseService.getCourseUserBuy();
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

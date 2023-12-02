@@ -13,15 +13,17 @@ import {
   selectAuthUserId,
   selectIsLogged,
 } from "../../store/reducers/authSlice";
+import { LocalStorage } from "../../utils/LocalStorage";
 const Navbar = () => {
   const isLogged = useSelector(selectIsLogged);
+  const access_token = LocalStorage.getAccessToken();
   const { isOpen: isOpenMenu, onOpen, onClose } = useDisclosure();
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const navigation = useNavigate();
   const focusRef: any = useRef(null);
   const drawerRef: any = useRef();
-  const debouncedValue = useDebounce<string>(value, 500);
+  const debouncedValue = useDebounce<string>(value, 1000);
   const {
     register,
     handleSubmit,
@@ -39,11 +41,7 @@ const Navbar = () => {
     setValue(e.target.value);
     console.log(e.target.value);
   };
-  useEffect(() => {
-    // Do fetch here...
-    // Triggers when "debouncedValue" changes
-    console.log(debouncedValue);
-  }, [debouncedValue]);
+
   // console.log(debouncedValue);
   const handleOpen = () => {
     setIsOpen(!isOpen);
@@ -60,7 +58,6 @@ const Navbar = () => {
     document.addEventListener("click", handler);
     return () => document.addEventListener("click", handler);
   }, []);
-  console.log(isLogged);
 
   return (
     <div className="fixed top-0 left-0 w-full z-10 bg-white" ref={focusRef}>
@@ -110,7 +107,7 @@ const Navbar = () => {
             <SearchResult value={value} debouncedValue={debouncedValue} />
           )}
         </form>
-        {!isLogged ? (
+        {!access_token ? (
           <div className="flex gap-x-3">
             <Link
               to="/login"

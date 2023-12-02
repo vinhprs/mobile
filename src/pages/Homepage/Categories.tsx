@@ -8,7 +8,7 @@ const Categories = () => {
       <div className="grid grid-cols-3 gap-10">
         {categories.map((item, index) => (
           <Link
-            to=""
+            to={`/courses?search=${item.name}`}
             key={item.id}
             className="text-[20px] font-semibold text-[#FF6636] "
           >

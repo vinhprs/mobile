@@ -1,28 +1,31 @@
 import moment from "moment";
-moment.updateLocale("en", {
+moment.updateLocale("vi", {
   relativeTime: {
     future: "in %s",
-    past: "%s ago",
-    s: "%d seconds",
-    ss: "%d seconds",
-    m: "%d minute",
-    mm: "%d minutes",
-    h: "%d hour", //this is the setting that you need to change
-    hh: "%d hours",
-    d: "%d day",
-    dd: "%d days",
-    w: "%d week",
-    ww: "%d weeks",
-    M: "%d month", //change this for month
-    MM: "%d months",
-    y: "%d year",
-    yy: "%d years",
+    past: "%s trước",
+    s: "%d giây",
+    ss: "%d giây",
+    m: "%d phút",
+    mm: "%d phút",
+    h: "%d giờ", //this is the setting that you need to change
+    hh: "%d giờ",
+    d: "%d ngày",
+    dd: "%d ngày",
+    w: "%d tuần",
+    ww: "%d tuần",
+    M: "%d tháng", //change this for month
+    MM: "%d tháng",
+    y: "%d năm",
+    yy: "%d năm",
   },
 });
-
+export const convertTimeToAgo = (time: any) => {
+  const timestamp = moment.utc(time).fromNow();
+  return timestamp.toString();
+};
 export function formatNumberMoney(number: number) {
   // Sử dụng hàm toLocaleString để định dạng số thành chuỗi có dấu phân cách hàng ngàn
-  const formattedNumber = number.toLocaleString("vi-VN", {
+  const formattedNumber = number?.toLocaleString("vi-VN", {
     style: "currency",
     currency: "VND",
     minimumFractionDigits: 0,
@@ -30,12 +33,85 @@ export function formatNumberMoney(number: number) {
   });
 
   // Loại bỏ ký hiệu tiền tệ "₫"
-  return formattedNumber.replace("₫", "");
+  return formattedNumber?.replace("₫", "");
 }
 export function formatMoney(number: number) {
-  let formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  let formattedNumber = number
+    ?.toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return formattedNumber;
 }
 export function isEmptyObject(obj: Object) {
   return JSON.stringify(obj) === "{}";
 }
+
+type QueryObject = {
+  [key: string]: any;
+};
+
+export function createQueryString(queryObject: QueryObject = {}): string {
+  let queryString = Object.keys(queryObject)
+    .filter(
+      (key) =>
+        queryObject[key] &&
+        !(Array.isArray(queryObject[key]) && !queryObject[key].length)
+    )
+    .map((key) => {
+      return Array.isArray(queryObject[key])
+        ? (queryObject[key] as (string | number | boolean)[])
+            .map(
+              (item) => `${encodeURIComponent(key)}=${encodeURIComponent(item)}`
+            )
+            .join("&")
+        : `${encodeURIComponent(key)}=${encodeURIComponent(queryObject[key])}`;
+    })
+    .join("&");
+
+  return queryString ? `?${queryString}` : "";
+}
+
+export function queryStringToObject(
+  queryString: string,
+  options: QueryObject
+): QueryObject {
+  let queryObject: QueryObject = {};
+  queryString &&
+    decodeURIComponent(queryString.replace("?", ""))
+      .split("&")
+      .map((itemString) => {
+        let [itemKey, itemValue] = itemString.split("=");
+        if (options.hasOwnProperty(itemKey)) {
+          if (!queryObject[itemKey] && Array.isArray(options[itemKey])) {
+            queryObject[itemKey] = [];
+          }
+          Array.isArray(options[itemKey])
+            ? queryObject[itemKey].push(itemValue)
+            : (queryObject[itemKey] =
+                typeof options[itemKey] === "number"
+                  ? parseInt(itemValue)
+                  : itemValue);
+        }
+      });
+  return queryObject;
+}
+export const timeLecture = (array: any) => {
+  let time = 0;
+  array?.map((itemLec: any) => {
+    time += itemLec.duration;
+  });
+  return time;
+};
+export const convertBase64 = (file: any) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -12,76 +12,96 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
-const Topic = () => {
+import moment from "moment";
+import { timeLecture } from "../../utils/lib";
+const Topic = ({ courseDetail }: any) => {
+  const sumLecture = useMemo(() => {
+    let sum = 0;
+    let time = 0;
+    courseDetail?.sections.map((item: any) => {
+      sum += item.lectures.length;
+      item?.lectures.map((itemLec: any) => {
+        time += itemLec.duration;
+      });
+    });
+
+    return sum;
+  }, []);
+  const sumTimeLecture = useMemo(() => {
+    let time = 0;
+    courseDetail?.sections.map((item: any) => {
+      item?.lectures.map((itemLec: any) => {
+        time += itemLec.duration;
+      });
+    });
+
+    return time;
+  }, []);
   return (
     <div className="flex flex-col gap-3">
       <div>
         <div className="flex gap-x-2 items-center text-[14px]">
-          <h1>7 chuyên đề</h1>
+          <h1>{courseDetail?.sections.length} chuyên đề</h1>
           <div className="w-1 h-1 rounded-full bg-[#61677A]"></div>
-          <h1>43 bài giảng</h1>
+          <h1>{sumLecture} bài giảng</h1>
           <div className="w-1 h-1 rounded-full bg-[#61677A]"></div>
-          <h1>Tổng thời lượng: 2h 59m</h1>
+          <h1>
+            Tổng thời lượng:{" "}
+            {moment.duration(sumTimeLecture, "minutes").asHours().toFixed(0)}{" "}
+            giờ
+          </h1>
         </div>
       </div>
       <Accordion defaultIndex={[0]} allowMultiple>
-        <AccordionItem>
-          <h2 className="bg-[#FF6636] text-white">
-            <AccordionButton>
-              <div className="flex items-center gap-x-2 w-full">
-                <AccordionIcon />
-                <Box as="span" flex="1" textAlign="left">
-                  Section 1 title
-                </Box>
-              </div>
-              <div className="flex gap-x-2 items-center text-[14px] w-full justify-end">
-                <h1>2 bài giảng</h1>
-                <div className="w-1 h-1 rounded-full bg-[#ffffff]"></div>
-                <h1>5 phút</h1>
-              </div>
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            <div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-2">
-                  <MdOndemandVideo />
-                  <span>Video 1: Chứng minh vuông góc</span>
+        {courseDetail?.sections.map((section: any, indexSec: any) => (
+          <AccordionItem key={section._id}>
+            <h2 className="bg-[#FF6636] text-white">
+              <AccordionButton display="flex">
+                <div className="flex items-center gap-x-2 w-full">
+                  <AccordionIcon />
+                  <Box as="span" flex="1" textAlign="left">
+                    {section.sectionName}
+                  </Box>
                 </div>
-                <span className="text-[14px] text-[#61677A]">00:03</span>
-              </div>
-            </div>
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem>
-          <h2 className="bg-[#FF6636] text-white">
-            <AccordionButton>
-              <div className="flex items-center gap-x-2 w-full">
-                <AccordionIcon />
-                <Box as="span" flex="1" textAlign="left">
-                  Section 1 title
-                </Box>
-              </div>
-              <div className="flex gap-x-2 items-center text-[14px] w-full justify-end">
-                <h1>2 bài giảng</h1>
-                <div className="w-1 h-1 rounded-full bg-[#ffffff]"></div>
-                <h1>5 phút</h1>
-              </div>
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            <div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-2">
-                  <MdOndemandVideo />
-                  <span>Video 1: Chứng minh vuông góc</span>
+                <div className="flex gap-x-2 items-center text-[14px] w-full justify-end">
+                  <h1>{section.lectures.length} bài giảng</h1>
+                  <div className="w-1 h-1 rounded-full bg-[#ffffff]"></div>
+                  <h1>
+                    {moment
+                      .duration(timeLecture(section?.lectures), "minutes")
+                      .asHours()
+                      .toFixed(0)}{" "}
+                    giờ
+                  </h1>
                 </div>
-                <span className="text-[14px] text-[#61677A]">00:03</span>
-              </div>
-            </div>
-          </AccordionPanel>
-        </AccordionItem>
+              </AccordionButton>
+            </h2>
+            {section?.lectures.map((lecture: any, indexLec: any) => (
+              <AccordionPanel pb={4}>
+                <div>
+                  <div className="flex items-center justify-between gap-x-2">
+                    <div className="flex items-center gap-x-5">
+                      <MdOndemandVideo />
+                      <span>{lecture.lectureName}</span>
+                    </div>
+                    <span className="text-[14px] text-[#61677A] w-[100px] text-end">
+                      {moment
+                        .duration(lecture.duration, "minutes")
+                        .asHours()
+                        .toFixed(0)}
+                      h :
+                      {moment
+                        .duration(lecture.duration, "minutes")
+                        .minutes()
+                        .toFixed(0)}
+                      m
+                    </span>
+                  </div>
+                </div>
+              </AccordionPanel>
+            ))}
+          </AccordionItem>
+        ))}
       </Accordion>
     </div>
   );
