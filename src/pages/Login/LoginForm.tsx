@@ -51,7 +51,7 @@ const LoginForm = () => {
           position: "top-right",
         });
       } else {
-        dispatch(updateUserId(response?.payload.data.infoUser));
+        dispatch(updateUserId(response?.payload.data?.infoUser));
         LocalStorage.setUserId(response?.payload.data.infoUser._id);
         dispatch(updateIsLogged(true));
 

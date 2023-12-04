@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import { Link, useLocation } from "react-router-dom";
 
 const Video = ({ courseDetail }: any) => {
+  const videoRef: any = useRef(null);
+
   console.log("🚀 ~ file: Video.tsx:6 ~ Video ~ courseDetail:", courseDetail);
   const [type, setType] = useState<any>([]);
   console.log("🚀 ~ file: Video.tsx:7 ~ Video ~ type:", type);
   const search = useLocation().search;
   const params = new URLSearchParams(search).get("id");
+  const paramsLecture = new URLSearchParams(search).get("idLecture");
   useEffect(() => {
     if (params) {
       const newArrayType = courseDetail?.sections?.map((section: any) => {
@@ -24,6 +27,7 @@ const Video = ({ courseDetail }: any) => {
         <div className="w-full h-[600px]">
           {type[0]?.lectureType === "VIDEO" ? (
             <ReactPlayer
+              ref={videoRef}
               className="w-full h-full"
               controls
               width="100%"
@@ -31,7 +35,16 @@ const Video = ({ courseDetail }: any) => {
               loop={true}
               muted={true}
               playing={true}
-              url={`https://www.youtube.com/watch?v=${params}`}
+              config={{
+                file: {
+                  attributes: {
+                    crossOrigin: "true",
+                  },
+                },
+              }}
+              url={[
+                `https://staging.primeedu.io.vn/api/v1/course/lecture/${paramsLecture}`,
+              ]}
             />
           ) : (
             <div>

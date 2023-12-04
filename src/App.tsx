@@ -38,6 +38,9 @@ import MainCourse from "./pages/Teacher/TeacherCourse/MainCourse";
 import MainExam from "./pages/Teacher/Exam/MainExam";
 import ResultExam from "./pages/ResultExam/ResultExam";
 import Payment from "./pages/Payment/Payment";
+import DashboardAdmin from "./pages/Admin/DashboardAdmin";
+import SidebarAdmin from "./components/Sidebar/SidebarAdmin";
+import DashboardAdminTeacher from "./pages/Admin/DashboardAdminTeacher";
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -81,7 +84,8 @@ function App() {
                 <div className="h-full">
                   {!loading ? (
                     <>
-                      {pathname.pathname !== "/teacher" && <Header />}
+                      {pathname.pathname !== "/teacher" &&
+                        pathname.pathname !== "/admin/teacher" && <Header />}
                       <Routes>
                         <Route path="/teacher" element={<LoginTeacher />} />
                         <Route
@@ -120,47 +124,102 @@ function App() {
           </div>
         </>
       )}
-      {pathname.pathname.includes("teacher") === false && (
+      {pathname.pathname.includes("admin") === true && (
         <>
-          {!pathname.pathname.includes("assignment") &&
-            !pathname.pathname.includes("teacher") &&
-            !pathname.pathname.includes("signup/user") && <Navbar />}
-
           <div className="h-full">
-            <Routes>
-              {/* <Navbar/> */}
-              <Route path="/" element={<Homepage />} />
-              <Route path="login" element={<Login />} />
-              <Route path="forgetpassword" element={<ForgetPassword />} />
-              <Route path="forgetpassword/otp" element={<Otp />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="signup/otp" element={<OtpSignup />} />
-              <Route path="signup/user" element={<Information />} />
-              <Route path="courses" element={<ListCourses />} />
-              <Route path="courses/:idcourse" element={<CourseItem />} />
-              <Route path="courses/:idcourse/video" element={<VideoCourse />} />
-              <Route
-                path="courses/:idcourse/assignment"
-                element={<Assingments />}
-              />
-              <Route path="/result-exam" element={<ResultExam />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="/profile/:id" element={<Profile />} />
-              <Route path="/cart/payment" element={<Payment />} />
-            </Routes>
-          </div>
-
-          {!pathname.pathname.includes("assignment") &&
-            !pathname.pathname.includes("teacher") &&
-            !pathname.pathname.includes("login") &&
-            !pathname.pathname.includes("signup") &&
-            !pathname.pathname.includes("forgetpassword") && (
-              <div className="">
-                <Footer />
+            <div className={`grid grid-cols-[300px_1fr]`}>
+              <div className="bg-[#1D2026] shadow-[0px_-1px_0px_0px_#363B47] h-screen fixed w-[300px] top-0 left-0">
+                <SidebarAdmin />
               </div>
-            )}
+              <div
+                className={`bg-[#F5F7FA] h-full w-[calc(100vw-300px)] left-[300px] relative`}
+              >
+                <div className="h-screen">
+                  {!loading ? (
+                    <>
+                      <Routes>
+                        <Route
+                          path="/admin/student"
+                          element={<DashboardAdmin />}
+                        />
+                        <Route
+                          path="/admin/teacher"
+                          element={<DashboardAdminTeacher />}
+                        />
+                        <Route
+                          path="/teacher/setting/:id"
+                          element={<Setting />}
+                        />
+                        <Route
+                          path="/teacher/courses"
+                          element={<MainCourse />}
+                        />
+                        <Route path="/teacher/exam" element={<MainExam />} />
+                      </Routes>
+                    </>
+                  ) : (
+                    <div className="pt-[100px] pb-[60px] px-[24px] flex justify-center h-full items-center">
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        size="xl"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </>
       )}
+      {pathname.pathname.includes("teacher") === false &&
+        pathname.pathname.includes("admin") === false && (
+          <>
+            {!pathname.pathname.includes("assignment") &&
+              !pathname.pathname.includes("teacher") &&
+              !pathname.pathname.includes("signup/user") && <Navbar />}
+
+            <div className="h-full">
+              <Routes>
+                {/* <Navbar/> */}
+                <Route path="/" element={<Homepage />} />
+                <Route path="login" element={<Login />} />
+                <Route path="forgetpassword" element={<ForgetPassword />} />
+                <Route path="forgetpassword/otp" element={<Otp />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="signup/otp" element={<OtpSignup />} />
+                <Route path="signup/user" element={<Information />} />
+                <Route path="courses" element={<ListCourses />} />
+                <Route path="courses/:idcourse" element={<CourseItem />} />
+                <Route
+                  path="courses/:idcourse/video"
+                  element={<VideoCourse />}
+                />
+                <Route
+                  path="courses/:idcourse/assignment"
+                  element={<Assingments />}
+                />
+                <Route path="/result-exam" element={<ResultExam />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/cart/payment" element={<Payment />} />
+              </Routes>
+            </div>
+
+            {!pathname.pathname.includes("assignment") &&
+              !pathname.pathname.includes("teacher") &&
+              !pathname.pathname.includes("admin") &&
+              !pathname.pathname.includes("login") &&
+              !pathname.pathname.includes("signup") &&
+              !pathname.pathname.includes("forgetpassword") && (
+                <div className="">
+                  <Footer />
+                </div>
+              )}
+          </>
+        )}
     </div>
   );
 }

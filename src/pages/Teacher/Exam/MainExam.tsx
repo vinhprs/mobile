@@ -51,7 +51,7 @@ const MainExam = () => {
           </div>
         </div>
         {exams?.listData?.length === 0 ? (
-          <div>
+          <div className="flex justify-center">
             <h1>Không có đề kiểm tra nào</h1>
           </div>
         ) : (

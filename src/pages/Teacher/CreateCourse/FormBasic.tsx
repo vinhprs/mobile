@@ -106,7 +106,7 @@ const FormBasic = () => {
               placeholder="Khối"
               {...register("grade")}
             >
-              {grade.map((item: any, index: any) => (
+              {grade?.map((item: any, index: any) => (
                 <option value={item._id} key={item._id}>
                   {item.categoryName}
                 </option>

@@ -18,4 +18,7 @@ export const courseService = {
   getCourseUserBuy: () => {
     return axiosClient.get(`/course/student/my-course`);
   },
+  publicCourse: (params: any) => {
+    return axiosClient.put(`/course/teacher/public-course`, params);
+  },
 };

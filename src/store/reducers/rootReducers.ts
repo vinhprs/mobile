@@ -8,6 +8,7 @@ import examSlice from "./examSlice";
 import cartSlice from "./cartSlice";
 import wishListSlice from "./wishListSlice";
 import commentSlice from "./commentSlice";
+import adminSlice from "./adminSlice";
 
 const rootReducer = combineReducers({
   question: questionSlice,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   cart: cartSlice,
   wishlist: wishListSlice,
   comment: commentSlice,
+  admin: adminSlice,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

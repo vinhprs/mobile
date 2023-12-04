@@ -14,7 +14,7 @@ const ExamDetail = ({ examDetail }: any) => {
           <div key={question._id} className="flex flex-col gap-y-3">
             <div className="flex gap-x-1">
               <h1 className="">{index + 1})</h1>
-              {parse(`${question.title}`)}
+              <div>{parse(`${question.title}`)}</div>
             </div>
             <div>
               {question.answerType === "Chọn 1" ? (

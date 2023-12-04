@@ -57,7 +57,7 @@ const FormCreateVideo = () => {
     setTimeout(() => {
       dispatch(updateIndex(3));
       dispatch(updateArray(3));
-      dispatch(updateSections(sections));
+      dispatch(updateSections(sections.sections));
       setLoading(false);
     }, 2000);
     setLoading(true);

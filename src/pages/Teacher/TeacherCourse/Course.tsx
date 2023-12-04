@@ -9,14 +9,39 @@ import {
   MenuOptionGroup,
   MenuDivider,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 import { IoPersonOutline } from "react-icons/io5";
 import course from "../../../image/Course/CourseImages.png";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { formatMoney } from "../../../utils/lib";
+import { useAppDispatch } from "../../../hooks/appHooks";
+import { updatePublicCourse } from "../../../store/actions/course.action";
 
-const Course = ({ item }: any) => {
+const Course = ({ item, getTeacherCourseData }: any) => {
   const [menu, setMenu] = useState("...");
+  const dispatch = useAppDispatch();
+  const toast = useToast();
+  const publicItem = async (isPublic: boolean) => {
+    const payload = {
+      courseId: item?._id,
+      isPublic: !isPublic,
+    };
+    const res: any = await dispatch(updatePublicCourse(payload));
+    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+      toast({
+        title: "Thành công",
+        description: res?.payload?.message,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
+      setTimeout(() => {
+        getTeacherCourseData({});
+      }, 500);
+    }
+  };
   return (
     <div className="max-w-[315px] h-fit w-full">
       <img
@@ -26,8 +51,15 @@ const Course = ({ item }: any) => {
       />
       <div className="py-[16px] px-[18px] bg-white flex flex-col divide-y-2">
         <div className="flex flex-col gap-y-[8px] py-[16px]">
-          <div className="w-fit uppercase px-[6px] py-[4px] text-[10px] bg-[#EBEBFF] text-[#342F98] font-medium">
-            {item.category.categoryName}
+          <div className="flex gap-x-2">
+            <div className="w-fit uppercase px-[6px] py-[4px] text-[10px] bg-[#EBEBFF] text-[#342F98] font-medium">
+              {item.category.categoryName}
+            </div>
+            <div className="w-fit uppercase px-[6px] py-[4px] text-[10px] bg-[#EBEBFF] text-[#342F98] font-medium">
+              {item.isPublic
+                ? "Đã đăng tải khóa học"
+                : "Chưa đăng tải khóa học"}
+            </div>
           </div>
           <h1 className="text-[#1D2026] font-medium line-clamp-1">
             {item.courseName}
@@ -62,7 +94,9 @@ const Course = ({ item }: any) => {
                 <MenuItem>Xem chi tiết khóa học</MenuItem>
                 <MenuItem>Cập nhập khóa học</MenuItem>
                 <MenuItem>Xóa khóa học</MenuItem>
-                <MenuItem>Đăng tải khóa học</MenuItem>
+                <MenuItem onClick={() => publicItem(item?.isPublic)}>
+                  Đăng tải khóa học
+                </MenuItem>
               </MenuList>
             </Menu>
           </div>

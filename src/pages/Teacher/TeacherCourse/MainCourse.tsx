@@ -64,7 +64,11 @@ const MainCourse = () => {
             {listCourses?.listData.length > 0 && !loading && (
               <div className={`grid grid-cols-3 gap-3`}>
                 {listCourses?.listData.map((item: any, index: any) => (
-                  <Course item={item} key={item._id} />
+                  <Course
+                    item={item}
+                    key={item._id}
+                    getTeacherCourseData={getTeacherCourseData}
+                  />
                 ))}
               </div>
             )}

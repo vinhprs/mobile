@@ -1,4 +1,5 @@
 import moment from "moment";
+import { idText } from "typescript";
 moment.updateLocale("vi", {
   relativeTime: {
     future: "in %s",
@@ -114,4 +115,9 @@ export const convertBase64 = (file: any) => {
       reject(error);
     };
   });
+};
+export const sliceString = (index1: number, index2: number, title: string) => {
+  const first = title.slice(0, index1);
+  const second = title.slice(-index2);
+  return `${first}...${second}`;
 };

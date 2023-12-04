@@ -37,14 +37,20 @@ const ItemTable = ({ item, getExams }: any) => {
         <Td>{item._id}</Td>
         <Td>{item.title}</Td>
         <Td>
-          <button onClick={onOpenDetail}>Xem đề thi</button>
+          <button onClick={onOpenDetail} className="underline">
+            Xem đề thi
+          </button>
         </Td>
         <Td>{moment(item?.createdAt).format("DD/MM/YYYY")}</Td>
-        <Td textAlign="center">{item.time}</Td>
+        <Td textAlign="center">{item.time} phút</Td>
         <Td>
           <div className="flex gap-x-3">
-            <button onClick={onOpenDelete}>Xóa</button>
-            <button onClick={onOpenUpdate}>Sửa</button>
+            <button onClick={onOpenDelete} className="underline">
+              Xóa
+            </button>
+            <button onClick={onOpenUpdate} className="underline">
+              Sửa
+            </button>
           </div>
         </Td>
       </Tr>

@@ -43,7 +43,11 @@ const PaymentMethod = () => {
       <div className="mt-3 flex justify-end gap-x-1 text-[20px]">
         <h1 className="font-medium">Tổng tiền:</h1>
         <span className="text-[#FF6636]">
-          {formatMoney(cartList?.total)} VND
+          {isBuyNow ? (
+            <>{formatMoney(cartListSub?.carts[0]?.course?.price)}</>
+          ) : (
+            <>{formatMoney(cartList?.total)} VND</>
+          )}
         </span>
       </div>
       <div className="h-[1px] w-full bg-[#FF6636]"></div>
