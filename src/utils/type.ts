@@ -46,3 +46,29 @@ export var buttonList = [
   ["-right", ":r-More Rich-default.more_plus", "table", "math", "imageGallery"],
   ["-right", "image", "video", "audio", "link"],
 ];
+interface Lecture {
+  lectureName: string;
+  lectureType: string;
+  amount: string;
+  url: string;
+  examId?: number;
+}
+interface Section {
+  sectionName: string;
+  lectures: Array<Lecture>;
+}
+interface Course {
+  courseName: string;
+  description: string;
+  price: number;
+  expiredDate: string;
+  thumbnail_url: string;
+  categoryId: string;
+  subCategoryId: string;
+  sections: Array<Section>;
+}
+export interface stateProps {
+  index: number;
+  tabCourse: Array<number>;
+  course: Course;
+}

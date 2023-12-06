@@ -152,13 +152,6 @@ const FormAdvance = () => {
                     className="hidden"
                   />
                 </div>
-                {/* <button
-                  type="button"
-                  className="bg-[#FFEEE8] font-semibold text-[16px] text-[#FF6636] h-[48px] px-[24px]"
-                  onClick={uploadImage}
-                >
-                  Đăng tải ảnh lên
-                </button> */}
               </div>
             </div>
           </div>

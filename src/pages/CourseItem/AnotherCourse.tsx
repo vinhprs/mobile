@@ -9,7 +9,10 @@ import { formatMoney } from "../../utils/lib";
 import { useNavigate } from "react-router-dom";
 import { getWistList, postWishList } from "../../store/actions/wishlist.action";
 import { useToast } from "@chakra-ui/react";
+import { LocalStorage } from "../../utils/LocalStorage";
 const AnotherCourse = ({ courseDetail }: any) => {
+  const userId = LocalStorage.getUserId();
+
   const toast = useToast();
   const dispatch = useAppDispatch();
   const navigation = useNavigate();
@@ -80,21 +83,25 @@ const AnotherCourse = ({ courseDetail }: any) => {
                   <BsFillPeopleFill className="text-[20px]" />
                   <span>90,344</span>
                 </div> */}
-                <h1 className="font-medium">
+                <h1 className="font-medium text-[#FF6636]">
                   <span>{formatMoney(item?.price)} VND</span>
                 </h1>
               </div>
               <div>
-                <div
-                  onClick={() => postWishListItem(item?._id, item?.categoryId)}
-                  className="cursor-pointer w-10 h-10 text-[20px] border-[1px] border-[#FF6636] flex justify-center items-center rounded-full"
-                >
-                  {item?.isBookmark ? (
-                    <AiFillHeart className="text-[#FF6636]" />
-                  ) : (
-                    <AiOutlineHeart className="text-[#FF6636]" />
-                  )}
-                </div>
+                {userId && (
+                  <div
+                    onClick={() =>
+                      postWishListItem(item?._id, item?.categoryId)
+                    }
+                    className="cursor-pointer w-10 h-10 text-[20px] border-[1px] border-[#FF6636] flex justify-center items-center rounded-full"
+                  >
+                    {item?.isBookmark ? (
+                      <AiFillHeart className="text-[#FF6636]" />
+                    ) : (
+                      <AiOutlineHeart className="text-[#FF6636]" />
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

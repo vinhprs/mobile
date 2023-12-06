@@ -139,11 +139,13 @@ const FavoriteList = () => {
                 </span>
               </Td>
               <Td>
-                <div
-                  onClick={() => handleBuyNow(item?.course)}
-                  className="flex gap-x-2"
-                >
-                  <Button bg="#F5F7FA" color="#1D2026" fontSize="14px">
+                <div className="flex gap-x-2">
+                  <Button
+                    onClick={() => handleBuyNow(item?.course)}
+                    bg="#F5F7FA"
+                    color="#1D2026"
+                    fontSize="14px"
+                  >
                     Mua ngay
                   </Button>
                   {item?.course?.isAddToCart ? (

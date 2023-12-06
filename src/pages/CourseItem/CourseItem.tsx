@@ -8,6 +8,7 @@ import { useAppDispatch } from "../../hooks/appHooks";
 import { getCourseDetail } from "../../store/actions/course.action";
 import { useParams } from "react-router-dom";
 import CourseTitle from "./CourseTitle";
+import { Spinner } from "@chakra-ui/react";
 
 const CourseItem = () => {
   const [loading, setLoading] = useState(false);
@@ -35,7 +36,9 @@ const CourseItem = () => {
   return (
     <div className="pt-[100px] pb-[60px] px-[24px] max-w-[1200px] mx-auto w-full">
       {loading ? (
-        <></>
+        <div className="flex justify-center items-center">
+          <Spinner color="#FF6636" />
+        </div>
       ) : (
         <div className="grid grid-cols-[1fr_350px] gap-x-3">
           <div className="text-[#272829] flex flex-col gap-y-5">

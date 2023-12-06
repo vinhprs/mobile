@@ -17,6 +17,7 @@ import { LocalStorage } from "../../utils/LocalStorage";
 const Navbar = () => {
   const isLogged = useSelector(selectIsLogged);
   const access_token = LocalStorage.getAccessToken();
+  const userId = LocalStorage.getUserId();
   const { isOpen: isOpenMenu, onOpen, onClose } = useDisclosure();
   const [value, setValue] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -107,7 +108,7 @@ const Navbar = () => {
             <SearchResult value={value} debouncedValue={debouncedValue} />
           )}
         </form>
-        {!access_token ? (
+        {!userId ? (
           <div className="flex gap-x-3">
             <Link
               to="/login"

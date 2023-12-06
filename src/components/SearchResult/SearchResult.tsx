@@ -29,7 +29,7 @@ const SearchResult = ({ value, debouncedValue }: any) => {
     <div className="absolute top-[105%] left-0 w-full bg-white shadow-xl border-[#D8D9DA] border-[1px] rounded-xl p-3">
       {debouncedValue.debouncedValue !== value ? (
         <div className="flex w-full items-center justify-center">
-          <Spinner color="red.500" />
+          <Spinner color="#FF6636" />
         </div>
       ) : (
         <div>

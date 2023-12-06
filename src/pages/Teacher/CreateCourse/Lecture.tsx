@@ -21,6 +21,7 @@ import {
   swapLecture,
   updateLecture,
 } from "../../../store/reducers/createCourseSlice";
+import ModalChooseExam from "./Modal/ModalChooseExam";
 interface LectureProps {
   indexLecture: number;
   index: number;
@@ -47,6 +48,11 @@ const Lecture = ({
     isOpen: isOpenUploadFile,
     onOpen: onOpenUploadFile,
     onClose: onCloseUploadFile,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenExam,
+    onOpen: onOpenExam,
+    onClose: onCloseExam,
   } = useDisclosure();
   const swapItem = (index1: number, index2: number) => {
     // console.log("🚀 ~ file: Lecture.tsx:25 ~ swapItem ~ index2:", index2);
@@ -130,7 +136,7 @@ const Lecture = ({
             <MenuList>
               <MenuItem onClick={onOpenUpload}>Đăng tải video</MenuItem>
               <MenuItem onClick={onOpenUploadFile}>Tải file lên</MenuItem>
-              <MenuItem>Đề thi</MenuItem>
+              <MenuItem onClick={onOpenExam}>Đề thi</MenuItem>
             </MenuList>
           </Menu>
           <HiOutlinePencilSquare
@@ -192,6 +198,16 @@ const Lecture = ({
         // setSections={setSections}
         itemLecture={itemLecture}
         sections={sections}
+      />
+      <ModalChooseExam
+        isOpen={isOpenExam}
+        onClose={onCloseExam}
+        lectures={lectures}
+        // setSections={setSections}
+        itemLecture={itemLecture}
+        sections={sections}
+        index={index}
+        indexLecture={indexLecture}
       />
     </>
   );

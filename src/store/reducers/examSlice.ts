@@ -141,7 +141,7 @@ const examSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getExam.fulfilled, (state, action) => {
-      state.exams = { ...state.exams, ...action.payload.data };
+      state.exams = action.payload.data;
     });
     builder.addCase(getExamDetail.fulfilled, (state, actions) => {
       state.examDetail = actions.payload.data;

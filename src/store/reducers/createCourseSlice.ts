@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducers";
-const initialState = {
+import { stateProps } from "../../utils/type";
+
+const initialState: stateProps = {
   index: 0,
   tabCourse: [0],
   course: {
@@ -87,6 +89,10 @@ const createCourseSlice = createSlice({
       state.course.sections[sectionIndex].lectures[lectureIndex].lectureName =
         value;
     },
+    updateLectureExamId(state, actions) {
+      const { sectionIndex, lectureIndex, value } = actions.payload;
+      state.course.sections[sectionIndex].lectures[lectureIndex].examId = value;
+    },
     updateLectureAmount(state, actions) {
       const { sectionIndex, lectureIndex, value } = actions.payload;
       state.course.sections[sectionIndex].lectures[lectureIndex].amount = value;
@@ -135,6 +141,7 @@ const createCourseSlice = createSlice({
         state.course.sections = newArray;
       }
     },
+
     swapLecture(state, action) {
       const { indexOne, indexTwo, sectionIndex } = action.payload;
       if (
@@ -182,6 +189,7 @@ export const {
   addLectureItem,
   swapLecture,
   updateLecture,
+  updateLectureExamId,
 } = createCourseSlice.actions;
 export default createCourseSlice.reducer;
 export const selectCreateCourse = (state: RootState) =>

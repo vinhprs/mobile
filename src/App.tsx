@@ -41,6 +41,8 @@ import Payment from "./pages/Payment/Payment";
 import DashboardAdmin from "./pages/Admin/DashboardAdmin";
 import SidebarAdmin from "./components/Sidebar/SidebarAdmin";
 import DashboardAdminTeacher from "./pages/Admin/DashboardAdminTeacher";
+import PaymentSuccess from "./pages/Payment/PaymentSuccess";
+import PaymentFail from "./pages/Payment/PaymentFail";
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -146,15 +148,6 @@ function App() {
                           path="/admin/teacher"
                           element={<DashboardAdminTeacher />}
                         />
-                        <Route
-                          path="/teacher/setting/:id"
-                          element={<Setting />}
-                        />
-                        <Route
-                          path="/teacher/courses"
-                          element={<MainCourse />}
-                        />
-                        <Route path="/teacher/exam" element={<MainExam />} />
                       </Routes>
                     </>
                   ) : (
@@ -179,7 +172,9 @@ function App() {
           <>
             {!pathname.pathname.includes("assignment") &&
               !pathname.pathname.includes("teacher") &&
-              !pathname.pathname.includes("signup/user") && <Navbar />}
+              !pathname.pathname.includes("signup/user") &&
+              !pathname.pathname.includes("success") &&
+              !pathname.pathname.includes("fail") && <Navbar />}
 
             <div className="h-full">
               <Routes>
@@ -205,6 +200,12 @@ function App() {
                 <Route path="cart" element={<Cart />} />
                 <Route path="/profile/:id" element={<Profile />} />
                 <Route path="/cart/payment" element={<Payment />} />
+
+                <Route
+                  path="/cart/payment/success"
+                  element={<PaymentSuccess />}
+                />
+                <Route path="/cart/payment/fail" element={<PaymentFail />} />
               </Routes>
             </div>
 
@@ -213,7 +214,9 @@ function App() {
               !pathname.pathname.includes("admin") &&
               !pathname.pathname.includes("login") &&
               !pathname.pathname.includes("signup") &&
-              !pathname.pathname.includes("forgetpassword") && (
+              !pathname.pathname.includes("forgetpassword") &&
+              !pathname.pathname.includes("success") &&
+              !pathname.pathname.includes("fail") && (
                 <div className="">
                   <Footer />
                 </div>

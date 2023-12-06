@@ -2,10 +2,12 @@ import { jwtDecode } from "jwt-decode";
 import { LocalStorage } from "../../utils/LocalStorage";
 import axios, { AxiosResponse } from "axios";
 
-const getTokenExpiration = (token: any) => {
-  const decodedToken = jwtDecode(token) || {};
-  return (decodedToken.exp ?? 0) * 1000; // Convert seconds to milliseconds
-};
+// const getTokenExpiration = (token: any) => {
+//   console.log(typeof token);
+
+//   const decodedToken = jwtDecode(token) || {};
+//   return (decodedToken.exp ?? 0) * 1000; // Convert seconds to milliseconds
+// };
 const refreshTokenAndRetry = (originalRequest: any) => {
   const refreshToken = LocalStorage.getRefreshToken();
 
@@ -40,10 +42,7 @@ const refreshTokenAndRetry = (originalRequest: any) => {
     .catch((err) => {
       const { status, data } = err.response;
 
-      if (
-        status === 404 ||
-        (data && data.error && data.error.errorCode === "REFRESH_TOKEN_INVALID")
-      ) {
+      if (status === 404 || (data && data.error && data.error === true)) {
         clearAuthToken();
       }
 
@@ -165,7 +164,7 @@ axiosClient.interceptors.response.use(
               // console.log("err.status === 404")
               clearAuthToken();
             }
-            if (data && data.error.errorCode === "REFRESH_TOKEN_INVALID") {
+            if (data && data.error === true) {
               clearAuthToken();
             }
 
@@ -177,18 +176,20 @@ axiosClient.interceptors.response.use(
           });
       });
     }
-    const tokenExpiration = getTokenExpiration(LocalStorage.getAccessToken());
-    const currentTime = new Date().getTime();
-    console.log("🚀 ~ file: axiosClient.ts:182 ~ currentTime:", currentTime);
+    // const tokenExpiration = getTokenExpiration(
+    //   LocalStorage.getAccessToken()?.toString()
+    // );
+    // const currentTime = new Date().getTime();
+    // console.log("🚀 ~ file: axiosClient.ts:182 ~ currentTime:", currentTime);
 
-    if (tokenExpiration && tokenExpiration < currentTime) {
-      // Token is expired, refresh it
-      refreshTokenAndRetry(originalRequest);
-    } else {
-      // Token is still valid, refresh after 5 minutes
-      const refreshTimeout = tokenExpiration - currentTime - 5 * 60 * 1000;
-      setTimeout(refreshTokenAndRetry, refreshTimeout);
-    }
+    // if (tokenExpiration && tokenExpiration < currentTime) {
+    //   // Token is expired, refresh it
+    //   refreshTokenAndRetry(originalRequest);
+    // } else {
+    //   // Token is still valid, refresh after 5 minutes
+    //   const refreshTimeout = tokenExpiration - currentTime - 5 * 60 * 1000;
+    //   setTimeout(refreshTokenAndRetry, refreshTimeout);
+    // }
 
     return Promise.reject(handleError(error));
   }

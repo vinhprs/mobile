@@ -40,34 +40,46 @@ const LoginForm = () => {
       password: data.password,
     };
     const response: any = await dispatch(login(payload));
+    console.log("🚀 ~ file: LoginForm.tsx:44 ~ onSubmit ~ response:", response);
     if (response.meta.requestStatus === "fulfilled" && response?.payload) {
-      if (response?.payload?.error) {
+      if (response?.payload?.response?.data?.statusCode === 401) {
         toast({
           title: "Lỗi đăng nhập",
-          description: response?.payload?.message,
+          description: "Tài khoản của bạn đã bị xóa",
           status: "error",
           duration: 9000,
           isClosable: true,
           position: "top-right",
         });
       } else {
-        dispatch(updateUserId(response?.payload.data?.infoUser));
-        LocalStorage.setUserId(response?.payload.data.infoUser._id);
-        dispatch(updateIsLogged(true));
+        if (response?.payload?.error === true) {
+          toast({
+            title: "Lỗi đăng nhập",
+            description: response?.payload?.message,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+            position: "top-right",
+          });
+        } else {
+          dispatch(updateUserId(response?.payload.data?.infoUser));
+          LocalStorage.setUserId(response?.payload.data.infoUser._id);
+          dispatch(updateIsLogged(true));
 
-        console.log(LocalStorage.getAccessToken());
+          console.log(LocalStorage.getAccessToken());
 
-        toast({
-          title: "Đăng nhập thành công",
-          description: response?.payload?.message,
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-          position: "top-right",
-        });
-        setTimeout(() => {
-          navigate(-1);
-        }, 1500);
+          toast({
+            title: "Đăng nhập thành công",
+            description: response?.payload?.message,
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+            position: "top-right",
+          });
+          setTimeout(() => {
+            navigate(-1);
+          }, 1500);
+        }
       }
     }
   };

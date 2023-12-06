@@ -4,7 +4,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Button, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/appHooks";
-import { loginSchema } from "../../../schema/schema";
+import { loginSchema, loginTeacherSchema } from "../../../schema/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import {
@@ -34,7 +34,7 @@ const Login = () => {
       emailteacher: "",
       passwordteacher: "",
     },
-    // resolver: yupResolver(loginSchema),
+    resolver: yupResolver(loginTeacherSchema),
   });
   const onSubmit = async (data: LoginTeacherProps) => {
     console.log(data);
@@ -44,6 +44,17 @@ const Login = () => {
       password: data.passwordteacher,
     };
     const response: any = await dispatch(login(payload));
+    console.log("🚀 ~ file: Login.tsx:48 ~ onSubmit ~ response:", response);
+    if (response.meta.requestStatus === "rejected") {
+      toast({
+        title: "Lỗi đăng nhập",
+        description: response?.payload?.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }
     if (response.meta.requestStatus === "fulfilled" && response?.payload) {
       if (response?.payload?.error) {
         toast({
