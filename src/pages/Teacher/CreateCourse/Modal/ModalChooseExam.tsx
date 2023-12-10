@@ -57,6 +57,7 @@ const ModalChooseExam = ({
         value: valueExamId,
       })
     );
+    onClose();
   };
   useEffect(() => {
     getExamsList();

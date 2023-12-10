@@ -77,3 +77,14 @@ export const updatePublicCourse = createAsyncThunk(
     }
   }
 );
+export const getStudentParticipate = createAsyncThunk(
+  "course/getStudentParticipate",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await courseService.getStudentParticipate(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

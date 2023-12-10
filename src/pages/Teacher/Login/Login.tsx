@@ -66,9 +66,13 @@ const Login = () => {
           position: "top-right",
         });
       } else {
+        // dispatch(updateIsLogged(true));
+        // dispatch(updateUserId(response?.payload?.data?.infoUser?._id));
+        dispatch(updateUserId(response?.payload.data?.infoUser));
+        LocalStorage.setUserId(response?.payload.data.infoUser._id);
         dispatch(updateIsLogged(true));
-        dispatch(updateUserId(response?.payload?.data?.infoUser?._id));
-
+        LocalStorage.setToken(response?.payload.data?.token);
+        LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
         console.log(LocalStorage.getAccessToken());
 
         toast({
@@ -129,6 +133,9 @@ const Login = () => {
             </div>
           </div>
           <Button type="submit">Đăng nhập</Button>
+          <Button type="button" onClick={() => navigate("/")}>
+            Trở lại trang chủ
+          </Button>
         </div>
       </form>
     </div>

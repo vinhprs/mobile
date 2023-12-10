@@ -4,7 +4,7 @@ import CommentVideoCourse from "./CommentVideoCourse";
 import Assignments from "./Assignments";
 import Notes from "./Notes";
 import { useLocation } from "react-router-dom";
-const TabOption = () => {
+const TabOption = ({ courseDetail }: any) => {
   return (
     <div>
       <Tabs variant="colorful" border="none">
@@ -19,7 +19,7 @@ const TabOption = () => {
             <CommentVideoCourse />
           </TabPanel>
           <TabPanel>
-            <Assignments />
+            <Assignments courseDetail={courseDetail} />
           </TabPanel>
           <TabPanel>
             <Notes />

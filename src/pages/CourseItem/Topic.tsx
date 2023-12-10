@@ -18,10 +18,10 @@ const Topic = ({ courseDetail }: any) => {
   const sumLecture = useMemo(() => {
     let sum = 0;
     let time = 0;
-    courseDetail?.sections.map((item: any) => {
-      sum += item.lectures.length;
-      item?.lectures.map((itemLec: any) => {
-        time += itemLec.duration;
+    courseDetail?.sections?.map((item: any) => {
+      sum += item?.lectures?.length;
+      item?.lectures?.map((itemLec: any) => {
+        time += itemLec?.duration;
       });
     });
 
@@ -29,9 +29,9 @@ const Topic = ({ courseDetail }: any) => {
   }, []);
   const sumTimeLecture = useMemo(() => {
     let time = 0;
-    courseDetail?.sections.map((item: any) => {
-      item?.lectures.map((itemLec: any) => {
-        time += itemLec.duration;
+    courseDetail?.sections?.map((item: any) => {
+      item?.lectures?.map((itemLec: any) => {
+        time += itemLec?.duration;
       });
     });
 
@@ -41,7 +41,7 @@ const Topic = ({ courseDetail }: any) => {
     <div className="flex flex-col gap-3">
       <div>
         <div className="flex gap-x-2 items-center text-[14px]">
-          <h1>{courseDetail?.sections.length} chuyên đề</h1>
+          <h1>{courseDetail?.sections?.length} chuyên đề</h1>
           <div className="w-1 h-1 rounded-full bg-[#61677A]"></div>
           <h1>{sumLecture} bài giảng</h1>
           <div className="w-1 h-1 rounded-full bg-[#61677A]"></div>
@@ -53,7 +53,7 @@ const Topic = ({ courseDetail }: any) => {
         </div>
       </div>
       <Accordion defaultIndex={[0]} allowMultiple>
-        {courseDetail?.sections.map((section: any, indexSec: any) => (
+        {courseDetail?.sections?.map((section: any, indexSec: any) => (
           <AccordionItem key={section._id}>
             <h2 className="bg-[#FF6636] text-white">
               <AccordionButton display="flex">
@@ -76,7 +76,7 @@ const Topic = ({ courseDetail }: any) => {
                 </div>
               </AccordionButton>
             </h2>
-            {section?.lectures.map((lecture: any, indexLec: any) => (
+            {section?.lectures?.map((lecture: any, indexLec: any) => (
               <AccordionPanel pb={4}>
                 <div>
                   <div className="flex items-center justify-between gap-x-2">

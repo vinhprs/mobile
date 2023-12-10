@@ -1,6 +1,6 @@
 import { RootState } from "./rootReducers";
 import { createSlice } from "@reduxjs/toolkit";
-import { getExam, getExamDetail } from "../actions/exam.action";
+import { getExam, getExamDetail, getRanking } from "../actions/exam.action";
 import { getCategory, getCategoryById } from "../actions/user.action";
 const initialState = {
   exam: {
@@ -34,6 +34,9 @@ const initialState = {
   categories: [],
   categoryById: {},
   resultExam: {},
+  timeStop: false,
+  time: 0,
+  ranking: {},
 };
 const examSlice = createSlice({
   name: "exam",
@@ -121,7 +124,7 @@ const examSlice = createSlice({
       state.examDetail = { ...state.examDetail, ...actions.payload };
     },
     postExam: (state, actions) => {
-      state.postExam = { ...state.postExam, ...actions.payload };
+      state.postExam.answers.push(actions.payload);
     },
     postExamQuestion: (state, actions) => {
       const { questionIndex, questionId, answer, type } = actions.payload;
@@ -138,6 +141,18 @@ const examSlice = createSlice({
     resetCreateExam: (state, actions) => {
       state.exam = actions.payload;
     },
+    updateArrayPost: (state: any, actions: any) => {
+      state.postExam.answers = state.postExam.answers.push(actions.payload);
+    },
+    updateCompleteTime: (state, actions) => {
+      state.postExam.completeTime = actions.payload;
+    },
+    updateTimeStop: (state, actions) => {
+      state.timeStop = actions.payload;
+    },
+    updateTimeFinish: (state, actions) => {
+      state.time = actions.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getExam.fulfilled, (state, action) => {
@@ -152,6 +167,9 @@ const examSlice = createSlice({
     });
     builder.addCase(getCategoryById.fulfilled, (state, actions: any) => {
       state.categoryById = actions.payload?.data;
+    });
+    builder.addCase(getRanking.fulfilled, (state, actions) => {
+      state.ranking = actions.payload.data;
     });
   },
 });
@@ -177,6 +195,10 @@ export const {
   postExamQuestion,
   resultExamDetail,
   resetCreateExam,
+  updateArrayPost,
+  updateCompleteTime,
+  updateTimeStop,
+  updateTimeFinish,
 } = examSlice.actions;
 export default examSlice.reducer;
 export const selectExam = (state: RootState) => state.exam.exam;
@@ -186,3 +208,6 @@ export const selectCategory = (state: RootState) => state.exam.categories;
 export const selectCategoryById = (state: RootState) => state.exam.categoryById;
 export const selectExamPost = (state: RootState) => state.exam.postExam;
 export const selectResultExam = (state: RootState) => state.exam.resultExam;
+export const selectTimeStop = (state: RootState) => state.exam.timeStop;
+export const selectTimeFinish = (state: RootState) => state.exam.time;
+export const selectRanking = (state: RootState) => state.exam.ranking;

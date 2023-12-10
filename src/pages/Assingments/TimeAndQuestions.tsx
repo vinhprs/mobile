@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectQuestion } from "../../store/reducers/questionSlice";
+import {
+  selectTimeStop,
+  updateTimeFinish,
+} from "../../store/reducers/examSlice";
+import { useAppDispatch } from "../../hooks/appHooks";
 
 const TimeAndQuestions = ({ questions }: any) => {
   const questionNumber = useSelector(selectQuestion);
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [isStopped, setIsStopped] = useState(false);
+  // const [isStopped, setIsStopped] = useState(false);
+  const isStopped = useSelector(selectTimeStop);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     let timer: any;
 
@@ -21,14 +28,18 @@ const TimeAndQuestions = ({ questions }: any) => {
           setSeconds(seconds - 1);
         }
       }, 1000);
+    } else {
+      const timeFinsh: number =
+        +questions?.time * 60 - (+minutes * 60 + +seconds);
+      dispatch(updateTimeFinish(timeFinsh));
     }
 
     return () => clearInterval(timer);
   }, [seconds, minutes, isStopped]);
 
-  const handleStopClick = () => {
-    setIsStopped(!isStopped);
-  };
+  // const handleStopClick = () => {
+  //   setIsStopped(!isStopped);
+  // };
   useEffect(() => {
     setMinutes(questions?.time);
   }, [questions]);

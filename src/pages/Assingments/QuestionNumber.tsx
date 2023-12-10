@@ -8,6 +8,8 @@ import {
   postExam,
   resultExamDetail,
   selectExamPost,
+  selectTimeFinish,
+  updateTimeStop,
 } from "../../store/reducers/examSlice";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 const QuestionNumber = ({ questions }: any) => {
@@ -17,16 +19,26 @@ const QuestionNumber = ({ questions }: any) => {
   const dispatch = useAppDispatch();
   const question = useSelector(selectQuestion);
   const resultExam = useSelector(selectExamPost);
+  const completeTime = useSelector(selectTimeFinish);
+  console.log(
+    "🚀 ~ file: QuestionNumber.tsx:23 ~ QuestionNumber ~ completeTime:",
+    completeTime
+  );
   const [openQuestionNumber, setOpenQuestionNumber] = useState(true);
   const handleClickOpen = () => {
     setOpenQuestionNumber(!openQuestionNumber);
   };
   console.log(question.includes(1));
-  const postExamToTeachear = async (examId: any) => {
+  const postExamToTeachear = async (examId: any, time: number) => {
+    console.log(
+      "🚀 ~ file: QuestionNumber.tsx:33 ~ postExamToTeachear ~ time:",
+      time
+    );
     const res: any = await dispatch(
       postExamResult({
         ...resultExam,
         examId: +examId,
+        completeTime: time,
       })
     );
     if (res.meta.requestStatus === "fulfilled" && res.payload) {
@@ -37,8 +49,25 @@ const QuestionNumber = ({ questions }: any) => {
     }
   };
   const onClickPostExam = () => {
-    postExamToTeachear(id);
+    dispatch(updateTimeStop(true));
+    // postExamToTeachear(id, completeTime);
   };
+  const handleAlertClick = () => {
+    // Display a confirmation dialog
+    const result = window.confirm("Bạn có chắc muốn dừng bài kiểm tra này ?");
+
+    // Check if the user clicked "Yes"
+    if (result) {
+      // Perform the action here
+      navigate("/");
+      // You can put your code to perform the action here
+    }
+  };
+  useEffect(() => {
+    if (completeTime > 0) {
+      postExamToTeachear(id, completeTime);
+    }
+  }, [completeTime]);
   return (
     <div className="flex flex-col gap-y-1">
       <div
@@ -79,6 +108,12 @@ const QuestionNumber = ({ questions }: any) => {
         className="w-full px-[20px] py-[10px] bg-[#f96935] text-white font-medium rounded-lg"
       >
         Nộp bài
+      </button>
+      <button
+        onClick={handleAlertClick}
+        className="w-full px-[20px] py-[10px] bg-[#f96935] text-white font-medium rounded-lg"
+      >
+        Quay lại trang chủ
       </button>
     </div>
   );

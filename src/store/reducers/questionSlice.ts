@@ -17,9 +17,12 @@ const questionSlice = createSlice({
       state.arrayQuestion = state.arrayQuestion.sort((a: any, b: any) => a - b);
       console.log(state.arrayQuestion);
     },
+    resetArray(state, actions) {
+      state.arrayQuestion = [];
+    },
   },
   extraReducers: (builder) => {},
 });
-export const { updateArray } = questionSlice.actions;
+export const { updateArray, resetArray } = questionSlice.actions;
 export default questionSlice.reducer;
 export const selectQuestion = (state: any) => state?.question?.arrayQuestion;

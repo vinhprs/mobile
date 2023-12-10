@@ -21,6 +21,7 @@ import { LocalStorage } from "../../utils/LocalStorage";
 import { VscGoToFile } from "react-icons/vsc";
 import { getWistList, postWishList } from "../../store/actions/wishlist.action";
 import { updateCartSub, updateIsBuyNow } from "../../store/reducers/cartSlice";
+import parse from "html-react-parser";
 const Course = ({ item, getListCourse }: any) => {
   const userId = LocalStorage.getUserId();
   const navigate = useNavigate();
@@ -98,21 +99,23 @@ const Course = ({ item, getListCourse }: any) => {
   };
   return (
     <div className="course_re text-[#1D2026]">
-      <div className="flex">
+      <div className="flex justify-between">
         <div
-          className="flex gap-x-[15px] flex-1 cursor-pointer"
+          className="grid grid-cols-[250px_1fr] gap-x-[15px] cursor-pointer flex-1"
           onClick={handleDetailCourse}
         >
           <img
             src={item?.thumbnail_url}
             alt=""
-            className="w-[250px] h-[180px] object-cover"
+            className="w-[250px] h-[180px] object-cover flex-1"
           />
           <div className="flex flex-col gap-y-2">
             <h1 className="text-[20px] font-semibold text-[#272829]">
               {item?.courseName}
             </h1>
-            <p className="font-normal text-[14px]">{item?.description}</p>
+            <p className="font-normal text-[14px]">
+              {parse(item?.description)}
+            </p>
             <div className="flex gap-x-3 items-center">
               <div className="px-[6px] py-[4px] text-[12px] font-medium text-[#993D20] bg-[#FFEEE8] w-fit">
                 {item?.category.categoryName}

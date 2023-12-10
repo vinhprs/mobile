@@ -62,6 +62,7 @@ const ListCart = () => {
     deleteCartItem(id);
     setTimeout(() => {
       getCartList();
+      getLiked();
     }, 500);
   };
 

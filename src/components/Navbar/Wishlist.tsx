@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { FiHeart } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatNumberMoney } from "../../utils/lib";
 import CourseNavbar from "./CourseNavbar";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import useSetQueryParams from "../../hooks/useSetQuery";
 import { getStudentCourse } from "../../store/actions/course.action";
 
 const Wishlist = () => {
+  const navigate = useNavigate();
   const wishList = useSelector(selectWishList);
   const dispatch = useAppDispatch();
   const getWishLists = async () => {
@@ -94,12 +95,21 @@ const Wishlist = () => {
               {wishList?.map((wishlistItem: any, index: number) => (
                 <div>
                   <CourseNavbar cart={wishlistItem.course} />
-                  <button
-                    onClick={() => addToMyCart(wishlistItem?.course?._id)}
-                    className="divide-none w-full py-3 px-2 border-[2px] border-[#272829] text-[#272829] font-semibold hover:bg-[#FF6636] hover:border-none hover:text-white transition-all ease-in-out duration-300"
-                  >
-                    Thêm vào giỏ hàng
-                  </button>
+                  {wishlistItem?.course?.isAddToCart ? (
+                    <button
+                      onClick={() => navigate("/cart")}
+                      className="divide-none w-full py-3 px-2 border-[2px] border-[#272829] text-[#272829] font-semibold hover:bg-[#FF6636] hover:border-none hover:text-white transition-all ease-in-out duration-300"
+                    >
+                      Đi tới giỏ hàng
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToMyCart(wishlistItem?.course?._id)}
+                      className="divide-none w-full py-3 px-2 border-[2px] border-[#272829] text-[#272829] font-semibold hover:bg-[#FF6636] hover:border-none hover:text-white transition-all ease-in-out duration-300"
+                    >
+                      Thêm vào giỏ hàng
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

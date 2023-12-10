@@ -66,3 +66,14 @@ export const postExamResult = createAsyncThunk(
     }
   }
 );
+export const getRanking = createAsyncThunk(
+  "exam/getRanking",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await examService.getRanking(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

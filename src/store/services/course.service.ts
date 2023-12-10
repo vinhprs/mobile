@@ -13,12 +13,15 @@ export const courseService = {
     return axiosClient.get(`/course?${params.toString()}`);
   },
   getCourseDetail: (params: any) => {
-    return axiosClient.get(`/course/${params}`);
+    return axiosClient.get(`/course/detail/${params}`);
   },
   getCourseUserBuy: () => {
     return axiosClient.get(`/course/student/my-course`);
   },
   publicCourse: (params: any) => {
     return axiosClient.put(`/course/teacher/public-course`, params);
+  },
+  getStudentParticipate: (params: any) => {
+    return axiosClient.get(`/course/participants?${params.toString()}`);
   },
 };

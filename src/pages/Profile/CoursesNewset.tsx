@@ -24,9 +24,13 @@ const CoursesNewset = () => {
       {userCourse.slice(0, 4).map((course: any, index: number) => (
         <div key={course?._id}>
           <div>
-            <img src={course?.thumbnail_url} alt="" />
+            <img
+              src={course?.thumbnail_url}
+              alt=""
+              className="h-[220px] w-full object-cover"
+            />
             <div className="p-[16px] h-[100px] flex flex-col gap-y-[6px] bg-white border-[1px] border-[#E9EAF0]">
-              <span className="text-[#6E7485] text-[12px]">
+              <span className="text-[#6E7485] text-[12px] line-clamp-2">
                 {course?.courseName.split("-")[0]}
               </span>
               <h1 className="text-[#1D2026] text-[14px] font-medium">

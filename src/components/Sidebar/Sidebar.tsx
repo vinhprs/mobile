@@ -4,17 +4,30 @@ import { BsBarChartFill } from "react-icons/bs";
 import { AiOutlinePlusCircle, AiOutlineMessage } from "react-icons/ai";
 import { FaLayerGroup } from "react-icons/fa";
 import { FiBook, FiSettings } from "react-icons/fi";
+import { CiLogout } from "react-icons/ci";
 import logo from "../../image/Navbar/sidebar.svg";
+import { LocalStorage } from "../../utils/LocalStorage";
+import { useAppDispatch } from "../../hooks/appHooks";
+import { updateIsLogged, updateUserId } from "../../store/reducers/authSlice";
 
 const Sidebar = () => {
   const path = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const handleNavigate = (id: string, idUser?: string) => {
     if (idUser) {
       navigate(`/teacher/${id}/${idUser}`);
     } else {
       navigate(`/teacher/${id}`);
     }
+  };
+  const handleLogout = () => {
+    LocalStorage.clearToken();
+    dispatch(updateIsLogged(false));
+    dispatch(updateUserId({}));
+    setTimeout(() => {
+      navigate("/teacher");
+    }, 500);
   };
   return (
     <div className="text-[#8C94A3]">
@@ -98,6 +111,17 @@ const Sidebar = () => {
         >
           <FiSettings className="text-[18px]" />
           <span>Cài đặt</span>
+        </div>
+        <div
+          onClick={handleLogout}
+          className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
+            path.pathname.includes("setting") === true
+              ? "bg-[#FF6636] text-white"
+              : ""
+          }`}
+        >
+          <CiLogout className="text-[18px]" />
+          <span>Đăng xuất</span>
         </div>
       </div>
     </div>

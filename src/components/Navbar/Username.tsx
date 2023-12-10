@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/appHooks";
 import { updateTabCourse } from "../../store/reducers/courseTabSlice";
 import { LocalStorage } from "../../utils/LocalStorage";
 import {
   selectAuthUserId,
+  selectUserInfo,
   updateIsLogged,
   updateUserId,
 } from "../../store/reducers/authSlice";
 import { useSelector } from "react-redux";
+import { getUserInfo } from "../../store/actions/user.action";
 
 const Username = () => {
   const dispatch = useAppDispatch();
-  const userId: any = useSelector(selectAuthUserId);
+  const userId: any = useSelector(selectUserInfo);
   console.log(userId);
 
   const navigate = useNavigate();
@@ -27,11 +29,30 @@ const Username = () => {
       navigate("/");
     }, 500);
   };
+  const getUserInfoDetail = async () => {
+    const res = await dispatch(getUserInfo({}));
+    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+      console.log(res);
+    }
+  };
+  const handleTeacher = () => {
+    LocalStorage.clearToken();
+    dispatch(updateIsLogged(false));
+    dispatch(updateUserId({}));
+    setTimeout(() => {
+      navigate("/teacher");
+    }, 500);
+  };
+  useEffect(() => {
+    getUserInfoDetail();
+  }, []);
   return (
     <div className="title_learn text-[14px] cursor-pointer relative text-[#272829]">
       <div className="cursor-pointer">
         <div className="w-[30px] h-[30px] bg-[#272829] flex justify-center items-center rounded-full">
-          <h1 className="text-white">TK</h1>
+          <h1 className="text-white uppercase">
+            {userId?.username?.slice(0, 2)}
+          </h1>
         </div>
       </div>
 
@@ -93,6 +114,12 @@ const Username = () => {
             >
               Cài đặt tài khoản
             </Link>
+            <div
+              onClick={handleTeacher}
+              className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
+            >
+              Tới trang giáo viên
+            </div>
             <div
               onClick={handleLogout}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"

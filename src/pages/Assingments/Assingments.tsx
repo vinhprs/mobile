@@ -29,24 +29,20 @@ const Assingments = () => {
         if (index < res.payload?.data.questions.length - 1) {
           dispatch(
             postExam({
-              answers: [
-                ...postExamList.answers,
-                {
-                  questionId: 0,
-                  answer: [0],
-                },
-              ],
+              questionId: 0,
+              answer: [0],
             })
           );
         }
       });
     }
   };
+
   useEffect(() => {
     if (params) {
       geExamDetail(params);
     }
-  }, [params]);
+  }, []);
   return (
     <div className="py-[20px] px-[24px] text-[#272829]">
       <div className="flex items-center justify-around mb-9">

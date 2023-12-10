@@ -65,7 +65,8 @@ const LoginForm = () => {
           dispatch(updateUserId(response?.payload.data?.infoUser));
           LocalStorage.setUserId(response?.payload.data.infoUser._id);
           dispatch(updateIsLogged(true));
-
+          LocalStorage.setToken(response?.payload.data?.token);
+          LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
           console.log(LocalStorage.getAccessToken());
 
           toast({

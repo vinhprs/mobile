@@ -43,6 +43,9 @@ import SidebarAdmin from "./components/Sidebar/SidebarAdmin";
 import DashboardAdminTeacher from "./pages/Admin/DashboardAdminTeacher";
 import PaymentSuccess from "./pages/Payment/PaymentSuccess";
 import PaymentFail from "./pages/Payment/PaymentFail";
+import CourseDetail from "./pages/CourseItem/CourseDetail";
+import TeacherCourseDetail from "./pages/Teacher/TeacherCourse/TeacherCourseDetail";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -92,21 +95,52 @@ function App() {
                         <Route path="/teacher" element={<LoginTeacher />} />
                         <Route
                           path="/teacher/dashboard"
-                          element={<Dashboard />}
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <Dashboard />
+                            </RequireAuth>
+                          }
                         />
                         <Route
                           path="/teacher/create-course"
-                          element={<CreateCourse />}
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <CreateCourse />
+                            </RequireAuth>
+                          }
                         />
                         <Route
                           path="/teacher/setting/:id"
-                          element={<Setting />}
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <Setting />
+                            </RequireAuth>
+                          }
                         />
                         <Route
                           path="/teacher/courses"
-                          element={<MainCourse />}
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <MainCourse />
+                            </RequireAuth>
+                          }
                         />
-                        <Route path="/teacher/exam" element={<MainExam />} />
+                        <Route
+                          path="/teacher/exam"
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <MainExam />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/teacher/courses/:id"
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <TeacherCourseDetail />
+                            </RequireAuth>
+                          }
+                        />
                       </Routes>
                     </>
                   ) : (
@@ -142,11 +176,19 @@ function App() {
                       <Routes>
                         <Route
                           path="/admin/student"
-                          element={<DashboardAdmin />}
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <DashboardAdmin />
+                            </RequireAuth>
+                          }
                         />
                         <Route
                           path="/admin/teacher"
-                          element={<DashboardAdminTeacher />}
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <DashboardAdminTeacher />
+                            </RequireAuth>
+                          }
                         />
                       </Routes>
                     </>
@@ -182,30 +224,87 @@ function App() {
                 <Route path="/" element={<Homepage />} />
                 <Route path="login" element={<Login />} />
                 <Route path="forgetpassword" element={<ForgetPassword />} />
-                <Route path="forgetpassword/otp" element={<Otp />} />
+                <Route
+                  path="forgetpassword/otp"
+                  element={
+                    <RequireAuth redirectTo="/forgetpassword">
+                      <Otp />
+                    </RequireAuth>
+                  }
+                />
                 <Route path="signup" element={<Signup />} />
-                <Route path="signup/otp" element={<OtpSignup />} />
-                <Route path="signup/user" element={<Information />} />
+                <Route
+                  path="signup/otp"
+                  element={
+                    <RequireAuth redirectTo="/signup">
+                      <OtpSignup />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="signup/user"
+                  element={
+                    <RequireAuth redirectTo="/signup">
+                      <Information />
+                    </RequireAuth>
+                  }
+                />
                 <Route path="courses" element={<ListCourses />} />
                 <Route path="courses/:idcourse" element={<CourseItem />} />
                 <Route
                   path="courses/:idcourse/video"
-                  element={<VideoCourse />}
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <VideoCourse />
+                    </RequireAuth>
+                  }
                 />
                 <Route
                   path="courses/:idcourse/assignment"
-                  element={<Assingments />}
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <Assingments />
+                    </RequireAuth>
+                  }
                 />
-                <Route path="/result-exam" element={<ResultExam />} />
-                <Route path="cart" element={<Cart />} />
-                <Route path="/profile/:id" element={<Profile />} />
-                <Route path="/cart/payment" element={<Payment />} />
-
                 <Route
+                  path="/result-exam"
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <ResultExam />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="cart"
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <Cart />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/profile/:id"
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <Profile />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/cart/payment"
+                  element={
+                    <RequireAuth redirectTo="/login">
+                      <Payment />
+                    </RequireAuth>
+                  }
+                />
+
+                {/* <Route
                   path="/cart/payment/success"
                   element={<PaymentSuccess />}
                 />
-                <Route path="/cart/payment/fail" element={<PaymentFail />} />
+                <Route path="/cart/payment/fail" element={<PaymentFail />} /> */}
               </Routes>
             </div>
 

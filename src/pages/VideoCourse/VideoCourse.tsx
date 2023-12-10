@@ -28,7 +28,7 @@ const VideoCourse = () => {
       <div className="grid grid-cols-[1fr_350px]">
         <div className="flex flex-col gap-y-2">
           <Video courseDetail={courseDetail} />
-          {params && <TabOption />}
+          {params && <TabOption courseDetail={courseDetail} />}
         </div>
         <div className="h-[600px] overflow-y-scroll">
           <VideoCourseList courseDetail={courseDetail} />

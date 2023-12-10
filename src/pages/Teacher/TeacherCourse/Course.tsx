@@ -17,8 +17,10 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { formatMoney } from "../../../utils/lib";
 import { useAppDispatch } from "../../../hooks/appHooks";
 import { updatePublicCourse } from "../../../store/actions/course.action";
+import { useNavigate } from "react-router-dom";
 
 const Course = ({ item, getTeacherCourseData }: any) => {
+  const navigate = useNavigate();
   const [menu, setMenu] = useState("...");
   const dispatch = useAppDispatch();
   const toast = useToast();
@@ -91,7 +93,9 @@ const Course = ({ item, getTeacherCourseData }: any) => {
                 {menu}
               </MenuButton>
               <MenuList>
-                <MenuItem>Xem chi tiết khóa học</MenuItem>
+                <MenuItem onClick={() => navigate(`${item?._id}`)}>
+                  Xem chi tiết khóa học
+                </MenuItem>
                 <MenuItem>Cập nhập khóa học</MenuItem>
                 <MenuItem>Xóa khóa học</MenuItem>
                 <MenuItem onClick={() => publicItem(item?.isPublic)}>

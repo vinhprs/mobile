@@ -18,4 +18,7 @@ export const examService = {
   postExam: (params: any) => {
     return axiosClient.post(`exam/student/take-exam`, params);
   },
+  getRanking: (params: any) => {
+    return axiosClient.get(`/exam/ranking?${params.toString()}`);
+  },
 };

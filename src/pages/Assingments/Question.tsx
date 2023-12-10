@@ -10,7 +10,7 @@ import {
   selectExamPost,
 } from "../../store/reducers/examSlice";
 import { useSelector } from "react-redux";
-
+import parse from "html-react-parser";
 interface QuestionInteface {
   index: any;
   question: any;
@@ -27,6 +27,8 @@ const Question = ({ index, question }: QuestionInteface) => {
     indexLecture: number,
     type: string
   ) => {
+    console.log("🚀 ~ file: Question.tsx:30 ~ Question ~ id:", id);
+
     dispatch(updateArray(index));
     dispatch(
       postExamQuestion({
@@ -44,12 +46,12 @@ const Question = ({ index, question }: QuestionInteface) => {
           <h3 className="font-medium">Câu hỏi số {index}</h3>
           <div className="label px-2 relative bg-[#FF6636] w-fit h-[24px]">
             <span className="text-[13px] font-medium text-white">
-              {question?.questionLevel}
+              {parse(question?.questionLevel)}
             </span>
           </div>
         </div>
         <div>
-          <p className="mb-[10px]">{question?.title}</p>
+          <p className="mb-[10px]">{parse(question?.title)}</p>
           {question?.answerType === "Chọn 1" ? (
             <RadioGroup onChange={setValue} value={value}>
               <Stack direction="column">
@@ -70,7 +72,7 @@ const Question = ({ index, question }: QuestionInteface) => {
                       value={`${indexLecture + 1}`}
                       colorScheme="orange"
                     >
-                      <span className="text-[16px]">{answer}</span>
+                      <span className="text-[16px]">{parse(answer)}</span>
                     </Radio>
                   </div>
                 ))}
