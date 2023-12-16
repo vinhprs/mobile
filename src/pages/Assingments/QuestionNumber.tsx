@@ -45,7 +45,7 @@ const QuestionNumber = ({ questions }: any) => {
     if (res.meta.requestStatus === "fulfilled" && res.payload) {
       dispatch(resultExamDetail(res?.payload.data));
       setTimeout(() => {
-        navigate(`courses/${idcourse}/result-exam?id=${id}`);
+        navigate(`/courses/${idcourse}/result-exam?id=${id}`);
       }, 500);
     }
   };
