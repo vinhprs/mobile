@@ -108,6 +108,7 @@ const Navbar = () => {
             <SearchResult value={value} debouncedValue={debouncedValue} />
           )}
         </form>
+        <Link to="/teacher">Giáo viên</Link>
         {!userId ? (
           <div className="flex gap-x-3">
             <Link

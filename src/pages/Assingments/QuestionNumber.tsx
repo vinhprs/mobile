@@ -13,6 +13,7 @@ import {
 } from "../../store/reducers/examSlice";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 const QuestionNumber = ({ questions }: any) => {
+  const { idcourse } = useParams();
   const navigate = useNavigate();
   const { search } = useLocation();
   const id = new URLSearchParams(search).get("id");
@@ -44,7 +45,7 @@ const QuestionNumber = ({ questions }: any) => {
     if (res.meta.requestStatus === "fulfilled" && res.payload) {
       dispatch(resultExamDetail(res?.payload.data));
       setTimeout(() => {
-        navigate(`/result-exam?id=${id}`);
+        navigate(`courses/${idcourse}/result-exam?id=${id}`);
       }, 500);
     }
   };

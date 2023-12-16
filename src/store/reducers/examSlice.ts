@@ -19,6 +19,22 @@ const initialState = {
     subCategoryId: 0,
     time: 0,
   },
+  examTemp: {
+    questions: [
+      {
+        title: "",
+        answers: ["", "", "", ""],
+        correctAnswers: [],
+        explain: "",
+        questionLevel: "Nhận biết",
+        answerType: "",
+      },
+    ],
+    title: "",
+    categoryId: 0,
+    subCategoryId: 0,
+    time: 0,
+  },
   postExam: {
     completeTime: 0,
     examId: 0,
@@ -153,6 +169,14 @@ const examSlice = createSlice({
     updateTimeFinish: (state, actions) => {
       state.time = actions.payload;
     },
+    resetPostExam: (state, actions) => {
+      state.postExam.answers = [
+        {
+          questionId: 0,
+          answer: [0],
+        },
+      ];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getExam.fulfilled, (state, action) => {
@@ -160,7 +184,7 @@ const examSlice = createSlice({
     });
     builder.addCase(getExamDetail.fulfilled, (state, actions) => {
       state.examDetail = actions.payload.data;
-      state.exam = actions.payload.data;
+      state.examTemp = actions.payload.data;
     });
     builder.addCase(getCategory.fulfilled, (state: any, actions: any) => {
       state.categories = actions.payload?.data;
@@ -199,6 +223,7 @@ export const {
   updateCompleteTime,
   updateTimeStop,
   updateTimeFinish,
+  resetPostExam,
 } = examSlice.actions;
 export default examSlice.reducer;
 export const selectExam = (state: RootState) => state.exam.exam;
@@ -211,3 +236,4 @@ export const selectResultExam = (state: RootState) => state.exam.resultExam;
 export const selectTimeStop = (state: RootState) => state.exam.timeStop;
 export const selectTimeFinish = (state: RootState) => state.exam.time;
 export const selectRanking = (state: RootState) => state.exam.ranking;
+export const selectExamTemp = (state: RootState) => state.exam.examTemp;

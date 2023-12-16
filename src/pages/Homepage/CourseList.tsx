@@ -8,7 +8,10 @@ const CourseList = ({ itemList }: any) => {
     navigate(`/courses/${itemList && itemList?._id}`);
   };
   return (
-    <div className="text-[#272829] cursor-pointer shadow-[-1px_0px_14px_-5px_rgba(0,0,0,0.66)]">
+    <div
+      onClick={handleNavigate}
+      className="text-[#272829] cursor-pointer shadow-[-1px_0px_14px_-5px_rgba(0,0,0,0.66)]"
+    >
       <div className="w-full h-[200px]">
         <img
           src={itemList?.thumbnail_url}
@@ -32,10 +35,7 @@ const CourseList = ({ itemList }: any) => {
           {itemList?.courseName}
         </p>
         <div className="flex items-center gap-x-2 text-[12px]">
-          <span
-            onClick={handleNavigate}
-            className="px-3 py-2 bg-[#FF6636] w-fit font-medium text-white"
-          >
+          <span className="px-3 py-2 bg-[#FF6636] w-fit font-medium text-white">
             Xem khóa học
           </span>
         </div>

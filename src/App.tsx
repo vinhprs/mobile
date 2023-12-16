@@ -46,6 +46,7 @@ import PaymentFail from "./pages/Payment/PaymentFail";
 import CourseDetail from "./pages/CourseItem/CourseDetail";
 import TeacherCourseDetail from "./pages/Teacher/TeacherCourse/TeacherCourseDetail";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
+import RequireVideo from "./components/RequireVideo/RequireVideo";
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -255,7 +256,9 @@ function App() {
                   path="courses/:idcourse/video"
                   element={
                     <RequireAuth redirectTo="/login">
-                      <VideoCourse />
+                      <RequireVideo redirectTo="/courses">
+                        <VideoCourse />
+                      </RequireVideo>
                     </RequireAuth>
                   }
                 />
@@ -263,15 +266,19 @@ function App() {
                   path="courses/:idcourse/assignment"
                   element={
                     <RequireAuth redirectTo="/login">
-                      <Assingments />
+                      <RequireVideo redirectTo="/courses">
+                        <Assingments />
+                      </RequireVideo>
                     </RequireAuth>
                   }
                 />
                 <Route
-                  path="/result-exam"
+                  path="courses/:idcourse/result-exam"
                   element={
                     <RequireAuth redirectTo="/login">
-                      <ResultExam />
+                      <RequireVideo redirectTo="/courses">
+                        <ResultExam />
+                      </RequireVideo>
                     </RequireAuth>
                   }
                 />

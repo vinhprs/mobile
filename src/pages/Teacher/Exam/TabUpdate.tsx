@@ -4,12 +4,12 @@ import TitleUpdateExam from "./TitleUpdateExam";
 import ExamUpdate from "./ExamUpdate";
 import ExamDetail from "./ExamDetail";
 import { useSelector } from "react-redux";
-import { selectExam } from "../../../store/reducers/examSlice";
+import { selectExam, selectExamTemp } from "../../../store/reducers/examSlice";
 interface TabUpdateProps {
   item: any;
 }
 const TabUpdate = ({ item }: TabUpdateProps) => {
-  const exam = useSelector(selectExam);
+  const exam = useSelector(selectExamTemp);
   return (
     <Tabs bg="white">
       <TabList>

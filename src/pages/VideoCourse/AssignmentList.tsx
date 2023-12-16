@@ -29,19 +29,25 @@ const AssignmentList = ({ item }: any) => {
     }
   };
   useEffect(() => {
-    if (item) {
+    if (item?.examId) {
       getDetailExam();
     }
   }, [item]);
   return (
-    <Link to={router}>
-      <div className="flex items-center gap-x-2 p-3 border-[1px] border-[#272829]">
-        <MdOutlineAssignment className="text-[20px]" />
-        <span className="text-[14px] font-semibold text-[#61677A]">
-          {examDetail?.title}
-        </span>
-      </div>
-    </Link>
+    <>
+      {item?.examId ? (
+        <Link to={router}>
+          <div className="flex items-center gap-x-2 p-3 border-[1px] border-[#272829]">
+            <MdOutlineAssignment className="text-[20px]" />
+            <span className="text-[14px] font-semibold text-[#61677A]">
+              {examDetail?.title}
+            </span>
+          </div>
+        </Link>
+      ) : (
+        <div>Không có bài tập nào</div>
+      )}
+    </>
   );
 };
 

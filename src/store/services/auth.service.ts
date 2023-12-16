@@ -18,4 +18,7 @@ export const authService = {
   resendOTP: (params: any) => {
     return axiosClient.post(`auth/resend-email`, params);
   },
+  changePassword: (params: any) => {
+    return axiosClient.post(`/auth/change-password`, params);
+  },
 };

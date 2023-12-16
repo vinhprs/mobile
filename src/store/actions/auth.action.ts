@@ -77,3 +77,14 @@ export const resendOTP = createAsyncThunk(
     }
   }
 );
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await authService.changePassword(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

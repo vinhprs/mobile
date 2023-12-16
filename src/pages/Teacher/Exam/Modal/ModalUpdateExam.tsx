@@ -11,7 +11,10 @@ import {
 } from "@chakra-ui/react";
 import TabUpdate from "../TabUpdate";
 import { useSelector } from "react-redux";
-import { selectExam } from "../../../../store/reducers/examSlice";
+import {
+  selectExam,
+  selectExamTemp,
+} from "../../../../store/reducers/examSlice";
 import { useAppDispatch } from "../../../../hooks/appHooks";
 import { updateExam } from "../../../../store/actions/exam.action";
 interface UpdateProp {
@@ -26,7 +29,7 @@ const ModalUpdateExam = ({
   item,
   onCloseUpdate,
 }: UpdateProp) => {
-  const exam = useSelector(selectExam);
+  const exam = useSelector(selectExamTemp);
   const dispatch = useAppDispatch();
   const update = async () => {
     const payload = {

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import {
   selectExam,
   selectExamDetail,
+  selectExamTemp,
   setUpdateExam,
 } from "../../../store/reducers/examSlice";
 import moment from "moment";
@@ -14,7 +15,7 @@ import QuestionUpdate from "./QuestionUpdate";
 const ExamUpdate = ({ item }: any) => {
   //   console.log("🚀 ~ file: ExamUpdate.tsx:4 ~ ExamUpdate ~ item:", item);
   const dispatch = useAppDispatch();
-  const exam: any = useSelector(selectExam);
+  const exam: any = useSelector(selectExamTemp);
   const getDetailExam = async () => {
     const response: any = await dispatch(getExamDetail(item._id));
     if (response.meta.requestStatus === "fulfilled" && response.payload) {

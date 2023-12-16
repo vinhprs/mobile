@@ -68,24 +68,39 @@ const Login = () => {
       } else {
         // dispatch(updateIsLogged(true));
         // dispatch(updateUserId(response?.payload?.data?.infoUser?._id));
-        dispatch(updateUserId(response?.payload.data?.infoUser));
-        LocalStorage.setUserId(response?.payload.data.infoUser._id);
-        dispatch(updateIsLogged(true));
-        LocalStorage.setToken(response?.payload.data?.token);
-        LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
-        console.log(LocalStorage.getAccessToken());
+        if (
+          response?.payload?.data?.infoUser?.roles?.some(
+            (item: any) => item?.id === 3
+          )
+        ) {
+          dispatch(updateUserId(response?.payload.data?.infoUser));
+          LocalStorage.setUserId(response?.payload.data.infoUser._id);
+          dispatch(updateIsLogged(true));
+          LocalStorage.setToken(response?.payload.data?.token);
+          LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
+          console.log(LocalStorage.getAccessToken());
 
-        toast({
-          title: "Đăng nhập thành công",
-          description: response?.payload?.message,
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-          position: "top-right",
-        });
-        setTimeout(() => {
-          navigate("/teacher/dashboard");
-        }, 1500);
+          toast({
+            title: "Đăng nhập thành công",
+            description: response?.payload?.message,
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+            position: "top-right",
+          });
+          setTimeout(() => {
+            navigate("/teacher/dashboard");
+          }, 1500);
+        } else {
+          toast({
+            title: "Lỗi đăng nhập",
+            description: "Tài khoản này không phải tài khoản giáo viên",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+            position: "top-right",
+          });
+        }
       }
     }
   };

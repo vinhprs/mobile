@@ -77,7 +77,7 @@ const processQueue = (error: any, token = null) => {
 
 // @ts-ignore
 // const baseURL: string = process.env.REACT_API_ENDPOINT || "";
-const baseURL: string = "https://staging.primeedu.io.vn/api/v1";
+const baseURL: string = String(process.env.REACT_APP_API_ENDPOINT) || "";
 
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
@@ -131,7 +131,7 @@ axiosClient.interceptors.response.use(
       return new Promise(function (resolve, reject) {
         axios
           .post(
-            `https://staging.primeedu.io.vn/api/v1/auth/refresh-token`,
+            `${process.env.REACT_APP_API_ENDPOINT}/auth/refresh-token`,
             { refreshToken },
             {
               headers: {

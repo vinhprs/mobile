@@ -25,16 +25,18 @@ const Assingments = () => {
   const geExamDetail = async (id: any) => {
     const res: any = await dispatch(getExamDetail(id));
     if (res.payload && res.meta.requestStatus === "fulfilled") {
-      res.payload?.data.questions.map((item: any, index: any) => {
-        if (index < res.payload?.data.questions.length - 1) {
-          dispatch(
-            postExam({
-              questionId: 0,
-              answer: [0],
-            })
-          );
-        }
-      });
+      if (postExamList.answers.length < res.payload?.data.questions?.length) {
+        res.payload?.data.questions.map((item: any, index: any) => {
+          if (index < res.payload?.data.questions.length - 1) {
+            dispatch(
+              postExam({
+                questionId: 0,
+                answer: [0],
+              })
+            );
+          }
+        });
+      }
     }
   };
 

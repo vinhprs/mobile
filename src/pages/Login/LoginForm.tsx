@@ -62,24 +62,37 @@ const LoginForm = () => {
             position: "top-right",
           });
         } else {
-          dispatch(updateUserId(response?.payload.data?.infoUser));
-          LocalStorage.setUserId(response?.payload.data.infoUser._id);
-          dispatch(updateIsLogged(true));
-          LocalStorage.setToken(response?.payload.data?.token);
-          LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
-          console.log(LocalStorage.getAccessToken());
+          if (
+            response?.payload?.data?.infoUser?.roles[0]?.roleName === "STUDENT"
+          ) {
+            dispatch(updateUserId(response?.payload.data?.infoUser));
+            LocalStorage.setUserId(response?.payload.data.infoUser._id);
+            dispatch(updateIsLogged(true));
+            LocalStorage.setToken(response?.payload.data?.token);
+            LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
+            console.log(LocalStorage.getAccessToken());
 
-          toast({
-            title: "Đăng nhập thành công",
-            description: response?.payload?.message,
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-            position: "top-right",
-          });
-          setTimeout(() => {
-            navigate(-1);
-          }, 1500);
+            toast({
+              title: "Đăng nhập thành công",
+              description: response?.payload?.message,
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+              position: "top-right",
+            });
+            setTimeout(() => {
+              navigate(-1);
+            }, 1500);
+          } else {
+            toast({
+              title: "Lỗi đăng nhập",
+              description: "Tài khoản này không phải tài khoản của học sinh",
+              status: "error",
+              duration: 9000,
+              isClosable: true,
+              position: "top-right",
+            });
+          }
         }
       }
     }

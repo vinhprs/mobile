@@ -14,6 +14,7 @@ import { FcDataBackup } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
+  resetPostExam,
   selectResultExam,
   updateTimeFinish,
   updateTimeStop,
@@ -28,6 +29,7 @@ const TitleResultExam = () => {
     dispatch(updateTimeStop(false));
     dispatch(updateTimeFinish(0));
     dispatch(resetArray({}));
+    dispatch(resetPostExam({}));
     navigate(-1);
   };
   return (
@@ -104,6 +106,7 @@ const TitleResultExam = () => {
             dispatch(updateTimeFinish(0));
             dispatch(updateTimeStop(false));
             dispatch(resetArray({}));
+            dispatch(resetPostExam({}));
           }}
           className="flex items-center gap-x-[10px] px-[8px] py-[4px] border-[1px] rounded-md"
         >
