@@ -95,6 +95,15 @@ const LoginForm = () => {
           }
         }
       }
+    } else {
+      toast({
+        title: "Lỗi đăng nhập",
+        description: response?.payload?.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+        position: "top-right",
+      });
     }
   };
   return (
