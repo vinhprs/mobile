@@ -20,7 +20,7 @@ before_script:
 # STAGE BUILD DEVELOP
 PRIME-EDU-DEVELOPMENT-BUILD:
     variables:
-        STABLE_IMAGE_TAG: build-develop-latest
+        STABLE_IMAGE_TAG: build-fe-develop-latest
         IMAGE_NAME: $CONTAINER_IMAGE:$ARCHIVE_IMAGE_TAG
     stage: build
     tags: 
