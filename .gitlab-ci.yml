@@ -35,7 +35,6 @@ PRIME-EDU-DEVELOPMENT-BUILD:
         - echo "Building the image $IMAGE_NAME ...."
         - docker compose build --force-rm
 
-        # Push Archive by commit tag
         - docker push $IMAGE_NAME
 
         # Push stable production
