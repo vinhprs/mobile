@@ -16,7 +16,6 @@ before_script:
   - echo $CI_REGISTRY
   - docker info
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-  - echo $USER
 
 # STAGE BUILD DEVELOP
 PRIME-EDU-DEVELOPMENT-BUILD:
