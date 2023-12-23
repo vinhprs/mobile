@@ -16,12 +16,11 @@ before_script:
   - echo $CI_REGISTRY
   - docker info
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-  - echo $USER
 
 # STAGE BUILD DEVELOP
 PRIME-EDU-DEVELOPMENT-BUILD:
     variables:
-        STABLE_IMAGE_TAG: build-develop-latest
+        STABLE_IMAGE_TAG: build-fe-develop-latest
         IMAGE_NAME: $CONTAINER_IMAGE:$ARCHIVE_IMAGE_TAG
     stage: build
     tags: 
@@ -36,7 +35,6 @@ PRIME-EDU-DEVELOPMENT-BUILD:
         - echo "Building the image $IMAGE_NAME ...."
         - docker compose build --force-rm
 
-        # Push Archive by commit tag
         - docker push $IMAGE_NAME
 
         # Push stable production

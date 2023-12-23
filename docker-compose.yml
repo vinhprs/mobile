@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: $IMAGE_NAME
+    container_name: prime-edu-fe-develop
     volumes:
       - ./src:/app/src
     ports:
