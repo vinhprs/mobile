@@ -40,33 +40,26 @@ const CourseTitle = ({ courseDetail }: any) => {
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
             <span className="text-[#4E5566] text-[14px]">
-              You will learn how to design beautiful websites using Figma, an
-              interface design tool used by designers at Uber, Airbnb and
-              Microsoft.
+              Bạn sẽ được học với những giáo viên đầy ưu tú, được tuyển chọn từ nhiều nơi
+              trên toàn quốc
             </span>
           </div>
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
             <span className="text-[#4E5566] text-[14px]">
-              You will learn how to design beautiful websites using Figma, an
-              interface design tool used by designers at Uber, Airbnb and
-              Microsoft.
+              Cùng với những bài học vô cùng bổ ích, bám sát với chương trình dạy trung học phổ thông.
             </span>
           </div>
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
             <span className="text-[#4E5566] text-[14px]">
-              You will learn how to design beautiful websites using Figma, an
-              interface design tool used by designers at Uber, Airbnb and
-              Microsoft.
+              Cùng với đó là hệ thống xem bài học, làm bài kiểm tra vô cùng bổ ích để cho các bạn học sinh kiểm tra lại kiến thức vừa học
             </span>
           </div>
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
             <span className="text-[#4E5566] text-[14px]">
-              You will learn how to design beautiful websites using Figma, an
-              interface design tool used by designers at Uber, Airbnb and
-              Microsoft.
+              Ngoài ra đánh giá các bạn thông qua các bài kiểm tra, kiến thức mà các bạn được nắm bắt
             </span>
           </div>
         </div>

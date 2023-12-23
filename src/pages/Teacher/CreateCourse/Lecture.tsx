@@ -6,7 +6,7 @@ import {
   MenuList,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { BsArrowDownShort, BsArrowUpShort, BsTrash } from "react-icons/bs";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -22,6 +22,9 @@ import {
   updateLecture,
 } from "../../../store/reducers/createCourseSlice";
 import ModalChooseExam from "./Modal/ModalChooseExam";
+import { useSelector } from "react-redux";
+import { selectExamDetail, setExamDetail } from "../../../store/reducers/examSlice";
+import { getExamDetail } from "../../../store/actions/exam.action";
 interface LectureProps {
   indexLecture: number;
   index: number;
@@ -107,14 +110,36 @@ const Lecture = ({
       // setSections(newArray);
     }
   };
+  const examDetail:any = useSelector(selectExamDetail);
+
+  const getDetailExam = async (id:any) => {
+    const response: any = await dispatch(getExamDetail(id));
+    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      console.log(response);
+      // setIsLoading(false);
+      dispatch(setExamDetail(response.payload?.data));
+    }
+  };
+  useEffect(()=>{
+    if(itemLecture.examId){
+      getDetailExam(itemLecture.examId)
+    }
+  },[itemLecture.examId])
   return (
     <>
       <div className="flex justify-between gap-x-3 items-center">
-        <div className="px-[20px] py-[12px] bg-white flex items-center gap-x-2 w-full">
+        <div className="px-[20px] py-[12px] bg-white flex items-start gap-x-2 w-full">
           <RxHamburgerMenu className="text-[#1D2026]" />
+          <div>
+
           <h1 className="text-[#1D2026] text-[14px] font-medium">
             Bài học: {itemLecture.lectureName}
           </h1>
+          <div>
+            <p>Video: {itemLecture.url.length !== 0 ? <span className="text-green-500">{itemLecture.url}</span>:<span className="text-red-500">Chưa đăng tải video</span>}</p>
+            <p>Đề thi: {itemLecture.examId ? <span className="text-green-500">Đã đăng tải đề thi</span>:<span className="text-red-500">Chưa đăng tải đề thi</span>}</p>
+          </div>
+          </div>
         </div>
         <div className="flex gap-x-3 items-center">
           <Menu>

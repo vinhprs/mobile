@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { selectDelete, selectDisable } from "../../store/reducers/adminSlice";
 import { useAppDispatch } from "../../hooks/appHooks";
 import { changeStatus } from "../../store/actions/admin.action";
-const ModalLock = ({ isOpen, onClose, id, getAccountStudentList }: any) => {
+const ModalLock = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any) => {
   const isDisable = useSelector(selectDisable);
   const isDelete = useSelector(selectDelete);
   const dispatch = useAppDispatch();
@@ -43,8 +43,8 @@ const ModalLock = ({ isOpen, onClose, id, getAccountStudentList }: any) => {
         <ModalCloseButton />
         <ModalBody>
           <p>
-            Bạn có chắc là muốn {isDisable ? "khóa" : "mở"} người dùng có id là{" "}
-            <span className="font-medium text-red-500">{id}</span>
+            Bạn có chắc là muốn {isDisable ? "khóa" : "mở"} người dùng có tên là{" "}
+            <span className={`font-medium ${isDisable ? "text-red-500" : "text-green-500"}`}>{fullname}</span>
           </p>
         </ModalBody>
 

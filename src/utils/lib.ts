@@ -121,3 +121,14 @@ export const sliceString = (index1: number, index2: number, title: string) => {
   const second = title.slice(-index2);
   return `${first}...${second}`;
 };
+export const genSlug = (length: number) => {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}

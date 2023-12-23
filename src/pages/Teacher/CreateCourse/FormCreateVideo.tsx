@@ -13,12 +13,15 @@ import {
 } from "../../../store/reducers/createCourseSlice";
 import { Button } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+import { genSlug } from "../../../utils/lib";
 export interface LectureProp {
   id?: string;
   lectureName: string;
   lectureType: string;
   amount: string;
   url: string;
+  slug?:string;
+  examId?:number
 }
 export interface SectionsProp {
   id?: string;
@@ -48,6 +51,7 @@ const FormCreateVideo = () => {
           lectureType: "",
           amount: "",
           url: "",
+          slug:genSlug(10)
         },
       ],
     };

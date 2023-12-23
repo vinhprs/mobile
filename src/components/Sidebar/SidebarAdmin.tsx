@@ -8,8 +8,12 @@ import logo from "../../image/Navbar/sidebar.svg";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudent } from "react-icons/pi";
 import { CiLogout } from "react-icons/ci";
+import { LocalStorage } from "../../utils/LocalStorage";
+import { useAppDispatch } from "../../hooks/appHooks";
+import { updateIsLogged, updateUserId } from "../../store/reducers/authSlice";
 const SidebarAdmin = () => {
   const path = useLocation();
+  const dispatch = useAppDispatch()
   const navigate = useNavigate();
   const handleNavigate = (id: string, idUser?: string) => {
     if (idUser) {
@@ -17,6 +21,14 @@ const SidebarAdmin = () => {
     } else {
       navigate(`/admin/${id}`);
     }
+  };
+  const handleLogout = () => {
+    LocalStorage.clearToken();
+    dispatch(updateIsLogged(false));
+    dispatch(updateUserId({}));
+    setTimeout(() => {
+      navigate("/teacher");
+    }, 500);
   };
   return (
     <div className="text-[#8C94A3]">
@@ -48,6 +60,7 @@ const SidebarAdmin = () => {
         </div>
         <div
           // onClick={() => handleNavigate("dashboard")}
+          onClick={handleLogout}
           className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] `}
         >
           <CiLogout className="text-[18px]" />

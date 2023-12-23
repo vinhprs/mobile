@@ -93,13 +93,16 @@ const Login = () => {
           }, 1500);
         } else {
           toast({
-            title: "Lỗi đăng nhập",
-            description: "Tài khoản này không phải tài khoản giáo viên",
-            status: "error",
+            title: "Đăng nhập thành công",
+            description: response?.payload?.message,
+            status: "success",
             duration: 9000,
             isClosable: true,
             position: "top-right",
           });
+          setTimeout(() => {
+            navigate("/admin/student");
+          }, 1500);
         }
       }
     }

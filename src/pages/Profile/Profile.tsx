@@ -30,7 +30,7 @@ const Profile = () => {
             <h1 className="text-[24px] text-white font-semibold">
               {userInfo?.username} ({userInfo?.fullname})
             </h1>
-            <span className="text-white">Web developer</span>
+            <span className="text-white">Học sinh</span>
           </div>
         </div>
         <div>

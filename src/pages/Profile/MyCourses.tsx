@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUserInfo } from "../../store/reducers/authSlice";
 const MyCourses = () => {
   const userInfo: any = useSelector(selectUserInfo);
-
+  
   return (
     <div>
       <div className="mb-[24px] flex justify-between items-center">

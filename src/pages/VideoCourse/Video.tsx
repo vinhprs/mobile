@@ -10,22 +10,22 @@ const Video = ({ courseDetail }: any) => {
   console.log("🚀 ~ file: Video.tsx:7 ~ Video ~ type:", type);
   const search = useLocation().search;
   const params = new URLSearchParams(search).get("id");
-  const paramsLecture = new URLSearchParams(search).get("idLecture");
+  const paramsLecture = new URLSearchParams(search).get("slug");
   useEffect(() => {
-    if (params) {
+    if (paramsLecture) {
       const newArrayType = courseDetail?.sections?.map((section: any) => {
         return section?.lectures?.filter(
-          (lecture: any) => lecture?.url === params
+          (lecture: any) => lecture?.slug === paramsLecture
         );
       });
       setType(newArrayType?.sort((a: any, b: any) => b.length - a.length)[0]);
     }
-  }, [courseDetail?.sections, params]);
+  }, [courseDetail?.sections, paramsLecture]);
   return (
     <div>
-      {params ? (
+      {paramsLecture ? (
         <div className="w-full h-[600px]">
-          {type[0]?.lectureType === "VIDEO" ? (
+          
             <ReactPlayer
               ref={videoRef}
               className="w-full h-full"
@@ -46,11 +46,6 @@ const Video = ({ courseDetail }: any) => {
                 `https://staging.primeedu.io.vn/api/v1/course/lecture/${paramsLecture}`,
               ]}
             />
-          ) : (
-            <div>
-              <h1>Chào mừng bạn đến với bài kiểm tra </h1>
-            </div>
-          )}
         </div>
       ) : (
         <div className="h-[600px] w-full overflow-hidden">

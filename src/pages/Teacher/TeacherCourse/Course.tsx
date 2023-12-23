@@ -57,7 +57,7 @@ const Course = ({ item, getTeacherCourseData }: any) => {
             <div className="w-fit uppercase px-[6px] py-[4px] text-[10px] bg-[#EBEBFF] text-[#342F98] font-medium">
               {item.category.categoryName}
             </div>
-            <div className="w-fit uppercase px-[6px] py-[4px] text-[10px] bg-[#EBEBFF] text-[#342F98] font-medium">
+            <div className={`w-fit uppercase px-[6px] py-[4px] text-[10px]  ${item.isPublic ? "bg-[#FF6636] text-white" : "text-[#342F98] bg-[#EBEBFF]"} font-medium`}>
               {item.isPublic
                 ? "Đã đăng tải khóa học"
                 : "Chưa đăng tải khóa học"}

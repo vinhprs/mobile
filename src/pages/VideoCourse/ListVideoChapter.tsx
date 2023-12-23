@@ -7,7 +7,7 @@ import {
   updateCommentList,
   updatePage,
 } from "../../store/reducers/commentSlice";
-const ListVideoChapter = ({ id, code, lecture, index }: any) => {
+const ListVideoChapter = ({ id, code, lecture, index,slug }: any) => {
   const pathname = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ const ListVideoChapter = ({ id, code, lecture, index }: any) => {
     dispatch(updateCommentList([]));
     dispatch(updatePage(1));
     setTimeout(() => {
-      navigate(`${pathname.pathname}?id=${code}&idLecture=${id}`);
+      navigate(`${pathname.pathname}?idLecture=${id}&slug=${slug}`);
     }, 500);
   };
   return (

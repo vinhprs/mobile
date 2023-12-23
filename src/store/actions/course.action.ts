@@ -88,3 +88,14 @@ export const getStudentParticipate = createAsyncThunk(
     }
   }
 );
+export const uploadVideo = createAsyncThunk(
+  "course/uploadVideo",
+  async (params: any, { dispatch, getState, rejectWithValue }) => {
+    try {
+      const res = await courseService.uploadVideo(params);
+      return res;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

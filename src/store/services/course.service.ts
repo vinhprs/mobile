@@ -24,4 +24,7 @@ export const courseService = {
   getStudentParticipate: (params: any) => {
     return axiosClient.get(`/course/participants?${params.toString()}`);
   },
+  uploadVideo:(params:any)=>{
+    return axiosClient.post(`files/upload-video`,params)
+  }
 };

@@ -43,6 +43,7 @@ const TableListStudent = () => {
     }
   };
   const [idUser, setIdUser] = useState("");
+  const [fullname, setFullname] = useState("");
   const {
     isOpen: isOpenLock,
     onOpen: onOpenLock,
@@ -53,16 +54,18 @@ const TableListStudent = () => {
     onOpen: onOpenDelete,
     onClose: onCloseDelete,
   } = useDisclosure();
-  const handleOpen = (id: string, isDisable: boolean) => {
+  const handleOpen = (id: string, isDisable: boolean, fullname:string) => {
     dispatch(updateDisable(!isDisable));
     setIdUser(id);
+    setFullname(fullname)
     setTimeout(() => {
       onOpenLock();
     }, 200);
   };
-  const handleOpenDelete = (id: string) => {
+  const handleOpenDelete = (id: string,fullname:string) => {
     dispatch(updateDelete(true));
     setIdUser(id);
+    setFullname(fullname)
     setTimeout(() => {
       onOpenDelete();
     }, 200);
@@ -78,6 +81,7 @@ const TableListStudent = () => {
             <Tr>
               <Th>ID</Th>
               <Th>Usename</Th>
+              <Th>Email</Th>
               <Th>Họ và tên</Th>
               <Th>Ngày tạo</Th>
               <Th>ROLE</Th>
@@ -90,7 +94,7 @@ const TableListStudent = () => {
               <>
                 {!item?.isDeleted && (
                   <Tr key={item?._id}>
-                    <Td>#{sliceString(4, 4, item?._id)}</Td>
+                    <Td>#{index+1}</Td>
                     <Td>
                       <div className="flex gap-x-2 items-center">
                         <img
@@ -102,10 +106,11 @@ const TableListStudent = () => {
                           alt=""
                           className="w-[35px] h-[35px] object-cover rounded-full"
                         />
-                        <span>{item?.username}</span>
+                        <span className="flex-1">{item?.username}</span>
                       </div>
                     </Td>
                     <Td>{item?.fullname}</Td>
+                    <Td>{item?.email}</Td>
                     <Td>{moment(item?.createdAt).format("DD/MM/YYYY")}</Td>
                     <Td>{item?.roles[0]?.roleName}</Td>
                     <Td>
@@ -126,7 +131,7 @@ const TableListStudent = () => {
                       <div className="flex items-center justify-end gap-x-4">
                         <div
                           onClick={() =>
-                            handleOpen(item?._id, item?.isDisabled)
+                            handleOpen(item?._id, item?.isDisabled,item?.fullname)
                           }
                           className={`cursor-pointer flex gap-x-2 items-center ${
                             item?.isDisabled ? "bg-green-500" : "bg-red-500"
@@ -136,7 +141,7 @@ const TableListStudent = () => {
                           <span>{item?.isDisabled ? "Mở" : "Khóa"}</span>
                         </div>
                         <div
-                          onClick={() => handleOpenDelete(item?._id)}
+                          onClick={() => handleOpenDelete(item?._id,item?.fullname)}
                           className="cursor-pointer flex gap-x-2 items-center bg-red-500 text-white px-[12px] py-[6px] rounded-lg"
                         >
                           <CiTrash />
@@ -164,12 +169,14 @@ const TableListStudent = () => {
         isOpen={isOpenLock}
         onClose={onCloseLock}
         id={idUser}
+        fullname={fullname}
         getAccountStudentList={getAccountStudentList}
       />
       <ModalDelete
         isOpen={isOpenDelete}
         onClose={onCloseDelete}
         id={idUser}
+        fullname={fullname}
         getAccountStudentList={getAccountStudentList}
       />
     </div>

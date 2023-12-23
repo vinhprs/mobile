@@ -46,6 +46,7 @@ const VideoCourseList = ({ courseDetail }: any) => {
                 lecture={lecture}
                 key={lecture?._id}
                 index={indexLec}
+                slug={lecture?.slug}
               />
             ))}
           </AccordionPanel>

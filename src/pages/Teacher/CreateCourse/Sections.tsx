@@ -25,6 +25,7 @@ import {
   deleteSectionItem,
   updateSections,
 } from "../../../store/reducers/createCourseSlice";
+import { genSlug } from "../../../utils/lib";
 interface PropsChild {
   sections: Array<SectionsProp>;
   item: SectionsProp;
@@ -51,6 +52,7 @@ const Sections = ({ item, index, sections }: PropsChild) => {
       lectureType: "",
       amount: "",
       url: "",
+      slug:genSlug(10)
     };
     dispatch(
       addLectureItem({

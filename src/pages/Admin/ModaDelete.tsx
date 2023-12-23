@@ -17,7 +17,7 @@ import {
 } from "../../store/reducers/adminSlice";
 import { useAppDispatch } from "../../hooks/appHooks";
 import { changeStatus } from "../../store/actions/admin.action";
-const ModalDelete = ({ isOpen, onClose, id, getAccountStudentList }: any) => {
+const ModalDelete = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any) => {
   const isDisable = useSelector(selectDisable);
   const isDelete = useSelector(selectDelete);
   const dispatch = useAppDispatch();
@@ -48,8 +48,8 @@ const ModalDelete = ({ isOpen, onClose, id, getAccountStudentList }: any) => {
         <ModalCloseButton />
         <ModalBody>
           <p>
-            Bạn có chắc là muốn xóa người dùng có id là{" "}
-            <span className="font-medium text-red-500">{id}</span>
+            Bạn có chắc là muốn xóa người dùng có tên là{" "}
+            <span className="font-medium text-red-500">{fullname}</span>
           </p>
         </ModalBody>
 

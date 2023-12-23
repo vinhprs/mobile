@@ -52,6 +52,7 @@ interface Lecture {
   amount: string;
   url: string;
   examId?: number;
+  slug:string;
 }
 interface Section {
   sectionName: string;

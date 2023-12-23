@@ -11,7 +11,7 @@ import { selectCourseDetail } from "../../store/reducers/courseSlice";
 const VideoCourse = () => {
   const { idcourse } = useParams();
   const search = useLocation().search;
-  const params = new URLSearchParams(search).get("id");
+  const params = new URLSearchParams(search).get("slug");
   const dispatch = useAppDispatch();
   // const [courseDetail, setCourseDetail] = useState<any>({});
   const courseDetail = useSelector(selectCourseDetail);

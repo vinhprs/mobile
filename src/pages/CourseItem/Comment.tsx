@@ -35,6 +35,10 @@ const Comment = () => {
   }, [idcourse, page]);
   return (
     <div className="flex flex-col gap-y-3">
+      {commentCourse.listData.length === 0 ? (
+        <div>Không có bình luận nào</div>
+      ):(
+        <>
       {commentCourse.listData
         .slice(0, 28)
         .map((comment: any, index: number) => (
@@ -59,6 +63,8 @@ const Comment = () => {
             </span>
           </div>
         ))}
+        </>
+      )}
     </div>
   );
 };

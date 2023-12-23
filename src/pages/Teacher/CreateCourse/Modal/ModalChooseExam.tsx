@@ -18,7 +18,7 @@ import { selectExams } from "../../../../store/reducers/examSlice";
 import { useAppDispatch } from "../../../../hooks/appHooks";
 import { getExam } from "../../../../store/actions/exam.action";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { updateLectureExamId } from "../../../../store/reducers/createCourseSlice";
+import { selectCoursesCreated, updateLectureExamId } from "../../../../store/reducers/createCourseSlice";
 const ModalChooseExam = ({
   isOpen,
   onClose,
@@ -29,6 +29,7 @@ const ModalChooseExam = ({
   index,
   indexLecture,
 }: any) => {
+  const selectedCourse = useSelector(selectCoursesCreated);
   const exams: any = useSelector(selectExams);
   const [valueExam, setValueExam] = useState("Đề thi");
   const [valueExamId, setValueExamId] = useState(0);
@@ -75,13 +76,19 @@ const ModalChooseExam = ({
                 {valueExam}
               </MenuButton>
               <MenuList>
-                {exams?.listData?.map((itemExam: any, indexExam: number) => (
+                {exams?.listData?.filter((item:any)=>item.categoryId === +selectedCourse?.categoryId && +selectedCourse?.subCategoryId===item?.subCategoryId)?.length === 0 ? (
+                  <MenuItem>Không có đề thi</MenuItem>
+                ):(
+                  <>
+                {exams?.listData?.filter((item:any)=>item.categoryId === +selectedCourse?.categoryId && +selectedCourse?.subCategoryId===item?.subCategoryId)?.map((itemExam: any, indexExam: number) => (
                   <MenuItem
                     onClick={() => handleClick(itemExam?._id, itemExam?.title)}
                   >
                     {itemExam?.title}
                   </MenuItem>
                 ))}
+                  </>
+                )}
               </MenuList>
             </Menu>
           </ModalBody>

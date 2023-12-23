@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducers";
 import { stateProps } from "../../utils/type";
+import { genSlug } from "../../utils/lib";
 
 const initialState: stateProps = {
   index: 0,
@@ -24,6 +25,7 @@ const initialState: stateProps = {
             lectureType: "",
             amount: "",
             url: "",
+            slug:genSlug(10)
           },
         ],
       },
