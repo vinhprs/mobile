@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducers";
 import { stateProps } from "../../utils/type";
 import { genSlug } from "../../utils/lib";
+import { getStatusTeacher } from "../actions/course.action";
 
 const initialState: stateProps = {
   index: 0,
@@ -31,6 +32,7 @@ const initialState: stateProps = {
       },
     ],
   },
+  status:{}
 };
 const createCourseSlice = createSlice({
   name: "createCourse",
@@ -167,7 +169,11 @@ const createCourseSlice = createSlice({
       }
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(getStatusTeacher.fulfilled,(state,actions)=>{
+      state.status = actions.payload.data
+    })
+  },
 });
 export const {
   updateArray,
@@ -200,3 +206,4 @@ export const selectIndexCreateStep = (state: RootState) =>
   state.createCourse.index;
 export const selectCoursesCreated = (state: RootState) =>
   state.createCourse.course;
+export const selectStatusTeacher = (state:RootState)=>state.createCourse.status

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./rootReducers";
-import { getComments, getCommentsCourse } from "../actions/comment.action";
+import { getAllCommentTeacherCourse, getComments, getCommentsCourse } from "../actions/comment.action";
 const initState = {
   commentLecture: {},
   comments: {},
@@ -11,6 +11,7 @@ const initState = {
     total: 0,
     totalPage: 0,
   },
+  commentStatus:{}
 };
 const commentSlice = createSlice({
   name: "comment",
@@ -32,6 +33,9 @@ const commentSlice = createSlice({
       state.commentCourse.total = actions.payload.data.total;
       state.commentCourse.totalPage = actions.payload.data.totalPage;
     });
+    builder.addCase(getAllCommentTeacherCourse.fulfilled,(state,actions)=>{
+      state.commentStatus = actions.payload.data
+    })
   },
 });
 export default commentSlice.reducer;
@@ -43,3 +47,4 @@ export const selectCommentLecture = (state: RootState) =>
   state.comment.commentLecture;
 export const selectCommentCourse = (state: RootState) =>
   state.comment.commentCourse;
+export const selectGetAllCommnetStatus= (state:RootState)=>state.comment.commentStatus

@@ -99,3 +99,14 @@ export const uploadVideo = createAsyncThunk(
     }
   }
 );
+export const getStatusTeacher = createAsyncThunk(
+  "course/getStatusTeacher",
+  async(params:any,{dispatch,getState,rejectWithValue})=>{
+    try{
+      const res = await courseService.getStatusTeacher()
+      return res;
+    }catch(err){
+      return rejectWithValue(err)
+    }
+  }
+)

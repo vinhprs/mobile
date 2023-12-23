@@ -26,5 +26,8 @@ export const courseService = {
   },
   uploadVideo:(params:any)=>{
     return axiosClient.post(`files/upload-video`,params)
+  },
+  getStatusTeacher:()=>{
+    return axiosClient.get(`/course/teacher/statistic`)
   }
 };

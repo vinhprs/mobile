@@ -15,4 +15,7 @@ export const commentService = {
       `/comments/course/${courseId}?${queryParam.toString()}`
     );
   },
+  getAllCommentTeacherCourse:(params:any)=>{
+    return axiosClient.get(`/comments/teacher?${params.toString()}`)
+  }
 };

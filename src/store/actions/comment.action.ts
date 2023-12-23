@@ -33,3 +33,14 @@ export const getCommentsCourse = createAsyncThunk(
     }
   }
 );
+export const getAllCommentTeacherCourse = createAsyncThunk(
+  "comment/getAllCommentTeacherCourse",
+  async(params:any,{dispatch, getState, rejectWithValue})=>{
+    try{
+      const res = await commentService.getAllCommentTeacherCourse(params)
+      return res
+    }catch(err){
+      return rejectWithValue(err)
+    }
+  }
+)

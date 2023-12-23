@@ -72,4 +72,5 @@ export interface stateProps {
   index: number;
   tabCourse: Array<number>;
   course: Course;
+  status:Object
 }
