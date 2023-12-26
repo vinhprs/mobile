@@ -46,7 +46,7 @@ const CommentVideoCourse = () => {
     const res: any = await dispatch(getComments(payloadParam));
     if (res.meta.requestStatus === "fulfilled" && res.payload) {
       if (loadingComment) {
-        dispatch(updateCommentList(comment));
+        dispatch(updateCommentList(res?.payload?.data?.listData));
       } else {
         dispatch(
           updateCommentList([...comment, ...res?.payload?.data?.listData])
@@ -72,7 +72,9 @@ const CommentVideoCourse = () => {
       setValueComment("");
       setTimeout(() => {
         if (params) {
-          getComment(page, params);
+          dispatch(updateCommentList([...[res?.payload?.data],...comment]));
+      setLoadingPost(false);
+
         }
       }, 500);
     }
@@ -113,7 +115,7 @@ const CommentVideoCourse = () => {
       </div>
       <h1 className="font-semibold text-xl">
         Tất cả câu hỏi trong khóa học này{" "}
-        <span className="text-[#ACADAE]">({comment?.length})</span>
+        <span className="text-[#ACADAE]">({comment.length})</span>
       </h1>
       <div className="mx-4">
         <div className="flex flex-col gap-y-3 mb-5">
