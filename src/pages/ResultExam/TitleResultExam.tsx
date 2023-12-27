@@ -80,7 +80,7 @@ const TitleResultExam = () => {
               <IoMdTime className="text-[#FF6636] text-[20px]" />
               <span>
                 Thời gian làm:{" "}
-                <span className="text-[#FF6636] font-semibold">1/45 phút</span>
+                <span className="text-[#FF6636] font-semibold">{questionResult?.completeTime}/45 phút</span>
               </span>
             </div>
             <div className="flex items-center gap-x-[10px]">
@@ -88,7 +88,7 @@ const TitleResultExam = () => {
               <span>
                 Tốc độ:{" "}
                 <span className="text-[#FF6636] font-semibold">
-                  1.35 giây/câu
+                  {questionResult?.completeTime/4} giây/câu
                 </span>
               </span>
             </div>

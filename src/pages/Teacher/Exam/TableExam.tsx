@@ -23,6 +23,8 @@ const TableExam = ({ exams, getExams }: any) => {
               <Th>ID</Th>
               <Th>Đề thi</Th>
               <Th>Xem đề thi</Th>
+              <Th>Lớp</Th>
+              <Th>Môn học</Th>
               <Th>Ngày tạo</Th>
               <Th textAlign="center">Thời gian</Th>
               <Th></Th>

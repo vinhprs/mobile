@@ -98,7 +98,7 @@ const LoginForm = () => {
     } else {
       toast({
         title: "Lỗi đăng nhập",
-        description: response?.payload?.message,
+        // description: response?.payload?.message,
         status: "error",
         duration: 9000,
         isClosable: true,

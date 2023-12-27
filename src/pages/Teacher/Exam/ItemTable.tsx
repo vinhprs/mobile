@@ -41,6 +41,8 @@ const ItemTable = ({ item, getExams }: any) => {
             Xem đề thi
           </button>
         </Td>
+        <Td>{item?.category?.categoryName}</Td>
+        <Td>{item?.subCategory?.categoryName}</Td>
         <Td>{moment(item?.createdAt).format("DD/MM/YYYY")}</Td>
         <Td textAlign="center">{item.time} phút</Td>
         <Td>

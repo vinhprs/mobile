@@ -35,7 +35,7 @@ const MainExam = () => {
 
   return (
     <>
-      <div className="max-w-[1000px] p-[24px] w-full mx-auto flex flex-col gap-y-4">
+      <div className="max-w-[1200px] p-[24px] w-full mx-auto flex flex-col gap-y-4">
         <div>
           <div className="flex justify-between items-center">
             <h1 className="text-[20px] text-[#1D2026] font-semibold">
