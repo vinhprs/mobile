@@ -129,17 +129,17 @@ const Course = ({ item, getListCourse }: any) => {
               </span> */}
             </div>
             <div className="flex gap-x-6">
-              <div className="flex gap-x-2">
+              {/* <div className="flex gap-x-2">
                 <BsPeople className="text-[20px] text-[#564FFD]" />
                 <span className="text-[14px] font-medium text-[#4E5566]">
                   236{" "}
                   <span className="text-[#8C94A3] font-normal">học sinh</span>
                 </span>
-              </div>
+              </div> */}
               <div className="flex gap-x-2">
                 <AiOutlineClockCircle className="text-[20px] text-[#23BD33]" />
                 <span className="text-[#8C94A3] font-normal text-[14px]">
-                  6 giờ học tất cả
+                  {Math.floor(+item?.totalDuration/60)} giờ học tất cả
                 </span>
               </div>
             </div>
