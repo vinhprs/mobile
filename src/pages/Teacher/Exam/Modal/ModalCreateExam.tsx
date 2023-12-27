@@ -51,15 +51,23 @@ const ModalCreateExam = ({
   const getCategories = async () => {
     const response: any = await dispatch(getCategory({}));
     if (response.meta.requestStatus === "fulfilled" && response.payload) {
+      const newArray = []
       for (let i = 0; i < response.payload?.data?.length; i++) {
-        setGrade((prev: any) => [
-          ...prev,
+        newArray.push(
           {
             id: response.payload?.data[i]?._id,
             name: response.payload?.data[i]?.categoryName,
           },
-        ]);
+        )
+        
+        // setGrade((prev: any) => [
+        //   {
+        //     id: response.payload?.data[i]?._id,
+        //     name: response.payload?.data[i]?.categoryName,
+        //   },
+        // ]);
       }
+      setGrade(newArray)
       setGradeTemp(response.payload?.data);
     }
   };
