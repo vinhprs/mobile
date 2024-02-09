@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Course from "./Course";
+import React, { useState } from 'react';
+import Course from './Course';
 
-import PagiantionNew from "../../components/Pagination/PagiantionNew";
-import { useSelector } from "react-redux";
-import { selectCourse, selectLoading } from "../../store/reducers/courseSlice";
-import { Spinner } from "@chakra-ui/react";
+import PagiantionNew from '../../components/Pagination/PagiantionNew';
+import { useSelector } from 'react-redux';
+import { selectCourse, selectLoading } from '../../store/reducers/courseSlice';
+import { Spinner } from '@chakra-ui/react';
 
 const Courses = ({ setPage, page, getListCourse }: any) => {
   const course = useSelector(selectCourse);

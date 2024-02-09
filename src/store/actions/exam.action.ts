@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { examService } from "../services/exam.service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { examService } from '../services/exam.service';
 export const createExam = createAsyncThunk(
-  "exam/createExam",
+  'exam/createExam',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const response = await examService.createExam(params);
@@ -12,7 +12,7 @@ export const createExam = createAsyncThunk(
   }
 );
 export const getExam = createAsyncThunk(
-  "exam/createExam",
+  'exam/createExam',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.getExam(params);
@@ -23,7 +23,7 @@ export const getExam = createAsyncThunk(
   }
 );
 export const updateExam = createAsyncThunk(
-  "exam/updateExam",
+  'exam/updateExam',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.updateExam(params);
@@ -34,7 +34,7 @@ export const updateExam = createAsyncThunk(
   }
 );
 export const deleteExam = createAsyncThunk(
-  "exam/deleteExam",
+  'exam/deleteExam',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.deleteExam(params);
@@ -45,7 +45,7 @@ export const deleteExam = createAsyncThunk(
   }
 );
 export const getExamDetail = createAsyncThunk(
-  "exam/getExamDetail",
+  'exam/getExamDetail',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.getExamDetail(params);
@@ -56,7 +56,7 @@ export const getExamDetail = createAsyncThunk(
   }
 );
 export const postExamResult = createAsyncThunk(
-  "exam/postExam",
+  'exam/postExam',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.postExam(params);
@@ -67,7 +67,7 @@ export const postExamResult = createAsyncThunk(
   }
 );
 export const getRanking = createAsyncThunk(
-  "exam/getRanking",
+  'exam/getRanking',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await examService.getRanking(params);

@@ -1,7 +1,7 @@
-import axiosClient from "./axiosClient";
+import axiosClient from './axiosClient';
 export const examService = {
   createExam: (params: any) => {
-    return axiosClient.post(`exam/teacher/create`, params);
+    return axiosClient.post('exam/teacher/create', params);
   },
   getExam: (params: any) => {
     return axiosClient.get(`exam/teacher/my-exam?${params.toString()}`);
@@ -16,7 +16,7 @@ export const examService = {
     return axiosClient.get(`exam/${params}`);
   },
   postExam: (params: any) => {
-    return axiosClient.post(`exam/student/take-exam`, params);
+    return axiosClient.post('exam/student/take-exam', params);
   },
   getRanking: (params: any) => {
     return axiosClient.get(`/exam/ranking?${params.toString()}`);

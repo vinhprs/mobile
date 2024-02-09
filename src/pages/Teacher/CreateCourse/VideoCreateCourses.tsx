@@ -1,5 +1,5 @@
-import React from "react";
-import FormCreateVideo from "./FormCreateVideo";
+import React from 'react';
+import FormCreateVideo from './FormCreateVideo';
 
 const VideoCreateCourses = () => {
   return (

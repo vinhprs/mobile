@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,11 +8,11 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { selectDelete, selectDisable } from "../../store/reducers/adminSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { changeStatus } from "../../store/actions/admin.action";
+} from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import { selectDelete, selectDisable } from '../../../store/reducers/adminSlice';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { changeStatus } from '../../../store/actions/admin.action';
 const ModalLock = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any) => {
   const isDisable = useSelector(selectDisable);
   const isDelete = useSelector(selectDelete);
@@ -25,7 +25,7 @@ const ModalLock = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any)
       isDeleted: isDelete,
     };
     const res = await dispatch(changeStatus(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       setIsLoading(false);
       onClose();
       setTimeout(await getAccountStudentList(), 500);
@@ -39,12 +39,12 @@ const ModalLock = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any)
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{isDisable ? "Khóa" : "Mở"} người dùng</ModalHeader>
+        <ModalHeader>{isDisable ? 'Khóa' : 'Mở'} người dùng</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <p>
-            Bạn có chắc là muốn {isDisable ? "khóa" : "mở"} người dùng có tên là{" "}
-            <span className={`font-medium ${isDisable ? "text-red-500" : "text-green-500"}`}>{fullname}</span>
+            Bạn có chắc là muốn {isDisable ? 'khóa' : 'mở'} người dùng có tên là{' '}
+            <span className={`font-medium ${isDisable ? 'text-red-500' : 'text-green-500'}`}>{fullname}</span>
           </p>
         </ModalBody>
 
@@ -53,11 +53,11 @@ const ModalLock = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any)
             Đóng
           </Button>
           <Button
-            colorScheme={isDisable ? "red" : "green"}
+            colorScheme={isDisable ? 'red' : 'green'}
             onClick={handleSwitchButton}
             isLoading={isLoading}
           >
-            {isDisable ? "Khóa" : "Mở"}
+            {isDisable ? 'Khóa' : 'Mở'}
           </Button>
         </ModalFooter>
       </ModalContent>

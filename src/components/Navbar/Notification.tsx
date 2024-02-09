@@ -1,6 +1,7 @@
-import React from "react";
-import { BiBell } from "react-icons/bi";
-import { Link } from "react-router-dom";
+/* eslint-disable react/no-unescaped-entities */
+import React from 'react';
+import { BiBell } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const Notification = () => {
   return (

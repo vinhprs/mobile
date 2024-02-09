@@ -1,6 +1,6 @@
-import React from "react";
-import CartList from "./CartList";
-import { useSelector } from "react-redux";
+import React from 'react';
+import CartList from './CartList';
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
   return (

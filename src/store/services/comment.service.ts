@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient";
+import axiosClient from './axiosClient';
 export const commentService = {
   getComment: (params: any) => {
     const { lectureId, queryParam } = params;
@@ -7,7 +7,7 @@ export const commentService = {
     );
   },
   postComment: (params: any) => {
-    return axiosClient.post(`/comments`, params);
+    return axiosClient.post('/comments', params);
   },
   getCommentCourse: (params: any) => {
     const { courseId, queryParam } = params;
@@ -16,6 +16,6 @@ export const commentService = {
     );
   },
   getAllCommentTeacherCourse:(params:any)=>{
-    return axiosClient.get(`/comments/teacher?${params.toString()}`)
+    return axiosClient.get(`/comments/teacher?${params.toString()}`);
   }
 };

@@ -1,8 +1,9 @@
-import { useEffect } from "react";
-import Question from "./Question";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { useSelector } from "react-redux";
-import { postExam, selectExamPost } from "../../store/reducers/examSlice";
+/* eslint-disable react/react-in-jsx-scope */
+import { useEffect } from 'react';
+import Question from './Question';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { useSelector } from 'react-redux';
+import { postExam, selectExamPost } from '../../store/reducers/examSlice';
 
 const TitleAssignmet = ({ questions }: any) => {
   return (

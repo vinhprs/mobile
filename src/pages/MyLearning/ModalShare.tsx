@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,7 +8,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -17,8 +17,8 @@ import {
   TwitterShareButton,
   FacebookMessengerIcon,
   FacebookMessengerShareButton,
-} from "react-share";
-import twitter from "../../image/Mycourse/logoTwitter.png";
+} from 'react-share';
+import twitter from '../../image/Mycourse/logoTwitter.png';
 const ModalShare = ({ isOpen, onClose }: any) => {
   return (
     <Modal size="2xl" isCentered isOpen={isOpen} onClose={onClose}>
@@ -51,7 +51,7 @@ const ModalShare = ({ isOpen, onClose }: any) => {
             </TelegramShareButton>
             <FacebookMessengerShareButton
               url="https://www.udemy.com/share/101uI03@gr_C6f3MQmtrUmTkAzac9Dzkeop10H7OIzSjORr0c72wX7FDuNiYjDVbNuof8VGEhw==/"
-              appId={""}
+              appId={''}
             >
               <FacebookMessengerIcon size={52} round={true} />
             </FacebookMessengerShareButton>

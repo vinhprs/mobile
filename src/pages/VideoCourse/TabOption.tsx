@@ -1,9 +1,9 @@
-import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import CommentVideoCourse from "./CommentVideoCourse";
-import Assignments from "./Assignments";
-import Notes from "./Notes";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import CommentVideoCourse from './CommentVideoCourse';
+import Assignments from './Assignments';
+import Notes from './Notes';
+import { useLocation } from 'react-router-dom';
 const TabOption = ({ courseDetail }: any) => {
   return (
     <div>

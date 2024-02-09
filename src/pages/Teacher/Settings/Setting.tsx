@@ -1,6 +1,6 @@
-import React from "react";
-import Infomation from "./Infomation";
-import ChangPass from "./ChangPass";
+import React from 'react';
+import Infomation from './Infomation';
+import ChangPass from './ChangPass';
 
 const Setting = () => {
   return (

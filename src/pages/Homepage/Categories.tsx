@@ -1,6 +1,6 @@
-import React from "react";
-import { categories } from "../../dummydata/dummydata";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { categories } from '../../dummydata/dummydata';
+import { Link } from 'react-router-dom';
 const Categories = () => {
   return (
     <div className="max-w-[1350px] w-full mx-auto text-[#272829] mb-[100px]">

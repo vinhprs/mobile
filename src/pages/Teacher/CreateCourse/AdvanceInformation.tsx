@@ -1,11 +1,11 @@
-import React from "react";
-import FormAdvance from "./FormAdvance";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import FormAdvance from './FormAdvance';
+import { useNavigate } from 'react-router-dom';
 
 const AdvanceInformation = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/teacher/courses");
+    navigate('/teacher/courses');
   };
   return (
     <div>

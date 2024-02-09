@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -10,23 +10,23 @@ import {
   TableCaption,
   TableContainer,
   useDisclosure,
-} from "@chakra-ui/react";
-import PagiantionNew from "../../components/Pagination/PagiantionNew";
-import { CiTrash } from "react-icons/ci";
-import { MdBlock, MdOutlineLock } from "react-icons/md";
-import ModalLock from "./ModalLock";
-import ModalDelete from "./ModaDelete";
-import { useSelector } from "react-redux";
+} from '@chakra-ui/react';
+import PagiantionNew from '../../components/Pagination/PagiantionNew';
+import { CiTrash } from 'react-icons/ci';
+import { MdBlock, MdOutlineLock } from 'react-icons/md';
+import ModalLock from './Modal/ModalLock';
+import ModalDelete from './Modal/ModaDelete';
+import { useSelector } from 'react-redux';
 import {
   selectAccountList,
   updateDelete,
   updateDisable,
-} from "../../store/reducers/adminSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getAccountList } from "../../store/actions/admin.action";
-import moment from "moment";
-import { sliceString } from "../../utils/lib";
-import ModalCreateTeacher from "./ModalCreateTeacher";
+} from '../../store/reducers/adminSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getAccountList } from '../../store/actions/admin.action';
+import moment from 'moment';
+import { sliceString } from '../../utils/lib';
+import ModalCreateTeacher from './Modal/ModalCreateTeacher';
 const TableListTeacher = () => {
   const [page, setPage] = useState(1);
   const handleChange = (page: number) => {
@@ -36,14 +36,14 @@ const TableListTeacher = () => {
   const dispatch = useAppDispatch();
   const getAccountStudentList = async () => {
     const payload = new URLSearchParams({
-      role: "TEACHER",
+      role: 'TEACHER',
     });
     const res = await dispatch(getAccountList(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
     }
   };
-  const [idUser, setIdUser] = useState("");
+  const [idUser, setIdUser] = useState('');
   const {
     isOpen: isOpenLock,
     onOpen: onOpenLock,
@@ -109,7 +109,7 @@ const TableListTeacher = () => {
                           src={`${
                             item?.avatar
                               ? item?.avatar
-                              : "https://images.pexels.com/photos/17153119/pexels-photo-17153119/free-photo-of-dan-ba-d-i-m-t-chan-dung-s-c-d-p.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                              : 'https://images.pexels.com/photos/17153119/pexels-photo-17153119/free-photo-of-dan-ba-d-i-m-t-chan-dung-s-c-d-p.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                           }`}
                           alt=""
                           className="w-[35px] h-[35px] object-cover rounded-full"
@@ -118,19 +118,19 @@ const TableListTeacher = () => {
                       </div>
                     </Td>
                     <Td>{item?.fullname}</Td>
-                    <Td>{moment(item?.createdAt).format("DD/MM/YYYY")}</Td>
+                    <Td>{moment(item?.createdAt).format('DD/MM/YYYY')}</Td>
                     <Td>{item?.roles[0]?.roleName}</Td>
                     <Td>
                       <div className="flex gap-x-2 items-center">
                         <div
                           className={`w-[8px] h-[8px] rounded-full ${
-                            item?.isDisabled ? "bg-red-500" : "bg-green-500"
+                            item?.isDisabled ? 'bg-red-500' : 'bg-green-500'
                           }`}
                         ></div>
                         <span>
                           {item?.isDisabled
-                            ? "Đã khóa tài khoản"
-                            : "Đã kích hoạt tài khoản"}
+                            ? 'Đã khóa tài khoản'
+                            : 'Đã kích hoạt tài khoản'}
                         </span>
                       </div>
                     </Td>
@@ -141,11 +141,11 @@ const TableListTeacher = () => {
                             handleOpen(item?._id, item?.isDisabled)
                           }
                           className={`cursor-pointer flex gap-x-2 items-center ${
-                            item?.isDisabled ? "bg-green-500" : "bg-red-500"
+                            item?.isDisabled ? 'bg-green-500' : 'bg-red-500'
                           }  text-white px-[12px] py-[6px] rounded-lg`}
                         >
                           {item?.isDisabled ? <MdOutlineLock /> : <MdBlock />}
-                          <span>{item?.isDisabled ? "Mở" : "Khóa"}</span>
+                          <span>{item?.isDisabled ? 'Mở' : 'Khóa'}</span>
                         </div>
                         <div
                           onClick={() => handleOpenDelete(item?._id)}

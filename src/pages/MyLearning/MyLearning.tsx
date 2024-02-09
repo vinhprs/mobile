@@ -1,11 +1,11 @@
-import React from "react";
-import { BsThreeDotsVertical, BsPlayFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import Mycourse from "./Mycourse";
-import CourseList from "../Homepage/CourseList";
-import { useSelector } from "react-redux";
-import { selectCourseTab } from "../../store/reducers/courseTabSlice";
+import React from 'react';
+import { BsThreeDotsVertical, BsPlayFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import Mycourse from './Mycourse';
+import CourseList from '../Homepage/CourseList';
+import { useSelector } from 'react-redux';
+import { selectCourseTab } from '../../store/reducers/courseTabSlice';
 const MyLearning = () => {
   const courseTab = useSelector(selectCourseTab);
   return (

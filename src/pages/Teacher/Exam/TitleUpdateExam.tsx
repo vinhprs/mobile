@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Select from "./Select";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import Select from './Select';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 import {
   selectCategory,
   selectCategoryById,
@@ -9,12 +9,12 @@ import {
   updateSubject,
   updateTime,
   updateTitle,
-} from "../../../store/reducers/examSlice";
-import { useAppDispatch } from "../../../hooks/appHooks";
+} from '../../../store/reducers/examSlice';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   getCategory,
   getCategoryById,
-} from "../../../store/actions/user.action";
+} from '../../../store/actions/user.action';
 
 const TitleUpdateExam = ({ item }: any) => {
   const categories = useSelector(selectCategory);
@@ -102,7 +102,7 @@ const TitleUpdateExam = ({ item }: any) => {
             <span>
               {categoryById?.childs?.filter(
                 (item: any) => item?._id === itemSubId
-              )[0]?.categoryName || "Môn học"}
+              )[0]?.categoryName || 'Môn học'}
             </span>
             <MdOutlineKeyboardArrowDown />
           </div>

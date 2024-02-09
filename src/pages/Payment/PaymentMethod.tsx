@@ -1,15 +1,15 @@
-import { Button } from "@chakra-ui/react";
-import React from "react";
-import { useSelector } from "react-redux";
+import { Button } from '@chakra-ui/react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   selectCartList,
   selectCartListSub,
   selectIsBuyNow,
-} from "../../store/reducers/cartSlice";
-import { formatMoney } from "../../utils/lib";
-import vnpay from "../../image/Payment/202166185_2021396718013233_8499389898242103910_n.png";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { paymentCart } from "../../store/actions/payment.action";
+} from '../../store/reducers/cartSlice';
+import { formatMoney } from '../../utils/lib';
+import vnpay from '../../image/Payment/202166185_2021396718013233_8499389898242103910_n.png';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { paymentCart } from '../../store/actions/payment.action';
 
 const PaymentMethod = () => {
   const cartList: any = useSelector(selectCartList);
@@ -30,11 +30,11 @@ const PaymentMethod = () => {
       }));
     }
     const payload = {
-      paymentMethod: "vnpay",
+      paymentMethod: 'vnpay',
       items: newArray,
     };
     const res: any = await dispatch(paymentCart(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       window.open(res.payload.data);
     }
   };
@@ -70,10 +70,10 @@ const PaymentMethod = () => {
       <Button
         color="white"
         bg="#FF6636"
-        _hover={{ bg: "#fe6131" }}
+        _hover={{ bg: '#fe6131' }}
         onClick={handleCheckoutCart}
       >
-        Thanh toán khóa học{" "}
+        Thanh toán khóa học{' '}
       </Button>
     </div>
   );

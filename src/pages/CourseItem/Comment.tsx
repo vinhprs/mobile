@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectCommentCourse } from "../../store/reducers/commentSlice";
-import { useParams } from "react-router-dom";
-import { getCommentsCourse } from "../../store/actions/comment.action";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { convertTimeToAgo } from "../../utils/lib";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectCommentCourse } from '../../store/reducers/commentSlice';
+import { useParams } from 'react-router-dom';
+import { getCommentsCourse } from '../../store/actions/comment.action';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { convertTimeToAgo } from '../../utils/lib';
 
 const Comment = () => {
   const { idcourse } = useParams();
@@ -12,12 +12,12 @@ const Comment = () => {
   const [page, setPage] = useState(1);
   const commentCourse = useSelector(selectCommentCourse);
   console.log(
-    "🚀 ~ file: Comment.tsx:13 ~ Comment ~ commentCourse:",
+    '🚀 ~ file: Comment.tsx:13 ~ Comment ~ commentCourse:',
     commentCourse
   );
   const getCommentCourseItem = async (id: any, page: number) => {
     const payload = new URLSearchParams({
-      limit: "27",
+      limit: '27',
       page: page.toString(),
     });
     const payloadItem = {
@@ -25,8 +25,7 @@ const Comment = () => {
       queryParam: payload,
     };
     const res = await dispatch(getCommentsCourse(payloadItem));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-    }
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) { /* empty */ }
   };
   useEffect(() => {
     if (idcourse) {
@@ -39,30 +38,30 @@ const Comment = () => {
         <div>Không có bình luận nào</div>
       ):(
         <>
-      {commentCourse.listData
-        .slice(0, 28)
-        .map((comment: any, index: number) => (
-          <div>
-            <div className="grid grid-cols-[50px_1fr] gap-x-2" key={index}>
-              <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src={comment?.authorThumbnail}
-                  alt=""
-                />
-              </div>
-              <div>
-                <span className="font-medium text-[16px] text-[#1D2026]">
-                  {comment?.author}
+          {commentCourse.listData
+            .slice(0, 28)
+            .map((comment: any, index: number) => (
+              <div key={comment?._id}>
+                <div className="grid grid-cols-[50px_1fr] gap-x-2" key={index}>
+                  <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={comment?.authorThumbnail}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <span className="font-medium text-[16px] text-[#1D2026]">
+                      {comment?.author}
+                    </span>
+                    <p className="text-[14px] text-[#4E5566]">{comment?.content}</p>
+                  </div>
+                </div>
+                <span className="text-[14px]">
+                  {convertTimeToAgo(comment?.createdAt)}
                 </span>
-                <p className="text-[14px] text-[#4E5566]">{comment?.content}</p>
               </div>
-            </div>
-            <span className="text-[14px]">
-              {convertTimeToAgo(comment?.createdAt)}
-            </span>
-          </div>
-        ))}
+            ))}
         </>
       )}
     </div>

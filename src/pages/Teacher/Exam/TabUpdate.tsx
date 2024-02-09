@@ -1,10 +1,10 @@
-import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import TitleUpdateExam from "./TitleUpdateExam";
-import ExamUpdate from "./ExamUpdate";
-import ExamDetail from "./ExamDetail";
-import { useSelector } from "react-redux";
-import { selectExam, selectExamTemp } from "../../../store/reducers/examSlice";
+import React from 'react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import TitleUpdateExam from './TitleUpdateExam';
+import ExamUpdate from './ExamUpdate';
+import ExamDetail from './ExamDetail';
+import { useSelector } from 'react-redux';
+import { selectExam, selectExamTemp } from '../../../store/reducers/examSlice';
 interface TabUpdateProps {
   item: any;
 }

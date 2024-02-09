@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Drawer,
   DrawerBody,
@@ -7,18 +7,18 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-} from "@chakra-ui/react";
-import { navbar } from "../../dummydata/dummydata";
-import DropdownNavbar from "../DropdownNavbar/DropdownNavbar";
-import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getCategory } from "../../store/actions/user.action";
+} from '@chakra-ui/react';
+import { navbar } from '../../dummydata/dummydata';
+import DropdownNavbar from '../DropdownNavbar/DropdownNavbar';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getCategory } from '../../store/actions/user.action';
 const ModalMenu = ({ isOpen, onClose, drawerRef }: any) => {
   const dispatch = useAppDispatch();
   const [category, setCategory] = useState<any>([]);
   const getCategorySidebar = async () => {
     const res: any = await dispatch(getCategory({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       setCategory(res?.payload.data);
     }
   };

@@ -1,18 +1,18 @@
-import { Button, Checkbox, useToast } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { signupSchema } from "../../schema/schema";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { signup } from "../../store/actions/auth.action";
-import { useNavigate } from "react-router-dom";
-import { LocalStorage } from "../../utils/LocalStorage";
+import { Button, Checkbox, useToast } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { signupSchema } from '../../schema/schema';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { signup } from '../../store/actions/auth.action';
+import { useNavigate } from 'react-router-dom';
+import { LocalStorage } from '../../utils/LocalStorage';
 import {
   updateIsLogged,
   updateUserId,
   updateUserRole,
-} from "../../store/reducers/authSlice";
+} from '../../store/reducers/authSlice';
 interface SignupProps {
   email: string;
   username: string;
@@ -34,10 +34,10 @@ const SignupForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<SignupProps>({
     defaultValues: {
-      email: "",
-      username: "",
-      password: "",
-      confirmPassword: "",
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
     },
     resolver: yupResolver(signupSchema),
   });
@@ -53,15 +53,15 @@ const SignupForm = () => {
       role: 1,
     };
     const response: any = await dispatch(signup(payload));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       if (response?.payload?.error) {
         toast({
-          title: "Lỗi đăng ký",
+          title: 'Lỗi đăng ký',
           description: response?.payload?.message,
-          status: "error",
+          status: 'error',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
       } else {
         LocalStorage.setToken(response?.payload?.data?.token);
@@ -72,15 +72,15 @@ const SignupForm = () => {
         dispatch(updateIsLogged(true));
         // console.log(response);
         toast({
-          title: "Đăng ký thành công",
+          title: 'Đăng ký thành công',
           description: response?.payload?.message,
-          status: "success",
+          status: 'success',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
         setTimeout(() => {
-          navigate("/signup/otp");
+          navigate('/signup/otp');
         });
       }
     }
@@ -92,11 +92,11 @@ const SignupForm = () => {
           <div>
             <div className="text-[14px] font-light mb-[2px]">Email</div>
             <input
-              {...register("email")}
+              {...register('email')}
               type="text"
               placeholder="Email"
               className={`focus:outline-none text-[14px] w-full px-3 py-3 outline-none border-[1px] ${
-                errors.email ? "border-red-500" : "border-[#E9EAF0]"
+                errors.email ? 'border-red-500' : 'border-[#E9EAF0]'
               } placeholder:text-[#8C94A3] placeholder:font-normal `}
             />
             <span className="text-[12px] text-red-500">
@@ -106,11 +106,11 @@ const SignupForm = () => {
           <div>
             <div className="text-[14px] font-light mb-[2px]">Username</div>
             <input
-              {...register("username")}
+              {...register('username')}
               type="text"
               placeholder="Username"
               className={`focus:outline-none text-[14px] w-full px-3 py-3 outline-none border-[1px] ${
-                errors.username ? "border-red-500" : "border-[#E9EAF0]"
+                errors.username ? 'border-red-500' : 'border-[#E9EAF0]'
               } placeholder:text-[#8C94A3] placeholder:font-normal `}
             />
             <span className="text-[12px] text-red-500">
@@ -121,14 +121,14 @@ const SignupForm = () => {
             <div className="text-[14px] font-light mb-[2px]">Mật khẩu</div>
             <div
               className={`flex items-center gap-x-2 justify-between w-full px-3 py-3 outline-none border-[1px] ${
-                errors.password ? "border-red-500" : "border-[#E9EAF0]"
+                errors.password ? 'border-red-500' : 'border-[#E9EAF0]'
               }`}
             >
               <input
-                {...register("password")}
-                type={showPass ? "text" : "password"}
+                {...register('password')}
+                type={showPass ? 'text' : 'password'}
                 placeholder="Mật khẩu"
-                className={`w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal`}
+                className={'w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal'}
               />
               {showPass ? (
                 <AiFillEyeInvisible
@@ -153,15 +153,15 @@ const SignupForm = () => {
             <div
               className={`flex items-center gap-x-2 justify-between w-full px-3 py-3 outline-none ${
                 errors.confirmPassword
-                  ? "border-[1px] border-red-500"
-                  : "border-[1px] border-[#E9EAF0]"
+                  ? 'border-[1px] border-red-500'
+                  : 'border-[1px] border-[#E9EAF0]'
               }`}
             >
               <input
-                {...register("confirmPassword")}
-                type={showConfirmPass ? "text" : "password"}
+                {...register('confirmPassword')}
+                type={showConfirmPass ? 'text' : 'password'}
                 placeholder="Xác nhận mật khẩu"
-                className={`w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal`}
+                className={'w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal'}
               />
               {showConfirmPass ? (
                 <AiFillEyeInvisible
@@ -192,7 +192,7 @@ const SignupForm = () => {
           </Checkbox>
           <Button
             isDisabled={!isChecked}
-            _hover={{ bg: "#f6511f" }}
+            _hover={{ bg: '#f6511f' }}
             w="100%"
             bg="#FF6636"
             color="white"

@@ -1,13 +1,13 @@
-import { Button, useToast } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { emailForgetPasswordScheme } from "../../schema/schema";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { forgetPassword } from "../../store/actions/auth.action";
-import { LocalStorage } from "../../utils/LocalStorage";
-import { updateUserId } from "../../store/reducers/authSlice";
+import { Button, useToast } from '@chakra-ui/react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { emailForgetPasswordScheme } from '../../schema/schema';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { forgetPassword } from '../../store/actions/auth.action';
+import { LocalStorage } from '../../utils/LocalStorage';
+import { updateUserId } from '../../store/reducers/authSlice';
 interface ForgetPasswordProps {
   emailForgetPassword: string;
 }
@@ -21,7 +21,7 @@ const ForgetPassword = () => {
     formState: { errors, isSubmitting },
   } = useForm<ForgetPasswordProps>({
     defaultValues: {
-      emailForgetPassword: "",
+      emailForgetPassword: '',
     },
     resolver: yupResolver(emailForgetPasswordScheme),
   });
@@ -30,28 +30,28 @@ const ForgetPassword = () => {
       email: data.emailForgetPassword,
     };
     const response: any = await dispatch(forgetPassword(payload));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       if (response?.payload?.error) {
         toast({
-          title: "Lỗi",
+          title: 'Lỗi',
           description: response?.payload?.message,
-          status: "error",
+          status: 'error',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
       } else {
         toast({
-          title: "Thành công",
+          title: 'Thành công',
           description: response?.payload?.message,
-          status: "success",
+          status: 'success',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
         dispatch(updateUserId(response?.payload?.data));
         setTimeout(() => {
-          navigate("/forgetpassword/otp");
+          navigate('/forgetpassword/otp');
         }, 1500);
       }
     }
@@ -67,13 +67,13 @@ const ForgetPassword = () => {
             <div className="mb-3">
               <div className="text-[14px] mb-[5px]">Nhập email</div>
               <input
-                {...register("emailForgetPassword")}
+                {...register('emailForgetPassword')}
                 type="text"
                 placeholder="Email"
                 className={`focus:outline-none text-[14px] w-[300px] px-3 py-3 outline-none border-[1px] ${
                   errors.emailForgetPassword
-                    ? "border-red-500"
-                    : "border-[#E9EAF0]"
+                    ? 'border-red-500'
+                    : 'border-[#E9EAF0]'
                 } placeholder:text-[#8C94A3] placeholder:font-normal `}
               />
               <span className="text-[12px] text-red-500">
@@ -81,7 +81,7 @@ const ForgetPassword = () => {
               </span>
             </div>
             <Button
-              _hover={{ bg: "#fc5927" }}
+              _hover={{ bg: '#fc5927' }}
               w="300px"
               bg="#FF6636"
               color="white"

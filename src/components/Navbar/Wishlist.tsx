@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { FiHeart } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
-import { formatNumberMoney } from "../../utils/lib";
-import CourseNavbar from "./CourseNavbar";
-import { useSelector } from "react-redux";
-import { selectWishList } from "../../store/reducers/wishListSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getWistList } from "../../store/actions/wishlist.action";
-import { addToCart, getCart } from "../../store/actions/cart.action";
-import useQueryParams from "../../hooks/useSearchParams";
-import useSetQueryParams from "../../hooks/useSetQuery";
-import { getStudentCourse } from "../../store/actions/course.action";
+import React, { useEffect } from 'react';
+import { FiHeart } from 'react-icons/fi';
+import { Link, useNavigate } from 'react-router-dom';
+import { formatNumberMoney } from '../../utils/lib';
+import CourseNavbar from './CourseNavbar';
+import { useSelector } from 'react-redux';
+import { selectWishList } from '../../store/reducers/wishListSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getWistList } from '../../store/actions/wishlist.action';
+import { addToCart, getCart } from '../../store/actions/cart.action';
+import useQueryParams from '../../hooks/useSearchParams';
+import useSetQueryParams from '../../hooks/useSetQuery';
+import { getStudentCourse } from '../../store/actions/course.action';
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -18,26 +18,25 @@ const Wishlist = () => {
   const dispatch = useAppDispatch();
   const getWishLists = async () => {
     const res = await dispatch(getWistList({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       console.log(res);
     }
   };
   const getCartList = async () => {
     const res = await dispatch(getCart({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-    }
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) { /* empty */ }
   };
   const queryParam = useQueryParams(
     {
-      search: "",
-      categoryId: "",
-      subCategoryId: "",
-      startPrice: "",
-      endPrice: "",
+      search: '',
+      categoryId: '',
+      subCategoryId: '',
+      startPrice: '',
+      endPrice: '',
       page: 1,
-      userId: "",
-      startDuration: "",
-      endDuration: "",
+      userId: '',
+      startDuration: '',
+      endDuration: '',
     },
     window.location.href
   );
@@ -47,7 +46,7 @@ const Wishlist = () => {
       ...rest,
     });
     const res: any = await dispatch(getStudentCourse(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       // dispatch(setUpdateCourse(res.payload.data));
       // dispatch(setLoading(false));
     }
@@ -57,8 +56,8 @@ const Wishlist = () => {
       courseId: id,
     };
     const res = await dispatch(addToCart(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
-      console.log("🚀 ~ file: SidebarCourse.tsx:31 ~ addCart ~ res:", res);
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
+      console.log('🚀 ~ file: SidebarCourse.tsx:31 ~ addCart ~ res:', res);
     }
   };
   const addToMyCart = (id: any) => {
@@ -93,11 +92,11 @@ const Wishlist = () => {
           ) : (
             <div className="flex flex-col gap-y-1 divide-y-2 max-h-[550px] h-fit overflow-y-scroll">
               {wishList?.map((wishlistItem: any, index: number) => (
-                <div>
+                <div key={index}>
                   <CourseNavbar cart={wishlistItem.course} />
                   {wishlistItem?.course?.isAddToCart ? (
                     <button
-                      onClick={() => navigate("/cart")}
+                      onClick={() => navigate('/cart')}
                       className="divide-none w-full py-3 px-2 border-[2px] border-[#272829] text-[#272829] font-semibold hover:bg-[#FF6636] hover:border-none hover:text-white transition-all ease-in-out duration-300"
                     >
                       Đi tới giỏ hàng

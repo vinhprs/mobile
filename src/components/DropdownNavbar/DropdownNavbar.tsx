@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Accordion,
   AccordionItem,
@@ -6,8 +6,8 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 const DropdownNavbar = ({ item, onClose }: any) => {
   return (
     <Accordion allowToggle>

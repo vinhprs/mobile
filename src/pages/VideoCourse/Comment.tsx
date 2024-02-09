@@ -1,8 +1,8 @@
-import moment from "moment";
-import React from "react";
-import { AiOutlineLike } from "react-icons/ai";
-import { BiSolidMessageDetail } from "react-icons/bi";
-import { convertTimeToAgo } from "../../utils/lib";
+import moment from 'moment';
+import React from 'react';
+import { AiOutlineLike } from 'react-icons/ai';
+import { BiSolidMessageDetail } from 'react-icons/bi';
+import { convertTimeToAgo } from '../../utils/lib';
 const Comment = ({ item }: any) => {
   return (
     <div className=" p-3 border-[1px] rounded-xl hover:bg-slate-200">

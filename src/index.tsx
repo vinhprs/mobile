@@ -1,35 +1,38 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import { store } from "./hooks/store";
-import { BrowserRouter } from "react-router-dom";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import "../src/style/index.scss";
-import { tabsTheme } from "./theme/tab";
-import { checkboxTheme } from "./theme/checkbox";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { store } from './hooks/store';
+import { BrowserRouter } from 'react-router-dom';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import '../src/style/index.scss';
+import { tabsTheme } from './theme/tab';
+import { checkboxTheme } from './theme/checkbox';
+import WebsocketProvider from './context/WebsocketProvider';
 const theme = extendTheme({
   components: {
     Tabs: tabsTheme,
     Checkox: checkboxTheme,
   },
   fonts: {
-    body: `'Noto Sans', sans-serif`,
+    body: '\'Noto Sans\', sans-serif',
   },
 });
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <App />
-      </ChakraProvider>
-    </BrowserRouter>
+    <WebsocketProvider>
+      <BrowserRouter>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+      </BrowserRouter>
+    </WebsocketProvider>
   </Provider>
   // </React.StrictMode>
 );

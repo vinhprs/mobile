@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { adminService } from "../services/admin.service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { adminService } from '../services/admin.service';
 export const getAccountList = createAsyncThunk(
-  "admin/getAccountList",
+  'admin/getAccountList',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await adminService.getListAccount(params);
@@ -12,7 +12,7 @@ export const getAccountList = createAsyncThunk(
   }
 );
 export const createTeacherAccount = createAsyncThunk(
-  "admin/createTeacherAccount",
+  'admin/createTeacherAccount',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await adminService.createTeacherAccount(params);
@@ -23,7 +23,7 @@ export const createTeacherAccount = createAsyncThunk(
   }
 );
 export const changeStatus = createAsyncThunk(
-  "admin/changeStatus",
+  'admin/changeStatus',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await adminService.changeStatus(params);

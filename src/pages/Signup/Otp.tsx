@@ -1,17 +1,17 @@
-import { Button, useToast } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { otpSignupSchema } from "../../schema/schema";
-import { useSelector } from "react-redux";
+import { Button, useToast } from '@chakra-ui/react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { otpSignupSchema } from '../../schema/schema';
+import { useSelector } from 'react-redux';
 import {
   selectAuthUserId,
   updateIsLogged,
-} from "../../store/reducers/authSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { verifyEmail } from "../../store/actions/auth.action";
-import { LocalStorage } from "../../utils/LocalStorage";
+} from '../../store/reducers/authSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { verifyEmail } from '../../store/actions/auth.action';
+import { LocalStorage } from '../../utils/LocalStorage';
 interface OTPProps {
   otp: string;
 }
@@ -26,7 +26,7 @@ const Otp = () => {
     formState: { errors, isSubmitting },
   } = useForm<OTPProps>({
     defaultValues: {
-      otp: "",
+      otp: '',
     },
     resolver: yupResolver(otpSignupSchema),
   });
@@ -38,30 +38,30 @@ const Otp = () => {
       code: data.otp,
     };
     const response: any = await dispatch(verifyEmail(payload));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       if (response?.payload?.error) {
         toast({
-          title: "Lỗi đăng ký",
+          title: 'Lỗi đăng ký',
           description: response?.payload?.message,
-          status: "error",
+          status: 'error',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
       } else {
         // console.log(response);
         LocalStorage.setUserId(selectUserId._id);
         toast({
-          title: "Kích hoạt thành công",
+          title: 'Kích hoạt thành công',
           description: response?.payload?.message,
-          status: "success",
+          status: 'success',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
         dispatch(updateIsLogged(true));
         setTimeout(() => {
-          navigate("/signup/user");
+          navigate('/signup/user');
         }, 1500);
       }
     }
@@ -77,11 +77,11 @@ const Otp = () => {
                 <div>
                   <div className="text-[14px] mb-[5px]">Nhập mã OTP</div>
                   <input
-                    {...register("otp")}
+                    {...register('otp')}
                     type="text"
                     placeholder="Otp"
                     className={`focus:outline-none text-[14px] w-[300px] px-3 py-3 outline-none border-[1px] ${
-                      errors.otp ? "border-red-500" : "border-[#E9EAF0]"
+                      errors.otp ? 'border-red-500' : 'border-[#E9EAF0]'
                     } placeholder:text-[#8C94A3] placeholder:font-normal `}
                   />
                   <span className="text-[12px] text-red-500">
@@ -89,7 +89,7 @@ const Otp = () => {
                   </span>
                 </div>
                 <Button
-                  _hover={{ bg: "#ff5a28" }}
+                  _hover={{ bg: '#ff5a28' }}
                   w="300px"
                   bg="#FF6636"
                   color="white"

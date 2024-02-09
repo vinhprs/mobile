@@ -1,22 +1,21 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectRanking } from "../../store/reducers/examSlice";
-import { useLocation } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getRanking } from "../../store/actions/exam.action";
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectRanking } from '../../store/reducers/examSlice';
+import { useLocation } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getRanking } from '../../store/actions/exam.action';
 
 const Ranking = () => {
   const ranks: any = useSelector(selectRanking);
   const search = useLocation().search;
-  const params = new URLSearchParams(search).get("id");
+  const params = new URLSearchParams(search).get('id');
   const dispatch = useAppDispatch();
   const getRankingList = async (id: any) => {
     const payload = new URLSearchParams({
       examId: id,
     });
     const res = await dispatch(getRanking(payload));
-    if (res.payload && res.meta.requestStatus === "rejected") {
-    }
+    if (res.payload && res.meta.requestStatus === 'rejected') { /* empty */ }
   };
   useEffect(() => {
     if (params) {
@@ -28,7 +27,7 @@ const Ranking = () => {
       {ranks?.listData?.length > 0 && (
         <div className="flex flex-col gap-y-3 px-[16px] py-[8px] rounded-lg bg-[#FF6636] text-white">
           <div className="text-center text-[14px]">
-            Bạn có đủ giỏi để vượt qua{" "}
+            Bạn có đủ giỏi để vượt qua{' '}
           </div>
           <div className="grid grid-cols-[50px_1fr] gap-x-3">
             <img
@@ -54,7 +53,7 @@ const Ranking = () => {
         {ranks?.listData?.length > 0 && (
           <div className="px-[16px] py-[10px] rounded-lg bg-zinc-200 max-h-[600px] h-full">
             {ranks?.listData?.map((item: any, index: number) => (
-              <div className="grid grid-cols-[50px_1fr] gap-x-3">
+              <div className="grid grid-cols-[50px_1fr] gap-x-3" key={index}>
                 <img
                   src={item?.user?.avatar}
                   alt=""

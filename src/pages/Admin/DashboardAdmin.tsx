@@ -1,5 +1,5 @@
-import React from "react";
-import TableListStudent from "./TableListStudent";
+import React from 'react';
+import TableListStudent from './TableListStudent';
 
 const DashboardAdmin = () => {
   return (

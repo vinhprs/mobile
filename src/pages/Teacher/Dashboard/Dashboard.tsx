@@ -1,9 +1,9 @@
-import React from "react";
-import { AiOutlineBell } from "react-icons/ai";
-import TitleDashboard from "./TitleDashboard";
-import RecentActivity from "./RecentActivity";
-import Renue from "./Renue";
-import CourseOverview from "./CourseOverview";
+import React from 'react';
+import { AiOutlineBell } from 'react-icons/ai';
+import TitleDashboard from './TitleDashboard';
+import RecentActivity from './RecentActivity';
+import Renue from './Renue';
+import CourseOverview from './CourseOverview';
 
 const Dashboard = () => {
   return (

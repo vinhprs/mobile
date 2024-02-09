@@ -1,5 +1,5 @@
-import React from "react";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import React from 'react';
+import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
 const Pagination = () => {
   return (

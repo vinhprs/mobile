@@ -1,5 +1,5 @@
-import React from "react";
-import TableListTeacher from "./TableListTeacher";
+import React from 'react';
+import TableListTeacher from './TableListTeacher';
 
 const DashboardAdminTeacher = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -9,15 +9,15 @@ import {
   ModalCloseButton,
   Button,
   Spinner,
-} from "@chakra-ui/react";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { getExamDetail } from "../../../../store/actions/exam.action";
-import { useSelector } from "react-redux";
+} from '@chakra-ui/react';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { getExamDetail } from '../../../../store/actions/exam.action';
+import { useSelector } from 'react-redux';
 import {
   selectExamDetail,
   setExamDetail,
-} from "../../../../store/reducers/examSlice";
-import ExamDetail from "../ExamDetail";
+} from '../../../../store/reducers/examSlice';
+import ExamDetail from '../ExamDetail';
 interface DetailProp {
   isOpenDetail: boolean;
   onCloseDetail: () => void;
@@ -30,7 +30,7 @@ const ModalExamDetail = ({ isOpenDetail, onCloseDetail, item }: DetailProp) => {
 
   const getDetailExam = async () => {
     const response: any = await dispatch(getExamDetail(item._id));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       console.log(response);
       setIsLoading(false);
       dispatch(setExamDetail(response.payload?.data));
@@ -68,7 +68,7 @@ const ModalExamDetail = ({ isOpenDetail, onCloseDetail, item }: DetailProp) => {
           <Button
             bg="#FF6636"
             color="#FFFFFF"
-            _hover={{ bg: "#fb5b2a" }}
+            _hover={{ bg: '#fb5b2a' }}
             borderRadius="none"
             onClick={onCloseDetail}
           >

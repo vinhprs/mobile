@@ -1,13 +1,13 @@
-import { Fade, useDisclosure } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useAppDispatch } from "../../../hooks/appHooks";
+import { Fade, useDisclosure } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   updateAnswerExplain,
   updateAnswerQuestionLevel,
   updateGrade,
   updateSubject,
-} from "../../../store/reducers/examSlice";
+} from '../../../store/reducers/examSlice';
 interface SelectProps {
   title: string;
   selectTitle?: string;
@@ -15,8 +15,8 @@ interface SelectProps {
   classes?: string;
   classesMini?: string;
   type: string;
-  typeApi: "grade" | "subject" | "select";
-  gradeOne?: Object;
+  typeApi: 'grade' | 'subject' | 'select';
+  gradeOne?: object;
   setGradeOne?: any;
   types?: string;
   setTypes?: any;
@@ -53,7 +53,7 @@ const Select = ({
   // }, [typeApi]);
 
   const selectString = (title: string, id: number) => {
-    if (typeApi === "grade") {
+    if (typeApi === 'grade') {
       const payload = {
         id: id,
         name: title,
@@ -61,10 +61,10 @@ const Select = ({
       setGradeOne({ ...gradeOne, ...payload });
       dispatch(updateGrade(id));
     }
-    if (typeApi === "subject") {
+    if (typeApi === 'subject') {
       dispatch(updateSubject(id));
     }
-    if (typeApi === "select") {
+    if (typeApi === 'select') {
       dispatch(
         updateAnswerQuestionLevel({
           questionIndex: index,
@@ -78,7 +78,7 @@ const Select = ({
   return (
     <div
       className={`w-full flex flex-col ${
-        typeApi === "select" ? "" : "gap-y-2"
+        typeApi === 'select' ? '' : 'gap-y-2'
       } ${classes}`}
     >
       <span className="text-[14px]">{selectTitle}</span>

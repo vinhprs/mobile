@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -11,28 +11,28 @@ import {
   TableContainer,
   Button,
   Tooltip,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { deleteCart, getCart } from "../../store/actions/cart.action";
-import { formatMoney } from "../../utils/lib";
-import { useNavigate } from "react-router-dom";
-import { updateCartSub, updateIsBuyNow } from "../../store/reducers/cartSlice";
+import { AiFillStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { deleteCart, getCart } from '../../store/actions/cart.action';
+import { formatMoney } from '../../utils/lib';
+import { useNavigate } from 'react-router-dom';
+import { updateCartSub, updateIsBuyNow } from '../../store/reducers/cartSlice';
 const CartList = () => {
   const [cartList, setCartList] = useState<any>({});
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const getCartList = async () => {
     const res: any = await dispatch(getCart({}));
-    if (res.meta && res.meta.requestStatus === "fulfilled") {
+    if (res.meta && res.meta.requestStatus === 'fulfilled') {
       setCartList(res?.payload.data);
       console.log(res);
     }
   };
   const deleteCartItem = async (id: any) => {
     const res: any = await dispatch(deleteCart(id));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       alert(JSON.stringify(res?.payload.data));
     }
   };
@@ -46,7 +46,7 @@ const CartList = () => {
     dispatch(updateIsBuyNow(true));
     dispatch(updateCartSub(cart));
     setTimeout(() => {
-      navigate("/cart/payment");
+      navigate('/cart/payment');
     }, 500);
   };
   useEffect(() => {
@@ -93,10 +93,10 @@ const CartList = () => {
                       </h1>
 
                       <span className="text-[#A1A5B3] text-[14px]">
-                        Hướng dẫn bởi:{" "}
+                        Hướng dẫn bởi:{' '}
                         <span className="text-[#4E5566]">
-                          {" "}
-                          {cart?.course?.courseName.split("-")[1]}
+                          {' '}
+                          {cart?.course?.courseName.split('-')[1]}
                         </span>
                       </span>
                     </div>
@@ -122,7 +122,7 @@ const CartList = () => {
                       color="#ffffff"
                       fontSize="14px"
                       _hover={{
-                        bg: "#f85b2b",
+                        bg: '#f85b2b',
                       }}
                       onClick={() => handleDeleteCart(cart?._id)}
                     >
@@ -146,7 +146,7 @@ const CartList = () => {
       </div>
       <div className="flex justify-end mt-4">
         <button
-          onClick={() => navigate("/cart")}
+          onClick={() => navigate('/cart')}
           className="px-[12px] py-[8px] bg-[#FF6636] text-white font-semibold"
         >
           Chuyển sang giỏ hàng

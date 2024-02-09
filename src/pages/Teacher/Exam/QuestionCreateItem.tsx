@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import SunEditor from "suneditor-react";
-import suneditor from "suneditor";
-import "suneditor/dist/css/suneditor.min.css";
-import katex from "katex";
-import "katex/dist/katex.min.css";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import Select from "./Select";
-import ModalEditor from "./Modal/ModalEditor";
-import { useDisclosure } from "@chakra-ui/react";
-import QuestionCreateEachItem from "./QuestionCreateEachItem";
-import { CiTrash } from "react-icons/ci";
+import React, { useEffect, useRef, useState } from 'react';
+import SunEditor from 'suneditor-react';
+import suneditor from 'suneditor';
+import 'suneditor/dist/css/suneditor.min.css';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import Select from './Select';
+import ModalEditor from './Modal/ModalEditor';
+import { useDisclosure } from '@chakra-ui/react';
+import QuestionCreateEachItem from './QuestionCreateEachItem';
+import { CiTrash } from 'react-icons/ci';
 import {
   deleteQuestion,
   updateAnswerExplain,
-} from "../../../store/reducers/examSlice";
-import { buttonList } from "../../../utils/type";
+} from '../../../store/reducers/examSlice';
+import { buttonList } from '../../../utils/type';
 
 const QuestionCreateItem = ({ item, index, questions }: any) => {
   /**
@@ -39,7 +39,7 @@ const QuestionCreateItem = ({ item, index, questions }: any) => {
     );
   };
   const dispatch = useAppDispatch();
-  const [types, setTypes] = useState<any>("");
+  const [types, setTypes] = useState<any>('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const contentRef = useRef<HTMLDivElement>(null);
   //   const contentRefDesc = useRef<HTMLDivElement>(null);
@@ -65,10 +65,10 @@ const QuestionCreateItem = ({ item, index, questions }: any) => {
             </h1>
             <Select
               arraySelect={[
-                { id: 1, name: "Nhận biết" },
-                { id: 2, name: "Thông hiểu" },
-                { id: 3, name: "Vận dụng" },
-                { id: 4, name: "Vận dụng cao" },
+                { id: 1, name: 'Nhận biết' },
+                { id: 2, name: 'Thông hiểu' },
+                { id: 3, name: 'Vận dụng' },
+                { id: 4, name: 'Vận dụng cao' },
               ]}
               title="Mức độ"
               classes="flex-1 h-full gap-y-0 w-fit"

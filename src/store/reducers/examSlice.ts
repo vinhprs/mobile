@@ -1,20 +1,20 @@
-import { RootState } from "./rootReducers";
-import { createSlice } from "@reduxjs/toolkit";
-import { getExam, getExamDetail, getRanking } from "../actions/exam.action";
-import { getCategory, getCategoryById } from "../actions/user.action";
+import { RootState } from './rootReducers';
+import { createSlice } from '@reduxjs/toolkit';
+import { getExam, getExamDetail, getRanking } from '../actions/exam.action';
+import { getCategory, getCategoryById } from '../actions/user.action';
 const initialState = {
   exam: {
     questions: [
       {
-        title: "",
-        answers: ["", "", "", ""],
+        title: '',
+        answers: ['', '', '', ''],
         correctAnswers: [],
-        explain: "",
-        questionLevel: "Nhận biết",
-        answerType: "",
+        explain: '',
+        questionLevel: 'Nhận biết',
+        answerType: '',
       },
     ],
-    title: "",
+    title: '',
     categoryId: 0,
     subCategoryId: 0,
     time: 0,
@@ -22,15 +22,15 @@ const initialState = {
   examTemp: {
     questions: [
       {
-        title: "",
-        answers: ["", "", "", ""],
+        title: '',
+        answers: ['', '', '', ''],
         correctAnswers: [],
-        explain: "",
-        questionLevel: "Nhận biết",
-        answerType: "",
+        explain: '',
+        questionLevel: 'Nhận biết',
+        answerType: '',
       },
     ],
-    title: "",
+    title: '',
     categoryId: 0,
     subCategoryId: 0,
     time: 0,
@@ -55,7 +55,7 @@ const initialState = {
   ranking: {},
 };
 const examSlice = createSlice({
-  name: "exam",
+  name: 'exam',
   initialState: initialState,
   reducers: {
     setUpdateExam(state, actions) {
@@ -100,8 +100,8 @@ const examSlice = createSlice({
       state.exam.questions[questionIndex].correctAnswers.push(value);
       state.exam.questions[questionIndex].answerType =
         state.exam.questions[questionIndex].correctAnswers.length === 1
-          ? "Chọn 1"
-          : "Chọn nhiều";
+          ? 'Chọn 1'
+          : 'Chọn nhiều';
     },
     updateAnswerType: (state, actions) => {
       const { questionIndex, value } = actions.payload;
@@ -109,16 +109,16 @@ const examSlice = createSlice({
     },
     deleteAnswerCorretAnswer: (state, action) => {
       const { questionIndex, value } = action.payload;
-      console.log("🚀 ~ file: examSlice.ts:77 ~ value:", value);
+      console.log('🚀 ~ file: examSlice.ts:77 ~ value:', value);
       const newArray = state.exam.questions[
         questionIndex
       ].correctAnswers.filter((item) => item !== value);
-      console.log("🚀 ~ file: examSlice.ts:81 ~ newArray:", newArray);
+      console.log('🚀 ~ file: examSlice.ts:81 ~ newArray:', newArray);
       state.exam.questions[questionIndex].correctAnswers = newArray;
       state.exam.questions[questionIndex].answerType =
         state.exam.questions[questionIndex].correctAnswers.length === 1
-          ? "Chọn 1"
-          : "Chọn nhiều";
+          ? 'Chọn 1'
+          : 'Chọn nhiều';
     },
     updateTitle: (state, actions) => {
       state.exam = { ...state.exam, title: actions.payload };
@@ -145,7 +145,7 @@ const examSlice = createSlice({
     postExamQuestion: (state, actions) => {
       const { questionIndex, questionId, answer, type } = actions.payload;
       state.postExam.answers[questionIndex].questionId = questionId;
-      if (type === "Chọn 1") {
+      if (type === 'Chọn 1') {
         state.postExam.answers[questionIndex].answer[0] = answer;
       } else {
         state.postExam.answers[questionIndex].answer.push(answer);

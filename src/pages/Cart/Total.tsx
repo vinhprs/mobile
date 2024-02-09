@@ -1,17 +1,17 @@
-import { Button } from "@chakra-ui/react";
-import React from "react";
-import { formatMoney } from "../../utils/lib";
-import { useSelector } from "react-redux";
-import { selectCartList, updateIsBuyNow } from "../../store/reducers/cartSlice";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/appHooks";
+import { Button } from '@chakra-ui/react';
+import React from 'react';
+import { formatMoney } from '../../utils/lib';
+import { useSelector } from 'react-redux';
+import { selectCartList, updateIsBuyNow } from '../../store/reducers/cartSlice';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/appHooks';
 
 const Total = () => {
   const cartList: any = useSelector(selectCartList);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleNavigate = () => {
-    navigate("/cart/payment");
+    navigate('/cart/payment');
     dispatch(updateIsBuyNow(false));
   };
   return (
@@ -26,10 +26,10 @@ const Total = () => {
         isDisabled={cartList?.carts?.length === 0 ? true : false}
         color="white"
         bg="#FF6636"
-        _hover={{ bg: "#fe6131" }}
+        _hover={{ bg: '#fe6131' }}
         onClick={handleNavigate}
       >
-        Chuyển tới thanh toán{" "}
+        Chuyển tới thanh toán{' '}
       </Button>
     </div>
   );

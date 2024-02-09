@@ -1,27 +1,27 @@
-import React from "react";
-import ReactPlayer from "react-player";
-import { useSelector } from "react-redux";
-import { selectCoursesCreated } from "../../../store/reducers/createCourseSlice";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import { createCourse } from "../../../store/actions/course.action";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import ReactPlayer from 'react-player';
+import { useSelector } from 'react-redux';
+import { selectCoursesCreated } from '../../../store/reducers/createCourseSlice';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { createCourse } from '../../../store/actions/course.action';
+import { useNavigate } from 'react-router-dom';
 
 const PublishCourse = () => {
   const selectedCourse = useSelector(selectCoursesCreated);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   console.log(
-    "🚀 ~ file: PublishCourse.tsx:8 ~ PublishCourse ~ selectedCourse:",
+    '🚀 ~ file: PublishCourse.tsx:8 ~ PublishCourse ~ selectedCourse:',
     selectedCourse
   );
 
   const createCourseHandle = async () => {
     const res = await dispatch(createCourse(selectedCourse));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
-      navigate("/teacher/courses");
+      navigate('/teacher/courses');
     } else {
-      console.log("err");
+      console.log('err');
     }
 
     // console.log(form);

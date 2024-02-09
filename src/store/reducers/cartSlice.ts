@@ -1,6 +1,6 @@
-import { getCart } from "../actions/cart.action";
-import { RootState } from "./rootReducers";
-import { createSlice } from "@reduxjs/toolkit";
+import { getCart } from '../actions/cart.action';
+import { RootState } from './rootReducers';
+import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   cartList: {},
   cartListSub: {
@@ -13,7 +13,7 @@ const initialState = {
   isBuyNow: false,
 };
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState: initialState,
   reducers: {
     updateCart: (state, actions) => {

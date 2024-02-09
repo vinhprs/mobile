@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import TitleAssignmet from "./TitleAssignmet";
-import logo from "../../image/Navbar/logo.svg";
-import "katex/dist/katex.min.css";
-import TimeAndQuestions from "./TimeAndQuestions";
-import QuestionNumber from "./QuestionNumber";
-import { useLocation } from "react-router-dom";
-import { getExamDetail } from "../../store/actions/exam.action";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import TitleAssignmet from './TitleAssignmet';
+import logo from '../../image/Navbar/logo.svg';
+import 'katex/dist/katex.min.css';
+import TimeAndQuestions from './TimeAndQuestions';
+import QuestionNumber from './QuestionNumber';
+import { useLocation } from 'react-router-dom';
+import { getExamDetail } from '../../store/actions/exam.action';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { useSelector } from 'react-redux';
 import {
   postExam,
   postExamQuestion,
   selectExamDetail,
   selectExamPost,
-} from "../../store/reducers/examSlice";
+} from '../../store/reducers/examSlice';
 
 const Assingments = () => {
   // const [questions, setQuestions] = useState<any>({});
@@ -21,10 +21,10 @@ const Assingments = () => {
   const questions: any = useSelector(selectExamDetail);
   const postExamList = useSelector(selectExamPost);
   const search = useLocation().search;
-  const params = new URLSearchParams(search).get("id");
+  const params = new URLSearchParams(search).get('id');
   const geExamDetail = async (id: any) => {
     const res: any = await dispatch(getExamDetail(id));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       if (postExamList.answers.length < res.payload?.data.questions?.length) {
         res.payload?.data.questions.map((item: any, index: any) => {
           if (index < res.payload?.data.questions.length - 1) {

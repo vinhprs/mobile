@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { courseService } from "../services/course.service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { courseService } from '../services/course.service';
 export const createCourse = createAsyncThunk(
-  "course/createCourse",
+  'course/createCourse',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.createCourse(params);
@@ -12,7 +12,7 @@ export const createCourse = createAsyncThunk(
   }
 );
 export const uploadFile = createAsyncThunk(
-  "course/uploadFile",
+  'course/uploadFile',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.uploadFile(params);
@@ -23,7 +23,7 @@ export const uploadFile = createAsyncThunk(
   }
 );
 export const getTeacherCourse = createAsyncThunk(
-  "course/getTeacherCourse",
+  'course/getTeacherCourse',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.getCourseTeacher(params);
@@ -34,7 +34,7 @@ export const getTeacherCourse = createAsyncThunk(
   }
 );
 export const getStudentCourse = createAsyncThunk(
-  "course/getStudentCourse",
+  'course/getStudentCourse',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.getCourseStudent(params);
@@ -45,7 +45,7 @@ export const getStudentCourse = createAsyncThunk(
   }
 );
 export const getCourseDetail = createAsyncThunk(
-  "course/getCourseDetail",
+  'course/getCourseDetail',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.getCourseDetail(params);
@@ -56,7 +56,7 @@ export const getCourseDetail = createAsyncThunk(
   }
 );
 export const getCourseUserBuy = createAsyncThunk(
-  "course/getCourseUserBuy",
+  'course/getCourseUserBuy',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.getCourseUserBuy();
@@ -67,7 +67,7 @@ export const getCourseUserBuy = createAsyncThunk(
   }
 );
 export const updatePublicCourse = createAsyncThunk(
-  "course/updatePublicCourse",
+  'course/updatePublicCourse',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.publicCourse(params);
@@ -78,7 +78,7 @@ export const updatePublicCourse = createAsyncThunk(
   }
 );
 export const getStudentParticipate = createAsyncThunk(
-  "course/getStudentParticipate",
+  'course/getStudentParticipate',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.getStudentParticipate(params);
@@ -89,7 +89,7 @@ export const getStudentParticipate = createAsyncThunk(
   }
 );
 export const uploadVideo = createAsyncThunk(
-  "course/uploadVideo",
+  'course/uploadVideo',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await courseService.uploadVideo(params);
@@ -100,13 +100,13 @@ export const uploadVideo = createAsyncThunk(
   }
 );
 export const getStatusTeacher = createAsyncThunk(
-  "course/getStatusTeacher",
+  'course/getStatusTeacher',
   async(params:any,{dispatch,getState,rejectWithValue})=>{
     try{
-      const res = await courseService.getStatusTeacher()
+      const res = await courseService.getStatusTeacher();
       return res;
     }catch(err){
-      return rejectWithValue(err)
+      return rejectWithValue(err);
     }
   }
-)
+);

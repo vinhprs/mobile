@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -12,13 +12,13 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-} from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { selectExams } from "../../../../store/reducers/examSlice";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { getExam } from "../../../../store/actions/exam.action";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { selectCoursesCreated, updateLectureExamId } from "../../../../store/reducers/createCourseSlice";
+} from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import { selectExams } from '../../../../store/reducers/examSlice';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { getExam } from '../../../../store/actions/exam.action';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import { selectCoursesCreated, updateLectureExamId } from '../../../../store/reducers/createCourseSlice';
 const ModalChooseExam = ({
   isOpen,
   onClose,
@@ -31,13 +31,12 @@ const ModalChooseExam = ({
 }: any) => {
   const selectedCourse = useSelector(selectCoursesCreated);
   const exams: any = useSelector(selectExams);
-  const [valueExam, setValueExam] = useState("Đề thi");
+  const [valueExam, setValueExam] = useState('Đề thi');
   const [valueExamId, setValueExamId] = useState(0);
   const dispatch = useAppDispatch();
   const getExamsList = async () => {
     const res = await dispatch(getExam({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
-    }
+    if (res.payload && res.meta.requestStatus === 'fulfilled') { /* empty */ }
   };
   const handleClick = (id: number, title: string) => {
     setValueExam(title);
@@ -80,13 +79,14 @@ const ModalChooseExam = ({
                   <MenuItem>Không có đề thi</MenuItem>
                 ):(
                   <>
-                {exams?.listData?.filter((item:any)=>item.categoryId === +selectedCourse?.categoryId && +selectedCourse?.subCategoryId===item?.subCategoryId)?.map((itemExam: any, indexExam: number) => (
-                  <MenuItem
-                    onClick={() => handleClick(itemExam?._id, itemExam?.title)}
-                  >
-                    {itemExam?.title}
-                  </MenuItem>
-                ))}
+                    {exams?.listData?.filter((item:any,indexExam:number)=>item.categoryId === +selectedCourse?.categoryId && +selectedCourse?.subCategoryId===item?.subCategoryId)?.map((itemExam: any, indexExam: number) => (
+                      <MenuItem
+                        key={indexExam}
+                        onClick={() => handleClick(itemExam?._id, itemExam?.title)}
+                      >
+                        {itemExam?.title}
+                      </MenuItem>
+                    ))}
                   </>
                 )}
               </MenuList>

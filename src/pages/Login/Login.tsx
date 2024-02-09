@@ -1,9 +1,9 @@
-import React from "react";
-import Google from "./Google";
-import Facebook from "./Facebook";
-import LoginForm from "./LoginForm";
-import { Link } from "react-router-dom";
-import image from "../../image/Login/Illustrations.jpg";
+import React from 'react';
+import Google from './Google';
+import Facebook from './Facebook';
+import LoginForm from './LoginForm';
+import { Link } from 'react-router-dom';
+import image from '../../image/Login/Illustrations.jpg';
 const Login = () => {
   return (
     <div className="pt-[72px] pb-[60px] grid grid-cols-2 h-screen">

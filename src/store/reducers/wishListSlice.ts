@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./rootReducers";
-import { getWistList } from "../actions/wishlist.action";
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './rootReducers';
+import { getWistList } from '../actions/wishlist.action';
 const initialState = {
   wishList: [],
 };
 const wishListSlice = createSlice({
-  name: "wishlist",
+  name: 'wishlist',
   initialState: initialState,
   reducers: {
     updateWishList: (state, actions) => {

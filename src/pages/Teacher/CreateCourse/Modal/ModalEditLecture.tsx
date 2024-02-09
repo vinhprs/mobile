@@ -7,10 +7,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { updateLectureName } from "../../../../store/reducers/createCourseSlice";
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { updateLectureName } from '../../../../store/reducers/createCourseSlice';
 
 const ModalEditLecture = ({
   isOpen,
@@ -22,7 +22,7 @@ const ModalEditLecture = ({
   index,
   indexLecture,
 }: any) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const handleSubmit = () => {
     console.log(value);
@@ -77,7 +77,7 @@ const ModalEditLecture = ({
                 onClick={handleSubmit}
                 bg="#FF6636"
                 color="white"
-                _hover={{ bg: "#fb5a2a" }}
+                _hover={{ bg: '#fb5a2a' }}
               >
                 Lưu
               </Button>

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import CourseList from "./CourseList";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getStudentCourse } from "../../store/actions/course.action";
-import { TiStarFullOutline } from "react-icons/ti";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import CourseList from './CourseList';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getStudentCourse } from '../../store/actions/course.action';
+import { TiStarFullOutline } from 'react-icons/ti';
 const TabCourseItem = ({ item, itemSearch }: any) => {
   console.log(
-    "🚀 ~ file: TabCourseItem.tsx:8 ~ TabCourseItem ~ itemSearch:",
+    '🚀 ~ file: TabCourseItem.tsx:8 ~ TabCourseItem ~ itemSearch:',
     itemSearch
   );
   // const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const TabCourseItem = ({ item, itemSearch }: any) => {
   return (
     <div>
       <h1 className="text-[24px] font-semibold mb-3 uppercase">
-        Tìm Hiểu Về Các Khóa Học Chất Lượng Cao trên{" "}
+        Tìm Hiểu Về Các Khóa Học Chất Lượng Cao trên{' '}
         <span className="text-[#FF6636]">Primeedu</span> cho các bạn học sinh
         THPT
       </h1>

@@ -1,11 +1,11 @@
-import React from "react";
-import FormBasic from "./FormBasic";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import FormBasic from './FormBasic';
+import { useNavigate } from 'react-router-dom';
 
 const BasicInformation = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/teacher/courses");
+    navigate('/teacher/courses');
   };
   return (
     <div>

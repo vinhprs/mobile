@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Accordion,
   AccordionItem,
@@ -6,9 +6,9 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-} from "@chakra-ui/react";
-import ListVideoChapter from "./ListVideoChapter";
-import { timeLecture } from "../../utils/lib";
+} from '@chakra-ui/react';
+import ListVideoChapter from './ListVideoChapter';
+import { timeLecture } from '../../utils/lib';
 const VideoCourseList = ({ courseDetail }: any) => {
   return (
     <Accordion className="h-full" allowMultiple>
@@ -32,7 +32,7 @@ const VideoCourseList = ({ courseDetail }: any) => {
               </Box>
               <div className="text-[13px]">
                 <span>
-                  0/{section?.lectures.length} |{" "}
+                  0/{section?.lectures.length} |{' '}
                   {timeLecture(section?.lectures)} phút
                 </span>
               </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,15 +8,15 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
-import SunEditor from "suneditor-react";
-import suneditor from "suneditor";
-import "suneditor/dist/css/suneditor.min.css";
-import katex from "katex";
-import "katex/dist/katex.min.css";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { updateAnswer } from "../../../../store/reducers/examSlice";
-import { buttonList } from "../../../../utils/type";
+} from '@chakra-ui/react';
+import SunEditor from 'suneditor-react';
+import suneditor from 'suneditor';
+import 'suneditor/dist/css/suneditor.min.css';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { updateAnswer } from '../../../../store/reducers/examSlice';
+import { buttonList } from '../../../../utils/type';
 
 const ModalEditorEachItem = ({
   isOpen,
@@ -77,7 +77,7 @@ const ModalEditorEachItem = ({
           <Button
             mr={3}
             onClick={onClose}
-            _hover={{ bg: "#ff511c" }}
+            _hover={{ bg: '#ff511c' }}
             bg="#FF6636"
             color="white"
           >

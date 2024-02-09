@@ -1,13 +1,13 @@
-import { Fade, useDisclosure } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useAppDispatch } from "../../../hooks/appHooks";
+import { Fade, useDisclosure } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   getCategory,
   getCategoryById,
-} from "../../../store/actions/user.action";
-import useQueryParams from "../../../hooks/useSearchParams";
-import useSetQueryParams from "../../../hooks/useSetQuery";
+} from '../../../store/actions/user.action';
+import useQueryParams from '../../../hooks/useSearchParams';
+import useSetQueryParams from '../../../hooks/useSetQuery';
 
 const FilterExam = ({ getExams }: any) => {
   const [itemId, setItemId] = useState(0);
@@ -26,13 +26,13 @@ const FilterExam = ({ getExams }: any) => {
       categoryId: id,
     });
     const res: any = await dispatch(getCategoryById(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       setSubCategories(res.payload.data.childs);
     }
   };
   const getCategories = async () => {
     const response: any = await dispatch(getCategory({}));
-    if (response.payload && response.meta.requestStatus === "fulfilled") {
+    if (response.payload && response.meta.requestStatus === 'fulfilled') {
       setCategories(response.payload?.data);
     }
   };
@@ -59,10 +59,10 @@ const FilterExam = ({ getExams }: any) => {
   return (
     <div className="flex w-full gap-x-4">
       <div className="w-full">
-        <div className={`w-full flex flex-col gap-y-2 `}>
+        <div className={'w-full flex flex-col gap-y-2 '}>
           {/* <span className="text-[14px]">Khối</span> */}
           <div
-            className={`relative cursor-pointer px-[8px] h-[38px] text-[14px] bg-white border-[1px]  border-[#E9EAF0] text-[#4E5566] `}
+            className={'relative cursor-pointer px-[8px] h-[38px] text-[14px] bg-white border-[1px]  border-[#E9EAF0] text-[#4E5566] '}
           >
             <div
               onClick={() => {
@@ -96,10 +96,10 @@ const FilterExam = ({ getExams }: any) => {
         </div>
       </div>
       <div className="w-full">
-        <div className={`w-full flex flex-col gap-y-2 `}>
+        <div className={'w-full flex flex-col gap-y-2 '}>
           {/* <span className="text-[14px]">Khối</span> */}
           <div
-            className={`relative cursor-pointer px-[8px] h-[38px] text-[14px] bg-white border-[1px]  border-[#E9EAF0] text-[#4E5566] `}
+            className={'relative cursor-pointer px-[8px] h-[38px] text-[14px] bg-white border-[1px]  border-[#E9EAF0] text-[#4E5566] '}
           >
             <div
               onClick={() => {

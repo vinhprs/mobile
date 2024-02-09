@@ -1,10 +1,10 @@
-import React from 'react'
-import banner from "../../image/Navbar/153158b7-ef2b-4da5-9a19-4c75d50f73d2.jpg"
-import Partner from './Partner'
-import Courses from './Courses'
-import Achivement from './Achivement'
-import View from './View'
-import Categories from './Categories'
+import React from 'react';
+import banner from '../../image/Navbar/153158b7-ef2b-4da5-9a19-4c75d50f73d2.jpg';
+import Partner from './Partner';
+import Courses from './Courses';
+import Achivement from './Achivement';
+import View from './View';
+import Categories from './Categories';
 const Homepage = () => {
   return (
     <div className='text-black pt-[72px]'>
@@ -21,7 +21,7 @@ const Homepage = () => {
       <View/>
       <Categories/>
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;

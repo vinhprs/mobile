@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { useSelector } from "react-redux";
-import { selectResultExam } from "../../store/reducers/examSlice";
-import QuestionResultDetail from "./QuestionResultDetail";
+import { useSelector } from 'react-redux';
+import { selectResultExam } from '../../store/reducers/examSlice';
+import QuestionResultDetail from './QuestionResultDetail';
 
 const QuestionResult = () => {
   const questionResult: any = useSelector(selectResultExam);
@@ -10,7 +10,7 @@ const QuestionResult = () => {
     <div className="max-w-[900px] mx-auto">
       <div className="flex flex-col gap-y-[20px]">
         {questionResult?.corrections?.map((item: any, index: any) => (
-          <QuestionResultDetail item={item} index={index} />
+          <QuestionResultDetail item={item} index={index} key={index}/>
         ))}
       </div>
     </div>

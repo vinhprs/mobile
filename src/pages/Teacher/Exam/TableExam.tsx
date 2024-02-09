@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   Thead,
@@ -10,9 +10,9 @@ import {
   TableCaption,
   TableContainer,
   useDisclosure,
-} from "@chakra-ui/react";
-import ModalDeleteExam from "./Modal/ModalDeleteExam";
-import ItemTable from "./ItemTable";
+} from '@chakra-ui/react';
+import ModalDeleteExam from './Modal/ModalDeleteExam';
+import ItemTable from './ItemTable';
 const TableExam = ({ exams, getExams }: any) => {
   return (
     <div>

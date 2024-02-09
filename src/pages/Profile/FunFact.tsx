@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { TbPlayerPlayFilled } from "react-icons/tb";
-import { useSelector } from "react-redux";
-import { selectUserCourse } from "../../store/reducers/courseSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getCourseUserBuy } from "../../store/actions/course.action";
+import React, { useEffect } from 'react';
+import { TbPlayerPlayFilled } from 'react-icons/tb';
+import { useSelector } from 'react-redux';
+import { selectUserCourse } from '../../store/reducers/courseSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getCourseUserBuy } from '../../store/actions/course.action';
 const FunFact = () => {
   const userCourse = useSelector(selectUserCourse);
   const dispatch = useAppDispatch();
   const getUserCourseDetail = async () => {
     const res = await dispatch(getCourseUserBuy({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
     }
   };

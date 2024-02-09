@@ -1,22 +1,22 @@
-import { getUserInfo, userSetting } from "../actions/user.action";
-import { RootState } from "./rootReducers";
-import { createSlice } from "@reduxjs/toolkit";
+import { getUserInfo, userSetting } from '../actions/user.action';
+import { RootState } from './rootReducers';
+import { createSlice } from '@reduxjs/toolkit';
 interface Auth {
-  userId: Object;
+  userId: object;
   isLogged: boolean;
   accessToken?: string;
   userRole: string;
-  userInfo: Object;
+  userInfo: object;
 }
 const initialState: Auth = {
   userId: {},
-  userRole: "",
+  userRole: '',
   isLogged: false,
-  accessToken: "",
+  accessToken: '',
   userInfo: {},
 };
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: initialState,
   reducers: {
     updateUserId(state, actions) {

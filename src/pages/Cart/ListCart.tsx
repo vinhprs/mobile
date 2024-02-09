@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { BsTrashFill } from "react-icons/bs";
-import { BiSolidPurchaseTag } from "react-icons/bi";
-import { formatMoney, formatNumberMoney } from "../../utils/lib";
-import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
+import React, { useEffect, useState } from 'react';
+import { BsTrashFill } from 'react-icons/bs';
+import { BiSolidPurchaseTag } from 'react-icons/bi';
+import { formatMoney, formatNumberMoney } from '../../utils/lib';
+import { AiFillHeart, AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import {
   Table,
   Thead,
@@ -16,18 +16,18 @@ import {
   Button,
   Tooltip,
   Toast,
-} from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { deleteCart, getCart } from "../../store/actions/cart.action";
-import { useToast } from "@chakra-ui/react";
-import { getWistList, postWishList } from "../../store/actions/wishlist.action";
-import { useSelector } from "react-redux";
+} from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { deleteCart, getCart } from '../../store/actions/cart.action';
+import { useToast } from '@chakra-ui/react';
+import { getWistList, postWishList } from '../../store/actions/wishlist.action';
+import { useSelector } from 'react-redux';
 import {
   selectCartList,
   updateCartSub,
   updateIsBuyNow,
-} from "../../store/reducers/cartSlice";
+} from '../../store/reducers/cartSlice';
 const ListCart = () => {
   // const [cartList, setCartList] = useState<any>({});
   const cartList: any = useSelector(selectCartList);
@@ -36,27 +36,26 @@ const ListCart = () => {
   const toast = useToast();
   const getCartList = async () => {
     const res: any = await dispatch(getCart({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       // setCartList(res?.payload.data);
       console.log(res);
     }
   };
   const deleteCartItem = async (id: any) => {
     const res: any = await dispatch(deleteCart(id));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       toast({
         title: res?.payload.message,
-        status: "success",
+        status: 'success',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
     }
   };
   const getLiked = async () => {
     const res = await dispatch(getWistList({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-    }
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) { /* empty */ }
   };
   const handleDeleteCart = (id: any) => {
     deleteCartItem(id);
@@ -71,7 +70,7 @@ const ListCart = () => {
       courseId: id,
     };
     const response = await dispatch(postWishList(variable));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       setTimeout(() => {
         getCartList();
         getLiked();
@@ -82,7 +81,7 @@ const ListCart = () => {
     dispatch(updateIsBuyNow(true));
     dispatch(updateCartSub(cart));
     setTimeout(() => {
-      navigate("/cart/payment");
+      navigate('/cart/payment');
     }, 500);
   };
   useEffect(() => {
@@ -130,10 +129,10 @@ const ListCart = () => {
                         </h1>
 
                         <span className="text-[#A1A5B3] text-[14px]">
-                          Hướng dẫn bởi:{" "}
+                          Hướng dẫn bởi:{' '}
                           <span className="text-[#4E5566]">
-                            {" "}
-                            {cart?.course?.courseName.split("-")[1]}
+                            {' '}
+                            {cart?.course?.courseName.split('-')[1]}
                           </span>
                         </span>
                       </div>
@@ -159,7 +158,7 @@ const ListCart = () => {
                         color="#ffffff"
                         fontSize="14px"
                         _hover={{
-                          bg: "#f85b2b",
+                          bg: '#f85b2b',
                         }}
                         onClick={() => handleDeleteCart(cart?._id)}
                       >

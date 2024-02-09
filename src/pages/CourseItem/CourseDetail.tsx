@@ -1,5 +1,5 @@
-import React from "react";
-import CourseTitle from "./CourseTitle";
+import React from 'react';
+import CourseTitle from './CourseTitle';
 
 const CourseDetail = () => {
   return (

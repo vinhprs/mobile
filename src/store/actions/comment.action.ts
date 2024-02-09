@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { commentService } from "../services/comment.service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { commentService } from '../services/comment.service';
 export const getComments = createAsyncThunk(
-  "comment/getCommnets",
+  'comment/getCommnets',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await commentService.getComment(params);
@@ -12,7 +12,7 @@ export const getComments = createAsyncThunk(
   }
 );
 export const postComment = createAsyncThunk(
-  "comment/postComment",
+  'comment/postComment',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await commentService.postComment(params);
@@ -23,7 +23,7 @@ export const postComment = createAsyncThunk(
   }
 );
 export const getCommentsCourse = createAsyncThunk(
-  "comment/getCommentsCourse",
+  'comment/getCommentsCourse',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await commentService.getCommentCourse(params);
@@ -34,13 +34,13 @@ export const getCommentsCourse = createAsyncThunk(
   }
 );
 export const getAllCommentTeacherCourse = createAsyncThunk(
-  "comment/getAllCommentTeacherCourse",
+  'comment/getAllCommentTeacherCourse',
   async(params:any,{dispatch, getState, rejectWithValue})=>{
     try{
-      const res = await commentService.getAllCommentTeacherCourse(params)
-      return res
+      const res = await commentService.getAllCommentTeacherCourse(params);
+      return res;
     }catch(err){
-      return rejectWithValue(err)
+      return rejectWithValue(err);
     }
   }
-)
+);

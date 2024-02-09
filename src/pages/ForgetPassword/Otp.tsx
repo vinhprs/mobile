@@ -1,14 +1,14 @@
-import { Button, useToast } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useForm } from "react-hook-form";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { resendOTP, resetPassword } from "../../store/actions/auth.action";
-import { useSelector } from "react-redux";
-import { selectAuthUserId } from "../../store/reducers/authSlice";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { resetPasswordSchema } from "../../schema/schema";
+import { Button, useToast } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { resendOTP, resetPassword } from '../../store/actions/auth.action';
+import { useSelector } from 'react-redux';
+import { selectAuthUserId } from '../../store/reducers/authSlice';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { resetPasswordSchema } from '../../schema/schema';
 interface OTPProps {
   newPassword: string;
   confirmNewPassword: string;
@@ -27,9 +27,9 @@ const Otp = () => {
     formState: { errors, isSubmitting },
   } = useForm<OTPProps>({
     defaultValues: {
-      newPassword: "",
-      confirmNewPassword: "",
-      otp: "",
+      newPassword: '',
+      confirmNewPassword: '',
+      otp: '',
     },
     resolver: yupResolver(resetPasswordSchema),
   });
@@ -40,27 +40,27 @@ const Otp = () => {
       userId: selectId?._id,
     };
     const response: any = await dispatch(resetPassword(payload));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       if (response?.payload?.error) {
         toast({
-          title: "Lỗi",
+          title: 'Lỗi',
           description: response?.payload?.message,
-          status: "error",
+          status: 'error',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
       } else {
         toast({
-          title: "Đổi mật khẩu thành công",
+          title: 'Đổi mật khẩu thành công',
           description: response?.payload?.message,
-          status: "success",
+          status: 'success',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
         setTimeout(() => {
-          navigate("/");
+          navigate('/');
         }, 1500);
       }
     }
@@ -70,8 +70,7 @@ const Otp = () => {
       email: selectId?.email,
     };
     const res = await dispatch(resendOTP(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-    }
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) { /* empty */ }
   };
   return (
     <div className="pt-[140px] pb-[60px] flex justify-center items-center h-full text-[#1D2026]">
@@ -86,12 +85,12 @@ const Otp = () => {
                 <div className="text-[14px] mb-[5px]">Mật khẩu mới</div>
                 <div
                   className={`flex items-center text-[14px] gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px] ${
-                    errors.newPassword ? "border-red-500" : "border-[#E9EAF0]"
+                    errors.newPassword ? 'border-red-500' : 'border-[#E9EAF0]'
                   } `}
                 >
                   <input
-                    {...register("newPassword")}
-                    type={showPass ? "text" : "password"}
+                    {...register('newPassword')}
+                    type={showPass ? 'text' : 'password'}
                     placeholder="Mật khẩu mới"
                     className="w-full focus:outline-none placeholder:text-[#8C94A3] placeholder:font-normal"
                   />
@@ -116,13 +115,13 @@ const Otp = () => {
                 <div
                   className={`flex text-[14px] items-center gap-x-2 justify-between w-[300px] px-3 py-3 outline-none border-[1px]  ${
                     errors.confirmNewPassword
-                      ? "border-red-500"
-                      : "border-[#E9EAF0]"
+                      ? 'border-red-500'
+                      : 'border-[#E9EAF0]'
                   }`}
                 >
                   <input
-                    {...register("confirmNewPassword")}
-                    type={showConfirmPass ? "text" : "password"}
+                    {...register('confirmNewPassword')}
+                    type={showConfirmPass ? 'text' : 'password'}
                     placeholder="Xác nhận lại mật khẩu"
                     className="w-full focus:outline-none placeholder:text-[#8C94A3] placeholder:font-normal"
                   />
@@ -145,11 +144,11 @@ const Otp = () => {
               <div>
                 <div className="text-[14px] mb-[5px]">Nhập mã OTP</div>
                 <input
-                  {...register("otp")}
+                  {...register('otp')}
                   type="text"
                   placeholder="OTP code"
                   className={`focus:outline-none text-[14px] text-[#8C94A3] w-[300px] px-3 py-3 outline-none border-[1px] ${
-                    errors.otp ? "border-red-500" : "border-[#E9EAF0]"
+                    errors.otp ? 'border-red-500' : 'border-[#E9EAF0]'
                   } placeholder:text-[#8C94A3] placeholder:font-normal `}
                 />
                 <span className="text-[12px] text-red-500">
@@ -158,7 +157,7 @@ const Otp = () => {
               </div>
             </div>
             <Button
-              _hover={{ bg: "#fa5624" }}
+              _hover={{ bg: '#fa5624' }}
               w="300px"
               bg="#FF6636"
               color="white"
@@ -170,7 +169,7 @@ const Otp = () => {
               Đổi mật khẩu
             </Button>
             <Button
-              _hover={{ bg: "#fa5624" }}
+              _hover={{ bg: '#fa5624' }}
               w="300px"
               bg="#FF6636"
               color="white"

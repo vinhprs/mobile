@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import usePagination from "../../hooks/use-pagination-hook";
+import React, { useEffect } from 'react';
+import usePagination from '../../hooks/use-pagination-hook';
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
+} from 'react-icons/md';
 interface Props {
   onPageChange?: any;
   totalCount: number;
@@ -29,7 +29,7 @@ const PagiantionNew = ({
     pageSize,
   });
   console.log(
-    "🚀 ~ file: PagiantionNew.tsx:25 ~ paginationRange:",
+    '🚀 ~ file: PagiantionNew.tsx:25 ~ paginationRange:',
     paginationRange
   );
   // if (currentPage === 0 || paginationRange.length < 2) {
@@ -54,8 +54,8 @@ const PagiantionNew = ({
         onClick={onPrevious}
         className={`rounded-lg h-[35px] w-[35px] flex justify-center items-center ${
           currentPage === 1
-            ? "bg-white text-[#FF6636] cursor-not-allowed border-[1px] border-[#FF6636]"
-            : "bg-[#FF6636] text-white cursor-pointer"
+            ? 'bg-white text-[#FF6636] cursor-not-allowed border-[1px] border-[#FF6636]'
+            : 'bg-[#FF6636] text-white cursor-pointer'
         }`}
       >
         <MdOutlineKeyboardArrowLeft className="text-[24px]" />
@@ -63,7 +63,7 @@ const PagiantionNew = ({
       <div className="flex gap-x-2">
         {paginationRange.map((item: any, index: any) => (
           <>
-            {item === "DOTS" ? (
+            {item === 'DOTS' ? (
               <div
                 key={index}
                 className="cursor-pointer rounded-lg h-[35px] w-[35px] flex justify-center items-center"
@@ -75,7 +75,7 @@ const PagiantionNew = ({
                 key={index}
                 onClick={() => handleItem(item)}
                 className={`cursor-pointer rounded-lg border-[1px] border-[#FF6636] h-[35px] w-[35px] flex justify-center items-center ${
-                  item === currentPage ? "bg-[#FF6636] text-white" : ""
+                  item === currentPage ? 'bg-[#FF6636] text-white' : ''
                 }`}
               >
                 <span className="">{item}</span>
@@ -88,8 +88,8 @@ const PagiantionNew = ({
         onClick={onNext}
         className={`rounded-lg h-[35px] w-[35px] flex justify-center items-center ${
           currentPage >= Number(lastPage)
-            ? "bg-white text-[#FF6636] cursor-not-allowed border-[1px] border-[#FF6636]"
-            : "bg-[#FF6636] text-white cursor-pointer"
+            ? 'bg-white text-[#FF6636] cursor-not-allowed border-[1px] border-[#FF6636]'
+            : 'bg-[#FF6636] text-white cursor-pointer'
         }`}
       >
         <MdOutlineKeyboardArrowRight />

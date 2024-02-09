@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,15 +8,15 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
-import TabUpdate from "../TabUpdate";
-import { useSelector } from "react-redux";
+} from '@chakra-ui/react';
+import TabUpdate from '../TabUpdate';
+import { useSelector } from 'react-redux';
 import {
   selectExam,
   selectExamTemp,
-} from "../../../../store/reducers/examSlice";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { updateExam } from "../../../../store/actions/exam.action";
+} from '../../../../store/reducers/examSlice';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { updateExam } from '../../../../store/actions/exam.action';
 interface UpdateProp {
   isOpenUpdate: boolean;
   onCloseUpdate: () => void;
@@ -37,7 +37,7 @@ const ModalUpdateExam = ({
       params: exam,
     };
     const respons = await dispatch(updateExam(payload));
-    if (respons.payload && respons.meta.requestStatus === "fulfilled") {
+    if (respons.payload && respons.meta.requestStatus === 'fulfilled') {
       onCloseUpdate();
       getExams();
     }
@@ -61,7 +61,7 @@ const ModalUpdateExam = ({
           <Button
             bg="#FF6636"
             color="white"
-            _hover={{ bg: "#fe5c2b" }}
+            _hover={{ bg: '#fe5c2b' }}
             mr={3}
             onClick={onCloseUpdate}
           >

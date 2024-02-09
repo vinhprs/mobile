@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   addAnswer,
   deleteAnswer,
@@ -10,15 +10,15 @@ import {
   updateAnswerCorretAnswer,
   updateAnswerExplain,
   updateAnswerTitle,
-} from "../../../store/reducers/examSlice";
-import { toolbarOptions } from "../../../utils/type";
-import ReactQuill from "react-quill";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import { AiOutlinePlus } from "react-icons/ai";
-import { BsTrash } from "react-icons/bs";
-import Select from "./Select";
-import e from "express";
-import QuestionCreateItem from "./QuestionCreateItem";
+} from '../../../store/reducers/examSlice';
+import { toolbarOptions } from '../../../utils/type';
+import ReactQuill from 'react-quill';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { BsTrash } from 'react-icons/bs';
+import Select from './Select';
+import e from 'express';
+import QuestionCreateItem from './QuestionCreateItem';
 interface QuestionProps {
   title: string;
   answers: Array<string>;
@@ -27,8 +27,8 @@ interface QuestionProps {
   questionLevel: string;
 }
 const Question = () => {
-  const [valueDesc, setValueDesc] = useState("");
-  const [types, setTypes] = useState<any>("");
+  const [valueDesc, setValueDesc] = useState('');
+  const [types, setTypes] = useState<any>('');
 
   const examQuestion = useSelector(selectExam);
   const dispatch = useAppDispatch();
@@ -36,11 +36,11 @@ const Question = () => {
   const addQuestion = () => {
     dispatch(
       setUpdateExam({
-        title: "",
-        answers: ["", "", "", ""],
+        title: '',
+        answers: ['', '', '', ''],
         correctAnswers: [],
-        explain: "",
-        questionLevel: "Nhận biết",
+        explain: '',
+        questionLevel: 'Nhận biết',
       })
     );
   };
@@ -105,7 +105,7 @@ const Question = () => {
         })
       );
     } else {
-      console.log("uncheck");
+      console.log('uncheck');
 
       dispatch(
         deleteAnswerCorretAnswer({

@@ -1,31 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./rootReducers";
-import { stateProps } from "../../utils/type";
-import { genSlug } from "../../utils/lib";
-import { getStatusTeacher } from "../actions/course.action";
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './rootReducers';
+import { stateProps } from '../../utils/type';
+import { genSlug } from '../../utils/lib';
+import { getStatusTeacher } from '../actions/course.action';
 
 const initialState: stateProps = {
   index: 0,
   tabCourse: [0],
   course: {
-    courseName: "",
-    description: "",
+    courseName: '',
+    description: '',
     price: 0,
-    expiredDate: "",
-    thumbnail_url: "",
-    categoryId: "",
-    subCategoryId: "",
+    expiredDate: '',
+    thumbnail_url: '',
+    categoryId: '',
+    subCategoryId: '',
     sections: [
       {
         // id: uuid4(),
-        sectionName: "",
+        sectionName: '',
         lectures: [
           {
             // id: uuid4(),
-            lectureName: "",
-            lectureType: "",
-            amount: "",
-            url: "",
+            lectureName: '',
+            lectureType: '',
+            amount: '',
+            url: '',
             slug:genSlug(10)
           },
         ],
@@ -35,7 +35,7 @@ const initialState: stateProps = {
   status:{}
 };
 const createCourseSlice = createSlice({
-  name: "createCourse",
+  name: 'createCourse',
   initialState: initialState,
   reducers: {
     updateArray(state: any, actions) {
@@ -103,7 +103,7 @@ const createCourseSlice = createSlice({
     },
     updateLectureType(state, actions) {
       const { sectionIndex, lectureIndex, value, urlValue } = actions.payload;
-      if (value === "VIDEO") {
+      if (value === 'VIDEO') {
         state.course.sections[sectionIndex].lectures[lectureIndex].lectureType =
           value;
         state.course.sections[sectionIndex].lectures[lectureIndex].url =
@@ -171,8 +171,8 @@ const createCourseSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getStatusTeacher.fulfilled,(state,actions)=>{
-      state.status = actions.payload.data
-    })
+      state.status = actions.payload.data;
+    });
   },
 });
 export const {
@@ -206,4 +206,4 @@ export const selectIndexCreateStep = (state: RootState) =>
   state.createCourse.index;
 export const selectCoursesCreated = (state: RootState) =>
   state.createCourse.course;
-export const selectStatusTeacher = (state:RootState)=>state.createCourse.status
+export const selectStatusTeacher = (state:RootState)=>state.createCourse.status;

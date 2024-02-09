@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { cartService } from "../services/cart.service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { cartService } from '../services/cart.service';
 export const addToCart = createAsyncThunk(
-  "cart/addToCart",
+  'cart/addToCart',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await cartService.addToCart(params);
@@ -12,7 +12,7 @@ export const addToCart = createAsyncThunk(
   }
 );
 export const getCart = createAsyncThunk(
-  "cart/getCart",
+  'cart/getCart',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await cartService.getMyCart();
@@ -24,7 +24,7 @@ export const getCart = createAsyncThunk(
 );
 
 export const deleteCart = createAsyncThunk(
-  "cart/deleteCart",
+  'cart/deleteCart',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await cartService.deleteCart(params);

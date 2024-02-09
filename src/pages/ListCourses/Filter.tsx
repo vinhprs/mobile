@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/no-children-prop */
+import React, { useEffect, useState } from 'react';
 import {
   Accordion,
   AccordionItem,
@@ -12,27 +13,27 @@ import {
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
-} from "@chakra-ui/react";
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getSubjects } from "../../store/actions/user.action";
-import useQueryParams from "../../hooks/useSearchParams";
-import useSetQueryParams from "../../hooks/useSetQuery";
-import { LocalStorage } from "../../utils/LocalStorage";
+} from '@chakra-ui/react';
+import { Checkbox, CheckboxGroup } from '@chakra-ui/react';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getSubjects } from '../../store/actions/user.action';
+import useQueryParams from '../../hooks/useSearchParams';
+import useSetQueryParams from '../../hooks/useSetQuery';
+import { LocalStorage } from '../../utils/LocalStorage';
 const Filter = ({ setPage }: any) => {
   const dispatch = useAppDispatch();
   const userId = LocalStorage.getUserId();
   const queryParam = useQueryParams(
     {
-      search: "",
-      categoryId: "",
-      subCategoryId: "",
-      startPrice: "",
-      endPrice: "",
+      search: '',
+      categoryId: '',
+      subCategoryId: '',
+      startPrice: '',
+      endPrice: '',
       page: 1,
-      userId: "",
-      startDuration: "",
-      endDuration: "",
+      userId: '',
+      startDuration: '',
+      endDuration: '',
     },
     window.location.href
   );
@@ -40,7 +41,7 @@ const Filter = ({ setPage }: any) => {
   const [subjects, setSubjects] = useState<any>([]);
   const getListSubject = async () => {
     const res: any = await dispatch(getSubjects({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       setSubjects(res?.payload.data);
     }
   };
@@ -83,15 +84,15 @@ const Filter = ({ setPage }: any) => {
   };
   const resetFilter = () => {
     setQuery(queryParam.queryParams, {
-      search: "",
-      categoryId: "",
-      subCategoryId: "",
-      startPrice: "",
-      endPrice: "",
+      search: '',
+      categoryId: '',
+      subCategoryId: '',
+      startPrice: '',
+      endPrice: '',
       page: 1,
-      userId: userId ? userId : "",
-      startDuration: "",
-      endDuration: "",
+      userId: userId ? userId : '',
+      startDuration: '',
+      endDuration: '',
     });
   };
   return (

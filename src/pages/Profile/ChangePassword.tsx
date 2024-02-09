@@ -1,12 +1,12 @@
-import { Button } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { changePassSchema } from "../../schema/schema";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { changePassword } from "../../store/actions/auth.action";
-import { useToast } from "@chakra-ui/react";
+import { Button } from '@chakra-ui/react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+import { changePassSchema } from '../../schema/schema';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { changePassword } from '../../store/actions/auth.action';
+import { useToast } from '@chakra-ui/react';
 
 interface ChangPassProps {
   current: string;
@@ -27,9 +27,9 @@ const ChangePassword = () => {
     formState: { errors, isSubmitting },
   } = useForm<ChangPassProps>({
     defaultValues: {
-      current: "",
-      new: "",
-      newConfirm: "",
+      current: '',
+      new: '',
+      newConfirm: '',
     },
     resolver: yupResolver(changePassSchema),
   });
@@ -48,17 +48,17 @@ const ChangePassword = () => {
       newPassword: data.new,
     };
     const res: any = await dispatch(changePassword(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       toast({
         title: res?.payload.message,
-        status: "success",
+        status: 'success',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
-      setValue("current", "");
-      setValue("new", "");
-      setValue("newConfirm", "");
+      setValue('current', '');
+      setValue('new', '');
+      setValue('newConfirm', '');
     }
   };
   return (
@@ -77,8 +77,8 @@ const ChangePassword = () => {
             </span>
             <div className="flex items-center gap-x-3 border-[1px] border-[#E9EAF0] px-[18px] py-[11px] text-[14px]">
               <input
-                {...register("current")}
-                type={oldPassword ? "text" : "password"}
+                {...register('current')}
+                type={oldPassword ? 'text' : 'password'}
                 className="w-full focus:outline-none "
               />
               {oldPassword ? (
@@ -103,8 +103,8 @@ const ChangePassword = () => {
             <span className="text-[14px] text-[#1D2026]">Mật khẩu mới</span>
             <div className="flex items-center gap-x-3 border-[1px] border-[#E9EAF0] px-[18px] py-[11px] text-[14px]">
               <input
-                {...register("new")}
-                type={newPassword ? "text" : "password"}
+                {...register('new')}
+                type={newPassword ? 'text' : 'password'}
                 className="w-full focus:outline-none "
               />
               {newPassword ? (
@@ -131,8 +131,8 @@ const ChangePassword = () => {
             </span>
             <div className="flex items-center gap-x-3 border-[1px] border-[#E9EAF0] px-[18px] py-[11px] text-[14px]">
               <input
-                {...register("newConfirm")}
-                type={checkNewPass ? "text" : "password"}
+                {...register('newConfirm')}
+                type={checkNewPass ? 'text' : 'password'}
                 className="w-full focus:outline-none "
               />
               {checkNewPass ? (
@@ -158,7 +158,7 @@ const ChangePassword = () => {
             isLoading={isSubmitting}
             bg="#FF6636"
             color="white"
-            _hover={{ bg: "#fc5b2a" }}
+            _hover={{ bg: '#fc5b2a' }}
           >
             Thay đổi mật khẩu
           </Button>

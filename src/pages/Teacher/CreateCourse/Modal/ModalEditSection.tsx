@@ -7,17 +7,17 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useAppDispatch } from "../../../../hooks/appHooks";
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { useAppDispatch } from '../../../../hooks/appHooks';
 import {
   selectCoursesCreated,
   updateSectionName,
-} from "../../../../store/reducers/createCourseSlice";
-import { useSelector } from "react-redux";
+} from '../../../../store/reducers/createCourseSlice';
+import { useSelector } from 'react-redux';
 
 const ModalEditSection = ({ isOpen, onClose, index }: any) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
   const course = useSelector(selectCoursesCreated);
   const handleSubmit = () => {
@@ -60,7 +60,7 @@ const ModalEditSection = ({ isOpen, onClose, index }: any) => {
                 onClick={handleSubmit}
                 bg="#FF6636"
                 color="white"
-                _hover={{ bg: "#fb5a2a" }}
+                _hover={{ bg: '#fb5a2a' }}
               >
                 Lưu
               </Button>

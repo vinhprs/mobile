@@ -1,11 +1,11 @@
-import { useDisclosure } from "@chakra-ui/react";
-import React, { useEffect, useRef } from "react";
-import ModalEditorEachItem from "./Modal/ModalEditorEachItem";
-import { useAppDispatch } from "../../../hooks/appHooks";
+import { useDisclosure } from '@chakra-ui/react';
+import React, { useEffect, useRef } from 'react';
+import ModalEditorEachItem from './Modal/ModalEditorEachItem';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   deleteAnswerCorretAnswer,
   updateAnswerCorretAnswer,
-} from "../../../store/reducers/examSlice";
+} from '../../../store/reducers/examSlice';
 
 const QuestionCreateEachItem = ({ indexAnswer, item, index, answer }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,7 +23,7 @@ const QuestionCreateEachItem = ({ indexAnswer, item, index, answer }: any) => {
         })
       );
     } else {
-      console.log("uncheck");
+      console.log('uncheck');
 
       dispatch(
         deleteAnswerCorretAnswer({

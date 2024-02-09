@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./rootReducers";
-import { getAccountList } from "../actions/admin.action";
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from './rootReducers';
+import { getAccountList } from '../actions/admin.action';
 const initState = {
   accountList: {},
   isDisabled: false,
   isDeleted: false,
 };
 const adminSlice = createSlice({
-  name: "admin",
+  name: 'admin',
   initialState: initState,
   reducers: {
     updateDisable: (state, actions) => {

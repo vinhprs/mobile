@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { v4 as uuid4 } from "uuid";
-import Sections from "./Sections";
-import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
-import { useAppDispatch } from "../../../hooks/appHooks";
+import React, { useState } from 'react';
+import { v4 as uuid4 } from 'uuid';
+import Sections from './Sections';
+import { BsArrowUpShort, BsArrowDownShort } from 'react-icons/bs';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   addSectionItem,
   selectCoursesCreated,
@@ -10,10 +10,10 @@ import {
   updateArray,
   updateIndex,
   updateSections,
-} from "../../../store/reducers/createCourseSlice";
-import { Button } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
-import { genSlug } from "../../../utils/lib";
+} from '../../../store/reducers/createCourseSlice';
+import { Button } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import { genSlug } from '../../../utils/lib';
 export interface LectureProp {
   id?: string;
   lectureName: string;
@@ -43,14 +43,14 @@ const FormCreateVideo = () => {
   const addSection = () => {
     const item = {
       // id: uuid4(),
-      sectionName: "",
+      sectionName: '',
       lectures: [
         {
           // id: uuid4(),
-          lectureName: "",
-          lectureType: "",
-          amount: "",
-          url: "",
+          lectureName: '',
+          lectureType: '',
+          amount: '',
+          url: '',
           slug:genSlug(10)
         },
       ],
@@ -79,8 +79,8 @@ const FormCreateVideo = () => {
                   onClick={() => swapItem(index, index - 1)}
                   className={` w-[40px] h-[40px] flex justify-center items-center bg-white ${
                     index === 0
-                      ? "cursor-not-allowed text-[#6E7485]"
-                      : "cursor-pointer hover:bg-[#FF6636] hover:text-white transition-all ease-in-out duration-150"
+                      ? 'cursor-not-allowed text-[#6E7485]'
+                      : 'cursor-pointer hover:bg-[#FF6636] hover:text-white transition-all ease-in-out duration-150'
                   } `}
                 >
                   <BsArrowUpShort className="text-[25px]" />
@@ -89,8 +89,8 @@ const FormCreateVideo = () => {
                   onClick={() => swapItem(index, index + 1)}
                   className={` w-[40px] h-[40px] flex justify-center items-center bg-white ${
                     index === sections.sections.length - 1
-                      ? "cursor-not-allowed text-[#6E7485]"
-                      : "cursor-pointer hover:bg-[#FF6636] hover:text-white transition-all ease-in-out duration-150"
+                      ? 'cursor-not-allowed text-[#6E7485]'
+                      : 'cursor-pointer hover:bg-[#FF6636] hover:text-white transition-all ease-in-out duration-150'
                   } `}
                 >
                   <BsArrowDownShort className="text-[25px]" />
@@ -121,7 +121,7 @@ const FormCreateVideo = () => {
           fontWeight={600}
           color="white"
           bg="#FF6636"
-          _hover={{ bg: "#fe5a27" }}
+          _hover={{ bg: '#fe5a27' }}
           borderRadius="none"
           onClick={onSubmit}
           // className="text-[14px] h-[48px] px-[24px] font-semibold text-white bg-[#FF6636] hover:bg-[#fe5a27]"

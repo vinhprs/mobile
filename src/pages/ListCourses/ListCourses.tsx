@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import Sidebar from "./Sidebar";
-import Courses from "./Courses";
-import { BsFilter } from "react-icons/bs";
-import { Select } from "@chakra-ui/react";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getStudentCourse } from "../../store/actions/course.action";
+import React, { useEffect, useState } from 'react';
+import Sidebar from './Sidebar';
+import Courses from './Courses';
+import { BsFilter } from 'react-icons/bs';
+import { Select } from '@chakra-ui/react';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getStudentCourse } from '../../store/actions/course.action';
 import {
   selectCourse,
   selectLoading,
   setLoading,
   setUpdateCourse,
-} from "../../store/reducers/courseSlice";
-import { useSelector } from "react-redux";
-import useQueryParams from "../../hooks/useSearchParams";
-import Filter from "./Filter";
-import { useLocation } from "react-router-dom";
-import useSetQueryParams from "../../hooks/useSetQuery";
-import { selectAuthUserId } from "../../store/reducers/authSlice";
-import { LocalStorage } from "../../utils/LocalStorage";
+} from '../../store/reducers/courseSlice';
+import { useSelector } from 'react-redux';
+import useQueryParams from '../../hooks/useSearchParams';
+import Filter from './Filter';
+import { useLocation } from 'react-router-dom';
+import useSetQueryParams from '../../hooks/useSetQuery';
+import { selectAuthUserId } from '../../store/reducers/authSlice';
+import { LocalStorage } from '../../utils/LocalStorage';
 const ListCourses = () => {
   const param = useLocation();
   const dispatch = useAppDispatch();
@@ -28,15 +28,15 @@ const ListCourses = () => {
   const userId = LocalStorage.getUserId();
   const queryParam = useQueryParams(
     {
-      search: "",
-      categoryId: "",
-      subCategoryId: "",
-      startPrice: "",
-      endPrice: "",
+      search: '',
+      categoryId: '',
+      subCategoryId: '',
+      startPrice: '',
+      endPrice: '',
       page: 1,
-      userId: "",
-      startDuration: "",
-      endDuration: "",
+      userId: '',
+      startDuration: '',
+      endDuration: '',
     },
     window.location.href
   );
@@ -47,7 +47,7 @@ const ListCourses = () => {
       ...rest,
     });
     const res: any = await dispatch(getStudentCourse(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       dispatch(setUpdateCourse(res.payload.data));
       dispatch(setLoading(false));
     }
@@ -60,11 +60,11 @@ const ListCourses = () => {
     getListCourse({
       ...queryParam.queryParams,
       page: page,
-      userId: userId ? userId : "",
+      userId: userId ? userId : '',
     });
     setQuery(queryParam.queryParams, {
       page: page,
-      userId: userId ? userId : "",
+      userId: userId ? userId : '',
     });
   }, [param.search, page]);
 
@@ -96,16 +96,16 @@ const ListCourses = () => {
           </div> */}
         </div>
         <span className="font-semibold text-[14px] text-[#1D2026]">
-          {course.listData.length}{" "}
+          {course.listData.length}{' '}
           <span className="text-[#4E5566] font-normal">kết quả</span>
         </span>
       </div>
       <div
         className={`grid ${
-          openSidebar ? "grid-cols-1" : "grid-cols-[300px_1fr]"
+          openSidebar ? 'grid-cols-1' : 'grid-cols-[300px_1fr]'
         } gap-x-7`}
       >
-        <div className={` ${openSidebar ? "hidden" : ""}`}>
+        <div className={` ${openSidebar ? 'hidden' : ''}`}>
           <Filter setPage={setPage} />
         </div>
         <div className="">

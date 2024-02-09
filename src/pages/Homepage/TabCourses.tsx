@@ -1,7 +1,7 @@
-import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { course } from "../../dummydata/dummydata";
-import TabCourseItem from "./TabCourseItem";
+import React from 'react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { course } from '../../dummydata/dummydata';
+import TabCourseItem from './TabCourseItem';
 const TabCourses = () => {
   return (
     <Tabs variant="colorful">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -10,22 +10,22 @@ import {
   TableCaption,
   TableContainer,
   useDisclosure,
-} from "@chakra-ui/react";
-import { MdBlock, MdOutlineLock } from "react-icons/md";
-import { CiTrash } from "react-icons/ci";
-import ModalLock from "./ModalLock";
-import ModalDelete from "./ModaDelete";
-import PagiantionNew from "../../components/Pagination/PagiantionNew";
-import { useSelector } from "react-redux";
+} from '@chakra-ui/react';
+import { MdBlock, MdOutlineLock } from 'react-icons/md';
+import { CiTrash } from 'react-icons/ci';
+import ModalLock from './Modal/ModalLock';
+import ModalDelete from './Modal/ModaDelete';
+import PagiantionNew from '../../components/Pagination/PagiantionNew';
+import { useSelector } from 'react-redux';
 import {
   selectAccountList,
   updateDelete,
   updateDisable,
-} from "../../store/reducers/adminSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getAccountList } from "../../store/actions/admin.action";
-import { sliceString } from "../../utils/lib";
-import moment from "moment";
+} from '../../store/reducers/adminSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getAccountList } from '../../store/actions/admin.action';
+import { sliceString } from '../../utils/lib';
+import moment from 'moment';
 const TableListStudent = () => {
   const [page, setPage] = useState(1);
   const handleChange = (page: number) => {
@@ -35,15 +35,15 @@ const TableListStudent = () => {
   const dispatch = useAppDispatch();
   const getAccountStudentList = async () => {
     const payload = new URLSearchParams({
-      role: "STUDENT",
+      role: 'STUDENT',
     });
     const res = await dispatch(getAccountList(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
     }
   };
-  const [idUser, setIdUser] = useState("");
-  const [fullname, setFullname] = useState("");
+  const [idUser, setIdUser] = useState('');
+  const [fullname, setFullname] = useState('');
   const {
     isOpen: isOpenLock,
     onOpen: onOpenLock,
@@ -57,7 +57,7 @@ const TableListStudent = () => {
   const handleOpen = (id: string, isDisable: boolean, fullname:string) => {
     dispatch(updateDisable(!isDisable));
     setIdUser(id);
-    setFullname(fullname)
+    setFullname(fullname);
     setTimeout(() => {
       onOpenLock();
     }, 200);
@@ -65,7 +65,7 @@ const TableListStudent = () => {
   const handleOpenDelete = (id: string,fullname:string) => {
     dispatch(updateDelete(true));
     setIdUser(id);
-    setFullname(fullname)
+    setFullname(fullname);
     setTimeout(() => {
       onOpenDelete();
     }, 200);
@@ -101,7 +101,7 @@ const TableListStudent = () => {
                           src={`${
                             item?.avatar
                               ? item?.avatar
-                              : "https://images.pexels.com/photos/17153119/pexels-photo-17153119/free-photo-of-dan-ba-d-i-m-t-chan-dung-s-c-d-p.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                              : 'https://images.pexels.com/photos/17153119/pexels-photo-17153119/free-photo-of-dan-ba-d-i-m-t-chan-dung-s-c-d-p.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
                           }`}
                           alt=""
                           className="w-[35px] h-[35px] object-cover rounded-full"
@@ -111,19 +111,19 @@ const TableListStudent = () => {
                     </Td>
                     <Td>{item?.fullname}</Td>
                     <Td>{item?.email}</Td>
-                    <Td>{moment(item?.createdAt).format("DD/MM/YYYY")}</Td>
+                    <Td>{moment(item?.createdAt).format('DD/MM/YYYY')}</Td>
                     <Td>{item?.roles[0]?.roleName}</Td>
                     <Td>
                       <div className="flex gap-x-2 items-center">
                         <div
                           className={`w-[8px] h-[8px] rounded-full ${
-                            item?.isDisabled ? "bg-red-500" : "bg-green-500"
+                            item?.isDisabled ? 'bg-red-500' : 'bg-green-500'
                           }`}
                         ></div>
                         <span>
                           {item?.isDisabled
-                            ? "Đã khóa tài khoản"
-                            : "Đã kích hoạt tài khoản"}
+                            ? 'Đã khóa tài khoản'
+                            : 'Đã kích hoạt tài khoản'}
                         </span>
                       </div>
                     </Td>
@@ -134,11 +134,11 @@ const TableListStudent = () => {
                             handleOpen(item?._id, item?.isDisabled,item?.fullname)
                           }
                           className={`cursor-pointer flex gap-x-2 items-center ${
-                            item?.isDisabled ? "bg-green-500" : "bg-red-500"
+                            item?.isDisabled ? 'bg-green-500' : 'bg-red-500'
                           }  text-white px-[12px] py-[6px] rounded-lg`}
                         >
                           {item?.isDisabled ? <MdOutlineLock /> : <MdBlock />}
-                          <span>{item?.isDisabled ? "Mở" : "Khóa"}</span>
+                          <span>{item?.isDisabled ? 'Mở' : 'Khóa'}</span>
                         </div>
                         <div
                           onClick={() => handleOpenDelete(item?._id,item?.fullname)}

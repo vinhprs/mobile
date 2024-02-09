@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Spinner } from "@chakra-ui/react";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getStudentCourse } from "../../store/actions/course.action";
-import { Link } from "react-router-dom";
-import { formatMoney } from "../../utils/lib";
+import React, { useEffect, useState } from 'react';
+import { Spinner } from '@chakra-ui/react';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getStudentCourse } from '../../store/actions/course.action';
+import { Link } from 'react-router-dom';
+import { formatMoney } from '../../utils/lib';
 const SearchResult = ({ value, debouncedValue }: any) => {
   const dispatch = useAppDispatch();
   const [searchCourseList, setSearchCourseList] = useState<any>([]);
   console.log(
-    "🚀 ~ file: SearchResult.tsx:8 ~ SearchResult ~ searchCourseList:",
+    '🚀 ~ file: SearchResult.tsx:8 ~ SearchResult ~ searchCourseList:',
     searchCourseList
   );
   const getSearchListCourse = async (search: any) => {
     const payload: any = new URLSearchParams({
-      limit: "5",
+      limit: '5',
       search: search,
     });
     const res: any = await dispatch(getStudentCourse(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       setSearchCourseList(res?.payload.data);
     }
   };

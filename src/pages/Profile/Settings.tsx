@@ -1,6 +1,6 @@
-import React from "react";
-import Account from "./Account";
-import ChangePassword from "./ChangePassword";
+import React from 'react';
+import Account from './Account';
+import ChangePassword from './ChangePassword';
 
 const Settings = () => {
   return (

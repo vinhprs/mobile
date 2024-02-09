@@ -1,5 +1,5 @@
-import React from "react";
-import TeachersList from "./TeachersList";
+import React from 'react';
+import TeachersList from './TeachersList';
 
 const Teachers = () => {
   return (

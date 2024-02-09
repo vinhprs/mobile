@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Navigation,
   Pagination,
   Scrollbar,
   A11y,
   Autoplay,
-} from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
-import CourseList from "./CourseList";
-import img from "../../image/Homepage/R.jpeg";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getStudentCourse } from "../../store/actions/course.action";
+} from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
+import CourseList from './CourseList';
+import img from '../../image/Homepage/R.jpeg';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getStudentCourse } from '../../store/actions/course.action';
 
 const ViewList = () => {
   const dispatch = useAppDispatch();
   const [itemList, setItemList] = useState<any>([]);
   const getCourse = async () => {
     const payload = new URLSearchParams({
-      limit: "8",
+      limit: '8',
     });
     const res: any = await dispatch(getStudentCourse(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       setItemList(res?.payload.data);
     }
   };

@@ -1,18 +1,18 @@
-import React from "react";
-import { AiOutlinePlayCircle } from "react-icons/ai";
-import { PiMonitorPlayFill } from "react-icons/pi";
-import { Link, useLocation, useNavigate, useRoutes } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/appHooks";
+import React from 'react';
+import { AiOutlinePlayCircle } from 'react-icons/ai';
+import { PiMonitorPlayFill } from 'react-icons/pi';
+import { Link, useLocation, useNavigate, useRoutes } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/appHooks';
 import {
   updateCommentList,
   updatePage,
-} from "../../store/reducers/commentSlice";
+} from '../../store/reducers/commentSlice';
 const ListVideoChapter = ({ id, code, lecture, index,slug }: any) => {
   const pathname = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   console.log(
-    "🚀 ~ file: ListVideoChapter.tsx:7 ~ ListVideoChapter ~ pathname:",
+    '🚀 ~ file: ListVideoChapter.tsx:7 ~ ListVideoChapter ~ pathname:',
     pathname
   );
   const handleOnClick = () => {
@@ -23,9 +23,10 @@ const ListVideoChapter = ({ id, code, lecture, index,slug }: any) => {
     }, 500);
   };
   return (
-    <div
+    <button
+      disabled={true}
       onClick={handleOnClick}
-      className="grid grid-cols-[20px_1fr] gap-x-3 hover:bg-[#D8D9DA] p-4 cursor-pointer"
+      className="grid grid-cols-[20px_1fr] gap-x-3 hover:bg-[#D8D9DA] p-4 cursor-pointer text-left"
     >
       <AiOutlinePlayCircle className="text-[20px] mt-[0.5px]" />
       <div className="flex flex-col gap-y-2">
@@ -40,7 +41,7 @@ const ListVideoChapter = ({ id, code, lecture, index,slug }: any) => {
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

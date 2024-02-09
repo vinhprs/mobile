@@ -7,8 +7,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/react";
-import React from "react";
+} from '@chakra-ui/react';
+import React from 'react';
 
 const ModalUploadFile = ({ isOpen, onClose }: any) => {
   return (
@@ -34,7 +34,7 @@ const ModalUploadFile = ({ isOpen, onClose }: any) => {
           <ModalFooter>
             <div className="flex justify-between w-full">
               <Button onClick={onClose}>Đóng</Button>
-              <Button bg="#FF6636" color="white" _hover={{ bg: "#fb5a2a" }}>
+              <Button bg="#FF6636" color="white" _hover={{ bg: '#fb5a2a' }}>
                 Lưu
               </Button>
             </div>

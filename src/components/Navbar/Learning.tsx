@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 const Learning = () => {
   return (
     <div className="title_learn text-[14px] cursor-pointer relative text-[#272829]">

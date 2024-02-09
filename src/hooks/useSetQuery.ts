@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { createQueryString } from "../utils/lib";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { createQueryString } from '../utils/lib';
 function useSetQueryParams() {
   // get query params
   const history = useNavigate();

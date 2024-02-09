@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectQuestion } from "../../store/reducers/questionSlice";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectQuestion } from '../../store/reducers/questionSlice';
 import {
   selectTimeStop,
   updateTimeFinish,
-} from "../../store/reducers/examSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
+} from '../../store/reducers/examSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
 
 const TimeAndQuestions = ({ questions }: any) => {
   const questionNumber = useSelector(selectQuestion);

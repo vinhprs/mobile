@@ -1,7 +1,7 @@
-import React from "react";
-import FavoriteList from "./FavoriteList";
-import { useSelector } from "react-redux";
-import { selectWishList } from "../../store/reducers/wishListSlice";
+import React from 'react';
+import FavoriteList from './FavoriteList';
+import { useSelector } from 'react-redux';
+import { selectWishList } from '../../store/reducers/wishListSlice';
 
 const Favorite = () => {
   const wishList = useSelector(selectWishList);

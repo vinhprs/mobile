@@ -1,41 +1,41 @@
-import React, { useState } from "react";
-import imgSub from "../../image/Homepage/R.jpeg";
-import { CiShoppingCart } from "react-icons/ci";
-import { IoBagCheckOutline } from "react-icons/io5";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from 'react';
+import imgSub from '../../image/Homepage/R.jpeg';
+import { CiShoppingCart } from 'react-icons/ci';
+import { IoBagCheckOutline } from 'react-icons/io5';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   AiOutlineHeart,
   AiOutlineClockCircle,
   AiFillHeart,
-} from "react-icons/ai";
-import { BsPeople } from "react-icons/bs";
-import { formatMoney } from "../../utils/lib";
-import { useAppDispatch } from "../../hooks/appHooks";
+} from 'react-icons/ai';
+import { BsPeople } from 'react-icons/bs';
+import { formatMoney } from '../../utils/lib';
+import { useAppDispatch } from '../../hooks/appHooks';
 import {
   addToCart,
   deleteCart,
   getCart,
-} from "../../store/actions/cart.action";
-import useQueryParams from "../../hooks/useSearchParams";
-import { LocalStorage } from "../../utils/LocalStorage";
-import { VscGoToFile } from "react-icons/vsc";
-import { getWistList, postWishList } from "../../store/actions/wishlist.action";
-import { updateCartSub, updateIsBuyNow } from "../../store/reducers/cartSlice";
-import parse from "html-react-parser";
+} from '../../store/actions/cart.action';
+import useQueryParams from '../../hooks/useSearchParams';
+import { LocalStorage } from '../../utils/LocalStorage';
+import { VscGoToFile } from 'react-icons/vsc';
+import { getWistList, postWishList } from '../../store/actions/wishlist.action';
+import { updateCartSub, updateIsBuyNow } from '../../store/reducers/cartSlice';
+import parse from 'html-react-parser';
 const Course = ({ item, getListCourse }: any) => {
   const userId = LocalStorage.getUserId();
   const navigate = useNavigate();
   const queryParam = useQueryParams(
     {
-      search: "",
-      categoryId: "",
-      subCategoryId: "",
-      startPrice: "",
-      endPrice: "",
+      search: '',
+      categoryId: '',
+      subCategoryId: '',
+      startPrice: '',
+      endPrice: '',
       page: 1,
-      userId: "",
-      startDuration: "",
-      endDuration: "",
+      userId: '',
+      startDuration: '',
+      endDuration: '',
     },
     window.location.href
   );
@@ -50,19 +50,19 @@ const Course = ({ item, getListCourse }: any) => {
       courseId: id,
     };
     const res = await dispatch(addToCart(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
-      console.log("🚀 ~ file: SidebarCourse.tsx:31 ~ addCart ~ res:", res);
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
+      console.log('🚀 ~ file: SidebarCourse.tsx:31 ~ addCart ~ res:', res);
     }
   };
   const getCartList = async () => {
     const response = await dispatch(getCart({}));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       console.log(response);
     }
   };
   const getWishLists = async () => {
     const response = await dispatch(getWistList({}));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       console.log(response);
     }
   };
@@ -80,7 +80,7 @@ const Course = ({ item, getListCourse }: any) => {
       courseId: id,
     };
     const res = await dispatch(postWishList(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       getListCourse({
         ...queryParam.queryParams,
       });
@@ -88,13 +88,13 @@ const Course = ({ item, getListCourse }: any) => {
     }
   };
   const handleCart = () => {
-    navigate(`/cart`);
+    navigate('/cart');
   };
   const handleBuy = () => {
     dispatch(updateIsBuyNow(true));
     dispatch(updateCartSub(item));
     setTimeout(() => {
-      navigate("/cart/payment");
+      navigate('/cart/payment');
     }, 500);
   };
   return (
@@ -121,7 +121,7 @@ const Course = ({ item, getListCourse }: any) => {
                 {item?.category.categoryName}
               </div>
               <p className="text-[12px] font-normal px-[6px] py-[4px] text-[#342F98] bg-[#EBEBFF] w-fit">
-                bởi {item?.courseName.split("-")[1]}
+                bởi {item?.courseName.split('-')[1]}
               </p>
 
               {/* <span className="text-[12px] font-normal px-[6px] py-[4px] text-[#15711F] bg-[#E1F7E3] w-fit">

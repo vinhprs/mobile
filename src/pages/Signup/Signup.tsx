@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import SignupForm from "./SignupForm";
-import image from "../../image/Login/Illustrations1.jpg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import SignupForm from './SignupForm';
+import image from '../../image/Login/Illustrations1.jpg';
 const Signup = () => {
   return (
     <div className="pt-[74px] pb-[60px] grid grid-cols-2 h-screen">

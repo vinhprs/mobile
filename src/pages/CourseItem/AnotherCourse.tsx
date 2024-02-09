@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { BsFillPeopleFill } from "react-icons/bs";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getStudentCourse } from "../../store/actions/course.action";
-import { useSelector } from "react-redux";
-import { selectAnotherCourse } from "../../store/reducers/courseSlice";
-import { formatMoney } from "../../utils/lib";
-import { useNavigate } from "react-router-dom";
-import { getWistList, postWishList } from "../../store/actions/wishlist.action";
-import { useToast } from "@chakra-ui/react";
-import { LocalStorage } from "../../utils/LocalStorage";
+import React, { useEffect } from 'react';
+import { BsFillPeopleFill } from 'react-icons/bs';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getStudentCourse } from '../../store/actions/course.action';
+import { useSelector } from 'react-redux';
+import { selectAnotherCourse } from '../../store/reducers/courseSlice';
+import { formatMoney } from '../../utils/lib';
+import { useNavigate } from 'react-router-dom';
+import { getWistList, postWishList } from '../../store/actions/wishlist.action';
+import { useToast } from '@chakra-ui/react';
+import { LocalStorage } from '../../utils/LocalStorage';
 const AnotherCourse = ({ courseDetail }: any) => {
   const userId = LocalStorage.getUserId();
 
@@ -20,18 +20,17 @@ const AnotherCourse = ({ courseDetail }: any) => {
   const getAnotherCourse = async (id: any) => {
     const variable = new URLSearchParams({
       categoryId: courseDetail?.categoryId,
-      limit: "6",
-      page: "1",
+      limit: '6',
+      page: '1',
     });
     const response = await dispatch(getStudentCourse(variable));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       console.log(response);
     }
   };
   const getWishListItem = async () => {
     const res = await dispatch(getWistList({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
-    }
+    if (res.payload && res.meta.requestStatus === 'fulfilled') { /* empty */ }
   };
   const postWishListItem = async (id: any, idCategory: any) => {
     console.log(id);
@@ -39,13 +38,13 @@ const AnotherCourse = ({ courseDetail }: any) => {
       courseId: id,
     };
     const res: any = await dispatch(postWishList(variable));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       toast({
         title: res?.payload.message,
-        status: "success",
+        status: 'success',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
       setTimeout(() => {
         getAnotherCourse(idCategory);
@@ -59,7 +58,7 @@ const AnotherCourse = ({ courseDetail }: any) => {
   return (
     <div className="flex flex-col gap-y-2">
       {anotherCourseList?.listData?.map((item: any, index: any) => (
-        <div className="flex gap-x-3 text-[14px] text-[#1D2026]">
+        <div className="flex gap-x-3 text-[14px] text-[#1D2026]" key={item?._id}>
           <img
             className="w-[80px] h-[80px] object-cover"
             src={item?.thumbnail_url}
@@ -73,7 +72,7 @@ const AnotherCourse = ({ courseDetail }: any) => {
               <h1 className="font-semibold w-[400px]">{item?.courseName}</h1>
               <div className="flex gap-x-2 items-center">
                 <span className="font-medium text-[#4E5566]">
-                  Thời lượng: {item?.totalDuration.split(".")[0]} phút
+                  Thời lượng: {item?.totalDuration.split('.')[0]} phút
                 </span>
               </div>
             </div>

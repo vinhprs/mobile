@@ -1,9 +1,9 @@
-import React from "react";
-import logowhite from "../../image/Navbar/logowhite.svg";
-import { BsFacebook } from "react-icons/bs";
-import { AiOutlineInstagram } from "react-icons/ai";
-import { FaTwitter } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import React from 'react';
+import logowhite from '../../image/Navbar/logowhite.svg';
+import { BsFacebook } from 'react-icons/bs';
+import { AiOutlineInstagram } from 'react-icons/ai';
+import { FaTwitter } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <div className="bg-[#1D2026] grid grid-cols-2 px-[24px] h-full py-[36px] border-t-2 border-[#272829] text-[#8C94A3]">

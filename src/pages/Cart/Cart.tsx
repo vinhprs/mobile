@@ -1,7 +1,7 @@
-import React from "react";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import ListCart from "./ListCart";
-import Total from "./Total";
+import React from 'react';
+import Wrapper from '../../components/Wrapper/Wrapper';
+import ListCart from './ListCart';
+import Total from './Total';
 
 const Cart = () => {
   return (

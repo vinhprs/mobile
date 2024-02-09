@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
-import { formatNumberMoney } from "../../utils/lib";
-import CourseNavbar from "./CourseNavbar";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { useSelector } from "react-redux";
-import { selectCartList } from "../../store/reducers/cartSlice";
-import { getCart } from "../../store/actions/cart.action";
+import React, { useEffect } from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { Link, useNavigate } from 'react-router-dom';
+import { formatNumberMoney } from '../../utils/lib';
+import CourseNavbar from './CourseNavbar';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { useSelector } from 'react-redux';
+import { selectCartList } from '../../store/reducers/cartSlice';
+import { getCart } from '../../store/actions/cart.action';
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -14,8 +14,7 @@ const Cart = () => {
   const cartList: any = useSelector(selectCartList);
   const getCartList = async () => {
     const res = await dispatch(getCart({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-    }
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) { /* empty */ }
   };
   useEffect(() => {
     getCartList();
@@ -52,7 +51,7 @@ const Cart = () => {
                 Tổng tiền: <span>{formatNumberMoney(cartList?.total)}VND</span>
               </h1>
               <button
-                onClick={() => navigate("/cart")}
+                onClick={() => navigate('/cart')}
                 className="divide-none w-full py-3 px-2 border-[2px] border-[#272829] text-[#272829] font-semibold hover:bg-[#FF6636] hover:text-white hover:border-none transition-all ease-in-out duration-300"
               >
                 Đi tới giỏ hàng

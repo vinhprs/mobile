@@ -1,25 +1,25 @@
-import React, { useRef, useState } from "react";
-import { BsCloudUpload } from "react-icons/bs";
-import ReactQuill from "react-quill";
-import { useForm } from "react-hook-form";
-import { useAppDispatch } from "../../../hooks/appHooks";
+import React, { useRef, useState } from 'react';
+import { BsCloudUpload } from 'react-icons/bs';
+import ReactQuill from 'react-quill';
+import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   updateArray,
   updateDesc,
   updateIndex,
   updateThumbnail,
-} from "../../../store/reducers/createCourseSlice";
-import { buttonList, toolbarOptions } from "../../../utils/type";
-import imgFade from "../../../image/CreateCourse/Icon.jpg";
-import "react-quill/dist/quill.snow.css";
-import { Button } from "@chakra-ui/react";
-import { uploadFile } from "../../../store/actions/course.action";
-import SunEditor from "suneditor-react";
-import suneditor from "suneditor";
-import "suneditor/dist/css/suneditor.min.css";
-import katex from "katex";
-import "katex/dist/katex.min.css";
-import { convertBase64 } from "../../../utils/lib";
+} from '../../../store/reducers/createCourseSlice';
+import { buttonList, toolbarOptions } from '../../../utils/type';
+import imgFade from '../../../image/CreateCourse/Icon.jpg';
+import 'react-quill/dist/quill.snow.css';
+import { Button } from '@chakra-ui/react';
+import { uploadFile } from '../../../store/actions/course.action';
+import SunEditor from 'suneditor-react';
+import suneditor from 'suneditor';
+import 'suneditor/dist/css/suneditor.min.css';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import { convertBase64 } from '../../../utils/lib';
 const FormAdvance = () => {
   /**
    * @type {React.MutableRefObject<SunEditor>} get type definitions for editor
@@ -31,8 +31,8 @@ const FormAdvance = () => {
   };
   const dispatch = useAppDispatch();
   const refImage = useRef<any>(null);
-  const [image, setImage] = useState<any>("");
-  const [valueDesc, setValueDesc] = useState("");
+  const [image, setImage] = useState<any>('');
+  const [valueDesc, setValueDesc] = useState('');
   const [loading, setLoading] = useState(false);
   console.log(valueDesc);
   // const convertBase64 = (file: any) => {
@@ -58,9 +58,9 @@ const FormAdvance = () => {
     const base64 = await convertBase64(file);
     setImage(file);
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     const res: any = await dispatch(uploadFile(formData));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res.payload?.data?.url);
       dispatch(updateThumbnail(res.payload?.data?.url));
     }
@@ -73,13 +73,13 @@ const FormAdvance = () => {
     formState: { errors },
   } = useForm<any>({
     defaultValues: {
-      desc: "",
+      desc: '',
     },
   });
   const onEditorStateChange = (editorState: any) => {
-    setValue("desc", editorState);
+    setValue('desc', editorState);
   };
-  const editorContent = watch("emailContent");
+  const editorContent = watch('emailContent');
   const onSubmit = async (data: any) => {
     setTimeout(() => {
       dispatch(updateIndex(2));
@@ -124,11 +124,11 @@ const FormAdvance = () => {
             {/* <img src={image ? URL.createObjectURL(image) : imgFade} alt="" /> */}
             <div className="text-[14px]">
               <p className="mb-[24px] text-[#6E7485]">
-                Tải lên hình thu nhỏ khóa học của bạn ở đây.{" "}
+                Tải lên hình thu nhỏ khóa học của bạn ở đây.{' '}
                 <span className="text-[#1D2026] font-medium">
                   Nguyên tắc quan trọng
                 </span>
-                : 1200x800 pixel hoặc tỷ lệ 12:8. Định dạng được hỗ trợ:{" "}
+                : 1200x800 pixel hoặc tỷ lệ 12:8. Định dạng được hỗ trợ:{' '}
                 <span className="text-[#1D2026] font-medium">
                   .jpg, .jpeg hoặc .png
                 </span>
@@ -182,7 +182,7 @@ const FormAdvance = () => {
             fontWeight={600}
             color="white"
             bg="#FF6636"
-            _hover={{ bg: "#fe5a27" }}
+            _hover={{ bg: '#fe5a27' }}
             borderRadius="none"
             // className="text-[14px] h-[48px] px-[24px] font-semibold text-white bg-[#FF6636] hover:bg-[#fe5a27]"
           >

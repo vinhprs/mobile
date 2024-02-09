@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Menu,
   MenuButton,
@@ -10,18 +10,18 @@ import {
   MenuDivider,
   Button,
   useToast,
-} from "@chakra-ui/react";
-import { IoPersonOutline } from "react-icons/io5";
-import course from "../../../image/Course/CourseImages.png";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { formatMoney } from "../../../utils/lib";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import { updatePublicCourse } from "../../../store/actions/course.action";
-import { useNavigate } from "react-router-dom";
+} from '@chakra-ui/react';
+import { IoPersonOutline } from 'react-icons/io5';
+import course from '../../../image/Course/CourseImages.png';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { formatMoney } from '../../../utils/lib';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { updatePublicCourse } from '../../../store/actions/course.action';
+import { useNavigate } from 'react-router-dom';
 
 const Course = ({ item, getTeacherCourseData }: any) => {
   const navigate = useNavigate();
-  const [menu, setMenu] = useState("...");
+  const [menu, setMenu] = useState('...');
   const dispatch = useAppDispatch();
   const toast = useToast();
   const publicItem = async (isPublic: boolean) => {
@@ -30,14 +30,14 @@ const Course = ({ item, getTeacherCourseData }: any) => {
       isPublic: !isPublic,
     };
     const res: any = await dispatch(updatePublicCourse(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       toast({
-        title: "Thành công",
+        title: 'Thành công',
         description: res?.payload?.message,
-        status: "success",
+        status: 'success',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
       setTimeout(() => {
         getTeacherCourseData({});
@@ -57,10 +57,10 @@ const Course = ({ item, getTeacherCourseData }: any) => {
             <div className="w-fit uppercase px-[6px] py-[4px] text-[10px] bg-[#EBEBFF] text-[#342F98] font-medium">
               {item.category.categoryName}
             </div>
-            <div className={`w-fit uppercase px-[6px] py-[4px] text-[10px]  ${item.isPublic ? "bg-[#FF6636] text-white" : "text-[#342F98] bg-[#EBEBFF]"} font-medium`}>
+            <div className={`w-fit uppercase px-[6px] py-[4px] text-[10px]  ${item.isPublic ? 'bg-[#FF6636] text-white' : 'text-[#342F98] bg-[#EBEBFF]'} font-medium`}>
               {item.isPublic
-                ? "Đã đăng tải khóa học"
-                : "Chưa đăng tải khóa học"}
+                ? 'Đã đăng tải khóa học'
+                : 'Chưa đăng tải khóa học'}
             </div>
           </div>
           <h1 className="text-[#1D2026] font-medium line-clamp-1">
@@ -84,8 +84,8 @@ const Course = ({ item, getTeacherCourseData }: any) => {
               <MenuButton
                 p={0}
                 bg="none"
-                _hover={{ bg: "none" }}
-                _active={{ bg: "none" }}
+                _hover={{ bg: 'none' }}
+                _active={{ bg: 'none' }}
                 fontSize="14px"
                 color="#6E7485"
                 as={Button}

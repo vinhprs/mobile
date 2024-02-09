@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { updateTabCourse } from "../../store/reducers/courseTabSlice";
-import { LocalStorage } from "../../utils/LocalStorage";
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { updateTabCourse } from '../../store/reducers/courseTabSlice';
+import { LocalStorage } from '../../utils/LocalStorage';
 import {
   selectAuthUserId,
   selectUserInfo,
   updateIsLogged,
   updateUserId,
-} from "../../store/reducers/authSlice";
-import { useSelector } from "react-redux";
-import { getUserInfo } from "../../store/actions/user.action";
+} from '../../store/reducers/authSlice';
+import { useSelector } from 'react-redux';
+import { getUserInfo } from '../../store/actions/user.action';
 
 const Username = () => {
   const dispatch = useAppDispatch();
@@ -26,12 +26,12 @@ const Username = () => {
     dispatch(updateIsLogged(false));
     dispatch(updateUserId({}));
     setTimeout(() => {
-      navigate("/");
+      navigate('/');
     }, 500);
   };
   const getUserInfoDetail = async () => {
     const res = await dispatch(getUserInfo({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
     }
   };
@@ -40,7 +40,7 @@ const Username = () => {
     dispatch(updateIsLogged(false));
     dispatch(updateUserId({}));
     setTimeout(() => {
-      navigate("/teacher");
+      navigate('/teacher');
     }, 500);
   };
   useEffect(() => {
@@ -87,7 +87,7 @@ const Username = () => {
               Khóa học yêu thích
             </Link>
             <Link
-              to={`/cart`}
+              to={'/cart'}
               className="text-[14px] font-medium text-[#61677A] hover:text-[#272829] transition-all ease-in-out duration-200"
             >
               Giỏ hàng của tôi

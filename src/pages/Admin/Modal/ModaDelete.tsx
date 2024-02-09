@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,15 +8,15 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+} from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 import {
   selectDelete,
   selectDisable,
   updateDelete,
-} from "../../store/reducers/adminSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { changeStatus } from "../../store/actions/admin.action";
+} from '../../../store/reducers/adminSlice';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { changeStatus } from '../../../store/actions/admin.action';
 const ModalDelete = ({ isOpen, onClose, id, getAccountStudentList,fullname }: any) => {
   const isDisable = useSelector(selectDisable);
   const isDelete = useSelector(selectDelete);
@@ -29,7 +29,7 @@ const ModalDelete = ({ isOpen, onClose, id, getAccountStudentList,fullname }: an
       isDeleted: isDelete,
     };
     const res = await dispatch(changeStatus(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       setIsLoading(false);
       dispatch(updateDelete(false));
       onClose();
@@ -48,7 +48,7 @@ const ModalDelete = ({ isOpen, onClose, id, getAccountStudentList,fullname }: an
         <ModalCloseButton />
         <ModalBody>
           <p>
-            Bạn có chắc là muốn xóa người dùng có tên là{" "}
+            Bạn có chắc là muốn xóa người dùng có tên là{' '}
             <span className="font-medium text-red-500">{fullname}</span>
           </p>
         </ModalBody>

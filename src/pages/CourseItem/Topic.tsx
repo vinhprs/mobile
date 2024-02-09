@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from 'react';
 import {
   Accordion,
   AccordionItem,
@@ -6,15 +6,16 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import {
   MdOndemandVideo,
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
-} from "react-icons/md";
-import moment from "moment";
-import { timeLecture } from "../../utils/lib";
-const Topic = ({ courseDetail }: any) => {
+} from 'react-icons/md';
+import moment from 'moment';
+import { timeLecture } from '../../utils/lib';
+import ReactPlayer from 'react-player';
+const Topic = ({ courseDetail,isShow }: any) => {
   const sumLecture = useMemo(() => {
     let sum = 0;
     let time = 0;
@@ -46,8 +47,8 @@ const Topic = ({ courseDetail }: any) => {
           <h1>{sumLecture} bài giảng</h1>
           <div className="w-1 h-1 rounded-full bg-[#61677A]"></div>
           <h1>
-            Tổng thời lượng:{" "}
-            {moment.duration(sumTimeLecture, "minutes").asHours().toFixed(0)}{" "}
+            Tổng thời lượng:{' '}
+            {moment.duration(sumTimeLecture, 'minutes').asHours().toFixed(0)}{' '}
             giờ
           </h1>
         </div>
@@ -68,16 +69,16 @@ const Topic = ({ courseDetail }: any) => {
                   <div className="w-1 h-1 rounded-full bg-[#ffffff]"></div>
                   <h1>
                     {moment
-                      .duration(timeLecture(section?.lectures), "minutes")
+                      .duration(timeLecture(section?.lectures), 'minutes')
                       .asHours()
-                      .toFixed(0)}{" "}
+                      .toFixed(0)}{' '}
                     giờ
                   </h1>
                 </div>
               </AccordionButton>
             </h2>
             {section?.lectures?.map((lecture: any, indexLec: any) => (
-              <AccordionPanel pb={4}>
+              <AccordionPanel pb={4} key={indexLec}>
                 <div>
                   <div className="flex items-center justify-between gap-x-2">
                     <div className="flex items-center gap-x-5">
@@ -86,17 +87,39 @@ const Topic = ({ courseDetail }: any) => {
                     </div>
                     <span className="text-[14px] text-[#61677A] w-[100px] text-end">
                       {moment
-                        .duration(lecture.duration, "minutes")
+                        .duration(lecture.duration, 'minutes')
                         .asHours()
                         .toFixed(0)}
                       h :
                       {moment
-                        .duration(lecture.duration, "minutes")
+                        .duration(lecture.duration, 'minutes')
                         .minutes()
                         .toFixed(0)}
                       m
                     </span>
                   </div>
+                </div>
+                <div className="w-full h-[600px]">
+          
+                  <ReactPlayer
+                    className="w-full h-full"
+                    controls
+                    width="100%"
+                    height="100%"
+                    loop={true}
+                    muted={true}
+                    playing={true}
+                    config={{
+                      file: {
+                        attributes: {
+                          crossOrigin: 'true',
+                        },
+                      },
+                    }}
+                    url={[
+                      `https://staging.primeedu.io.vn/api/v1/course/lecture/${lecture?.slug}`,
+                    ]}
+                  />
                 </div>
               </AccordionPanel>
             ))}

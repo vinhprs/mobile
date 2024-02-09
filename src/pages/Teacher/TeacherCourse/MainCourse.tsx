@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import { getTeacherCourse } from "../../../store/actions/course.action";
-import Course from "./Course";
-import PagiantionNew from "../../../components/Pagination/PagiantionNew";
-import { useDebounce } from "../../../hooks/useDebounce";
-import { Spinner } from "@chakra-ui/react";
+import React, { useEffect, useState } from 'react';
+import { CiSearch } from 'react-icons/ci';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { getTeacherCourse } from '../../../store/actions/course.action';
+import Course from './Course';
+import PagiantionNew from '../../../components/Pagination/PagiantionNew';
+import { useDebounce } from '../../../hooks/useDebounce';
+import { Spinner } from '@chakra-ui/react';
 const MainCourse = () => {
   const dispatch = useAppDispatch();
   const [listCourses, setListCourse] = useState<any>();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const { debouncedValue, loading } = useDebounce<string>(search, 500);
   const [page, setPage] = useState(1);
   const getTeacherCourseData = async (asset?: any) => {
@@ -19,7 +19,7 @@ const MainCourse = () => {
       ...asset,
     });
     const res: any = await dispatch(getTeacherCourse(payload));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       setListCourse(res.payload.data);
       console.log(res);
     }
@@ -32,7 +32,7 @@ const MainCourse = () => {
     getTeacherCourseData(payload);
   }, [debouncedValue, page]);
   useEffect(() => {
-    if (debouncedValue !== "") {
+    if (debouncedValue !== '') {
       setPage(1);
     }
   }, [debouncedValue]);
@@ -62,7 +62,7 @@ const MainCourse = () => {
         ) : (
           <>
             {listCourses?.listData.length > 0 && !loading && (
-              <div className={`grid grid-cols-3 gap-3`}>
+              <div className={'grid grid-cols-3 gap-3'}>
                 {listCourses?.listData.map((item: any, index: any) => (
                   <Course
                     item={item}

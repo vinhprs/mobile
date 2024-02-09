@@ -1,13 +1,13 @@
-import React from "react";
-import { useSearchParams } from "react-router-dom";
-import FormInformation from "./FormInformation";
-import { Button } from "@chakra-ui/react";
-import image from "../../image/Login/pexels-photo-11798029.jpeg";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import FormInformation from './FormInformation';
+import { Button } from '@chakra-ui/react';
+import image from '../../image/Login/pexels-photo-11798029.jpeg';
+import { useNavigate } from 'react-router-dom';
 const Information = () => {
   const navigate = useNavigate();
   const handleSkip = () => {
-    navigate("/");
+    navigate('/');
   };
   return (
     <div className="grid grid-cols-2">
@@ -27,7 +27,7 @@ const Information = () => {
           <div className="pt-3">
             <Button
               onClick={handleSkip}
-              _hover={{ bg: "#ff5926" }}
+              _hover={{ bg: '#ff5926' }}
               w="100%"
               bg="#FF6636"
               color="white"

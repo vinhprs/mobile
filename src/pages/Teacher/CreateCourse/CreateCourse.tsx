@@ -1,5 +1,5 @@
-import React from "react";
-import TabCreateCourse from "./TabCreateCourse";
+import React from 'react';
+import TabCreateCourse from './TabCreateCourse';
 
 const CreateCourse = () => {
   return (

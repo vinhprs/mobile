@@ -1,36 +1,36 @@
-import React from 'react'
-import vnexpress from "../../image/Homepage/vnexpress.png"
-import dantri from "../../image/Homepage/dan-tri.png"
-import kenh14 from "../../image/Homepage/kenh-14.png"
-import vtv from "../../image/Homepage/vtv.png"
-import tuoitre from "../../image/Homepage/tuoitre.png"
-import vtc from "../../image/Homepage/vtc.png"
+import React from 'react';
+import vnexpress from '../../image/Homepage/vnexpress.png';
+import dantri from '../../image/Homepage/dan-tri.png';
+import kenh14 from '../../image/Homepage/kenh-14.png';
+import vtv from '../../image/Homepage/vtv.png';
+import tuoitre from '../../image/Homepage/tuoitre.png';
+import vtc from '../../image/Homepage/vtc.png';
 const ImagePartner = [
   {
     id:1,
     imgPartner:vnexpress
   },
-   {
+  {
     id:2,
     imgPartner:dantri
   },
-   {
+  {
     id:3,
     imgPartner:kenh14
   },
-   {
+  {
     id:4,
     imgPartner:vtv
   },
-   {
+  {
     id:5,
     imgPartner:tuoitre
   },
-   {
+  {
     id:6,
     imgPartner:vtc
   },
-]
+];
 const Partner = () => {
   return (
     <div className='my-16'>
@@ -43,7 +43,7 @@ const Partner = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Partner
+export default Partner;

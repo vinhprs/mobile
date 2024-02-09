@@ -1,8 +1,9 @@
-import { RxHamburgerMenu } from "react-icons/rx";
-import { BsArrowDownShort, BsArrowUpShort, BsPlusLg } from "react-icons/bs";
-import { HiOutlinePencilSquare } from "react-icons/hi2";
-import { BsTrash } from "react-icons/bs";
-import { MdKeyboardArrowDown } from "react-icons/md";
+/* eslint-disable react/react-in-jsx-scope */
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { BsArrowDownShort, BsArrowUpShort, BsPlusLg } from 'react-icons/bs';
+import { HiOutlinePencilSquare } from 'react-icons/hi2';
+import { BsTrash } from 'react-icons/bs';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import {
   Menu,
   MenuButton,
@@ -14,18 +15,18 @@ import {
   MenuDivider,
   Button,
   useDisclosure,
-} from "@chakra-ui/react";
-import { LectureProp, SectionsProp } from "./FormCreateVideo";
-import ModalEditSection from "./Modal/ModalEditSection";
-import Lecture from "./Lecture";
-import { v4 as uuid4 } from "uuid";
-import { useAppDispatch } from "../../../hooks/appHooks";
+} from '@chakra-ui/react';
+import { LectureProp, SectionsProp } from './FormCreateVideo';
+import ModalEditSection from './Modal/ModalEditSection';
+import Lecture from './Lecture';
+import { v4 as uuid4 } from 'uuid';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   addLectureItem,
   deleteSectionItem,
   updateSections,
-} from "../../../store/reducers/createCourseSlice";
-import { genSlug } from "../../../utils/lib";
+} from '../../../store/reducers/createCourseSlice';
+import { genSlug } from '../../../utils/lib';
 interface PropsChild {
   sections: Array<SectionsProp>;
   item: SectionsProp;
@@ -48,10 +49,10 @@ const Sections = ({ item, index, sections }: PropsChild) => {
   };
   const addLecture = () => {
     const itemLec = {
-      lectureName: "",
-      lectureType: "",
-      amount: "",
-      url: "",
+      lectureName: '',
+      lectureType: '',
+      amount: '',
+      url: '',
       slug:genSlug(10)
     };
     dispatch(
@@ -69,7 +70,7 @@ const Sections = ({ item, index, sections }: PropsChild) => {
         <div className="flex items-center gap-x-2 text-[14px]">
           <RxHamburgerMenu className="text-[#1D2026]" />
           <h1 className="text-[#1D2026] font-semibold">
-            Chuyên đề {index + 1}:{" "}
+            Chuyên đề {index + 1}:{' '}
             <span className="font-normal">{item.sectionName}</span>
           </h1>
         </div>

@@ -1,6 +1,6 @@
-import React from "react";
-import { v4 as uuid4 } from "uuid";
-import parse from "html-react-parser";
+import React from 'react';
+import { v4 as uuid4 } from 'uuid';
+import parse from 'html-react-parser';
 const ExamDetail = ({ examDetail }: any) => {
   // alert(parse(examDetail?.title).toString());
 
@@ -17,11 +17,12 @@ const ExamDetail = ({ examDetail }: any) => {
               <div>{parse(`${question.title}`)}</div>
             </div>
             <div>
-              {question.answerType === "Chọn 1" ? (
+              {question.answerType === 'Chọn 1' ? (
                 <div className="flex flex-col gap-y-2">
                   {question?.answers?.map((answer: any, indexAnswer: any) => {
                     const id = uuid4();
                     return (
+                      // eslint-disable-next-line react/jsx-key
                       <div className="radio-check">
                         <input type="radio" id={id} name={question.title} />
                         <label htmlFor={id}>{parse(`${answer}`)}</label>
@@ -34,6 +35,7 @@ const ExamDetail = ({ examDetail }: any) => {
                   {question?.answers?.map((answer: any, indexAnswer: any) => {
                     const id = uuid4();
                     return (
+                      // eslint-disable-next-line react/jsx-key
                       <div className="check flex items-center gap-x-[10px]">
                         <input type="checkbox" id={id} />
                         <label htmlFor={id}>{parse(`${answer}`)}</label>

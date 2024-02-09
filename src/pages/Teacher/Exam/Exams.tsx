@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import FilterExam from "./FilterExam";
-import TableExam from "./TableExam";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import { getExam } from "../../../store/actions/exam.action";
-import { useSelector } from "react-redux";
-import { examList, selectExams } from "../../../store/reducers/examSlice";
+import React, { useEffect, useState } from 'react';
+import FilterExam from './FilterExam';
+import TableExam from './TableExam';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { getExam } from '../../../store/actions/exam.action';
+import { useSelector } from 'react-redux';
+import { examList, selectExams } from '../../../store/reducers/examSlice';
 
 const Exams = ({ exams, getExams }: any) => {
   //   const dispatch = useAppDispatch();

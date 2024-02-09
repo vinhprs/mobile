@@ -1,7 +1,7 @@
-import { Button } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { BsUpload } from "react-icons/bs";
+import { Button } from '@chakra-ui/react';
+import React, { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { BsUpload } from 'react-icons/bs';
 
 interface AccountSetting {
   imgUrl: string;
@@ -12,7 +12,7 @@ interface AccountSetting {
 }
 const Infomation = () => {
   const input = useRef<any>(null);
-  const [image, setImage] = useState<any>("");
+  const [image, setImage] = useState<any>('');
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -35,7 +35,7 @@ const Infomation = () => {
     console.log(file);
     const base64: any = await convertBase64(file);
     setImage(base64);
-    setValue("imgUrl", base64);
+    setValue('imgUrl', base64);
   };
   const {
     register,
@@ -44,11 +44,11 @@ const Infomation = () => {
     formState: { errors, isSubmitting },
   } = useForm<AccountSetting>({
     defaultValues: {
-      imgUrl: "",
-      fullName: "",
-      username: "",
-      title: "",
-      bio: "",
+      imgUrl: '',
+      fullName: '',
+      username: '',
+      title: '',
+      bio: '',
     },
   });
   const onSubmit = async (data: AccountSetting) => {
@@ -83,7 +83,7 @@ const Infomation = () => {
               <span className="text-[14px]">Tải ảnh lên</span>
             </div>
             <input
-              {...register("imgUrl")}
+              {...register('imgUrl')}
               type="file"
               ref={input}
               onChange={handleImageChange}
@@ -97,7 +97,7 @@ const Infomation = () => {
             Họ và tên
           </span>
           <input
-            {...register("fullName")}
+            {...register('fullName')}
             type="text"
             className="outline-none px-[18px] py-[11px] placeholder:text-[#8C94A3] text-[14px] text-[#1D2026] border-[1px] border-[#E9EAF0]"
             placeholder="VD:Nguyễn Văn A....."
@@ -108,7 +108,7 @@ const Infomation = () => {
             Tên người dùng
           </span>
           <input
-            {...register("username")}
+            {...register('username')}
             type="text"
             className="outline-none px-[18px] py-[11px] placeholder:text-[#8C94A3] text-[14px] text-[#1D2026] border-[1px] border-[#E9EAF0"
             placeholder="VD: kiet132..."
@@ -119,7 +119,7 @@ const Infomation = () => {
             Tiêu đề
           </span>
           <input
-            {...register("title")}
+            {...register('title')}
             type="text"
             className="outline-none px-[18px] py-[11px] placeholder:text-[#8C94A3] text-[14px] text-[#1D2026] border-[1px] border-[#E9EAF0"
             placeholder="Giáo viên"
@@ -130,7 +130,7 @@ const Infomation = () => {
             Tiểu sử
           </span>
           <textarea
-            {...register("bio")}
+            {...register('bio')}
             className="outline-none h-[100px] resize-none px-[18px] py-[11px] placeholder:text-[#8C94A3] text-[14px] text-[#1D2026] border-[1px] border-[#E9EAF0"
             placeholder="VD: Chào"
           ></textarea>
@@ -138,7 +138,7 @@ const Infomation = () => {
         <Button
           w="fit-content"
           bg="#FF6636"
-          _hover={{ bg: "#f55d2f" }}
+          _hover={{ bg: '#f55d2f' }}
           fontSize="14px"
           color="white"
           type="submit"

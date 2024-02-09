@@ -1,6 +1,6 @@
-import React from "react";
-import teacherImg from "../../image/Profile/teacher.png";
-import Pagination from "../../components/Pagination/Pagination";
+import React from 'react';
+import teacherImg from '../../image/Profile/teacher.png';
+import Pagination from '../../components/Pagination/Pagination';
 const TeachersList = () => {
   return (
     <div className="flex flex-col gap-y-4">
@@ -17,7 +17,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -37,7 +37,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -57,7 +57,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -77,7 +77,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -97,7 +97,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -117,7 +117,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -137,7 +137,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -157,7 +157,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">
@@ -177,7 +177,7 @@ const TeachersList = () => {
           </div>
           <div className="p-[16px] flex items-center flex-col gap-y-[5px] border-[1px] border-[#E9EAF0]">
             <h1 className="text-[#8C94A3] text-[14px]">
-              <span className="text-[#4E5566] font-medium">236,586</span>{" "}
+              <span className="text-[#4E5566] font-medium">236,586</span>{' '}
               students
             </h1>
             <button className="bg-[#FFEEE8] text-[#FF6636] text-[14px] font-semibold w-full py-3">

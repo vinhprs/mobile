@@ -1,12 +1,12 @@
-import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import Dashboard from "./Dashboard";
-import CoursesList from "./CoursesList";
-import Message from "./Message";
-import Teachers from "./Teachers";
-import Favorite from "./Favorite";
-import Cart from "./Cart";
-import Settings from "./Settings";
+import React from 'react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import Dashboard from './Dashboard';
+import CoursesList from './CoursesList';
+import Message from './Message';
+import Teachers from './Teachers';
+import Favorite from './Favorite';
+import Cart from './Cart';
+import Settings from './Settings';
 const TabProfile = () => {
   return (
     <div>

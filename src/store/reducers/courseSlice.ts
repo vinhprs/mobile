@@ -2,9 +2,9 @@ import {
   getCourseDetail,
   getCourseUserBuy,
   getStudentCourse,
-} from "../actions/course.action";
-import { RootState } from "./rootReducers";
-import { createSlice } from "@reduxjs/toolkit";
+} from '../actions/course.action';
+import { RootState } from './rootReducers';
+import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   course: {
     listData: [],
@@ -17,7 +17,7 @@ const initialState = {
   userCourse: [],
 };
 const courseSlice = createSlice({
-  name: "course",
+  name: 'course',
   initialState: initialState,
   reducers: {
     setUpdateCourse(state, actions) {

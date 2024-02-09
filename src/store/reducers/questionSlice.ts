@@ -1,12 +1,12 @@
-import { RootState } from "../../hooks/store";
-import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from '../../hooks/store';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   arrayQuestion: [],
 };
 
 const questionSlice = createSlice({
-  name: "question",
+  name: 'question',
   initialState: initialState,
   reducers: {
     updateArray(state: any, actions: any) {
@@ -21,7 +21,6 @@ const questionSlice = createSlice({
       state.arrayQuestion = [];
     },
   },
-  extraReducers: (builder) => {},
 });
 export const { updateArray, resetArray } = questionSlice.actions;
 export default questionSlice.reducer;

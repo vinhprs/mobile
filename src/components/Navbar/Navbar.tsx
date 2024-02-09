@@ -1,25 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-import logo from "../../image/Navbar/logo.svg";
-import { AiOutlineSearch } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
-import SearchResult from "../SearchResult/SearchResult";
-import { useForm } from "react-hook-form";
-import { useDebounce } from "../../hooks/useDebounce";
-import { Button, useDisclosure } from "@chakra-ui/react";
-import ModalMenu from "../ModalMenu/ModalMenu";
-import NavbarLogin from "./NavbarLogin";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from 'react';
+import logo from '../../image/Navbar/logo.svg';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { Link, useNavigate } from 'react-router-dom';
+import SearchResult from '../SearchResult/SearchResult';
+import { useForm } from 'react-hook-form';
+import { useDebounce } from '../../hooks/useDebounce';
+import { Button, useDisclosure } from '@chakra-ui/react';
+import ModalMenu from '../ModalMenu/ModalMenu';
+import NavbarLogin from './NavbarLogin';
+import { useSelector } from 'react-redux';
 import {
   selectAuthUserId,
   selectIsLogged,
-} from "../../store/reducers/authSlice";
-import { LocalStorage } from "../../utils/LocalStorage";
+} from '../../store/reducers/authSlice';
+import { LocalStorage } from '../../utils/LocalStorage';
 const Navbar = () => {
   const isLogged = useSelector(selectIsLogged);
   const access_token = LocalStorage.getAccessToken();
   const userId = LocalStorage.getUserId();
   const { isOpen: isOpenMenu, onOpen, onClose } = useDisclosure();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const navigation = useNavigate();
   const focusRef: any = useRef(null);
@@ -31,7 +31,7 @@ const Navbar = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      search: "",
+      search: '',
     },
   });
   const handleOnSubmit = (data: any) => {
@@ -48,16 +48,16 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
   const handleRouterHome = () => {
-    navigation("/");
+    navigation('/');
   };
   useEffect(() => {
-    let handler = (e: any) => {
+    const handler = (e: any) => {
       if (!focusRef?.current?.contains(e.target)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener("click", handler);
-    return () => document.addEventListener("click", handler);
+    document.addEventListener('click', handler);
+    return () => document.addEventListener('click', handler);
   }, []);
 
   return (
@@ -73,7 +73,7 @@ const Navbar = () => {
           ref={drawerRef}
           onClick={onOpen}
           bg="none"
-          _hover={{ bg: "none" }}
+          _hover={{ bg: 'none' }}
           fontWeight="400"
         >
           Danh mục
@@ -85,15 +85,15 @@ const Navbar = () => {
         >
           <div className="flex items-center gap-4 bg-white py-3 px-4 rounded-full border-[1px] border-[#272829]">
             <button
-              type={value === "" ? "button" : "submit"}
+              type={value === '' ? 'button' : 'submit'}
               className={`${
-                value === "" ? "cursor-default" : "cursor-pointer"
+                value === '' ? 'cursor-default' : 'cursor-pointer'
               }`}
             >
               <AiOutlineSearch className="text-[#ccd2d8] text-xl" />
             </button>
             <input
-              {...register("search")}
+              {...register('search')}
               ref={focusRef}
               type="text"
               name="search"

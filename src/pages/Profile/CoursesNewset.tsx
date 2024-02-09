@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectUserCourse } from "../../store/reducers/courseSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getCourseUserBuy } from "../../store/actions/course.action";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUserCourse } from '../../store/reducers/courseSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { getCourseUserBuy } from '../../store/actions/course.action';
+import { useNavigate } from 'react-router-dom';
 
 const CoursesNewset = () => {
   const userCourse = useSelector(selectUserCourse);
   const dispatch = useAppDispatch();
   const getUserCourseDetail = async () => {
     const res = await dispatch(getCourseUserBuy({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
     }
   };
@@ -31,7 +31,7 @@ const CoursesNewset = () => {
             />
             <div className="p-[16px] h-[100px] flex flex-col gap-y-[6px] bg-white border-[1px] border-[#E9EAF0]">
               <span className="text-[#6E7485] text-[12px] line-clamp-2">
-                {course?.courseName.split("-")[0]}
+                {course?.courseName.split('-')[0]}
               </span>
               <h1 className="text-[#1D2026] text-[14px] font-medium">
                 {course?.courseName}

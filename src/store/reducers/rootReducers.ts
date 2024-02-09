@@ -1,14 +1,14 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import questionSlice from "./questionSlice";
-import courseTabSlice from "./courseTabSlice";
-import authSlice from "./authSlice";
-import createCourseSlice from "./createCourseSlice";
-import courseSlice from "./courseSlice";
-import examSlice from "./examSlice";
-import cartSlice from "./cartSlice";
-import wishListSlice from "./wishListSlice";
-import commentSlice from "./commentSlice";
-import adminSlice from "./adminSlice";
+import { combineReducers } from '@reduxjs/toolkit';
+import questionSlice from './questionSlice';
+import courseTabSlice from './courseTabSlice';
+import authSlice from './authSlice';
+import createCourseSlice from './createCourseSlice';
+import courseSlice from './courseSlice';
+import examSlice from './examSlice';
+import cartSlice from './cartSlice';
+import wishListSlice from './wishListSlice';
+import commentSlice from './commentSlice';
+import adminSlice from './adminSlice';
 
 const rootReducer = combineReducers({
   question: questionSlice,

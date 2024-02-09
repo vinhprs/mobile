@@ -1,8 +1,8 @@
-import { useDisclosure } from "@chakra-ui/react";
-import React from "react";
-import { BsPlayFill, BsThreeDotsVertical } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import ModalShare from "./ModalShare";
+import { useDisclosure } from '@chakra-ui/react';
+import React from 'react';
+import { BsPlayFill, BsThreeDotsVertical } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import ModalShare from './ModalShare';
 
 const Mycourse = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

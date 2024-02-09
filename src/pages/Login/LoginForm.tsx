@@ -1,19 +1,19 @@
-import { Button } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { loginSchema } from "../../schema/schema";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { login } from "../../store/actions/auth.action";
-import { useToast } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Button } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { loginSchema } from '../../schema/schema';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { login } from '../../store/actions/auth.action';
+import { useToast } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import {
   updateIsLogged,
   updateUserId,
   updateUserRole,
-} from "../../store/reducers/authSlice";
-import { LocalStorage } from "../../utils/LocalStorage";
+} from '../../store/reducers/authSlice';
+import { LocalStorage } from '../../utils/LocalStorage';
 interface LoginProps {
   email: string;
   password: string;
@@ -29,8 +29,8 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginProps>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     resolver: yupResolver(loginSchema),
   });
@@ -40,30 +40,30 @@ const LoginForm = () => {
       password: data.password,
     };
     const response: any = await dispatch(login(payload));
-    console.log("🚀 ~ file: LoginForm.tsx:44 ~ onSubmit ~ response:", response);
-    if (response.meta.requestStatus === "fulfilled" && response?.payload) {
+    console.log('🚀 ~ file: LoginForm.tsx:44 ~ onSubmit ~ response:', response);
+    if (response.meta.requestStatus === 'fulfilled' && response?.payload) {
       if (response?.payload?.response?.data?.statusCode === 401) {
         toast({
-          title: "Lỗi đăng nhập",
-          description: "Tài khoản của bạn đã bị xóa",
-          status: "error",
+          title: 'Lỗi đăng nhập',
+          description: 'Tài khoản của bạn đã bị xóa',
+          status: 'error',
           duration: 9000,
           isClosable: true,
-          position: "top-right",
+          position: 'top-right',
         });
       } else {
         if (response?.payload?.error === true) {
           toast({
-            title: "Lỗi đăng nhập",
+            title: 'Lỗi đăng nhập',
             description: response?.payload?.message,
-            status: "error",
+            status: 'error',
             duration: 9000,
             isClosable: true,
-            position: "top-right",
+            position: 'top-right',
           });
         } else {
           if (
-            response?.payload?.data?.infoUser?.roles[0]?.roleName === "STUDENT"
+            response?.payload?.data?.infoUser?.roles[0]?.roleName === 'STUDENT'
           ) {
             dispatch(updateUserId(response?.payload.data?.infoUser));
             LocalStorage.setUserId(response?.payload.data.infoUser._id);
@@ -73,36 +73,36 @@ const LoginForm = () => {
             console.log(LocalStorage.getAccessToken());
 
             toast({
-              title: "Đăng nhập thành công",
+              title: 'Đăng nhập thành công',
               description: response?.payload?.message,
-              status: "success",
+              status: 'success',
               duration: 9000,
               isClosable: true,
-              position: "top-right",
+              position: 'top-right',
             });
             setTimeout(() => {
               navigate(-1);
             }, 1500);
           } else {
             toast({
-              title: "Lỗi đăng nhập",
-              description: "Tài khoản này không phải tài khoản của học sinh",
-              status: "error",
+              title: 'Lỗi đăng nhập',
+              description: 'Tài khoản này không phải tài khoản của học sinh',
+              status: 'error',
               duration: 9000,
               isClosable: true,
-              position: "top-right",
+              position: 'top-right',
             });
           }
         }
       }
     } else {
       toast({
-        title: "Lỗi đăng nhập",
+        title: 'Lỗi đăng nhập',
         // description: response?.payload?.message,
-        status: "error",
+        status: 'error',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
     }
   };
@@ -113,11 +113,11 @@ const LoginForm = () => {
           <div>
             <div className="mb-[5px] text-[14px]">Email</div>
             <input
-              {...register("email")}
+              {...register('email')}
               type="text"
               placeholder="Email"
               className={`focus:outline-none text-[14px] w-full px-3 py-3 outline-none border-[1px]  ${
-                errors.email ? "border-red-500" : "border-[#E9EAF0]"
+                errors.email ? 'border-red-500' : 'border-[#E9EAF0]'
               } placeholder:text-[#8C94A3] placeholder:font-normal `}
             />
             <span className="text-[12px] text-red-500">
@@ -128,26 +128,26 @@ const LoginForm = () => {
             <div className="mb-[5px] text-[14px]">Mật khẩu</div>
             <div
               className={`flex items-center gap-x-2 justify-between w-full px-3 py-3 outline-none border-[1px] ${
-                errors.password ? "border-red-500" : "border-[#E9EAF0]"
+                errors.password ? 'border-red-500' : 'border-[#E9EAF0]'
               }`}
             >
               <input
-                {...register("password")}
-                type={showPass ? "text" : "password"}
+                {...register('password')}
+                type={showPass ? 'text' : 'password'}
                 placeholder="Mật khẩu"
                 className="w-full focus:outline-none text-[14px] placeholder:text-[#8C94A3] placeholder:font-normal"
               />
               {showPass ? (
                 <AiFillEyeInvisible
                   className={`cursor-pointer text-[20px] ${
-                    errors.password ? "text-red-500" : "text-[#272829]"
+                    errors.password ? 'text-red-500' : 'text-[#272829]'
                   }`}
                   onClick={() => setShowPass(false)}
                 />
               ) : (
                 <AiFillEye
                   className={`cursor-pointer text-[20px] ${
-                    errors.password ? "text-red-500" : "text-[#272829]"
+                    errors.password ? 'text-red-500' : 'text-[#272829]'
                   }`}
                   onClick={() => setShowPass(true)}
                 />
@@ -159,7 +159,7 @@ const LoginForm = () => {
           </div>
         </div>
         <Button
-          _hover={{ bg: "#ff511c" }}
+          _hover={{ bg: '#ff511c' }}
           w="100%"
           bg="#FF6636"
           color="white"

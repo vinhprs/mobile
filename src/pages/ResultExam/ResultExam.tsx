@@ -1,7 +1,7 @@
-import React from "react";
-import TitleResultExam from "./TitleResultExam";
-import QuestionResult from "./QuestionResult";
-import Ranking from "./Ranking";
+import React from 'react';
+import TitleResultExam from './TitleResultExam';
+import QuestionResult from './QuestionResult';
+import Ranking from './Ranking';
 
 const ResultExam = () => {
   return (

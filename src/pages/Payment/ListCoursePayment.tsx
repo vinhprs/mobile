@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectCartList } from "../../store/reducers/cartSlice";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCartList } from '../../store/reducers/cartSlice';
 import {
   Button,
   Table,
@@ -10,11 +10,11 @@ import {
   Th,
   Thead,
   Tr,
-} from "@chakra-ui/react";
-import { AiFillHeart, AiFillStar } from "react-icons/ai";
-import { BsTrashFill } from "react-icons/bs";
-import { formatMoney } from "../../utils/lib";
-import { useNavigate } from "react-router-dom";
+} from '@chakra-ui/react';
+import { AiFillHeart, AiFillStar } from 'react-icons/ai';
+import { BsTrashFill } from 'react-icons/bs';
+import { formatMoney } from '../../utils/lib';
+import { useNavigate } from 'react-router-dom';
 
 const ListCoursePayment = ({ cartList }: any) => {
   const navigate = useNavigate();
@@ -60,10 +60,10 @@ const ListCoursePayment = ({ cartList }: any) => {
                         </h1>
 
                         <span className="text-[#A1A5B3] text-[14px]">
-                          Hướng dẫn bởi:{" "}
+                          Hướng dẫn bởi:{' '}
                           <span className="text-[#4E5566]">
-                            {" "}
-                            {cart?.course?.courseName?.split("-")[1]}
+                            {' '}
+                            {cart?.course?.courseName?.split('-')[1]}
                           </span>
                         </span>
                       </div>

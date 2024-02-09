@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   Thead,
@@ -11,16 +11,16 @@ import {
   TableContainer,
   Button,
   useToast,
-} from "@chakra-ui/react";
-import { AiFillStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import { selectWishList } from "../../store/reducers/wishListSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { addToCart, getCart } from "../../store/actions/cart.action";
-import { formatMoney } from "../../utils/lib";
-import { useNavigate } from "react-router-dom";
-import { getWistList, postWishList } from "../../store/actions/wishlist.action";
-import { updateCartSub, updateIsBuyNow } from "../../store/reducers/cartSlice";
+} from '@chakra-ui/react';
+import { AiFillStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
+import { selectWishList } from '../../store/reducers/wishListSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { addToCart, getCart } from '../../store/actions/cart.action';
+import { formatMoney } from '../../utils/lib';
+import { useNavigate } from 'react-router-dom';
+import { getWistList, postWishList } from '../../store/actions/wishlist.action';
+import { updateCartSub, updateIsBuyNow } from '../../store/reducers/cartSlice';
 const FavoriteList = () => {
   const wishList = useSelector(selectWishList);
   const dispatch = useAppDispatch();
@@ -28,26 +28,24 @@ const FavoriteList = () => {
   const toast = useToast();
   const getCartItem = async () => {
     const res = await dispatch(getCart({}));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
-    }
+    if (res.payload && res.meta.requestStatus === 'fulfilled') { /* empty */ }
   };
   const getWishListItem = async () => {
     const res = await dispatch(getWistList({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
-    }
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) { /* empty */ }
   };
   const postWistListItem = async (id: any) => {
     const variable = {
       courseId: id,
     };
     const res: any = await dispatch(postWishList(variable));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       toast({
         title: res?.payload.message,
-        status: "success",
+        status: 'success',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
       setTimeout(() => {
         getWishListItem();
@@ -59,13 +57,13 @@ const FavoriteList = () => {
       courseId: id,
     };
     const res: any = await dispatch(addToCart(variable));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       toast({
         title: res?.payload.message,
-        status: "success",
+        status: 'success',
         duration: 9000,
         isClosable: true,
-        position: "top-right",
+        position: 'top-right',
       });
       setTimeout(() => {
         getCartItem();
@@ -77,7 +75,7 @@ const FavoriteList = () => {
     dispatch(updateIsBuyNow(true));
     dispatch(updateCartSub(cart));
     setTimeout(() => {
-      navigate("/cart/payment");
+      navigate('/cart/payment');
     }, 500);
   };
   const handleAddCart = (id: any) => {
@@ -98,7 +96,7 @@ const FavoriteList = () => {
         </Thead>
         <Tbody>
           {wishList?.map((item: any, index: any) => (
-            <Tr>
+            <Tr key={index}>
               <Td w="800px">
                 <div className="flex gap-x-[20px] whitespace-pre-wrap">
                   <img
@@ -118,11 +116,11 @@ const FavoriteList = () => {
                     </h1>
 
                     <span className="text-[#A1A5B3] text-[14px]">
-                      Hướng dẫn bởi:{" "}
+                      Hướng dẫn bởi:{' '}
                       <span className="text-[#4E5566]">
                         {
-                          item?.course?.courseName.split("-")[
-                            item?.course?.courseName.split("-").length - 1
+                          item?.course?.courseName.split('-')[
+                            item?.course?.courseName.split('-').length - 1
                           ]
                         }
                       </span>
@@ -154,9 +152,9 @@ const FavoriteList = () => {
                       color="#ffffff"
                       fontSize="14px"
                       _hover={{
-                        bg: "#f85b2b",
+                        bg: '#f85b2b',
                       }}
-                      onClick={() => navigate("/cart")}
+                      onClick={() => navigate('/cart')}
                     >
                       Đi tới giỏ hàng
                     </Button>
@@ -166,7 +164,7 @@ const FavoriteList = () => {
                       color="#ffffff"
                       fontSize="14px"
                       _hover={{
-                        bg: "#f85b2b",
+                        bg: '#f85b2b',
                       }}
                       onClick={() => handleAddCart(item?.course?._id)}
                     >

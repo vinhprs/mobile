@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   Thead,
@@ -10,11 +10,11 @@ import {
   TableCaption,
   TableContainer,
   useDisclosure,
-} from "@chakra-ui/react";
-import ModalDeleteExam from "./Modal/ModalDeleteExam";
-import moment from "moment";
-import ModalExamDetail from "./Modal/ModalExamDetail";
-import ModalUpdateExam from "./Modal/ModalUpdateExam";
+} from '@chakra-ui/react';
+import ModalDeleteExam from './Modal/ModalDeleteExam';
+import moment from 'moment';
+import ModalExamDetail from './Modal/ModalExamDetail';
+import ModalUpdateExam from './Modal/ModalUpdateExam';
 const ItemTable = ({ item, getExams }: any) => {
   const {
     isOpen: isOpenDelete,
@@ -43,7 +43,7 @@ const ItemTable = ({ item, getExams }: any) => {
         </Td>
         <Td>{item?.category?.categoryName}</Td>
         <Td>{item?.subCategory?.categoryName}</Td>
-        <Td>{moment(item?.createdAt).format("DD/MM/YYYY")}</Td>
+        <Td>{moment(item?.createdAt).format('DD/MM/YYYY')}</Td>
         <Td textAlign="center">{item.time} phút</Td>
         <Td>
           <div className="flex gap-x-3">

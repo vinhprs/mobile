@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 import {
   MdOutlineAssignment,
   MdOutlineAssignmentTurnedIn,
-} from "react-icons/md";
-import { TbArrowBackUpDouble } from "react-icons/tb";
+} from 'react-icons/md';
+import { TbArrowBackUpDouble } from 'react-icons/tb';
 import {
   IoIosCheckmarkCircleOutline,
   IoMdTime,
   IoIosTimer,
-} from "react-icons/io";
-import { VscError } from "react-icons/vsc";
-import { FcDataBackup } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+} from 'react-icons/io';
+import { VscError } from 'react-icons/vsc';
+import { FcDataBackup } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   resetPostExam,
   selectResultExam,
   updateTimeFinish,
   updateTimeStop,
-} from "../../store/reducers/examSlice";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { resetArray } from "../../store/reducers/questionSlice";
+} from '../../store/reducers/examSlice';
+import { useAppDispatch } from '../../hooks/appHooks';
+import { resetArray } from '../../store/reducers/questionSlice';
 const TitleResultExam = () => {
   const questionResult: any = useSelector(selectResultExam);
   const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ const TitleResultExam = () => {
             <div className="flex items-center gap-x-[10px]">
               <MdOutlineAssignmentTurnedIn className="text-[#3cb46e] text-[20px]" />
               <span className="">
-                Số câu đã làm:{" "}
+                Số câu đã làm:{' '}
                 <span className="text-[#FF6636] font-semibold">
                   {questionResult?.selected}/{questionResult?.totalQuestions}
                 </span>
@@ -59,9 +59,9 @@ const TitleResultExam = () => {
             <div className="flex items-center gap-x-[10px]">
               <IoIosCheckmarkCircleOutline className="text-[#3cb46e] text-[20px]" />
               <span>
-                Số câu làm đúng:{" "}
+                Số câu làm đúng:{' '}
                 <span className="text-[#FF6636] font-semibold">
-                  {" "}
+                  {' '}
                   {questionResult?.corrects}/{questionResult?.totalQuestions}
                 </span>
               </span>
@@ -69,9 +69,9 @@ const TitleResultExam = () => {
             <div className="flex items-center gap-x-[10px]">
               <VscError className="text-[#e43a45] text-[20px]" />
               <span>
-                Số câu làm sai:{" "}
+                Số câu làm sai:{' '}
                 <span className="text-[#FF6636] font-semibold">
-                  {" "}
+                  {' '}
                   {questionResult?.incorrect}/{questionResult?.totalQuestions}
                 </span>
               </span>
@@ -79,14 +79,14 @@ const TitleResultExam = () => {
             <div className="flex items-center gap-x-[10px]">
               <IoMdTime className="text-[#FF6636] text-[20px]" />
               <span>
-                Thời gian làm:{" "}
+                Thời gian làm:{' '}
                 <span className="text-[#FF6636] font-semibold">{questionResult?.completeTime}/45 phút</span>
               </span>
             </div>
             <div className="flex items-center gap-x-[10px]">
               <IoIosTimer className="text-[#FF6636] text-[20px]" />
               <span>
-                Tốc độ:{" "}
+                Tốc độ:{' '}
                 <span className="text-[#FF6636] font-semibold">
                   {questionResult?.completeTime/4} giây/câu
                 </span>
@@ -102,7 +102,7 @@ const TitleResultExam = () => {
         </button>
         <button
           onClick={() => {
-            navigate("/");
+            navigate('/');
             dispatch(updateTimeFinish(0));
             dispatch(updateTimeStop(false));
             dispatch(resetArray({}));

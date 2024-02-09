@@ -1,9 +1,9 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { authService } from "../services/auth.service";
-import { LocalStorage } from "../../utils/LocalStorage";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { authService } from '../services/auth.service';
+import { LocalStorage } from '../../utils/LocalStorage';
 
 export const login = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.login(params);
@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
   }
 );
 export const signup = createAsyncThunk(
-  "auth/signup",
+  'auth/signup',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.signup(params);
@@ -34,7 +34,7 @@ export const signup = createAsyncThunk(
   }
 );
 export const verifyEmail = createAsyncThunk(
-  "auth/verifyEmail",
+  'auth/verifyEmail',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.verifyEmail(params);
@@ -45,7 +45,7 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 export const forgetPassword = createAsyncThunk(
-  "auth/forgetPassword",
+  'auth/forgetPassword',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.forgetPassword(params);
@@ -56,7 +56,7 @@ export const forgetPassword = createAsyncThunk(
   }
 );
 export const resetPassword = createAsyncThunk(
-  "auth/resetPassword",
+  'auth/resetPassword',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.resetPassword(params);
@@ -67,7 +67,7 @@ export const resetPassword = createAsyncThunk(
   }
 );
 export const resendOTP = createAsyncThunk(
-  "auth/resendOTP",
+  'auth/resendOTP',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.resendOTP(params);
@@ -78,7 +78,7 @@ export const resendOTP = createAsyncThunk(
   }
 );
 export const changePassword = createAsyncThunk(
-  "auth/changePassword",
+  'auth/changePassword',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await authService.changePassword(params);

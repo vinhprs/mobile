@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 interface PaginationOptions {
   totalCount: number;
@@ -7,7 +7,7 @@ interface PaginationOptions {
   currentPage: number;
 }
 
-type PaginationRange = (number | "DOTS")[];
+type PaginationRange = (number | 'DOTS')[];
 
 const usePagination = ({
   totalCount,
@@ -56,7 +56,7 @@ const usePagination = ({
       const leftItemCount = 3 + 2 * siblingCount;
       const leftRange = range(1, leftItemCount);
 
-      return [...leftRange, "DOTS", totalPageCount];
+      return [...leftRange, 'DOTS', totalPageCount];
     }
 
     /*
@@ -68,7 +68,7 @@ const usePagination = ({
         totalPageCount - rightItemCount + 1,
         totalPageCount
       );
-      return [firstPageIndex, "DOTS", ...rightRange];
+      return [firstPageIndex, 'DOTS', ...rightRange];
     }
 
     /*
@@ -76,7 +76,7 @@ const usePagination = ({
     */
     if (shouldShowLeftDots && shouldShowRightDots) {
       const middleRange = range(leftSiblingIndex, rightSiblingIndex);
-      return [firstPageIndex, "DOTS", ...middleRange, "DOTS", lastPageIndex];
+      return [firstPageIndex, 'DOTS', ...middleRange, 'DOTS', lastPageIndex];
     }
 
     // Return an empty array if no pagination range is determined

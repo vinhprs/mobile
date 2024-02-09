@@ -1,19 +1,19 @@
-import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { BiSolidLayer } from "react-icons/bi";
-import { MdContentPaste, MdOutlineOndemandVideo } from "react-icons/md";
-import { RiVideoUploadFill } from "react-icons/ri";
-import BasicInformation from "./BasicInformation";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { BiSolidLayer } from 'react-icons/bi';
+import { MdContentPaste, MdOutlineOndemandVideo } from 'react-icons/md';
+import { RiVideoUploadFill } from 'react-icons/ri';
+import BasicInformation from './BasicInformation';
+import { useSelector } from 'react-redux';
 import {
   selectCreateCourse,
   selectIndexCreateStep,
   updateIndex,
-} from "../../../store/reducers/createCourseSlice";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import AdvanceInformation from "./AdvanceInformation";
-import VideoCreateCourses from "./VideoCreateCourses";
-import PublishCourse from "./PublishCourse";
+} from '../../../store/reducers/createCourseSlice';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import AdvanceInformation from './AdvanceInformation';
+import VideoCreateCourses from './VideoCreateCourses';
+import PublishCourse from './PublishCourse';
 const TabCreateCourse = () => {
   const dispatch = useAppDispatch();
   const selectTabCourse = useSelector(selectCreateCourse);

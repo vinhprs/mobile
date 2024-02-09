@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { MdOutlineCancel } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { MdOutlineCancel } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 const PaymentFail = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigate("/");
+      navigate('/');
     }, 5000);
     return () => clearTimeout(timeout);
   }, []);
@@ -17,7 +17,7 @@ const PaymentFail = () => {
 
       <MdOutlineCancel className="mx-auto animate-pulse text-[100px] text-red-500" />
       <div className="text-center mx-auto">
-        Bạn sẽ về trang chủ trong vòng{" "}
+        Bạn sẽ về trang chủ trong vòng{' '}
         <span className="text-red-500">5 giây</span> nữa...
       </div>
     </div>

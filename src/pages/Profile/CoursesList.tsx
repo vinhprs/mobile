@@ -1,5 +1,5 @@
-import React from "react";
-import Courses from "./Courses";
+import React from 'react';
+import Courses from './Courses';
 
 const CoursesList = () => {
   return (

@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
-import { AiOutlinePlayCircle } from "react-icons/ai";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import { useSelector } from "react-redux";
-import { selectStatusTeacher } from "../../../store/reducers/createCourseSlice";
-import { getStatusTeacher } from "../../../store/actions/course.action";
+import React, { useEffect } from 'react';
+import { AiOutlinePlayCircle } from 'react-icons/ai';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { useSelector } from 'react-redux';
+import { selectStatusTeacher } from '../../../store/reducers/createCourseSlice';
+import { getStatusTeacher } from '../../../store/actions/course.action';
 const TitleDashboard = () => {
-  const dispatch = useAppDispatch()
-  const getStatus:any = useSelector(selectStatusTeacher)
+  const dispatch = useAppDispatch();
+  const getStatus:any = useSelector(selectStatusTeacher);
   const getStatusInfo = async()=>{
-    const res = await dispatch(getStatusTeacher({}))
-    if(res.meta.requestStatus === "fulfilled" && res.payload){
-      console.log(res)
+    const res = await dispatch(getStatusTeacher({}));
+    if(res.meta.requestStatus === 'fulfilled' && res.payload){
+      console.log(res);
     }
-  }
+  };
   useEffect(()=>{
-    getStatusInfo()
-  },[])
+    getStatusInfo();
+  },[]);
   return (
     <div className="grid grid-cols-3 gap-x-[24px]">
       <div className="flex p-[24px] gap-x-[24px] bg-white w-full">

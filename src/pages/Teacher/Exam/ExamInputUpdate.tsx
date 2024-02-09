@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from "react";
-import { useAppDispatch } from "../../../hooks/appHooks";
+import React, { useEffect, useRef } from 'react';
+import { useAppDispatch } from '../../../hooks/appHooks';
 import {
   deleteAnswerCorretAnswer,
   updateAnswer,
   updateAnswerCorretAnswer,
-} from "../../../store/reducers/examSlice";
-import ModalEditorEachItem from "./Modal/ModalEditorEachItem";
-import { useDisclosure } from "@chakra-ui/react";
+} from '../../../store/reducers/examSlice';
+import ModalEditorEachItem from './Modal/ModalEditorEachItem';
+import { useDisclosure } from '@chakra-ui/react';
 interface ExamInputUpdateProps {
   answer: any;
   indexAnswer: number;

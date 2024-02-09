@@ -1,5 +1,5 @@
-import { tabsAnatomy } from "@chakra-ui/anatomy";
-import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+import { tabsAnatomy } from '@chakra-ui/anatomy';
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(tabsAnatomy.keys);
@@ -8,24 +8,24 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const baseStyle = definePartsStyle({
   // define the part you're going to style
   tab: {
-    fontWeight: "semibold",
-    color: "#61677A",
+    fontWeight: 'semibold',
+    color: '#61677A',
     _selected: {
-      color: "#FF6636",
+      color: '#FF6636',
     },
   },
   tablist: {},
   tabpanels: {
-    py: "30px",
+    py: '30px',
   },
 });
 const colorfulVariant = definePartsStyle({
   root: {
-    border: "1px solid #FF6636",
+    border: '1px solid #FF6636',
   },
   tab: {},
   tablist: {
-    borderBottom: "1px solid #FF6636",
+    borderBottom: '1px solid #FF6636',
   },
 });
 

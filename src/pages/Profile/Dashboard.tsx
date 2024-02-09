@@ -1,6 +1,6 @@
-import React from "react";
-import FunFact from "./FunFact";
-import MyCourses from "./MyCourses";
+import React from 'react';
+import FunFact from './FunFact';
+import MyCourses from './MyCourses';
 
 const Dashboard = () => {
   return (

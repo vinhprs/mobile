@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+import React, { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import {
   Modal,
   ModalOverlay,
@@ -11,21 +11,21 @@ import {
   Button,
   useDisclosure,
   Fade,
-} from "@chakra-ui/react";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import Select from "../Select";
-import Question from "../Question";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { getCategory } from "../../../../store/actions/user.action";
-import { isEmptyObject } from "../../../../utils/lib";
+} from '@chakra-ui/react';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import Select from '../Select';
+import Question from '../Question';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { getCategory } from '../../../../store/actions/user.action';
+import { isEmptyObject } from '../../../../utils/lib';
 import {
   resetCreateExam,
   selectExam,
   updateTime,
   updateTitle,
-} from "../../../../store/reducers/examSlice";
-import { useSelector } from "react-redux";
-import { createExam } from "../../../../store/actions/exam.action";
+} from '../../../../store/reducers/examSlice';
+import { useSelector } from 'react-redux';
+import { createExam } from '../../../../store/actions/exam.action';
 interface ModaCreateExamProps {
   isOpen: boolean;
   onClose: () => void;
@@ -39,26 +39,26 @@ const ModalCreateExam = ({
   const dispatch = useAppDispatch();
   const exam = useSelector(selectExam);
   console.log(
-    "🚀 ~ file: ModalCreateExam.tsx:34 ~ ModalCreateExam ~ exam:",
+    '🚀 ~ file: ModalCreateExam.tsx:34 ~ ModalCreateExam ~ exam:',
     exam
   );
   const [grade, setGrade] = useState<any>([]);
   const [gradeOne, setGradeOne] = useState<any>({});
   const [gradeTemp, setGradeTemp] = useState<any>([]);
   const [subject, setSubject] = useState<any>([]);
-  const [types, setTypes] = useState<any>("");
+  const [types, setTypes] = useState<any>('');
   const [loading, setLoading] = useState(false);
   const getCategories = async () => {
     const response: any = await dispatch(getCategory({}));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
-      const newArray = []
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
+      const newArray = [];
       for (let i = 0; i < response.payload?.data?.length; i++) {
         newArray.push(
           {
             id: response.payload?.data[i]?._id,
             name: response.payload?.data[i]?.categoryName,
           },
-        )
+        );
         
         // setGrade((prev: any) => [
         //   {
@@ -67,13 +67,13 @@ const ModalCreateExam = ({
         //   },
         // ]);
       }
-      setGrade(newArray)
+      setGrade(newArray);
       setGradeTemp(response.payload?.data);
     }
   };
   const postExam = async () => {
     const response = await dispatch(createExam(exam));
-    if (response.meta.requestStatus === "fulfilled" && response.payload) {
+    if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       setLoading(false);
       onClose();
       getExams();
@@ -87,15 +87,15 @@ const ModalCreateExam = ({
       resetCreateExam({
         questions: [
           {
-            title: "",
-            answers: ["", "", "", ""],
+            title: '',
+            answers: ['', '', '', ''],
             correctAnswers: [],
-            explain: "",
-            questionLevel: "Nhận biết",
-            answerType: "",
+            explain: '',
+            questionLevel: 'Nhận biết',
+            answerType: '',
           },
         ],
-        title: "",
+        title: '',
         categoryId: 0,
         subCategoryId: 0,
         time: 0,
@@ -113,7 +113,7 @@ const ModalCreateExam = ({
         (item: any) => item._id === gradeOne.id
       );
 
-      let array = [];
+      const array = [];
       for (let i = 0; i < newSubject[0]?.childs?.length; i++) {
         array.push({
           id: newSubject[0]?.childs[i]?._id,
@@ -199,7 +199,7 @@ const ModalCreateExam = ({
           <Button
             bg="#FF6636"
             color="#FFFFFF"
-            _hover={{ bg: "#fb5b2a" }}
+            _hover={{ bg: '#fb5b2a' }}
             borderRadius="none"
             isLoading={loading}
             onClick={clickPostExam}

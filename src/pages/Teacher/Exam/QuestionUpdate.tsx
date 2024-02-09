@@ -1,23 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import SunEditor from "suneditor-react";
-import suneditor from "suneditor";
-import "suneditor/dist/css/suneditor.min.css";
-import katex from "katex";
-import "katex/dist/katex.min.css";
-import Select from "./Select";
-import { useAppDispatch } from "../../../hooks/appHooks";
-import ExamInputUpdate from "./ExamInputUpdate";
+import React, { useEffect, useRef, useState } from 'react';
+import SunEditor from 'suneditor-react';
+import suneditor from 'suneditor';
+import 'suneditor/dist/css/suneditor.min.css';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import Select from './Select';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import ExamInputUpdate from './ExamInputUpdate';
 
-import { useDebounce } from "../../../hooks/useDebounce";
+import { useDebounce } from '../../../hooks/useDebounce';
 import {
   deleteQuestion,
   updateAnswerExplain,
   updateAnswerTitle,
-} from "../../../store/reducers/examSlice";
-import { BsFillTrashFill } from "react-icons/bs";
-import ModalEditor from "./Modal/ModalEditor";
-import { useDisclosure } from "@chakra-ui/react";
-import { buttonList } from "../../../utils/type";
+} from '../../../store/reducers/examSlice';
+import { BsFillTrashFill } from 'react-icons/bs';
+import ModalEditor from './Modal/ModalEditor';
+import { useDisclosure } from '@chakra-ui/react';
+import { buttonList } from '../../../utils/type';
 interface QuestionUpdateProps {
   question: any;
   index: any;
@@ -33,7 +33,7 @@ const QuestionUpdate = ({ question, index }: QuestionUpdateProps) => {
   const [types, setTypes] = useState(question.questionLevel);
   const [valuesExplain, setValuesExplain] = useState(question.explain);
   console.log(
-    "🚀 ~ file: QuestionUpdate.tsx:35 ~ QuestionUpdate ~ question.explain:",
+    '🚀 ~ file: QuestionUpdate.tsx:35 ~ QuestionUpdate ~ question.explain:',
     question.explain
   );
 
@@ -78,10 +78,10 @@ const QuestionUpdate = ({ question, index }: QuestionUpdateProps) => {
               </h1>
               <Select
                 arraySelect={[
-                  { id: 1, name: "Nhận biết" },
-                  { id: 2, name: "Thông hiểu" },
-                  { id: 3, name: "Vận dụng" },
-                  { id: 4, name: "Vận dụng cao" },
+                  { id: 1, name: 'Nhận biết' },
+                  { id: 2, name: 'Thông hiểu' },
+                  { id: 3, name: 'Vận dụng' },
+                  { id: 4, name: 'Vận dụng cao' },
                 ]}
                 title={question.questionLevel}
                 classes="flex-1 h-full gap-y-0 w-fit"

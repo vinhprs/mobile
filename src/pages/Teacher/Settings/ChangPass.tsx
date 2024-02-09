@@ -1,9 +1,9 @@
-import { Button } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { changePassSchema } from "../../../schema/schema";
+import { Button } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { changePassSchema } from '../../../schema/schema';
 interface ChangPassProps {
   current: string;
   new: string;
@@ -28,9 +28,9 @@ const ChangPass = () => {
     formState: { errors, isSubmitting },
   } = useForm<ChangPassProps>({
     defaultValues: {
-      current: "",
-      new: "",
-      newConfirm: "",
+      current: '',
+      new: '',
+      newConfirm: '',
     },
     resolver: yupResolver(changePassSchema),
   });
@@ -54,8 +54,8 @@ const ChangPass = () => {
             </span>
             <div className="flex justify-between items-center gap-x-[8px] px-[18px] py-[11px] bg-white  border-[1px] border-[#E9EAF0]">
               <input
-                {...register("current")}
-                type={currentPass ? "text" : "password"}
+                {...register('current')}
+                type={currentPass ? 'text' : 'password'}
                 className="outline-none w-full bg-transparent  placeholder:text-[#8C94A3] text-[14px] text-[#1D2026]"
                 placeholder="VD:Nguyễn Văn A....."
               />
@@ -81,8 +81,8 @@ const ChangPass = () => {
             </span>
             <div className="flex justify-between items-center gap-x-[8px] px-[18px] py-[11px] bg-white  border-[1px] border-[#E9EAF0">
               <input
-                {...register("new")}
-                type={newPass ? "text" : "password"}
+                {...register('new')}
+                type={newPass ? 'text' : 'password'}
                 className="outline-none w-full bg-transparent  placeholder:text-[#8C94A3] text-[14px] text-[#1D2026]"
                 placeholder="VD:Nguyễn Văn A....."
               />
@@ -108,8 +108,8 @@ const ChangPass = () => {
             </span>
             <div className="flex justify-between items-center gap-x-[8px] px-[18px] py-[11px] bg-white  border-[1px] border-[#E9EAF0">
               <input
-                {...register("newConfirm")}
-                type={newPassConfirm ? "text" : "password"}
+                {...register('newConfirm')}
+                type={newPassConfirm ? 'text' : 'password'}
                 className="outline-none w-full bg-transparent  placeholder:text-[#8C94A3] text-[14px] text-[#1D2026]"
                 placeholder="VD:Nguyễn Văn A....."
               />
@@ -132,7 +132,7 @@ const ChangPass = () => {
           <Button
             w="fit-content"
             bg="#FF6636"
-            _hover={{ bg: "#f55d2f" }}
+            _hover={{ bg: '#f55d2f' }}
             fontSize="14px"
             color="white"
             type="submit"

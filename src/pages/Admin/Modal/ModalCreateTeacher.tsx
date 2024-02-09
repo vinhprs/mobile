@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+/* eslint-disable react/no-children-prop */
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -23,18 +24,18 @@ import {
   MenuOptionGroup,
   MenuDivider,
   Textarea,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { useForm } from "react-hook-form";
-import { useAppDispatch } from "../../hooks/appHooks";
-import { getSubjects } from "../../store/actions/user.action";
-import { createTeacherAccount } from "../../store/actions/admin.action";
-import { convertBase64 } from "../../utils/lib";
-import { uploadFile } from "../../store/actions/course.action";
-import { BsUpload } from "react-icons/bs";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { createTeacher } from "../../schema/schema";
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import { useForm } from 'react-hook-form';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { getSubjects } from '../../../store/actions/user.action';
+import { createTeacherAccount } from '../../../store/actions/admin.action';
+import { convertBase64 } from '../../../utils/lib';
+import { uploadFile } from '../../../store/actions/course.action';
+import { BsUpload } from 'react-icons/bs';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createTeacher } from '../../../schema/schema';
 interface CreateTeacher {
   fullname: string;
   username: string;
@@ -54,9 +55,9 @@ const ModalCreateTeacher = ({
 }: any) => {
   const dispatch = useAppDispatch();
   const [subjects, setSubjects] = useState<any>([]);
-  const [image, setImage] = useState<any>("");
+  const [image, setImage] = useState<any>('');
 
-  const [subjectValue, setSubjectValue] = useState("Môn học");
+  const [subjectValue, setSubjectValue] = useState('Môn học');
   const input = useRef<any>(null);
 
   const {
@@ -67,27 +68,27 @@ const ModalCreateTeacher = ({
     formState: { errors, isSubmitting },
   } = useForm<CreateTeacher>({
     defaultValues: {
-      fullname: "",
-      username: "",
-      email: "",
-      password: "",
-      confirmPass: "",
+      fullname: '',
+      username: '',
+      email: '',
+      password: '',
+      confirmPass: '',
       date: new Date(),
-      gender: "",
+      gender: '',
       subject: [],
-      desc: "",
-      avatar: "",
+      desc: '',
+      avatar: '',
     },
     resolver: yupResolver(createTeacher),
   });
-  console.log("🚀 ~ file: ModalCreateTeacher.tsx:68 ~ errors:", errors);
+  console.log('🚀 ~ file: ModalCreateTeacher.tsx:68 ~ errors:', errors);
 
   const handleImageClick = () => {
     input?.current.click();
   };
   const getAllSubject = async () => {
     const res: any = await dispatch(getSubjects({}));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       setSubjects(res?.payload?.data);
     }
   };
@@ -97,11 +98,11 @@ const ModalCreateTeacher = ({
     setImage(file);
     const base64 = await convertBase64(file);
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     const res: any = await dispatch(uploadFile(formData));
-    if (res.meta.requestStatus === "fulfilled" && res.payload) {
+    if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res.payload?.data?.url);
-      setValue("avatar", res.payload?.data?.url);
+      setValue('avatar', res.payload?.data?.url);
       // setImage(res.payload?.data?.url);
 
       // dispatch(updateThumbnail(res.payload?.data?.url));
@@ -113,23 +114,23 @@ const ModalCreateTeacher = ({
   const handleClick = (subject: string, id: number) => {
     setSubjectValue(subject);
     const newArray = [id];
-    setValue("subject", newArray);
+    setValue('subject', newArray);
   };
   const onSubmit = async (data: CreateTeacher) => {
     const payload = {
       fullname: data.fullname,
       birthDate: data.date,
-      gender: data.gender === "Name" ? true : false,
+      gender: data.gender === 'Name' ? true : false,
       subjects: data.subject,
       username: data.username,
       email: data.email,
       password: data.password,
       memo: data.desc,
       avatar: data.avatar,
-      role: "TEACHER",
+      role: 'TEACHER',
     };
     const res = await dispatch(createTeacherAccount(payload));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       onClose();
       getAccountStudentList();
     }
@@ -147,12 +148,12 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Họ và tên" />
                   <Input
-                    {...register("fullname")}
+                    {...register('fullname')}
                     type="text"
                     placeholder="Nguyễn Văn A"
                     outline="none"
                     _focusVisible={{
-                      borderColor: "#FF6636",
+                      borderColor: '#FF6636',
                     }}
                   />
                 </InputGroup>
@@ -166,12 +167,12 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Username" />
                   <Input
-                    {...register("username")}
+                    {...register('username')}
                     type="text"
                     placeholder="Nguyễn Văn A"
                     outline="none"
                     _focusVisible={{
-                      borderColor: "#FF6636",
+                      borderColor: '#FF6636',
                     }}
                   />
                 </InputGroup>
@@ -185,12 +186,12 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Email" />
                   <Input
-                    {...register("email")}
+                    {...register('email')}
                     type="email"
                     placeholder="kieg@gmail.com"
                     outline="none"
                     _focusVisible={{
-                      borderColor: "#FF6636",
+                      borderColor: '#FF6636',
                     }}
                   />
                 </InputGroup>
@@ -204,12 +205,12 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Mật khẩu" />
                   <Input
-                    {...register("password")}
+                    {...register('password')}
                     type="password"
                     // placeholder="kieg@gmail.com"
                     outline="none"
                     _focusVisible={{
-                      borderColor: "#FF6636",
+                      borderColor: '#FF6636',
                     }}
                   />
                 </InputGroup>
@@ -223,12 +224,12 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Xác nhận mật khẩu" />
                   <Input
-                    {...register("confirmPass")}
+                    {...register('confirmPass')}
                     type="password"
                     // placeholder="kieg@gmail.com"
                     outline="none"
                     _focusVisible={{
-                      borderColor: "#FF6636",
+                      borderColor: '#FF6636',
                     }}
                   />
                 </InputGroup>
@@ -242,12 +243,12 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Ngày sinh" />
                   <Input
-                    {...register("date")}
+                    {...register('date')}
                     type="date"
                     // placeholder="Nguyễn Văn A"
                     outline="none"
                     _focusVisible={{
-                      borderColor: "#FF6636",
+                      borderColor: '#FF6636',
                     }}
                   />
                 </InputGroup>
@@ -263,7 +264,7 @@ const ModalCreateTeacher = ({
                   <RadioGroup>
                     <Stack direction="row">
                       <Radio
-                        {...register("gender")}
+                        {...register('gender')}
                         value="Nam"
                         isChecked={true}
                         colorScheme="orange"
@@ -271,7 +272,7 @@ const ModalCreateTeacher = ({
                         Name
                       </Radio>
                       <Radio
-                        {...register("gender")}
+                        {...register('gender')}
                         value="Nữ"
                         colorScheme="orange"
                       >
@@ -314,10 +315,10 @@ const ModalCreateTeacher = ({
                 <InputGroup>
                   <InputLeftAddon w="200px" children="Mô tả" />
                   <Textarea
-                    {...register("desc")}
+                    {...register('desc')}
                     placeholder="Mô tả"
                     size="sm"
-                    resize={"none"}
+                    resize={'none'}
                   />
                 </InputGroup>
                 {errors.desc && (
@@ -349,7 +350,7 @@ const ModalCreateTeacher = ({
                     <span className="text-[14px]">Tải ảnh lên</span>
                   </div>
                   <input
-                    {...register("avatar")}
+                    {...register('avatar')}
                     type="file"
                     ref={input}
                     onChange={handleImageChange}

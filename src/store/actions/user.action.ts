@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { userService } from "../services/user.service";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { userService } from '../services/user.service';
 export const userSetting = createAsyncThunk(
-  "user/userSetting",
+  'user/userSetting',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.userSetting(params);
@@ -13,7 +13,7 @@ export const userSetting = createAsyncThunk(
   }
 );
 export const getProvince = createAsyncThunk(
-  "user/getProvince",
+  'user/getProvince',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getProvince(params);
@@ -25,7 +25,7 @@ export const getProvince = createAsyncThunk(
   }
 );
 export const getDistrict = createAsyncThunk(
-  "user/getDistrict",
+  'user/getDistrict',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getDistrict();
@@ -37,7 +37,7 @@ export const getDistrict = createAsyncThunk(
   }
 );
 export const getSubjects = createAsyncThunk(
-  "user/getSubjects",
+  'user/getSubjects',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getSubjects();
@@ -49,7 +49,7 @@ export const getSubjects = createAsyncThunk(
   }
 );
 export const getCategory = createAsyncThunk(
-  "user/getCategory",
+  'user/getCategory',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getCategory();
@@ -61,7 +61,7 @@ export const getCategory = createAsyncThunk(
   }
 );
 export const getSubjetsGroup = createAsyncThunk(
-  "user/getSubjetsGroup",
+  'user/getSubjetsGroup',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getSubjetsGroup();
@@ -73,7 +73,7 @@ export const getSubjetsGroup = createAsyncThunk(
   }
 );
 export const getCategoryById = createAsyncThunk(
-  "user/getCategoryById",
+  'user/getCategoryById',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getCategoryById(params);
@@ -84,7 +84,7 @@ export const getCategoryById = createAsyncThunk(
   }
 );
 export const getUserInfo = createAsyncThunk(
-  "user/getUserInfo",
+  'user/getUserInfo',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
       const res = await userService.getUserInfo();

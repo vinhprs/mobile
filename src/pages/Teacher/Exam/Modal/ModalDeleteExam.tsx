@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,12 +8,12 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-} from "@chakra-ui/react";
-import { MdOutlineDeleteSweep } from "react-icons/md";
-import { PiWarningCircleThin } from "react-icons/pi";
-import { useAppDispatch } from "../../../../hooks/appHooks";
-import { deleteAnswer } from "../../../../store/reducers/examSlice";
-import { deleteExam } from "../../../../store/actions/exam.action";
+} from '@chakra-ui/react';
+import { MdOutlineDeleteSweep } from 'react-icons/md';
+import { PiWarningCircleThin } from 'react-icons/pi';
+import { useAppDispatch } from '../../../../hooks/appHooks';
+import { deleteAnswer } from '../../../../store/reducers/examSlice';
+import { deleteExam } from '../../../../store/actions/exam.action';
 interface DeleteProps {
   isOpenDelete: boolean;
   onCloseDelete: () => void;
@@ -33,7 +33,7 @@ const ModalDeleteExam = ({
   const dispatch = useAppDispatch();
   const deleteExamItem = async () => {
     const res = await dispatch(deleteExam(item?._id));
-    if (res.payload && res.meta.requestStatus === "fulfilled") {
+    if (res.payload && res.meta.requestStatus === 'fulfilled') {
       onCloseDelete();
       getExams();
       console.log(res);
@@ -61,7 +61,7 @@ const ModalDeleteExam = ({
           <div className="flex items-center gap-x-3 justify-center">
             <PiWarningCircleThin className="text-[24px] text-[#E34444]" />
             <span className="font-medium">
-              Bạn thực sự muốn xóa đề thi{" "}
+              Bạn thực sự muốn xóa đề thi{' '}
               <span className="text-[#FF6636]">{item?.title}</span>
             </span>
           </div>
@@ -71,7 +71,7 @@ const ModalDeleteExam = ({
           <Button
             bg="#FF6636"
             color="white"
-            _hover={{ bg: "#fe5c2b" }}
+            _hover={{ bg: '#fe5c2b' }}
             mr={3}
             onClick={onCloseDelete}
           >
