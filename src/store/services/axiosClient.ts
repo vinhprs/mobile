@@ -128,7 +128,7 @@ axiosClient.interceptors.response.use(
           })
           .finally(() => {
             isRefreshing = false;
-            window.location.href='/';
+            LocalStorage.clearToken();
           });
       });
     }
