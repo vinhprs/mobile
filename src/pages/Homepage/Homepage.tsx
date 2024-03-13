@@ -10,9 +10,9 @@ const Homepage = () => {
     <div className='text-black pt-[72px]'>
       <div className='relative'>
         <img src={banner} alt="banner" className='mx-auto'/>
-        <div className='absolute top-[50px] left-[150px] bg-white w-[450px] p-[24px] bg_banner'>
-          <h1 className='text-[32px] font-bold mb-[12px]'>Chào mừng các bạn học sinh đến với Prime Edu</h1>
-          <p className=' text-[16px]'>Tất cả khóa học này đều dành cho các bạn, giúp các bạn nâng cao kiến thức cùng với các giảng viên đầy kinh nghiệm</p>
+        <div className='absolute left-[10px] top-[30px] lg:top-[50px] lg:left-[150px] bg-white w-[300px] lg:w-[450px] p-[24px] bg_banner'>
+          <h1 className='text-[20px] lg:text-[32px] font-bold mb-0 lg:mb-[12px]'>Chào mừng các bạn học sinh đến với Prime Edu</h1>
+          <p className=' text-[16px] hidden lg:block'>Tất cả khóa học này đều dành cho các bạn, giúp các bạn nâng cao kiến thức cùng với các giảng viên đầy kinh nghiệm</p>
         </div>
       </div>
       <Partner/>

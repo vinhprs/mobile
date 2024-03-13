@@ -43,6 +43,20 @@ const ViewList = () => {
         delay: 2500,
         disableOnInteraction: false,
       }}
+      breakpoints={{
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      }}
       loop={true}
     >
       {itemList?.listData?.map((item: any, index: any) => (

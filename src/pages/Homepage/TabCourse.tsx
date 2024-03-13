@@ -31,7 +31,7 @@ const TabCourse = () => {
   };
   return (
     <Tabs variant="colorful">
-      <TabList>
+      <TabList flexWrap={'wrap'}>
         {subjects?.map((item: any, index: any) => (
           <Tab
             key={item?._id}

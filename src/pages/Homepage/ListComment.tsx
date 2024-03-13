@@ -19,13 +19,27 @@ const ListComment = () => {
   return (
     <Swiper
       spaceBetween={50}
-      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+      modules={[Navigation, Pagination, Scrollbar, Autoplay]}
       slidesPerView={3}
       // navigation
       // pagination={{ clickable: true }}
       autoplay={{
         delay: 2500,
         disableOnInteraction: false,
+      }}
+      breakpoints={{
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
       }}
       loop={true}
     >

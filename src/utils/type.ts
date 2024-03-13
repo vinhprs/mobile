@@ -75,3 +75,16 @@ export interface stateProps {
   course: Course;
   status:object
 }
+export const Events = {
+  CONNECT: 'connect',
+  HISTORY: 'history',
+  MESSAGE: 'message',
+  REACTION: 'reaction',
+  SUBSCRIBE: 'join_room',
+  ON_REACTION: 'on_reaction',
+  SEND_MESSAGE:'send_message',
+  RESPONSE_MESSAGE:'response_message'
+};
+export interface messChatProps {
+  inputChat:string
+}

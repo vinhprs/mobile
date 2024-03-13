@@ -6,17 +6,17 @@ import { Link } from 'react-router-dom';
 import image from '../../image/Login/Illustrations.jpg';
 const Login = () => {
   return (
-    <div className="pt-[72px] pb-[60px] grid grid-cols-2 h-screen">
-      <div className="h-full w-full">
-        <img src={image} alt="" className="h-full w-full" />
+    <div className="pt-[100px] lg:pt-[72px] pb-[60px] grid grid-cols-1 lg:grid-cols-2 h-screen px-[18px] lg:px-0">
+      <div className="h-full w-full hidden lg:block">
+        <img src={image} alt="" className="h-full w-full object-cover" />
       </div>
       <div className="flex flex-col justify-center items-center text-[#1D2026]">
-        <div className="w-[600px] border-b-[1px] border-[#272829] pb-6">
-          <h1 className="font-bold text-[24px] mb-5">
+        <div className="w-max-[600px] border-b-[1px] border-[#272829] pb-6">
+          <h1 className="font-bold text-[24px] mb-5 w-fit">
             Đăng nhập vào tài khoản PrimeEdu của bạn
           </h1>
-          <div className="flex flex-col gap-y-3 mb-5">
-            <div className="grid grid-cols-2 gap-x-3">
+          <div className="flex flex-col gap-y-10 lg:gap-y-3 mb-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-3 gap-y-3">
               <Google />
               <Facebook />
             </div>

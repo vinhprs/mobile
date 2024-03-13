@@ -14,6 +14,7 @@ import { Select } from '@chakra-ui/react';
 import { useAppDispatch } from '../../hooks/appHooks';
 import {
   getCategory,
+  getDistrict,
   getProvince,
   getSubjects,
   getSubjetsGroup,
@@ -74,10 +75,13 @@ const FormInformation = () => {
     }
   };
   const getDistricts = async () => {
-    const response: any = await dispatch(getProvince(watch('province')));
+    const payload = new URLSearchParams({
+      'provinceId': watch('province').toString()
+    });
+    const response: any = await dispatch(getDistrict(payload));
     if (response.meta.requestStatus === 'fulfilled' && response.payload) {
       console.log(response);
-      setDistrict(response.payload?.data?.districts);
+      setDistrict(response.payload?.data);
     } else {
       console.log(response.payload);
     }
@@ -192,8 +196,8 @@ const FormInformation = () => {
             // onChange={handleChangeProvince}
           >
             {province.map((item: any, index: any) => (
-              <option value={item.code} key={item.code}>
-                {item.name}
+              <option value={item.province_id} key={item.province_id}>
+                {item.province_name}
               </option>
             ))}
           </Select>
@@ -207,8 +211,8 @@ const FormInformation = () => {
             {...register('district')}
           >
             {district?.map((item: any, index: any) => (
-              <option value={item.code} key={item.code}>
-                {item.name}
+              <option value={item.district_id} key={item.district_id}>
+                {item.district_name}
               </option>
             ))}
           </Select>

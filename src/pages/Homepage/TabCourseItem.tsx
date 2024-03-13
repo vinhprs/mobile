@@ -74,7 +74,7 @@ const TabCourseItem = ({ item, itemSearch }: any) => {
       >
         Khám phá ngay
       </Link>
-      <div className="grid grid-cols-5 gap-x-4">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-4">
         {item?.listData?.map((itemList: any, index: any) => (
           <CourseList itemList={itemList} key={itemList?._id} />
         ))}

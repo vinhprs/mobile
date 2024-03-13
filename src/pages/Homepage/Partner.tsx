@@ -33,9 +33,9 @@ const ImagePartner = [
 ];
 const Partner = () => {
   return (
-    <div className='my-16'>
+    <div className='my-16 px-[18px] lg:px-0'>
       <h1 className='text-center mb-4 text-[24px] font-semibold text-[#272829]'>Các đối tác truyển thông uy tín và các bạn học sinh cả nước tin tưởng</h1>
-      <div className='flex justify-center gap-x-5'>
+      <div className='flex flex-col items-center lg:flex-row justify-center gap-x-5 gap-y-4'>
         {ImagePartner.map((item,index)=>(
           <div className='' key={item.id}>
             <img src={item.imgPartner} alt="img partner"/>

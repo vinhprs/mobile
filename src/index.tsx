@@ -11,6 +11,7 @@ import '../src/style/index.scss';
 import { tabsTheme } from './theme/tab';
 import { checkboxTheme } from './theme/checkbox';
 import WebsocketProvider from './context/WebsocketProvider';
+import { SocketContext,socket } from './context/SocketIOProvider';
 const theme = extendTheme({
   components: {
     Tabs: tabsTheme,
@@ -26,13 +27,13 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <WebsocketProvider>
+    <SocketContext.Provider value={{socket:socket}}>
       <BrowserRouter>
         <ChakraProvider theme={theme}>
           <App />
         </ChakraProvider>
       </BrowserRouter>
-    </WebsocketProvider>
+    </SocketContext.Provider>
   </Provider>
   // </React.StrictMode>
 );

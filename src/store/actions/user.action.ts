@@ -16,7 +16,7 @@ export const getProvince = createAsyncThunk(
   'user/getProvince',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
-      const res = await userService.getProvince(params);
+      const res = await userService.getProvince();
       return res;
     } catch (err) {
       rejectWithValue(err);
@@ -28,7 +28,7 @@ export const getDistrict = createAsyncThunk(
   'user/getDistrict',
   async (params: any, { dispatch, getState, rejectWithValue }) => {
     try {
-      const res = await userService.getDistrict();
+      const res = await userService.getDistrict(params);
       return res;
     } catch (err) {
       rejectWithValue(err);

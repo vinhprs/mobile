@@ -10,14 +10,14 @@ const Information = () => {
     navigate('/');
   };
   return (
-    <div className="grid grid-cols-2">
-      <div className="">
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="hidden lg:block">
         <img src={image} alt="" className="h-full w-full" />
       </div>
-      <div className="py-[15px] flex justify-center items-center bg-[#FFEEE8] text-[#1D2026]">
+      <div className="py-[15px] flex justify-center items-center bg-[#FFEEE8] text-[#1D2026] h-screen lg:h-fit">
         <div>
           <div className="w-[350px] border-b-[1px] border-[#272829] pb-2">
-            <h1 className="font-bold text-[24px] mb-5 text-[#FF6636]">
+            <h1 className="font-bold text-[24px] mb-5 text-[#FF6636] text-center">
               Nhập thông tin cơ bản
             </h1>
             <div className="flex flex-col gap-y-3 mb-5">

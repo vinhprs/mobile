@@ -99,9 +99,9 @@ const Course = ({ item, getListCourse }: any) => {
   };
   return (
     <div className="course_re text-[#1D2026]">
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-x-5 flex-col lg:flex-row">
         <div
-          className="grid grid-cols-[250px_1fr] gap-x-[15px] cursor-pointer flex-1"
+          className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-[15px]  cursor-pointer flex-1"
           onClick={handleDetailCourse}
         >
           <img
@@ -116,7 +116,7 @@ const Course = ({ item, getListCourse }: any) => {
             <p className="font-normal text-[14px]">
               {parse(item?.description)}
             </p>
-            <div className="flex gap-x-3 items-center">
+            <div className="flex gap-3 items-center flex-wrap">
               <div className="px-[6px] py-[4px] text-[12px] font-medium text-[#993D20] bg-[#FFEEE8] w-fit">
                 {item?.category.categoryName}
               </div>
@@ -146,12 +146,12 @@ const Course = ({ item, getListCourse }: any) => {
           </div>
         </div>
         <div className="flex flex-col justify-between items-end">
-          <h1 className="w-[250px] text-right text-[20px] font-semibold mb-1 text-[#FF6636]">
+          <h1 className="text-right text-[20px] font-semibold mb-1 text-[#FF6636] w-fit">
             {formatMoney(item?.price)}
             <span>VND</span>
           </h1>
           {userId && (
-            <div className="flex gap-x-3 text-white">
+            <div className="flex gap-x-3 text-white flex-wrap gap-y-5 justify-end">
               {item?.isPaid ? (
                 <button
                   onClick={() => navigate(`/courses/${item?._id}`)}

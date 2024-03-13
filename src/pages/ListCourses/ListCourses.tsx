@@ -102,7 +102,7 @@ const ListCourses = () => {
       </div>
       <div
         className={`grid ${
-          openSidebar ? 'grid-cols-1' : 'grid-cols-[300px_1fr]'
+          openSidebar ? 'grid-cols-1' : 'grid-cols-[200px_1fr] lg:grid-cols-[300px_1fr]'
         } gap-x-7`}
       >
         <div className={` ${openSidebar ? 'hidden' : ''}`}>

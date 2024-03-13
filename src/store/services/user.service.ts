@@ -3,11 +3,11 @@ export const userService = {
   userSetting: (params: any) => {
     return axiosClient.put('user/info', params);
   },
-  getProvince: (params: any) => {
-    return axiosClient.get(`address/province?code=${params}`);
+  getProvince: () => {
+    return axiosClient.get('address/province');
   },
-  getDistrict: () => {
-    return axiosClient.get('address/district');
+  getDistrict: (params:any) => {
+    return axiosClient.get(`address/district?${params.toString()}`);
   },
   getSubjects: () => {
     return axiosClient.get('subjects');

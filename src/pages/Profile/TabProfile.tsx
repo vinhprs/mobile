@@ -7,18 +7,24 @@ import Teachers from './Teachers';
 import Favorite from './Favorite';
 import Cart from './Cart';
 import Settings from './Settings';
+import { useLocation, useNavigate } from 'react-router-dom';
 const TabProfile = () => {
+  const navigation = useNavigate();
+  const pathnanme = useLocation(); 
+  const onClickTabs = ()=>{
+    navigation(`${pathnanme.pathname}`);
+  };
   return (
     <div>
       <Tabs>
         <TabList display="flex" justifyContent="space-between">
-          <Tab>Dashboard</Tab>
-          <Tab>Khóa học</Tab>
-          <Tab>Tin nhắn</Tab>
-          <Tab>Giáo viên</Tab>
-          <Tab>Yêu thích</Tab>
+          <Tab onClick={onClickTabs}>Dashboard</Tab>
+          <Tab onClick={onClickTabs}>Khóa học</Tab>
+          <Tab onClick={onClickTabs}>Tin nhắn</Tab>
+          <Tab onClick={onClickTabs}>Giáo viên</Tab>
+          <Tab onClick={onClickTabs}>Yêu thích</Tab>
           {/* <Tab>Giỏ hàng</Tab> */}
-          <Tab>Tài khoản</Tab>
+          <Tab onClick={onClickTabs}>Tài khoản</Tab>
         </TabList>
 
         <TabPanels p={0}>
