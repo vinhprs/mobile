@@ -186,7 +186,7 @@ const Account = () => {
   return (
     <div>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex gap-x-[50px]">
+        <div className="flex flex-col lg:flex-row gap-[50px]">
           <div className="p-[20px] border-[1px] border-[#E9EAF0] w-fit h-fit">
             <div
               onClick={handleImageClick}

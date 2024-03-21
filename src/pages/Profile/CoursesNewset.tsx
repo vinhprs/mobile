@@ -20,7 +20,7 @@ const CoursesNewset = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="grid grid-cols-4 gap-x-[24px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[24px]">
       {userCourse.slice(0, 4).map((course: any, index: number) => (
         <div key={course?._id}>
           <div>

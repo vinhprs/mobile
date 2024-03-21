@@ -17,7 +17,7 @@ const TabProfile = () => {
   return (
     <div>
       <Tabs>
-        <TabList display="flex" justifyContent="space-between">
+        <TabList display="flex" justifyContent="space-between" flexWrap={'wrap'}>
           <Tab onClick={onClickTabs}>Dashboard</Tab>
           <Tab onClick={onClickTabs}>Khóa học</Tab>
           <Tab onClick={onClickTabs}>Tin nhắn</Tab>
@@ -35,7 +35,7 @@ const TabProfile = () => {
             <CoursesList />
           </TabPanel>
           <TabPanel>
-            <Message />
+            {/* <Message /> */}
           </TabPanel>
           <TabPanel>
             <Teachers />

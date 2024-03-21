@@ -9,28 +9,25 @@ const TabCourse = ({ courseDetail, isShow }: any) => {
       <Tabs>
         <TabList>
           <Tab>Chuyên đề</Tab>
-          {isShow && (
-            <>
-              <Tab>Cảm nhận</Tab>
-              <Tab>Các khóa học liên quan</Tab>
-            </>
-          )}
+          {isShow && <Tab>Cảm nhận</Tab>}
+          {isShow && <Tab>Các khóa học liên quan</Tab>}
+          
         </TabList>
 
         <TabPanels p={0}>
           <TabPanel>
             <Topic courseDetail={courseDetail} isShow={isShow}/>
           </TabPanel>
-          {isShow && (
-            <>
-              <TabPanel>
-                <Comment />
-              </TabPanel>
-              <TabPanel>
-                <AnotherCourse courseDetail={courseDetail} />
-              </TabPanel>
-            </>
-          )}
+          {isShow && <TabPanel>
+            <Comment />
+          </TabPanel>}
+
+          {
+            isShow && <TabPanel>
+              <AnotherCourse courseDetail={courseDetail} />
+            </TabPanel>
+          }
+          
         </TabPanels>
       </Tabs>
     </div>

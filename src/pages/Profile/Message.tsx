@@ -6,8 +6,11 @@ import { Events } from '../../utils/type';
 import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/appHooks';
 import { updateMess } from '../../store/reducers/chatSlice';
+import { useSelector } from 'react-redux';
+import { selectUserInfo } from '../../store/reducers/authSlice';
 
 const Message = () => {
+  const userInfo:any = useSelector(selectUserInfo);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const id = searchParams.get('chatID');
@@ -15,16 +18,17 @@ const Message = () => {
   const onSubscribe = useCallback(() => {
     if (socket) {
       console.log('🚀 ~ Message ~ socket:', socket);
-
       socket.emit(Events.SUBSCRIBE, {
         chatId: id,
       });
+      socket.emit(Events.SUBSCRIBE_NOTI,{
+        chatId:userInfo?._id
+      });
     }
-  }, [socket,id]);
+  }, [socket,id, userInfo]);
   const onReceiveMessage = useCallback((data:any)=>{
     console.log(data);
     dispatch(updateMess(data));
-    
   },[]);
   useEffect(() => {
     onSubscribe();
@@ -45,7 +49,7 @@ const Message = () => {
       <div>
         <UserMessage/>
       </div>
-      <div className="h-full pb-[200px]">
+      <div className="h-full pb-[20px]">
         {searchParams.get('chatID') && (
           <MessageDetail id={searchParams.get('chatID')} socket={socket}/>
         )}

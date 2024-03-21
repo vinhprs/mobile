@@ -2,13 +2,11 @@ import React, { useContext } from 'react';
 import img from '../../image/Homepage/R.jpeg';
 import { formatMoney } from '../../utils/lib';
 import { Link, useNavigate } from 'react-router-dom';
-import { WebsocketContext } from '../../context/WebsocketProvider';
 const CourseList = ({ itemList }: any) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(`/courses/${itemList && itemList?._id}`);
   };
-  const [ready, val, send] = useContext(WebsocketContext);
   return (
     <div
       onClick={handleNavigate}

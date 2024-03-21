@@ -10,6 +10,7 @@ import wishListSlice from './wishListSlice';
 import commentSlice from './commentSlice';
 import adminSlice from './adminSlice';
 import chatSlice from './chatSlice';
+import notificationSlice from './notificationSlice';
 
 const rootReducer = combineReducers({
   question: questionSlice,
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   wishlist: wishListSlice,
   comment: commentSlice,
   admin: adminSlice,
-  chat:chatSlice
+  chat:chatSlice,
+  notification:notificationSlice
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

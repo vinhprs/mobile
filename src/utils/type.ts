@@ -81,9 +81,12 @@ export const Events = {
   MESSAGE: 'message',
   REACTION: 'reaction',
   SUBSCRIBE: 'join_room',
+  SUBSCRIBE_NOTI:'subscribe_noti',
   ON_REACTION: 'on_reaction',
   SEND_MESSAGE:'send_message',
-  RESPONSE_MESSAGE:'response_message'
+  SEND_NOTI:'send_noti',
+  RESPONSE_MESSAGE:'response_message',
+  RESPONSE_NOTI:'response_noti'
 };
 export interface messChatProps {
   inputChat:string

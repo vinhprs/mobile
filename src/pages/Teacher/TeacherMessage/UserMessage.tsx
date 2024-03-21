@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MessageDetailTeacher from './MessageDetailTeacher';
+import { useAppDispatch } from '../../../hooks/appHooks';
+import { useSelector } from 'react-redux';
+import { selectPersonChat } from '../../../store/reducers/chatSlice';
+import { getPersonChatDetail } from '../../../store/actions/chat.actions';
 
-const UserMessage = () => {
+const UserMessage = ({id,socket}:any) => {
+  const disptach = useAppDispatch();
+  const getDetail:any = useSelector(selectPersonChat);
+  console.log('🚀 ~ MessageDetail ~ getDetail teahcer:', getDetail);
+  const getDetailChat = async(id:any)=>{
+    const res = await disptach(getPersonChatDetail(id));
+    console.log('🚀 ~ getDetailChat ~ res:', res);
+    
+  };
+  useEffect(()=>{
+    getDetailChat(id);
+  },[id]);
   return (
     <div className='h-full bg-white'>
       <div className='flex gap-x-[16px] items-center px-[24px] py-[20px] border-[1px] border-[#E9EAF0]'>
@@ -11,7 +26,7 @@ const UserMessage = () => {
         </div>
         <h1 className='font-semibold'>Vinh update nè</h1>
       </div>
-      <MessageDetailTeacher/>
+      <MessageDetailTeacher getDetailChat={getDetailChat} getDetail={getDetail} socket={socket} id={id}/>
     </div>
   );
 };

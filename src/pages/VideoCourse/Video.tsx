@@ -24,7 +24,7 @@ const Video = ({ courseDetail }: any) => {
   return (
     <div>
       {paramsLecture ? (
-        <div className="w-full h-[600px]">
+        <div className="w-full h-full lg:h-[600px]">
           
           <ReactPlayer
             ref={videoRef}

@@ -19,7 +19,7 @@ const Profile = () => {
   }, []);
   return (
     <div className="pt-[100px] pb-[60px] px-[24px] max-w-[1200px] w-full mx-auto">
-      <div className="flex justify-between items-center border-[1px] w-full border-[#FF6636] p-[40px] bg-[#FF6636]">
+      <div className="flex gap-y-3 flex-col lg:flex-row justify-between items-center border-[1px] w-full border-[#FF6636] p-[40px] bg-[#FF6636]">
         <div className="flex gap-x-[24px] items-center">
           <img
             src="https://images.pexels.com/photos/2907/car-mustang.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"

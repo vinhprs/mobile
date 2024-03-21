@@ -70,9 +70,9 @@ function App() {
     <div>
       {pathname.pathname.includes('teacher') === true && (
         <>
-          <div className="h-full">
+          <div className="h-screen">
             <div
-              className={`grid ${
+              className={`grid h-full ${
                 pathname.pathname !== '/teacher'
                   ? 'grid-cols-[300px_1fr]'
                   : 'grid-cols-1'
@@ -94,7 +94,10 @@ function App() {
                   {!loading ? (
                     <>
                       {pathname.pathname !== '/teacher' &&
-                        pathname.pathname !== '/admin/teacher' && <Header />}
+                        pathname.pathname !== '/admin/teacher' && (
+                        // <Header />
+                        <div></div>
+                      )}
                       <Routes>
                         <Route path="/teacher" element={<LoginTeacher />} />
                         <Route
@@ -149,7 +152,8 @@ function App() {
                           path="/teacher/message"
                           element={
                             <RequireAuth redirectTo="/teacher">
-                              <MessageTeacher/>
+                              {/* <MessageTeacher/> */}
+                              <div></div>
                             </RequireAuth>
                           }
                         />
@@ -180,7 +184,7 @@ function App() {
                 <SidebarAdmin />
               </div>
               <div
-                className={'bg-[#F5F7FA] h-[100%] w-[calc(100vw-300px)] left-[300px] relative'}
+                className={'bg-[#F5F7FA] max-h-full w-[calc(100vw-300px)] left-[300px] relative'}
               >
                 <div className="h-screen">
                   {!loading ? (

@@ -36,29 +36,29 @@ const CourseTitle = ({ courseDetail }: any) => {
         <h1 className="text-[#1D2026] text-[24px] font-semibold mb-[20px]">
           Bạn sẽ được học những gì từ khóa học này
         </h1>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
-            <span className="text-[#4E5566] text-[14px]">
+            <span className="text-[#4E5566] text-[14px] flex-1">
               Bạn sẽ được học với những giáo viên đầy ưu tú, được tuyển chọn từ nhiều nơi
               trên toàn quốc
             </span>
           </div>
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
-            <span className="text-[#4E5566] text-[14px]">
+            <span className="text-[#4E5566] text-[14px] flex-1">
               Cùng với những bài học vô cùng bổ ích, bám sát với chương trình dạy trung học phổ thông.
             </span>
           </div>
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
-            <span className="text-[#4E5566] text-[14px]">
+            <span className="text-[#4E5566] text-[14px] flex-1">
               Cùng với đó là hệ thống xem bài học, làm bài kiểm tra vô cùng bổ ích để cho các bạn học sinh kiểm tra lại kiến thức vừa học
             </span>
           </div>
           <div className="flex gap-x-2">
             <BsFillCheckCircleFill className="text-[20px] w-[60px] text-[#23BD33]" />
-            <span className="text-[#4E5566] text-[14px]">
+            <span className="text-[#4E5566] text-[14px] flex-1">
               Ngoài ra đánh giá các bạn thông qua các bài kiểm tra, kiến thức mà các bạn được nắm bắt
             </span>
           </div>

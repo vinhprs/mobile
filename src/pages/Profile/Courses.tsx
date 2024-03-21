@@ -14,7 +14,7 @@ const Courses = () => {
         Courses ({userCourse?.length})
       </h1>
       <div className="flex flex-col gap-y-4">
-        <div className="grid grid-cols-4 gap-x-[24px] gap-y-[12px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[24px] gap-y-[12px]">
           {userCourse?.map((course: any, index: number) => (
             <div key={course?._id}>
               <div>

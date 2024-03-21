@@ -27,13 +27,13 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <SocketContext.Provider value={{socket:socket}}>
-      <BrowserRouter>
-        <ChakraProvider theme={theme}>
-          <App />
-        </ChakraProvider>
-      </BrowserRouter>
-    </SocketContext.Provider>
+    {/* <SocketContext.Provider value={{socket:socket}}> */}
+    <BrowserRouter>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </BrowserRouter>
+    {/* </SocketContext.Provider> */}
   </Provider>
   // </React.StrictMode>
 );

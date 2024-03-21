@@ -217,7 +217,7 @@ const SidebarCourse = ({ courseDetail, getDetailCourse }: any) => {
             </div>
           )}
         </div>
-        <div className="px-[24px] py-[24px] text-[14px] flex flex-col gap-y-2">
+        <div className="px-[24px] py-[24px] text-[14px] flex-col gap-y-2 hidden lg:flex">
           <h1 className="text-[#1D2026] text-[16px] font-medium">
             Khóa học này bao gồm
           </h1>
@@ -239,7 +239,7 @@ const SidebarCourse = ({ courseDetail, getDetailCourse }: any) => {
             </div>
           </div> */}
         </div>
-        <div className="px-[24px] py-[24px] text-[14px] flex flex-col gap-y-2">
+        <div className="px-[24px] py-[24px] text-[14px] hidden lg:flex flex-col gap-y-2 ">
           <h1 className="text-[#1D2026] text-[16px] font-medium">
             Chia sẻ khóa học này
           </h1>

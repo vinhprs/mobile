@@ -5,7 +5,7 @@ import { LocalStorage } from '../utils/LocalStorage';
 export const socket = io(String(process.env.REACT_APP_HOST_SOCKET), {
   // transports: ['websocket','pooling', 'flashsocket' ],
   reconnectionDelay: 1000, // defaults to 1000
-  reconnectionDelayMax: 5000, // defaults to 5000,
+  reconnectionDelayMax: 2000, // defaults to 5000,
   extraHeaders:{
     'authorization': `Bearer ${LocalStorage.getAccessToken()?.toString()}`,
   },

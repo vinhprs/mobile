@@ -10,7 +10,7 @@ const Cart = () => {
         <h1 className="font-semibold text-[24px] mb-5 text-center py-[40px] bg-[#F5F7FA]">
           Giỏ hàng
         </h1>
-        <div className="grid grid-cols-[1fr_300px] gap-x-3">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-x-3">
           <div className="">
             <ListCart />
           </div>

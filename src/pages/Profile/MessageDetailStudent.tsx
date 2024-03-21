@@ -7,16 +7,23 @@ import { useForm } from 'react-hook-form';
 import { Events, messChatProps } from '../../utils/type';
 import { useSelector } from 'react-redux';
 import { selectInputMess } from '../../store/reducers/chatSlice';
+import { selectUserInfo } from '../../store/reducers/authSlice';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { inputChatMess } from '../../schema/schema';
 const MessageDetailStudent = ({getDetailChat,getDetail,socket,id}:any) => {
   const dataMess = useSelector(selectInputMess);
+  
   console.log('🚀 ~ MessageDetailStudent ~ dataMess:', dataMess);
+  const userInfo:any = useSelector(selectUserInfo);
+  console.log('🚀 ~ MessageDetailStudent ~ userInfo:', userInfo);
   const [detailsChat,setDetailsChat] = useState<any>([]);
   const [images,setImages] = useState<any>([]);
   const refImage = useRef<any>(null);
   const {handleSubmit,register,setValue,formState:{errors,}} = useForm<messChatProps>({
     defaultValues:{
       inputChat:''
-    }
+    },
+    resolver:yupResolver(inputChatMess)
   });
   const handleImageClick = () => {
     refImage?.current.click();
@@ -37,6 +44,12 @@ const MessageDetailStudent = ({getDetailChat,getDetail,socket,id}:any) => {
       message: data.inputChat,
       chatId: id
     });
+    socket.emit(Events.SEND_NOTI,{
+      title:'New message',
+      content:`${userInfo?.username} sent you a message ${data.inputChat}`,
+      chatId:id,
+      userId:getDetail?.teacher?._id
+    });
     setValue('inputChat','');
   },[socket,id]);
   useEffect(() => {
@@ -53,7 +66,7 @@ const MessageDetailStudent = ({getDetailChat,getDetail,socket,id}:any) => {
   },[]);
   return (
     <div className='h-full'>
-      <div className='px-[24px] py-[48px] border-[1px] border-[#E9EAF0] max-h-[380px] h-full'>
+      <div className='px-[24px] py-[48px] border-[1px] border-[#E9EAF0] max-h-[600px] h-full'>
         <div className='h-full flex overflow-auto flex-col-reverse'>
           {
             detailsChat?.map((item:any,index:any)=>(

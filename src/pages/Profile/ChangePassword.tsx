@@ -66,7 +66,7 @@ const ChangePassword = () => {
       <h1 className="text-[#1D2026] text-[24px] font-semibold">
         Thay đổi mật khẩu
       </h1>
-      <div className="w-[500px]">
+      <div className="max-w-[500px]">
         <form
           className="flex flex-col gap-y-3"
           onSubmit={handleSubmit(onSubmit)}

@@ -16,6 +16,7 @@ const ListVideoChapter = ({ id, code, lecture, index,slug }: any) => {
     pathname
   );
   const handleOnClick = () => {
+    console.log('hekkk');
     dispatch(updateCommentList([]));
     dispatch(updatePage(1));
     setTimeout(() => {
@@ -24,7 +25,6 @@ const ListVideoChapter = ({ id, code, lecture, index,slug }: any) => {
   };
   return (
     <button
-      disabled={true}
       onClick={handleOnClick}
       className="grid grid-cols-[20px_1fr] gap-x-3 hover:bg-[#D8D9DA] p-4 cursor-pointer text-left"
     >

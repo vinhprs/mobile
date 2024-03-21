@@ -64,12 +64,12 @@ const AnotherCourse = ({ courseDetail }: any) => {
             src={item?.thumbnail_url}
             alt=""
           />
-          <div className="flex w-full justify-between">
+          <div className="flex w-full justify-between flex-wrap gap-y-4">
             <div
               className="flex flex-col gap-y-2 cursor-pointer"
               onClick={() => navigation(`/courses/${item._id}`)}
             >
-              <h1 className="font-semibold w-[400px]">{item?.courseName}</h1>
+              <h1 className="font-semibold w-max-[400px]">{item?.courseName}</h1>
               <div className="flex gap-x-2 items-center">
                 <span className="font-medium text-[#4E5566]">
                   Thời lượng: {item?.totalDuration.split('.')[0]} phút

@@ -80,3 +80,6 @@ export const createTeacher = yup.object().shape({
   desc: yup.string().required('Yêu cầu nhập mô tả thông tin'),
   avatar: yup.string().required('Yêu cầu nhập'),
 });
+export const inputChatMess = yup.object().shape({
+  inputChat:yup.string().required()
+});

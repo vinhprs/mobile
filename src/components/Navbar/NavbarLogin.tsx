@@ -10,7 +10,7 @@ const NavbarLogin = () => {
       <Learning />
       <Wishlist />
       <Cart />
-      <Notification />
+      {/* <Notification /> */}
       <Username />
     </div>
   );

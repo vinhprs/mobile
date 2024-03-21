@@ -40,12 +40,12 @@ const CourseItem = () => {
           <Spinner color="#FF6636" />
         </div>
       ) : (
-        <div className="grid grid-cols-[1fr_350px] gap-x-3">
-          <div className="text-[#272829] flex flex-col gap-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-x-3 gap-y-10">
+          <div className="text-[#272829] flex flex-col gap-y-5 order-2 lg:order-1">
             <CourseTitle courseDetail={courseDetail} />
             <TabCourse courseDetail={courseDetail} isShow={true}/>
           </div>
-          <div className="shadow-md h-fit">
+          <div className="shadow-md h-fit order-1 lg:order-2">
             <SidebarCourse
               courseDetail={courseDetail}
               getDetailCourse={getDetailCourse}
