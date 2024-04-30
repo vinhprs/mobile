@@ -49,6 +49,7 @@ const QuestionUpdate = ({ question, index }: QuestionUpdateProps) => {
     dispatch(
       deleteQuestion({
         questionIndex: index,
+        type:'update'
       })
     );
   };
@@ -61,6 +62,7 @@ const QuestionUpdate = ({ question, index }: QuestionUpdateProps) => {
       updateAnswerExplain({
         questionIndex: index,
         value: content,
+        type:'update'
       })
     );
   };
@@ -92,6 +94,7 @@ const QuestionUpdate = ({ question, index }: QuestionUpdateProps) => {
                 setTypes={setTypes}
                 dispatch={dispatch}
                 index={index}
+                typeRedux='update'
                 // selectTitle="Mức độ"
               />
             </div>
@@ -147,6 +150,7 @@ const QuestionUpdate = ({ question, index }: QuestionUpdateProps) => {
           onClose={onClose}
           index={index}
           title={question.title}
+          typeRedux="update"
         />
       )}
     </>

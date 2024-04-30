@@ -20,6 +20,7 @@ const QuestionCreateEachItem = ({ indexAnswer, item, index, answer }: any) => {
         updateAnswerCorretAnswer({
           questionIndex: indexQuestion,
           value: +e.target.value,
+          type:'create'
         })
       );
     } else {
@@ -71,6 +72,7 @@ const QuestionCreateEachItem = ({ indexAnswer, item, index, answer }: any) => {
         index={index}
         indexAnswer={indexAnswer}
         answer={answer}
+        typeRedux="create"
       />
     </div>
   );

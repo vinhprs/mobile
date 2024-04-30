@@ -18,7 +18,7 @@ import { useAppDispatch } from '../../../../hooks/appHooks';
 import { updateAnswerTitle } from '../../../../store/reducers/examSlice';
 import { buttonList } from '../../../../utils/type';
 
-const ModalEditor = ({ isOpen, onClose, index, title }: any) => {
+const ModalEditor = ({ isOpen, onClose, index, title,typeRedux }: any) => {
   /**
    * @type {React.MutableRefObject<SunEditor>} get type definitions for editor
    */
@@ -38,6 +38,7 @@ const ModalEditor = ({ isOpen, onClose, index, title }: any) => {
       updateAnswerTitle({
         questionIndex: indexQuestion,
         value: value,
+        type:typeRedux
       })
     );
     onClose();

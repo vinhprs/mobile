@@ -5,10 +5,12 @@ import { AiOutlinePlusCircle, AiOutlineMessage } from 'react-icons/ai';
 import { FaLayerGroup } from 'react-icons/fa';
 import { FiBook, FiSettings } from 'react-icons/fi';
 import { CiLogout } from 'react-icons/ci';
+import { MdQuiz } from 'react-icons/md';
 import logo from '../../image/Navbar/sidebar.svg';
 import { LocalStorage } from '../../utils/LocalStorage';
 import { useAppDispatch } from '../../hooks/appHooks';
 import { updateIsLogged, updateUserId } from '../../store/reducers/authSlice';
+import { TfiWrite } from 'react-icons/tfi';
 
 const Sidebar = () => {
   const path = useLocation();
@@ -80,6 +82,17 @@ const Sidebar = () => {
           <span>Ngân hàng đề thi</span>
         </div>
         <div
+          onClick={() => handleNavigate('quiz')}
+          className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
+            path.pathname.includes('quiz') === true
+              ? 'bg-[#FF6636] text-white'
+              : ''
+          }`}
+        >
+          <MdQuiz className="text-[18px]" />
+          <span>Ngân hàng Quizz</span>
+        </div>
+        <div
           onClick={() => handleNavigate('courses')}
           className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
             path.pathname.includes('courses') === true
@@ -100,6 +113,17 @@ const Sidebar = () => {
         >
           <AiOutlineMessage className="text-[18px]" />
           <span>Tin nhắn</span>
+        </div>
+        <div
+          onClick={() => handleNavigate('blog')}
+          className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
+            path.pathname.includes('blog') === true
+              ? 'bg-[#FF6636] text-white'
+              : ''
+          }`}
+        >
+          <TfiWrite className="text-[18px]" />
+          <span>Blog</span>
         </div>
         <div
           onClick={() => handleNavigate('setting', 'ạdhaskjda')}

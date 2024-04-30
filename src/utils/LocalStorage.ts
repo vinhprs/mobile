@@ -2,6 +2,7 @@ export const storageConstants = {
   accessToken: 'accessToken',
   dataGoogle: 'dataGoogle',
   refreshToken: 'refreshToken',
+  timeSeek:'timeSeek'
 };
 
 export const LocalStorage = (function () {
@@ -17,6 +18,14 @@ export const LocalStorage = (function () {
     if (accessToken) {
       localStorage.setItem('accessToken', accessToken);
     }
+  }
+  function _setTimeSeek(timeSeek:any){
+    if(timeSeek){
+      return localStorage.setItem('timeSeek',timeSeek);
+    }
+  }
+  function _getTimeSeek(){
+    return localStorage.getItem('timeSeek');
   }
   function _setRefreshToken(accessToken: any) {
     if (accessToken) {
@@ -54,5 +63,7 @@ export const LocalStorage = (function () {
     setRefreshToken: _setRefreshToken,
     setUserId: _setUserId,
     getUserId: _getUserId,
+    setTimeSeek:_setTimeSeek,
+    getTimeSeek: _getTimeSeek
   };
 })();

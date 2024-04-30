@@ -22,6 +22,7 @@ interface SelectProps {
   setTypes?: any;
   dispatch?: any;
   index?: number;
+  typeRedux?:string;
 }
 const Select = ({
   arraySelect,
@@ -37,6 +38,7 @@ const Select = ({
   types,
   dispatch,
   index,
+  typeRedux
 }: SelectProps) => {
   const [select, setSelect] = useState(title);
   const { isOpen: isOpenFaded, onToggle } = useDisclosure();
@@ -59,16 +61,23 @@ const Select = ({
         name: title,
       };
       setGradeOne({ ...gradeOne, ...payload });
-      dispatch(updateGrade(id));
+      dispatch(updateGrade({
+        value:id,
+        type:'create'
+      }));
     }
     if (typeApi === 'subject') {
-      dispatch(updateSubject(id));
+      dispatch(updateSubject({
+        value:id,
+        type:'create'
+      }));
     }
     if (typeApi === 'select') {
       dispatch(
         updateAnswerQuestionLevel({
           questionIndex: index,
           value: title,
+          type:typeRedux
         })
       );
     }

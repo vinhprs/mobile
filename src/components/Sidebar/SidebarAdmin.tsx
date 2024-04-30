@@ -5,6 +5,7 @@ import { AiOutlinePlusCircle, AiOutlineMessage } from 'react-icons/ai';
 import { FaLayerGroup } from 'react-icons/fa';
 import { FiBook, FiSettings } from 'react-icons/fi';
 import logo from '../../image/Navbar/sidebar.svg';
+import { TfiWrite } from 'react-icons/tfi';
 import { GiTeacher } from 'react-icons/gi';
 import { PiStudent } from 'react-icons/pi';
 import { CiLogout } from 'react-icons/ci';
@@ -12,6 +13,7 @@ import { MdOutlineAssignmentTurnedIn } from 'react-icons/md';
 import { LocalStorage } from '../../utils/LocalStorage';
 import { useAppDispatch } from '../../hooks/appHooks';
 import { updateIsLogged, updateUserId } from '../../store/reducers/authSlice';
+import { IoCreateOutline } from 'react-icons/io5';
 const SidebarAdmin = () => {
   const path = useLocation();
   const dispatch = useAppDispatch();
@@ -69,6 +71,28 @@ const SidebarAdmin = () => {
         >
           <MdOutlineAssignmentTurnedIn className="text-[18px]" />
           <span>Kiểm duyệt bài viết</span>
+        </div>
+        <div
+          onClick={() => handleNavigate('blog')}
+          className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
+            path.pathname.includes('blog') === true
+              ? 'bg-[#FF6636] text-white'
+              : ''
+          }`}
+        >
+          <TfiWrite className="text-[18px]" />
+          <span>Blog</span>
+        </div>
+        <div
+          onClick={() => handleNavigate('banner')}
+          className={`flex gap-x-2 items-center px-[24px] cursor-pointer py-[15px] ${
+            path.pathname.includes('banner') === true
+              ? 'bg-[#FF6636] text-white'
+              : ''
+          }`}
+        >
+          <IoCreateOutline className="text-[18px]" />
+          <span>Tạo banner</span>
         </div>
         <div
           // onClick={() => handleNavigate("dashboard")}

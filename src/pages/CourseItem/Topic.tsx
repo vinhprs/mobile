@@ -99,28 +99,6 @@ const Topic = ({ courseDetail,isShow }: any) => {
                     </span>
                   </div>
                 </div>
-                <div className="w-full h-[600px]">
-          
-                  <ReactPlayer
-                    className="w-full h-full"
-                    controls
-                    width="100%"
-                    height="100%"
-                    loop={true}
-                    muted={true}
-                    playing={true}
-                    config={{
-                      file: {
-                        attributes: {
-                          crossOrigin: 'true',
-                        },
-                      },
-                    }}
-                    url={[
-                      `https://staging.primeedu.io.vn/api/v1/course/lecture/${lecture?.slug}`,
-                    ]}
-                  />
-                </div>
               </AccordionPanel>
             ))}
           </AccordionItem>

@@ -83,3 +83,7 @@ export const createTeacher = yup.object().shape({
 export const inputChatMess = yup.object().shape({
   inputChat:yup.string().required()
 });
+export const createBlog = yup.object().shape({
+  title:yup.string().required('Yêu cầu nhập tiêu đề'),
+  desc:yup.string().min(200,'Không được ít hơn 200 từ').required('Yêu cầu nhập bài viết'),
+});

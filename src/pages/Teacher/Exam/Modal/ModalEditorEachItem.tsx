@@ -24,6 +24,7 @@ const ModalEditorEachItem = ({
   index,
   indexAnswer,
   answer,
+  typeRedux
 }: any) => {
   /**
    * @type {React.MutableRefObject<SunEditor>} get type definitions for editor
@@ -49,6 +50,7 @@ const ModalEditorEachItem = ({
         questionIndex: indexQuestion,
         answerIndex: indexAnswer,
         value: value,
+        type:typeRedux
       })
     );
     onClose();
@@ -57,7 +59,7 @@ const ModalEditorEachItem = ({
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="4xl">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Nhập câu trả lời</ModalHeader>
+        <ModalHeader>Nhập câu trả lời {indexAnswer+1}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <SunEditor

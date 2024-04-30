@@ -63,7 +63,7 @@ const FormBasic = () => {
       dispatch(updateIndex(1));
       dispatch(updateArray(1));
       dispatch(updateCourseName(data.titleSubject));
-      dispatch(updatePrice(data.money));
+      dispatch(updatePrice(+data.money));
       dispatch(updateCategoryId(data.grade));
       dispatch(updateSubCategoryId(data.subject));
       dispatch(updateExpiredDate(moment(data.date).format('YYYY-MM-DD')));

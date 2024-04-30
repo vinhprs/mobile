@@ -124,10 +124,16 @@ const ModalCreateExam = ({
     }
   }, [gradeOne]);
   const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(updateTitle(e.target.value));
+    dispatch(updateTitle({
+      value:e.target.value,
+      type:'create'
+    }));
   };
   const changeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(updateTime(+e.target.value));
+    dispatch(updateTime({
+      value:+e.target.value,
+      type:'create'
+    }));
   };
 
   return (

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   arrayQuestion: [],
+  arrayQuiz:[]
 };
 
 const questionSlice = createSlice({
@@ -20,6 +21,9 @@ const questionSlice = createSlice({
     resetArray(state, actions) {
       state.arrayQuestion = [];
     },
+    resetQuiz:(state,actions)=>{
+      state.arrayQuiz = [];
+    }
   },
 });
 export const { updateArray, resetArray } = questionSlice.actions;

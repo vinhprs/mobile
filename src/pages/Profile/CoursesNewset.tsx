@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectUserCourse } from '../../store/reducers/courseSlice';
 import { useAppDispatch } from '../../hooks/appHooks';
 import { getCourseUserBuy } from '../../store/actions/course.action';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CoursesNewset = () => {
   const userCourse = useSelector(selectUserCourse);
@@ -37,16 +37,19 @@ const CoursesNewset = () => {
                 {course?.courseName}
               </h1>
             </div>
-            <div className="p-[16px] border-[1px] border-[#E9EAF0] grid grid-cols-2 items-center">
-              <button
-                onClick={() => navigate(`/courses/${course?._id}`)}
-                className="w-full py-[6px] px-[4px] text-[14px] font-semibold bg-[#FFEEE8] text-[#FF6636]"
-              >
-                Xem bài giảng
-              </button>
-              {/* <div className="text-right text-[12px] text-[#23BD33]">
-                <span>0</span>% complete
-              </div> */}
+            <div className="flex flex-col gap-2 p-[16px] border-[1px] border-[#E9EAF0]">
+              <div className='grid grid-cols-2 items-center'>
+                <button
+                  onClick={() => navigate(`/courses/${course?._id}`)}
+                  className="w-full py-[8px] px-[4px] text-[14px] font-semibold bg-[#FFEEE8] text-[#FF6636]"
+                >
+                  Xem bài giảng
+                </button>
+                <div className="text-right text-[12px] text-[#23BD33]">
+                  <span>0</span>% complete
+                </div>
+              </div>
+              <Link to={`/rate/${course?._id}`} className="w-full cursor-pointer py-[10px] px-[4px] text-[14px] font-semibold bg-[#FFEEE8] text-[#FF6636] text-center">Đánh giá khoá học</Link>
             </div>
           </div>
         </div>

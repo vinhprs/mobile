@@ -50,6 +50,12 @@ import RequireAuth from './components/RequireAuth/RequireAuth';
 import RequireVideo from './components/RequireVideo/RequireVideo';
 import MessageTeacher from './pages/Teacher/TeacherMessage/MessageTeacher';
 import DashboardCheckCourses from './pages/Admin/DashboardCheckCourses';
+import MainQuiz from './pages/Teacher/Quiz/MainQuiz';
+import Blog from './pages/Blog/Blog';
+import DetailBlog from './pages/DetailBlog/DetailBlog';
+import BlogTeacher from './pages/Teacher/Blog/BlogTeacher';
+import BlogAdmin from './pages/Admin/BlogCheck/BlogAdmin';
+import Banner from './pages/Admin/Banner/Banner';
 function App() {
   const [loading, setLoading] = useState(true);
   const pathname = useLocation();
@@ -141,6 +147,14 @@ function App() {
                           }
                         />
                         <Route
+                          path="/teacher/quiz"
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <MainQuiz />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
                           path="/teacher/courses/:id"
                           element={
                             <RequireAuth redirectTo="/teacher">
@@ -154,6 +168,14 @@ function App() {
                             <RequireAuth redirectTo="/teacher">
                               {/* <MessageTeacher/> */}
                               <div></div>
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/teacher/blog"
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <BlogTeacher />
                             </RequireAuth>
                           }
                         />
@@ -180,13 +202,13 @@ function App() {
         <>
           <div className="h-full">
             <div className={'grid grid-cols-[300px_1fr]'}>
-              <div className="bg-[#1D2026] shadow-[0px_-1px_0px_0px_#363B47] h-screen fixed w-[300px] top-0 left-0">
+              <div className="bg-[#1D2026] shadow-[0px_-1px_0px_0px_#363B47] h-full fixed w-[300px] top-0 left-0">
                 <SidebarAdmin />
               </div>
               <div
                 className={'bg-[#F5F7FA] max-h-full w-[calc(100vw-300px)] left-[300px] relative'}
               >
-                <div className="h-screen">
+                <div className="h-full">
                   {!loading ? (
                     <>
                       <Routes>
@@ -211,6 +233,22 @@ function App() {
                           element={
                             <RequireAuth redirectTo="/teacher">
                               <DashboardCheckCourses />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/admin/blog"
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <BlogAdmin />
+                            </RequireAuth>
+                          }
+                        />
+                        <Route
+                          path="/admin/banner"
+                          element={
+                            <RequireAuth redirectTo="/teacher">
+                              <Banner />
                             </RequireAuth>
                           }
                         />
@@ -251,9 +289,9 @@ function App() {
               <Route
                 path="forgetpassword/otp"
                 element={
-                  <RequireAuth redirectTo="/forgetpassword">
-                    <Otp />
-                  </RequireAuth>
+                  
+                  <Otp />
+                  
                 }
               />
               <Route path="signup" element={<Signup />} />
@@ -329,7 +367,22 @@ function App() {
                   </RequireAuth>
                 }
               />
-
+              <Route
+                path="/blog"
+                element={
+                  <RequireAuth redirectTo="/login">
+                    <Blog />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/blog/:idblog"
+                element={
+                  <RequireAuth redirectTo="/login">
+                    <DetailBlog />
+                  </RequireAuth>
+                }
+              />
               {/* <Route
                   path="/cart/payment/success"
                   element={<PaymentSuccess />}

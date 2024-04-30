@@ -81,6 +81,7 @@ const Question = () => {
       updateAnswerTitle({
         questionIndex: indexQuestion,
         value: e.target.value,
+        type:'create'
       })
     );
   };
@@ -90,6 +91,7 @@ const Question = () => {
       updateAnswerExplain({
         questionIndex: indexQuestion,
         value: e,
+        type:'create'
       })
     );
   };
@@ -102,6 +104,7 @@ const Question = () => {
         updateAnswerCorretAnswer({
           questionIndex: indexQuestion,
           value: +e.target.value,
+          type:'create'
         })
       );
     } else {

@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import {
   updateIsLogged,
   updateUserId,
+  updateUserInfo,
 } from '../../../store/reducers/authSlice';
 import { LocalStorage } from '../../../utils/LocalStorage';
 import { login } from '../../../store/actions/auth.action';
@@ -79,7 +80,7 @@ const Login = () => {
           LocalStorage.setToken(response?.payload.data?.token);
           LocalStorage.setRefreshToken(response?.payload.data?.refreshToken);
           console.log(LocalStorage.getAccessToken());
-
+          dispatch(updateUserInfo(response?.payload.data?.infoUser));
           toast({
             title: 'Đăng nhập thành công',
             description: response?.payload?.message,

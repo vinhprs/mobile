@@ -61,15 +61,27 @@ const examSlice = createSlice({
     setUpdateExam(state, actions) {
       const newArray: any = [...state.exam.questions, actions.payload];
       console.log(newArray);
-
       state.exam = {
         ...state.exam,
         questions: [...state.exam.questions, actions.payload],
       };
     },
+    setAddUpdateExam(state, actions) {
+      const newArray: any = [...state.exam.questions, actions.payload];
+      console.log(newArray);
+      state.examTemp = {
+        ...state.examTemp,
+        questions: [...state.examTemp.questions, actions.payload],
+      };
+    },
     deleteQuestion: (state, actions) => {
-      const { questionIndex } = actions.payload;
-      state.exam.questions.splice(questionIndex, 1);
+      const { questionIndex,type } = actions.payload;
+      if(type==='create'){
+        state.exam.questions.splice(questionIndex, 1);
+      }else{
+        state.examTemp.questions.splice(questionIndex, 1);
+
+      }
     },
     addAnswer: (state, action) => {
       const { questionIndex, value } = action.payload;
@@ -80,28 +92,53 @@ const examSlice = createSlice({
       state.exam.questions[questionIndex].answers.splice(answerIndex, 1);
     },
     updateAnswer: (state, action) => {
-      const { questionIndex, answerIndex, value } = action.payload;
-      state.exam.questions[questionIndex].answers[answerIndex] = value;
+      const { questionIndex, answerIndex, value,type } = action.payload;
+      if(type === 'create'){
+
+        state.exam.questions[questionIndex].answers[answerIndex] = value;
+      }else{
+        state.examTemp.questions[questionIndex].answers[answerIndex] = value;
+      }
     },
     updateAnswerTitle: (state, action) => {
-      const { questionIndex, value } = action.payload;
-      state.exam.questions[questionIndex].title = value;
+      const { questionIndex, value,type } = action.payload;
+      if(type === 'create'){
+        state.exam.questions[questionIndex].title = value;
+      }else{
+        state.examTemp.questions[questionIndex].title = value;
+      }
     },
     updateAnswerExplain: (state, action) => {
-      const { questionIndex, value } = action.payload;
-      state.exam.questions[questionIndex].explain = value;
+      const { questionIndex, value,type } = action.payload;
+      if(type === 'create'){
+        state.exam.questions[questionIndex].explain = value;
+      }else{
+        state.examTemp.questions[questionIndex].explain = value;
+      }
     },
     updateAnswerQuestionLevel: (state, action) => {
-      const { questionIndex, value } = action.payload;
-      state.exam.questions[questionIndex].questionLevel = value;
+      const { questionIndex, value, type } = action.payload;
+      if(type === 'create'){
+        state.exam.questions[questionIndex].questionLevel = value;
+      }else{
+        state.examTemp.questions[questionIndex].questionLevel = value;
+      }
     },
     updateAnswerCorretAnswer: (state: any, action) => {
-      const { questionIndex, value } = action.payload;
-      state.exam.questions[questionIndex].correctAnswers.push(value);
-      state.exam.questions[questionIndex].answerType =
-        state.exam.questions[questionIndex].correctAnswers.length === 1
-          ? 'Chọn 1'
-          : 'Chọn nhiều';
+      const { questionIndex, value,type } = action.payload;
+      if(type === 'create'){
+        state.exam.questions[questionIndex].correctAnswers.push(value);
+        state.exam.questions[questionIndex].answerType =
+          state.exam.questions[questionIndex].correctAnswers.length === 1
+            ? 'Chọn 1'
+            : 'Chọn nhiều';
+      }else{
+        state.examTemp.questions[questionIndex].correctAnswers.push(value);
+        state.examTemp.questions[questionIndex].answerType =
+          state.examTemp.questions[questionIndex].correctAnswers.length === 1
+            ? 'Chọn 1'
+            : 'Chọn nhiều';
+      }
     },
     updateAnswerType: (state, actions) => {
       const { questionIndex, value } = actions.payload;
@@ -121,16 +158,38 @@ const examSlice = createSlice({
           : 'Chọn nhiều';
     },
     updateTitle: (state, actions) => {
-      state.exam = { ...state.exam, title: actions.payload };
+      const {value,type} = actions.payload;
+      if(type === 'create'){
+        state.exam = { ...state.exam, title: value };
+      }else{
+        state.examTemp = { ...state.examTemp, title: value };
+
+      }
     },
     updateGrade: (state, actions) => {
-      state.exam = { ...state.exam, categoryId: actions.payload };
+      const {value,type} = actions.payload;
+      if(type==='create'){
+        state.exam = { ...state.exam, categoryId: value };
+      }else{
+        state.examTemp = { ...state.examTemp, categoryId: value };
+
+      }
     },
     updateSubject: (state, actions) => {
-      state.exam = { ...state.exam, subCategoryId: actions.payload };
+      const {value,type} = actions.payload;
+      if(type==='create'){
+        state.exam = { ...state.exam, subCategoryId: value };
+      }else{
+        state.examTemp = { ...state.examTemp, subCategoryId: value };
+      }
     },
     updateTime: (state, actions) => {
-      state.exam = { ...state.exam, time: actions.payload };
+      const {value,type}=actions.payload;
+      if(type==='create'){
+        state.exam = { ...state.exam, time: value };
+      }else{
+        state.examTemp = { ...state.examTemp, time: value };
+      }
     },
 
     examList: (state, actions) => {
@@ -224,6 +283,7 @@ export const {
   updateTimeStop,
   updateTimeFinish,
   resetPostExam,
+  setAddUpdateExam
 } = examSlice.actions;
 export default examSlice.reducer;
 export const selectExam = (state: RootState) => state.exam.exam;

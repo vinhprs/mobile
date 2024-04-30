@@ -47,13 +47,19 @@ export var buttonList = [
   ['-right', ':r-More Rich-default.more_plus', 'table', 'math', 'imageGallery'],
   ['-right', 'image', 'video', 'audio', 'link'],
 ];
+interface Quiz {
+  quizzId?:number;
+  questionTime?:number;
+}
 interface Lecture {
   lectureName: string;
   lectureType: string;
   amount: string;
   url: string;
   examId?: number;
+  quizzs?:Array<Quiz>
   slug:string;
+
 }
 interface Section {
   sectionName: string;
@@ -90,4 +96,9 @@ export const Events = {
 };
 export interface messChatProps {
   inputChat:string
+}
+export interface createBlogProps{
+  title:string,
+  desc:string,
+  tag?:Array<string>
 }

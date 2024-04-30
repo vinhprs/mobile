@@ -13,6 +13,8 @@ import DropdownNavbar from '../DropdownNavbar/DropdownNavbar';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/appHooks';
 import { getCategory } from '../../store/actions/user.action';
+import { BiSolidGridAlt } from 'react-icons/bi';
+
 const ModalMenu = ({ isOpen, onClose, drawerRef }: any) => {
   const dispatch = useAppDispatch();
   const [category, setCategory] = useState<any>([]);
@@ -43,6 +45,10 @@ const ModalMenu = ({ isOpen, onClose, drawerRef }: any) => {
           {category?.map((item: any, index: number) => (
             <DropdownNavbar item={item} key={item?._id} onClose={onClose} />
           ))}
+          <Link to="/blog" onClick={() => onClose()} className=' rounded-lg gap-3 inline-flex items-center justify-center bg-[#FF6636] px-[16px] py-[8px] mt-[20px] text-white'>
+            <BiSolidGridAlt className='text-[24px]'/>
+            <span className='font-medium'>Bài viết</span>
+          </Link>
         </DrawerBody>
       </DrawerContent>
     </Drawer>

@@ -6,6 +6,7 @@ import {
   selectExam,
   selectExamDetail,
   selectExamTemp,
+  setAddUpdateExam,
   setUpdateExam,
 } from '../../../store/reducers/examSlice';
 import moment from 'moment';
@@ -30,7 +31,7 @@ const ExamUpdate = ({ item }: any) => {
   }, []);
   const addQuestion = () => {
     dispatch(
-      setUpdateExam({
+      setAddUpdateExam({
         title: '',
         answers: ['', '', '', ''],
         correctAnswers: [],

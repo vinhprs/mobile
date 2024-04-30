@@ -97,10 +97,35 @@ const createCourseSlice = createSlice({
       const { sectionIndex, lectureIndex, value } = actions.payload;
       state.course.sections[sectionIndex].lectures[lectureIndex].examId = value;
     },
+    
+    updateLectureQuizId(state:any, actions) {
+      const { sectionIndex, lectureIndex, quizIndex,value } = actions.payload;
+      state.course.sections[sectionIndex].lectures[lectureIndex].quizzs[quizIndex].quizzId= value;
+    },
+    updateLectureQuizQuestionTime(state:any, actions) {
+      const { sectionIndex, lectureIndex, quizIndex,value } = actions.payload;
+      state.course.sections[sectionIndex].lectures[lectureIndex].quizzs[quizIndex].questionTime= value;
+    },
+    updateAddQuiz(state:any, actions) {
+      const { sectionIndex, lectureIndex,item } = actions.payload;
+      if (!state.course.sections[sectionIndex].lectures[lectureIndex].quizzs) {
+        state.course.sections[sectionIndex].lectures[lectureIndex].quizzs = [];
+      }
+      
+      // Spread `item` into `quiz`
+      state.course.sections[sectionIndex].lectures[lectureIndex].quizzs.push(item);
+    },
+    deleteItemQuiz(state:any, actions) {
+      const { sectionIndex, lectureIndex,quizIndex } = actions.payload;
+      
+      // Spread `item` into `quiz`
+      state.course.sections[sectionIndex].lectures[lectureIndex].quizzs.splice(quizIndex,1);
+    },
     updateLectureAmount(state, actions) {
       const { sectionIndex, lectureIndex, value } = actions.payload;
       state.course.sections[sectionIndex].lectures[lectureIndex].amount = value;
     },
+    
     updateLectureType(state, actions) {
       const { sectionIndex, lectureIndex, value, urlValue } = actions.payload;
       if (value === 'VIDEO') {
@@ -198,6 +223,10 @@ export const {
   swapLecture,
   updateLecture,
   updateLectureExamId,
+  updateLectureQuizId,
+  updateLectureQuizQuestionTime,
+  updateAddQuiz,
+  deleteItemQuiz
 } = createCourseSlice.actions;
 export default createCourseSlice.reducer;
 export const selectCreateCourse = (state: RootState) =>

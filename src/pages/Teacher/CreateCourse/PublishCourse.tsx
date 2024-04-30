@@ -5,20 +5,29 @@ import { selectCoursesCreated } from '../../../store/reducers/createCourseSlice'
 import { useAppDispatch } from '../../../hooks/appHooks';
 import { createCourse } from '../../../store/actions/course.action';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 
 const PublishCourse = () => {
   const selectedCourse = useSelector(selectCoursesCreated);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
   console.log(
     '🚀 ~ file: PublishCourse.tsx:8 ~ PublishCourse ~ selectedCourse:',
     selectedCourse
   );
 
   const createCourseHandle = async () => {
-    const res = await dispatch(createCourse(selectedCourse));
+    const res:any = await dispatch(createCourse(selectedCourse));
     if (res.meta.requestStatus === 'fulfilled' && res.payload) {
       console.log(res);
+      toast({
+        title: 'Tạo khoá học thành công',
+        description: `Tạo khoá ${res.payload.data.courseName}`,
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
       navigate('/teacher/courses');
     } else {
       console.log('err');

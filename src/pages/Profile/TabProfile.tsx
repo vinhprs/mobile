@@ -8,6 +8,7 @@ import Favorite from './Favorite';
 import Cart from './Cart';
 import Settings from './Settings';
 import { useLocation, useNavigate } from 'react-router-dom';
+import BlogUser from '../BlogUser/BlogUser';
 const TabProfile = () => {
   const navigation = useNavigate();
   const pathnanme = useLocation(); 
@@ -21,8 +22,9 @@ const TabProfile = () => {
           <Tab onClick={onClickTabs}>Dashboard</Tab>
           <Tab onClick={onClickTabs}>Khóa học</Tab>
           <Tab onClick={onClickTabs}>Tin nhắn</Tab>
-          <Tab onClick={onClickTabs}>Giáo viên</Tab>
+          {/* <Tab onClick={onClickTabs}>Giáo viên</Tab> */}
           <Tab onClick={onClickTabs}>Yêu thích</Tab>
+          <Tab onClick={onClickTabs}>Blog</Tab>
           {/* <Tab>Giỏ hàng</Tab> */}
           <Tab onClick={onClickTabs}>Tài khoản</Tab>
         </TabList>
@@ -37,15 +39,15 @@ const TabProfile = () => {
           <TabPanel>
             {/* <Message /> */}
           </TabPanel>
-          <TabPanel>
+          {/* <TabPanel>
             <Teachers />
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel>
             <Favorite />
           </TabPanel>
-          {/* <TabPanel>
-            <Cart />
-          </TabPanel> */}
+          <TabPanel>
+            <BlogUser/>
+          </TabPanel>
           <TabPanel>
             <Settings />
           </TabPanel>

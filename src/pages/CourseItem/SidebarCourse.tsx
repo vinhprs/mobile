@@ -1,35 +1,32 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import imgSub from '../../image/Homepage/R.jpeg';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { MdOutlineOndemandVideo, MdOutlineAssignment } from 'react-icons/md';
-import { IoIosInfinite } from 'react-icons/io';
-import { AiOutlineTrophy, AiOutlineClockCircle } from 'react-icons/ai';
-import { RiShareForwardLine } from 'react-icons/ri';
-import { BsFillBarChartFill, BsPeople, BsFacebook } from 'react-icons/bs';
+import { AiOutlineClockCircle } from 'react-icons/ai';
+import { BsPeople, BsFacebook } from 'react-icons/bs';
 import { SiGoogleclassroom } from 'react-icons/si';
-import { BiLayer } from 'react-icons/bi';
-import { FiFileText, FiCopy } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { FiCopy } from 'react-icons/fi';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { formatMoney } from '../../utils/lib';
 import moment from 'moment';
 import { useAppDispatch } from '../../hooks/appHooks';
 import { getCategoryById } from '../../store/actions/user.action';
-import { useSelector } from 'react-redux';
-import { selectIsLogged } from '../../store/reducers/authSlice';
 import {
   addToCart,
-  deleteCart,
   getCart,
 } from '../../store/actions/cart.action';
 import { LocalStorage } from '../../utils/LocalStorage';
 import { getWistList, postWishList } from '../../store/actions/wishlist.action';
 import { updateCartSub, updateIsBuyNow } from '../../store/reducers/cartSlice';
+import { useToast } from '@chakra-ui/react';
+import {FacebookIcon,FacebookShareButton} from 'react-share';
 const SidebarCourse = ({ courseDetail, getDetailCourse }: any) => {
   const [categoryID, setCategoryID] = useState<any>({});
   const [description, setDescription] = useState<any>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const access_token = LocalStorage.getAccessToken();
+  const toast = useToast();
+  const location = useLocation();
+  console.log('🚀 ~ SidebarCourse ~ location:', location);
+  
   const addCart = async (id: any) => {
     const payload = {
       courseId: id,
@@ -110,6 +107,17 @@ const SidebarCourse = ({ courseDetail, getDetailCourse }: any) => {
     setTimeout(() => {
       navigate('/cart/payment');
     }, 500);
+  };
+  const copyLink = async()=>{
+    await navigator.clipboard.writeText(`https://staging.primeedu.io.vn${location.pathname}`);
+    toast({
+      title: 'Successfully',
+      description: 'Sao chép link thành công',
+      status: 'success',
+      duration: 4000,
+      isClosable: true,
+      position:'top-right'
+    });
   };
   useEffect(() => {
     if (courseDetail) {
@@ -244,13 +252,15 @@ const SidebarCourse = ({ courseDetail, getDetailCourse }: any) => {
             Chia sẻ khóa học này
           </h1>
           <div className="flex items-center gap-x-2">
-            <div className="flex gap-x-2 items-center bg-[#F5F7FA] text-[#4E5566] px-[20px] py-[12px] w-fit">
+            <div onClick={copyLink} className="cursor-pointer flex gap-x-2 items-center bg-[#F5F7FA] text-[#4E5566] px-[20px] py-[12px] w-fit">
               <FiCopy className="text-[18px]" />
               <span>Sao chép link</span>
             </div>
             <div>
-              <div className="flex gap-x-2 items-center bg-[#F5F7FA] text-[#4E5566] h-[45px] w-[45px] justify-center ">
-                <BsFacebook className="text-[18px]" />
+              <div className="cursor-pointer flex gap-x-2 items-center bg-[#F5F7FA] text-[#4E5566] h-[45px] w-[45px] justify-center ">
+                <FacebookShareButton url={`https://staging.primeedu.io.vn${location.pathname}`}>
+                  <BsFacebook className="text-[18px]" />
+                </FacebookShareButton>
               </div>
             </div>
           </div>

@@ -41,6 +41,7 @@ const ExamInputUpdate = ({
         updateAnswerCorretAnswer({
           questionIndex: index,
           value: +e.target.value,
+          type:'update'
         })
       );
     } else {
@@ -90,6 +91,7 @@ const ExamInputUpdate = ({
         index={index}
         indexAnswer={indexAnswer}
         answer={answer}
+        typeRedux="update"
       />
     </div>
   );

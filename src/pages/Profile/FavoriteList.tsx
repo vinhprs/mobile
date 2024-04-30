@@ -96,6 +96,8 @@ const FavoriteList = () => {
         </Thead>
         <Tbody>
           {wishList?.map((item: any, index: any) => (
+            
+
             <Tr key={index}>
               <Td w="800px">
                 <div className="flex gap-x-[20px] whitespace-pre-wrap">
@@ -106,17 +108,17 @@ const FavoriteList = () => {
                   />
                   <div className="flex flex-col gap-y-2">
                     {/* <div className="mb-[8px] flex gap-x-2">
-                      <AiFillStar className="text-[20px] text-[#FD8E1F]" />
-                      <span className="text-[#8C94A3] text-[14px] ">
-                        451,444 review
-                      </span>
-                    </div> */}
+                            <AiFillStar className="text-[20px] text-[#FD8E1F]" />
+                            <span className="text-[#8C94A3] text-[14px] ">
+                              451,444 review
+                            </span>
+                          </div> */}
                     <h1 className="text-[#1D2026] font-medium mb-[10px]">
                       {item?.course?.courseName}
                     </h1>
 
                     <span className="text-[#A1A5B3] text-[14px]">
-                      Hướng dẫn bởi:{' '}
+                            Hướng dẫn bởi:{' '}
                       <span className="text-[#4E5566]">
                         {
                           item?.course?.courseName.split('-')[
@@ -138,27 +140,17 @@ const FavoriteList = () => {
               </Td>
               <Td>
                 <div className="flex gap-x-2">
-                  <Button
-                    onClick={() => handleBuyNow(item?.course)}
-                    bg="#F5F7FA"
-                    color="#1D2026"
-                    fontSize="14px"
-                  >
-                    Mua ngay
-                  </Button>
-                  {item?.course?.isAddToCart ? (
+                  {!item?.course?.isPaid && (
                     <Button
-                      bg="#FF6636"
-                      color="#ffffff"
+                      onClick={() => handleBuyNow(item?.course)}
+                      bg="#F5F7FA"
+                      color="#1D2026"
                       fontSize="14px"
-                      _hover={{
-                        bg: '#f85b2b',
-                      }}
-                      onClick={() => navigate('/cart')}
                     >
-                      Đi tới giỏ hàng
+                            Mua ngay
                     </Button>
-                  ) : (
+                  )}
+                  {!item?.course?.isAddToCart && (
                     <Button
                       bg="#FF6636"
                       color="#ffffff"
@@ -168,7 +160,7 @@ const FavoriteList = () => {
                       }}
                       onClick={() => handleAddCart(item?.course?._id)}
                     >
-                      Thêm vào giỏ hàng
+                            Thêm vào giỏ hàng
                     </Button>
                   )}
 

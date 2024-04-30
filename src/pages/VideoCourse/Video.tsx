@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { Link, useLocation } from 'react-router-dom';
+import VideoAndQuizz from './VideoAndQuizz';
 
 const Video = ({ courseDetail }: any) => {
-  const videoRef: any = useRef(null);
-
-  console.log('🚀 ~ file: Video.tsx:6 ~ Video ~ courseDetail:', courseDetail);
   const [type, setType] = useState<any>([]);
-  console.log('🚀 ~ file: Video.tsx:7 ~ Video ~ type:', type);
   const search = useLocation().search;
-  const params = new URLSearchParams(search).get('id');
   const paramsLecture = new URLSearchParams(search).get('slug');
   useEffect(() => {
     if (paramsLecture) {
@@ -24,29 +20,34 @@ const Video = ({ courseDetail }: any) => {
   return (
     <div>
       {paramsLecture ? (
-        <div className="w-full h-full lg:h-[600px]">
+        <VideoAndQuizz/>
+        // <div className="w-full h-full lg:h-[600px]">
           
-          <ReactPlayer
-            ref={videoRef}
-            className="w-full h-full"
-            controls
-            width="100%"
-            height="100%"
-            loop={true}
-            muted={true}
-            playing={true}
-            config={{
-              file: {
-                attributes: {
-                  crossOrigin: 'true',
-                },
-              },
-            }}
-            url={[
-              `https://staging.primeedu.io.vn/api/v1/course/lecture/${paramsLecture}`,
-            ]}
-          />
-        </div>
+      //   <ReactPlayer
+      //     onProgress={(duration)=>{
+              
+      //       setPlayed(Math.floor(duration.playedSeconds));
+      //     }}
+      //     ref={videoRef}
+      //     className="w-full h-full"
+      //     controls
+      //     width="100%"
+      //     height="100%"
+      //     loop={true}
+      //     muted={true}
+      //     playing={isPause}
+      //     config={{
+      //       file: {
+      //         attributes: {
+      //           crossOrigin: 'true',
+      //         },
+      //       },
+      //     }}
+      //     url={[
+      //       `https://staging.primeedu.io.vn/api/v1/course/lecture/${paramsLecture}`,
+      //     ]}
+      //   />
+      // </div>
       ) : (
         <div className="h-[600px] w-full overflow-hidden">
           <div className="relative">

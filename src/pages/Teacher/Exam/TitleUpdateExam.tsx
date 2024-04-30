@@ -36,18 +36,30 @@ const TitleUpdateExam = ({ item }: any) => {
   };
   const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(e.target.value);
-    dispatch(updateTitle(e.target.value));
+    dispatch(updateTitle({
+      value:e.target.value,
+      type:'update'
+    }));
   };
   const changeGrade = (grade: number) => {
     setItemId(grade);
-    dispatch(updateGrade(grade));
+    dispatch(updateGrade({
+      value:grade,
+      type:'update'
+    }));
   };
   const changeSubject = (subject: number) => {
     setItemSubId(subject);
-    dispatch(updateSubject(subject));
+    dispatch(updateSubject({
+      value:subject,
+      type:'update'
+    }));
   };
   const changeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(updateTime(+e.target.value));
+    dispatch(updateTime({
+      value:+e.target.value,
+      type:'update'
+    }));
   };
   useEffect(() => {
     getCategories();

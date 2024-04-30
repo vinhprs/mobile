@@ -160,7 +160,7 @@ const Lecture = ({
             </MenuButton>
             <MenuList>
               <MenuItem onClick={onOpenUpload}>Đăng tải video</MenuItem>
-              <MenuItem onClick={onOpenUploadFile}>Tải file lên</MenuItem>
+              <MenuItem onClick={onOpenUploadFile}>Đăng tải bài Quizz</MenuItem>
               <MenuItem onClick={onOpenExam}>Đề thi</MenuItem>
             </MenuList>
           </Menu>
@@ -223,6 +223,8 @@ const Lecture = ({
         // setSections={setSections}
         itemLecture={itemLecture}
         sections={sections}
+        index={index}
+        indexLecture={indexLecture}
       />
       <ModalChooseExam
         isOpen={isOpenExam}

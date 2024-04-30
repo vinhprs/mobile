@@ -21,7 +21,7 @@ const CourseList = ({ itemList }: any) => {
       </div>
       <div className="px-4 py-3">
         <div className="flex justify-between items-center mb-[5px]">
-          <h1 className="text-[10px] font-medium text-[#993D20] bg-[#FFEEE8] px-[6px] py-[4px]">
+          <h1 className="text-[10px] line-clamp-1 font-medium text-[#993D20] bg-[#FFEEE8] px-[6px] py-[4px]">
             {itemList?.courseName?.split('-')[0]}
           </h1>
           <span className="text-[#FF6636] text-[16px] font-semibold">

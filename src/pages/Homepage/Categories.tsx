@@ -13,9 +13,6 @@ const Categories = () => {
             className="text-[20px] font-semibold text-[#FF6636] w-full"
           >
             <img src={item.img} alt="" className="w-full" />
-            <div className="hover:text-[#fa7951] transition-all duration-150 ease-in-out">
-              {item.name}
-            </div>
           </Link>
         ))}
       </div>

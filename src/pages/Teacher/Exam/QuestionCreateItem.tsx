@@ -35,6 +35,7 @@ const QuestionCreateItem = ({ item, index, questions }: any) => {
       updateAnswerExplain({
         questionIndex: index,
         value: content,
+        type:'create'
       })
     );
   };
@@ -52,6 +53,7 @@ const QuestionCreateItem = ({ item, index, questions }: any) => {
     dispatch(
       deleteQuestion({
         questionIndex: ind,
+        type:'create'
       })
     );
   };
@@ -79,6 +81,7 @@ const QuestionCreateItem = ({ item, index, questions }: any) => {
               setTypes={setTypes}
               dispatch={dispatch}
               index={index}
+              typeRedux='create'
               // selectTitle="Mức độ"
             />
           </div>
@@ -135,6 +138,7 @@ const QuestionCreateItem = ({ item, index, questions }: any) => {
         onClose={onClose}
         index={index}
         title={item.title}
+        typeRedux="create"
       />
     </div>
   );
