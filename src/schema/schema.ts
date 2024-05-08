@@ -85,5 +85,6 @@ export const inputChatMess = yup.object().shape({
 });
 export const createBlog = yup.object().shape({
   title:yup.string().required('Yêu cầu nhập tiêu đề'),
+  previewContent:yup.string().required('Yêu cầu nhập privew'),
   desc:yup.string().min(200,'Không được ít hơn 200 từ').required('Yêu cầu nhập bài viết'),
 });

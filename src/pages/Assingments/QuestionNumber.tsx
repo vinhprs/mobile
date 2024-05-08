@@ -51,7 +51,7 @@ const QuestionNumber = ({ questions }: any) => {
   };
   const onClickPostExam = () => {
     dispatch(updateTimeStop(true));
-    // postExamToTeachear(id, completeTime);
+    postExamToTeachear(id, completeTime);
   };
   const handleAlertClick = () => {
     // Display a confirmation dialog

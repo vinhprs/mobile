@@ -6,17 +6,20 @@ import { convertTimeToAgo } from '../../utils/lib';
 const Comment = ({ item }: any) => {
   return (
     <div className=" p-3 border-[1px] rounded-xl hover:bg-slate-200">
-      <div className="grid grid-cols-[48px_1fr_100px] gap-x-4">
-        <div className="w-12 h-12 rounded-full overflow-hidden">
-          <img
-            className="w-full h-full object-cover"
-            src={item?.authorThumbnail}
-            alt=""
-          />
-        </div>
-        <div>
-          <h1 className="font-semibold">{item?.author}</h1>
-          <p className="text-[14px] line-clamp-1">{item?.content}</p>
+      <div className="flex lg:flex-row flex-col lg:tems-center items-start justify-between gap-4">
+        <div className='grid grid-cols-[48px_1fr] gap-4'>
+
+          <div className=" w-12 h-12 rounded-full overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={item?.authorThumbnail}
+              alt=""
+            />
+          </div>
+          <div>
+            <h1 className="font-semibold">{item?.author}</h1>
+            <p className="text-[14px] line-clamp-1">{item?.content}</p>
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           <div className="flex items-center gap-x-2">

@@ -38,15 +38,15 @@ const TitleResultExam = () => {
         Chúc mừng bạn đã hoàn thành bài kiểm tra {questionResult?.title}
       </h1>
       <div className="px-[16px] py-[18px] border-[2px] border-[#FF6636] rounded-lg">
-        <div className="flex items-center gap-x-4 h-full">
+        <div className="flex lg:flex-row flex-col items-center gap-4 h-full">
           <div className="flex flex-col gap-1 items-center px-[16px]">
             <span className="text-[20px] uppercase font-semibold">Điểm số</span>
             <h1 className="text-[18px] text-[#FF6636] font-medium">
               {questionResult?.score}/10
             </h1>
           </div>
-          <div className="w-[0.5px] h-[60px] bg-[#FF6636]"></div>
-          <div className="grid grid-cols-3 gap-3 flex-1">
+          <div className="w-full lg:w-[0.5px] h-[0.5px] lg:h-[60px] bg-[#FF6636]"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 flex-1">
             <div className="flex items-center gap-x-[10px]">
               <MdOutlineAssignmentTurnedIn className="text-[#3cb46e] text-[20px]" />
               <span className="">

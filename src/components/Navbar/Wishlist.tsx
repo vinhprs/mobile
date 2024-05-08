@@ -83,7 +83,7 @@ const Wishlist = () => {
           </span>
         </div>
       </div>
-      <div className="modal_title_learn absolute top-[100%] right-[50%] w-[300px]  bg-white border-[1px] border-[#272829]">
+      <div className="modal_title_learn absolute top-[100%] lg:right-[50%] right-[-20px] w-[300px]  bg-white border-[1px] border-[#272829]">
         <div className="px-3 py-3 flex flex-col items-center text-[#ACADAE]">
           {/* khi nào rỗng thì hiện */}
           {/* <h1>Các khóa học yêu thích đang trống</h1> */}

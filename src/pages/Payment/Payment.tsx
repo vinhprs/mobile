@@ -20,7 +20,7 @@ const Payment = () => {
         <h1 className="font-semibold text-[24px] mb-5 text-center py-[40px] bg-[#F5F7FA]">
           Thanh toán khóa học
         </h1>
-        <div className="grid grid-cols-[1fr_300px] gap-x-3">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-x-3">
           <div className="">
             {isBuyNow ? (
               <ListCoursePayment cartList={cartListSub} />

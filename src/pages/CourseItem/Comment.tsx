@@ -86,7 +86,7 @@ const Comment = () => {
                 </div>
               ))}
           </div>
-          <div>
+          {/* <div>
             <h1 className='text-[20px] font-semibold text-[#FF6636]'>Đánh giá khoá học</h1>
             <div>
               <ReactStars
@@ -118,7 +118,7 @@ const Comment = () => {
             >
               Đánh gía
             </Button>
-          </div>
+          </div> */}
         </>
       )}
     </div>

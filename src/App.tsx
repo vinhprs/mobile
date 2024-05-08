@@ -370,17 +370,17 @@ function App() {
               <Route
                 path="/blog"
                 element={
-                  <RequireAuth redirectTo="/login">
-                    <Blog />
-                  </RequireAuth>
+                 
+                  <Blog />
+                  
                 }
               />
               <Route
                 path="/blog/:idblog"
                 element={
-                  <RequireAuth redirectTo="/login">
-                    <DetailBlog />
-                  </RequireAuth>
+                  
+                  <DetailBlog />
+                  
                 }
               />
               {/* <Route

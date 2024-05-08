@@ -15,7 +15,7 @@ const TabInput = ({tags, setTags}:any) => {
     <div className="text-[14px] flex items-start flex-wrap min-h-[60px] p-[8px] border rounded-lg  gap-2">
       <ul id="tags" className='flex flex-wrap ml-[8px] gap-3'>
         {tags.map((tag:any, index:number) => (
-          <li key={index} className="flex-1 flex items-center gap-2 p-2 bg-[#FF6636] rounded-lg text-white">
+          <li key={index} className="flex-1 w-[100px] justify-center flex items-center gap-2 p-2 bg-[#FF6636] rounded-lg text-white">
             <span className=''>{tag}</span>
             
             <IoIosCloseCircleOutline className='text-[20px]' onClick={() => removeTag(index)}/>

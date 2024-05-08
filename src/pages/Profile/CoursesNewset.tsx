@@ -49,7 +49,7 @@ const CoursesNewset = () => {
                   <span>0</span>% complete
                 </div>
               </div>
-              <Link to={`/rate/${course?._id}`} className="w-full cursor-pointer py-[10px] px-[4px] text-[14px] font-semibold bg-[#FFEEE8] text-[#FF6636] text-center">Đánh giá khoá học</Link>
+              {/* <Link to={`/rate/${course?._id}`} className="w-full cursor-pointer py-[10px] px-[4px] text-[14px] font-semibold bg-[#FFEEE8] text-[#FF6636] text-center">Đánh giá khoá học</Link> */}
             </div>
           </div>
         </div>

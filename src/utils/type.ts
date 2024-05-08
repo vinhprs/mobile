@@ -100,5 +100,11 @@ export interface messChatProps {
 export interface createBlogProps{
   title:string,
   desc:string,
+  previewContent:string,
   tag?:Array<string>
+}
+export enum STATUS_BLOG {
+  PENDING = 'PENDING',
+  DECLINED = 'DECLINED',
+  ACCEPTED = 'ACCEPTED'
 }

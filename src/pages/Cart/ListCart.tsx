@@ -111,7 +111,7 @@ const ListCart = () => {
                     onClick={() => navigate(`/courses/${cart?.course?._id}`)}
                     cursor="pointer"
                   >
-                    <div className="flex gap-x-[20px] w-full break-words">
+                    <div className="flex gap-x-[20px] lg:flex-row flex-col w-full break-words">
                       <img
                         src={cart?.course?.thumbnail_url}
                         alt=""

@@ -99,14 +99,14 @@ const FavoriteList = () => {
             
 
             <Tr key={index}>
-              <Td w="800px">
-                <div className="flex gap-x-[20px] whitespace-pre-wrap">
+              <Td>
+                <div className="flex gap-x-[20px] lg:flex-row flex-col whitespace-pre-wrap">
                   <img
                     src={item?.course?.thumbnail_url}
                     alt=""
-                    className="w-[150px] h-[100px] object-cover"
+                    className="flex-1 w-[150px] h-[100px] object-cover"
                   />
-                  <div className="flex flex-col gap-y-2">
+                  <div className="flex-1 flex flex-col gap-y-2 lg:w-full w-max">
                     {/* <div className="mb-[8px] flex gap-x-2">
                             <AiFillStar className="text-[20px] text-[#FD8E1F]" />
                             <span className="text-[#8C94A3] text-[14px] ">

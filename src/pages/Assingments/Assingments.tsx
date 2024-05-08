@@ -47,17 +47,17 @@ const Assingments = () => {
   }, []);
   return (
     <div className="py-[20px] px-[24px] text-[#272829]">
-      <div className="flex items-center justify-around mb-9">
+      <div className="flex lg:flex-row gap-2 flex-col items-center justify-around mb-9">
         <img src={logo} alt="logo-icon" className="w-[250px]" />
         <h1 className="uppercase text-[20px] font-semibold">
           {questions?.title}
         </h1>
       </div>
-      <div className="grid grid-cols-[1fr_300px] gap-x-3 w-[1100px] mx-auto">
-        <div className="">
+      <div className="flex lg:flex-row flex-col-reverse gap-x-3 w-full lg:w-[1100px] mx-auto">
+        <div className="flex-1">
           <TitleAssignmet questions={questions} />
         </div>
-        <div className=" fixed h-full w-[300px] right-[150px] flex flex-col gap-y-3">
+        <div className="relative lg:fixed h-full w-[300px] right-0 lg:right-[150px] flex flex-col gap-y-3">
           <TimeAndQuestions questions={questions} />
           <QuestionNumber questions={questions} />
         </div>
