@@ -1,6 +1,6 @@
-import { jwtDecode } from 'jwt-decode';
-import { LocalStorage } from '../../utils/LocalStorage';
-import axios, { AxiosResponse } from 'axios';
+import { jwtDecode } from "jwt-decode";
+import { LocalStorage } from "../../utils/LocalStorage";
+import axios, { AxiosResponse } from "axios";
 
 // const getTokenExpiration = (token: any) => {
 //   console.log(typeof token);
@@ -10,9 +10,9 @@ import axios, { AxiosResponse } from 'axios';
 // };
 
 const defaultHeader = {
-  'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
+  "Access-Control-Allow-Origin": "*",
+  "Content-Type": "application/json",
+  Accept: "application/json",
 };
 // for multiple requests
 let isRefreshing = false;
@@ -33,7 +33,7 @@ const processQueue = (error: any, token = null) => {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // const baseURL: string = process.env.REACT_API_ENDPOINT || "";
-const baseURL: string = String(process.env.REACT_APP_API_ENDPOINT) || '';
+const baseURL: string = String("https://staging.primeedu.io.vn/api/v1") || "";
 
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
@@ -48,7 +48,7 @@ axiosClient.interceptors.request.use(
     console.log(token);
 
     if (token) {
-      config.headers['Authorization'] = 'Bearer ' + token;
+      config.headers["Authorization"] = "Bearer " + token;
     }
     return config;
   },
@@ -71,7 +71,7 @@ axiosClient.interceptors.response.use(
           const token = await new Promise(function (resolve, reject) {
             failedQueue.push({ resolve, reject });
           });
-          originalRequest.headers['Authorization'] = 'Bearer ' + token;
+          originalRequest.headers["Authorization"] = "Bearer " + token;
           return await axiosClient.request(originalRequest);
         } catch (err) {
           return await Promise.reject(err);
@@ -86,12 +86,12 @@ axiosClient.interceptors.response.use(
       return new Promise(function (resolve, reject) {
         axios
           .post(
-            `${process.env.REACT_APP_API_ENDPOINT}/auth/refresh-token`,
+            `https://staging.primeedu.io.vn/api/v1/auth/refresh-token`,
             { refreshToken },
             {
               headers: {
                 ...defaultHeader,
-                Authorization: 'Bearer ' + LocalStorage.getAccessToken(),
+                Authorization: "Bearer " + LocalStorage.getAccessToken(),
               },
             }
           )
@@ -102,10 +102,10 @@ axiosClient.interceptors.response.use(
             LocalStorage.setToken(data);
 
             // 2) Change Authorization header
-            axios.defaults.headers.common['Authorization'] =
-              'Bearer ' + data.accessToken;
-            originalRequest.headers['Authorization'] =
-              'Bearer ' + data.accessToken;
+            axios.defaults.headers.common["Authorization"] =
+              "Bearer " + data.accessToken;
+            originalRequest.headers["Authorization"] =
+              "Bearer " + data.accessToken;
 
             processQueue(null, data.accessToken);
 
